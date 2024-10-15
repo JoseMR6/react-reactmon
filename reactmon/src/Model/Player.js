@@ -1,7 +1,7 @@
 export class Player{
-    constructor(){
-        this.nombre=''
-        this.image=''
-        this.record=''
+    constructor(nom='', img='', rec=0){
+        this.nombre=nom
+        this.image=img
+        this.record=rec
     }
 }

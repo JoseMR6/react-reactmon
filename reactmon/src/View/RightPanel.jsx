@@ -1,31 +1,35 @@
+import { useGame } from '../Controller/hooks/useGame'
 import './RightPanel.css'
 
 import CoinIcon from '/coin.svg'
 
 export function RightPanel() {
+    const {languajeDocument, round, coins, player} = useGame()
+
+    const lang = languajeDocument.RightPanel
 
     return (
         <>
             <div className="rightPanel">
                 <div className="option">
                     <div className='line'>
-                        <span>Record:</span>
-                        <span>109</span>
+                        <span>{lang.Record}:</span>
+                        <span>{player.record}</span>
                     </div>
                     <div className='line'>
-                        <span>Ronda:</span>
-                        <span>10</span>
+                        <span>{lang.Round}:</span>
+                        <span>{round}</span>
                     </div>
                 </div>
                 <div className="option">
                     <div className='line2'>
-                        <span>Monedas</span>
+                        <span>{lang.Coins.text}</span>
                     </div>
                     <div className='line2'>
-                        <span>1000</span>
+                        <span>{coins}</span>
                         <img
                             src={CoinIcon} className="imgOption"
-                            alt="Icono de Moneda"
+                            alt={lang.Coins.imgAlt}
                         />
                     </div>
                 </div>

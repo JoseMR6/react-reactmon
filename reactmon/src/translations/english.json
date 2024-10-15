@@ -20,5 +20,13 @@
             "imgAlt":"Spanish translation Icon",
             "text":"Español"
         }
+    },
+    "RightPanel":{
+        "Record":"Record",
+        "Round":"Round",
+        "Coins":{
+            "text":"Coins",
+            "imgAlt":"Coins Icon"
+        }
     }
 }

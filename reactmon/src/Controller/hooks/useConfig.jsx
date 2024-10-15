@@ -1,9 +1,9 @@
-import { useRef, useState } from "react"
+import { useMemo, useRef, useState } from "react"
 import { GAME_STATES, LANGUAJES, WINDOW_NAMES } from "../../Model/constants"
 import { getLanguajeDocument } from "../functions/languaje"
 
 export function useConfig(initLang=LANGUAJES.SPANISH){
-    const {lang,document} = getLanguajeDocument(initLang)
+    const {lang,document} = useMemo(()=>getLanguajeDocument(initLang),[])
     
     const [languaje, setLanguaje] = new useState(lang)
     const [languajeDocument, setLanguajeDocument] 

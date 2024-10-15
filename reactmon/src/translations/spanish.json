@@ -20,5 +20,13 @@
             "imgAlt":"Icono de Idioma Español",
             "text":"Español"
         }
+    },
+    "RightPanel":{
+        "Record":"Record",
+        "Round":"Ronda",
+        "Coins":{
+            "text":"Monedas",
+            "imgAlt":"Icono de Moneda"
+        }
     }
 }

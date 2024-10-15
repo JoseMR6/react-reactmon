@@ -19,7 +19,9 @@ export function LeftMenu() {
     return (
         <>
             <div className="leftMenu">
-                <div className="option">
+                <div className="option"
+                    onClick={()=>{window.open("https://github.com/JoseMR6/react-reactmon")}}
+                >
                     <img
                         src={reactIcon} className="imgOption"
                         alt={lang.Reactmon.imgAlt}

@@ -5,7 +5,7 @@
 
   /*Constantes de estilo*/
   --default-bg-color: #BBFF99;
-  --main-bg-color: white;
+  --main-bg-color: rgba(255, 255, 255, 0.719);
   --main-color: black;
   --main-border-color: rgb(61, 61, 61); 
   --select-bg-color: rgb(59, 59, 59);
