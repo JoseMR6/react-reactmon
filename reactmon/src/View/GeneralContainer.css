@@ -1,0 +1,10 @@
+.centralContainer{
+    margin: 0 auto;
+    background-color: white;
+    color: black;
+    width: 900px;
+    height: 500px;
+    border-radius: 20px;
+    border: solid 2px rgb(61, 61, 61);
+    box-shadow: 0px 0px 10px black;
+}

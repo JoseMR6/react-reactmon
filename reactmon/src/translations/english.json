@@ -1,0 +1,24 @@
+{
+    "LeftMenu":{
+        "Reactmon":{
+            "imgAlt":"React Icon",
+            "text":"Reactmon"
+        },
+        "Help":{
+            "imgAlt":"Help Icon",
+            "text":"Help"
+        },
+        "Reset":{
+            "imgAlt":"Reset Icon",
+            "text":"Reset"
+        },
+        "English":{
+            "imgAlt":"English translation Icon",
+            "text":"English"
+        },
+        "Spanish":{
+            "imgAlt":"Spanish translation Icon",
+            "text":"Español"
+        }
+    }
+}
