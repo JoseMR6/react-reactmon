@@ -11,7 +11,7 @@ import { getLanguajeDocument } from '../Controller/functions/languaje'
 
 export function LeftMenu() {
     const { languaje, setLanguaje,
-        languajeDocument, setLanguajeDocument
+        languajeDocument, setLanguajeDocument, reset
     } = useGame()
 
     const lang = languajeDocument.LeftMenu
@@ -26,21 +26,23 @@ export function LeftMenu() {
                         src={reactIcon} className="imgOption"
                         alt={lang.Reactmon.imgAlt}
                     />
-                    <span>{lang.Reactmon.text}</span>
+                    <span><b>{lang.Reactmon.text}</b></span>
                 </div>
                 <div className="option">
                     <img
                         src={helpIcon} className="imgOption"
                         alt={lang.Help.imgAlt}
                     />
-                    <span>{lang.Help.text}</span>
+                    <span><b>{lang.Help.text}</b></span>
                 </div>
-                <div className="option">
+                <div className="option"
+                    onClick={reset}
+                >
                     <img
                         src={resetIcon} className="imgOption"
                         alt={lang.Reset.imgAlt}
                     />
-                    <span>{lang.Reset.text}</span>
+                    <span><b>{lang.Reset.text}</b></span>
                 </div>
                 {languaje != LANGUAJES.ENGLISH &&
                     <div className="option"
@@ -54,7 +56,7 @@ export function LeftMenu() {
                             src={englishIcon} className="imgOption"
                             alt={lang.English.imgAlt}
                         />
-                        <span>{lang.English.text}</span>
+                        <span><b>{lang.English.text}</b></span>
                     </div>
                 }
                 {languaje != LANGUAJES.SPANISH &&
@@ -69,7 +71,7 @@ export function LeftMenu() {
                             src={spainIcon} className="imgOption"
                             alt={lang.Spanish.imgAlt}
                         />
-                        <span>{lang.Spanish.text}</span>
+                        <span><b>{lang.Spanish.text}</b></span>
                     </div>
                 }
 

@@ -1,0 +1,59 @@
+.chooseCreatureContainer{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.creaturesContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+}
+
+.creatureContainer{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--main-border-color);
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px var(--main-color);
+    padding: 15px;
+    align-items: center;
+    
+}
+
+.imgCreature{
+    width: 200px;
+}
+
+.imgCreature svg{
+    width: 100%;
+    height: 100%;
+}
+
+.creatureSection{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.creatureSection .options{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100px;
+}
+
+.creatureSection .options .buttonOption{
+    border-radius: 5px;
+    border: 1px solid var(--main-border-color);
+    box-shadow: 0px 0px 10px var(--main-color);
+    padding: 6px;
+}
+
+.creatureSection .options .buttonOption:hover{
+    cursor: pointer;
+    background-color: var(--select-bg-color);
+    color: var(--select-color);
+}

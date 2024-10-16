@@ -28,7 +28,6 @@
     cursor: pointer;
     background-color: var(--select-bg-color);
     color: var(--select-color);
-    user-select: none;
 }
 
 .imgOption{

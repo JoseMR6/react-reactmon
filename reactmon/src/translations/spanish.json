@@ -28,5 +28,17 @@
             "text":"Monedas",
             "imgAlt":"Icono de Moneda"
         }
+    },
+    "SelectSkin":{
+        "title":"Elije Avatar"
+    },
+    "WriteName":{
+        "title":"Escribe tu Nombre",
+        "continueText":"Continuar"
+    },
+    "ChooseCreature":{
+        "title":"Elige primera Criatura",
+        "selectButton":"Elegir",
+        "viewButton":"Ver"
     }
 }

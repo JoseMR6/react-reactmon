@@ -1,0 +1,21 @@
+.skinContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.skinContainer div{
+    display: grid;
+    grid-template-columns: repeat(4,var(--skin-width));
+    justify-content: center;
+    gap: 40px;
+}
+
+.skinContainer .skinImg{
+    width: var(--skin-width);
+    border-radius: 10px;
+}
+
+.skinContainer .skinImg:hover{
+    cursor: pointer;
+    background-color: var(--select-bg-color);
+}

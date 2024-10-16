@@ -1,29 +1,30 @@
+import { getSkinRoute } from '../Controller/functions/skins'
 import { useGame } from '../Controller/hooks/useGame'
 import './RightPanel.css'
 
 import CoinIcon from '/coin.svg'
 
 export function RightPanel() {
-    const {languajeDocument, round, coins, player} = useGame()
+    const { languajeDocument, round, coins, player } = useGame()
 
     const lang = languajeDocument.RightPanel
-
+    
     return (
         <>
             <div className="rightPanel">
                 <div className="option">
                     <div className='line'>
-                        <span>{lang.Record}:</span>
+                        <span><b>{lang.Record}</b>:</span>
                         <span>{player.record}</span>
                     </div>
                     <div className='line'>
-                        <span>{lang.Round}:</span>
+                        <span><b>{lang.Round}</b>:</span>
                         <span>{round}</span>
                     </div>
                 </div>
                 <div className="option">
                     <div className='line2'>
-                        <span>{lang.Coins.text}</span>
+                        <span><b>{lang.Coins.text}</b></span>
                     </div>
                     <div className='line2'>
                         <span>{coins}</span>
@@ -32,6 +33,16 @@ export function RightPanel() {
                             alt={lang.Coins.imgAlt}
                         />
                     </div>
+                </div>
+                <div className="option">
+                    {player.image != '' &&
+                        <img src={getSkinRoute(player.image)}
+                            alt={player.image}
+                        />
+                    }
+                    {player.name != '' &&
+                        <div className='playerName'><b>{player.name}</b></div>
+                    }
                 </div>
             </div>
         </>

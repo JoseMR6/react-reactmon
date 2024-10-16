@@ -10,6 +10,7 @@
   --main-border-color: rgb(61, 61, 61); 
   --select-bg-color: rgb(59, 59, 59);
   --select-color: white;
+  --skin-width: 100px;
 
   /*color-scheme: light dark;*/
   color: var(--main-color);

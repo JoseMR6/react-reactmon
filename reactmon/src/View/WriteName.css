@@ -1,0 +1,30 @@
+.writeNameContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+.writeNameContainer .skinImg{
+    width: calc(var(--skin-width)*2);
+    border-radius: 10px;
+}
+
+.writeNameContainer input{
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--main-border-color);
+}
+
+.writeNameContainer .continueButton{
+    border-radius: 5px;
+    border: 1px solid var(--main-border-color);
+    box-shadow: 0px 0px 10px var(--main-color);
+    padding: 6px;
+}
+
+.writeNameContainer .continueButton:hover{
+    cursor: pointer;
+    background-color: var(--select-bg-color);
+    color: var(--select-color);
+}

@@ -9,3 +9,7 @@ export function checkLanguajeDocument(lang, document){
         throw new Error(lang+' document can not be open')
     }
 }
+
+export function errorType(type){
+    throw new Error(type+' not known')
+}

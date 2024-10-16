@@ -28,5 +28,17 @@
             "text":"Coins",
             "imgAlt":"Coins Icon"
         }
+    },
+    "SelectSkin":{
+        "title":"Choose Skin"
+    },
+    "WriteName":{
+        "title":"Write your Name",
+        "continueText":"Continue"
+    },
+    "ChooseCreature":{
+        "title":"Choose first Creature",
+        "selectButton":"Select",
+        "viewButton":"View"
     }
 }

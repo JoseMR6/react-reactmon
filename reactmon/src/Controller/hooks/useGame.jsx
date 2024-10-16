@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { GameContext } from "../contexts/GameContext";
 import { checkContextProvider } from "../../Model/errors";
+import { GAME_STATES, INITIAL_COINS, WINDOW_NAMES } from "../../Model/constants";
 
 export function useGame(){
     const context = useContext(GameContext)
@@ -24,6 +25,20 @@ export function useGame(){
         lifeActualCreatureRival, setLifeActualCreatureRival
     } = context
 
+    function reset(){
+        setCoins(INITIAL_COINS)
+        setActualWindow(WINDOW_NAMES.SELECT_SKIN)
+        setGameState(GAME_STATES.START)
+        setRound(0)
+        formerWindow.current=null
+        contCreatureIds.current=0
+        setPlayerCreatures(null)
+        setLifeActualCreaturePlayer(null)
+        setRival(null)
+        setRivalCreatures(null)
+        setLifeActualCreatureRival(null)
+    }
+
     return{
         languaje,setLanguaje,
         languajeDocument, setLanguajeDocument,
@@ -38,6 +53,7 @@ export function useGame(){
         lifeActualCreaturePlayer, setLifeActualCreaturePlayer,
         rival, setRival,
         rivalCreatures, setRivalCreatures,
-        lifeActualCreatureRival, setLifeActualCreatureRival
+        lifeActualCreatureRival, setLifeActualCreatureRival,
+        reset
     }
 }

@@ -1,8 +1,11 @@
 export class Creature{
-    constructor(){
+    constructor(img,type){
         this.id=''
-        this.image=''
-        this.type=''
+        this.image={
+            name: img,
+            dark: 0
+        }
+        this.type=type
         this.recordedLife=''
         this.attacks=''
         this.stats={

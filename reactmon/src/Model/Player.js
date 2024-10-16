@@ -1,6 +1,6 @@
 export class Player{
     constructor(nom='', img='', rec=0){
-        this.nombre=nom
+        this.name=nom
         this.image=img
         this.record=rec
     }
