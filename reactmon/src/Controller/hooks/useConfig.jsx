@@ -1,19 +1,29 @@
 import { useMemo, useRef, useState } from "react"
-import { GAME_STATES, LANGUAJES, WINDOW_NAMES } from "../../Model/constants"
+import { GAME_STATES, TRANSLATIONS, WINDOW_NAMES } from "../../Model/constants"
+import english from '../../Config/translations/english.json'
 import { getLanguajeDocument } from "../functions/languaje"
 
-export function useConfig(initLang=LANGUAJES.SPANISH){
-    const {lang,document} = useMemo(()=>getLanguajeDocument(initLang),[])
-    
-    const [languaje, setLanguaje] = new useState(lang)
-    const [languajeDocument, setLanguajeDocument] 
-        = new useState(document)
+export function useConfig() {
+    const [languaje, setLanguaje] = new useState('english')
+    const [languajeDocument, setLanguajeDocument]
+        = new useState(english)
     const [gameState, setGameState] = new useState(GAME_STATES.START)
     const [actualWindow, setActualWindow] = new useState(WINDOW_NAMES.SELECT_SKIN)
     const formerWindow = new useRef(null)
 
-    return{
-        languaje,setLanguaje,
+    useMemo(() => {
+        const initLanguaje=Object.keys(TRANSLATIONS)[0]
+        if (initLanguaje != languaje) {
+            getLanguajeDocument(initLanguaje).then((initLanguajeDocument) => {
+                setLanguaje(initLanguaje)
+                setLanguajeDocument(initLanguajeDocument)
+            })
+        }
+    },[])
+
+
+    return {
+        languaje, setLanguaje,
         languajeDocument, setLanguajeDocument,
         gameState, setGameState,
         actualWindow, setActualWindow,

@@ -1,12 +1,10 @@
 import reactIcon from '/react.svg'
 import helpIcon from '/help.svg'
-import englishIcon from '/english.svg'
-import spainIcon from '/spain.svg'
 import resetIcon from '/reset.svg'
 
 import './LeftMenu.css'
 import { useGame } from '../Controller/hooks/useGame'
-import { LANGUAJES } from '../Model/constants'
+import { TRANSLATIONS } from '../Model/constants'
 import { getLanguajeDocument } from '../Controller/functions/languaje'
 
 export function LeftMenu() {
@@ -16,11 +14,13 @@ export function LeftMenu() {
 
     const lang = languajeDocument.LeftMenu
 
+    const translationNames = Object.keys(TRANSLATIONS)
+
     return (
         <>
             <div className="leftMenu">
                 <div className="option"
-                    onClick={()=>{window.open("https://github.com/JoseMR6/react-reactmon")}}
+                    onClick={() => { window.open("https://github.com/JoseMR6/react-reactmon") }}
                 >
                     <img
                         src={reactIcon} className="imgOption"
@@ -44,37 +44,27 @@ export function LeftMenu() {
                     />
                     <span><b>{lang.Reset.text}</b></span>
                 </div>
-                {languaje != LANGUAJES.ENGLISH &&
-                    <div className="option"
-                        onClick={() => {
-                            const { lang, document } = getLanguajeDocument(LANGUAJES.ENGLISH)
-                            setLanguaje(lang)
-                            setLanguajeDocument(document)
-                        }}
-                    >
-                        <img
-                            src={englishIcon} className="imgOption"
-                            alt={lang.English.imgAlt}
-                        />
-                        <span><b>{lang.English.text}</b></span>
-                    </div>
-                }
-                {languaje != LANGUAJES.SPANISH &&
-                    <div className="option"
-                        onClick={() => {
-                            const { lang, document } = getLanguajeDocument(LANGUAJES.SPANISH)
-                            setLanguaje(lang)
-                            setLanguajeDocument(document)
-                        }}
-                    >
-                        <img
-                            src={spainIcon} className="imgOption"
-                            alt={lang.Spanish.imgAlt}
-                        />
-                        <span><b>{lang.Spanish.text}</b></span>
-                    </div>
-                }
+                {translationNames.map((translationName, index) => {
+                    if(languaje == translationName) return
 
+                    return (
+                        <div key={index} className="option"
+                            onClick={() => {
+                                getLanguajeDocument(translationName).then((document)=>{
+                                    setLanguaje(translationName)
+                                    setLanguajeDocument(document)
+                                })
+                            }}
+                        >
+                            <img
+                                src={TRANSLATIONS[translationName].srcIcon} className="imgOption"
+                                alt={TRANSLATIONS[languaje].srcIconAltPattern.replace('{name}',translationName)}
+                            />
+                            <span><b>{TRANSLATIONS[translationName].buttonText}</b></span>
+                        </div>
+                        
+                    )
+                })}
             </div>
         </>
     )

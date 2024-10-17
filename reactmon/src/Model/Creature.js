@@ -3,7 +3,7 @@ export class Creature{
         this.id=''
         this.image={
             name: img,
-            dark: 0
+            dark: 0 //de 0 a 6
         }
         this.type=type
         this.recordedLife=''

@@ -11,14 +11,6 @@
         "Reset":{
             "imgAlt":"Icono de Reiniciar",
             "text":"Reiniciar"
-        },
-        "English":{
-            "imgAlt":"Icono de Idioma Inglés",
-            "text":"English"
-        },
-        "Spanish":{
-            "imgAlt":"Icono de Idioma Español",
-            "text":"Español"
         }
     },
     "RightPanel":{

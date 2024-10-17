@@ -1,0 +1,12 @@
+{
+    "spanish":{
+        "buttonText":"Español",
+        "srcIcon":"/spain.svg",
+        "srcIconAltPattern":"Icono de Idioma {name}"
+    },
+    "english":{
+        "buttonText":"English",
+        "srcIcon":"/english.svg",
+        "srcIconAltPattern":"Icon of languaje {name}"
+    }
+}

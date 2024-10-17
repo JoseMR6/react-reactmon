@@ -1,9 +1,7 @@
-import gameBalance from './gameBalance.json'
+import gameBalance from '../Config/gameBalance.json'
+import translations from '../Config/translations.json'
 
-export const LANGUAJES = {
-    SPANISH: 'spanish',
-    ENGLISH: 'english'
-}
+export const TRANSLATIONS = translations
 
 export const GAME_STATES = {
     START: 'start',
@@ -24,7 +22,22 @@ export const ELEMENTAL_TYPES = {
 export const CREATURE_NAMES = {
     PARASECT: "parasect",
     LAPRAS: "lapras",
-    NIDOKING: "nidoking"
+    NIDOKING: "nidoking",
+    ALAKAZAM: "alakazam",
+    BEEDRILL: "beedrill",
+    DODRIO: "dodrio",
+    GOLEM: "golem",
+    JOLTEON: "jolteon",
+    KABUTOPS: "kabutops",
+    MACHAMP: "machamp",
+    MUK: "muk",
+    NINETALES: "ninetales",
+    OMASTAR: "omastar",
+    PRIMEAPE: "primeape",
+    SANDSLASH: "sandslash",
+    TENTACRUEL: "tentacruel",
+    VENOMOTH: "venomoth",
+    VICTREEBEL: "victreebel"
 }
 
 export const PLAYER_SKINS = [
