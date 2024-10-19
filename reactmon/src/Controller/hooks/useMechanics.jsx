@@ -8,10 +8,12 @@ export function useMechanics(initialCoins=INITIAL_COINS){
     const contCreatureIds = useRef(0)
     const [player, setPlayer] = useState(new Player())
     const [playerCreatures, setPlayerCreatures] = useState(null)
-    const [lifeActualCreaturePlayer, setLifeActualCreaturePlayer] = useState(null)
+    const [healthActualCreaturePlayer, setHealthActualCreaturePlayer] = useState(null)
+    const [buffsActualCreaturePlayer, setBuffsActualCreaturePlayer] = useState(null)
     const [rival, setRival] = useState(null)
     const [rivalCreatures, setRivalCreatures] = useState(null)
-    const [lifeActualCreatureRival, setLifeActualCreatureRival] = useState(null)
+    const [healthActualCreatureRival, setHealthActualCreatureRival] = useState(null)
+    const [buffsActualCreatureRival, setBuffsActualCreatureRival] = useState(null)
 
     return{
         round, setRound,
@@ -19,9 +21,11 @@ export function useMechanics(initialCoins=INITIAL_COINS){
         contCreatureIds,
         player, setPlayer,
         playerCreatures, setPlayerCreatures,
-        lifeActualCreaturePlayer, setLifeActualCreaturePlayer,
+        healthActualCreaturePlayer, setHealthActualCreaturePlayer,
+        buffsActualCreaturePlayer, setBuffsActualCreaturePlayer,
         rival, setRival,
         rivalCreatures, setRivalCreatures,
-        lifeActualCreatureRival, setLifeActualCreatureRival
+        healthActualCreatureRival, setHealthActualCreatureRival,
+        buffsActualCreatureRival, setBuffsActualCreatureRival
     }
 }

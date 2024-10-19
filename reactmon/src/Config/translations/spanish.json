@@ -32,5 +32,9 @@
         "title":"Elige primera Criatura",
         "selectButton":"Elegir",
         "viewButton":"Ver"
+    },
+    "Footer":{
+        "author":"Autor",
+        "images":"Imágenes de"
     }
 }

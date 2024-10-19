@@ -1,38 +1,26 @@
-.fireIcon{
+.icon{
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+    border-radius: 100%;
+}
+
+.icon svg{
+    max-width: 100%;
+    max-height: 100%;
+}
+.fire{
     background-color: #FBA54C;
-    width: 60px;
-    height: 60px;
-    padding: 10px;
-    border-radius: 100%;
 }
 
-.fireIcon svg{
-    max-width: 100%;
-    max-height: 100%;
-}
-
-.grassIcon{
+.grass{
     background-color: #5FBD58;
-    width: 60px;
-    height: 60px;
-    padding: 10px;
-    border-radius: 100%;
 }
 
-.grassIcon svg{
-    max-width: 100%;
-    max-height: 100%;
-}
-
-.waterIcon{
+.water{
     background-color: #539DDF;
-    width: 60px;
-    height: 60px;
-    padding: 10px;
-    border-radius: 100%;
 }
 
-.waterIcon svg{
-    max-width: 100%;
-    max-height: 100%;
+.neutral{
+    background-color: #A0A29F;
 }

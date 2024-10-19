@@ -1,6 +1,6 @@
 import { useGame } from '../Controller/hooks/useGame'
 import { Creature } from '../Model/Creature'
-import { CREATURE_NAMES, ELEMENTAL_TYPES } from '../Model/constants'
+import { CREATURES, ELEMENTAL_TYPES } from '../Model/constants'
 import './ChooseCreature.css'
 import { ElemntIcon } from './Types'
 import { CreatureImg } from './creatures/CreatureImg'
@@ -10,9 +10,13 @@ export function ChooseCreature() {
     const {languajeDocument} = useGame()
     const lang = languajeDocument.ChooseCreature
     
-    const creature1 = new Creature(CREATURE_NAMES.DODRIO,ELEMENTAL_TYPES.FIRE)
-    const creature2 = new Creature(CREATURE_NAMES.DODRIO,ELEMENTAL_TYPES.GRASS)
-    const creature3 = new Creature(CREATURE_NAMES.DODRIO,ELEMENTAL_TYPES.WATER)
+    const creature1 = new Creature(
+        0,
+        {name:CREATURES[0].name,dark:0},
+        ELEMENTAL_TYPES.GRASS
+    )
+    const creature2 = new Creature()
+    const creature3 = new Creature()
     
     return (
         <>

@@ -32,5 +32,9 @@
         "title":"Choose first Creature",
         "selectButton":"Select",
         "viewButton":"View"
+    },
+    "Footer":{
+        "author":"Author",
+        "images":"Images from"
     }
 }

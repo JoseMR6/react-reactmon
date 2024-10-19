@@ -1,7 +1,6 @@
 .chooseCreatureContainer{
     display: flex;
     flex-direction: column;
-
 }
 
 .creaturesContainer{
@@ -19,11 +18,12 @@
     box-shadow: 0px 0px 10px var(--main-color);
     padding: 15px;
     align-items: center;
-    
+    gap: 15px;
 }
 
 .imgCreature{
     width: 200px;
+    height: 200px;
 }
 
 .imgCreature svg{

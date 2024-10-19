@@ -1,0 +1,81 @@
+.viewCreatureContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.viewCreatureContainer .sectionsContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+.section1{
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 18px;
+}
+
+.imgCreatureContainer{
+    display: flex;
+    flex-direction: row;
+    gap:8px;
+    align-items: center;
+}
+
+.imgCreatureContainer .icon{
+    width: 40px;
+    height: 40px;
+}
+
+.attackContainer{
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    border: 1px solid var(--main-border-color);
+    box-shadow: 0px 0px 10px var(--main-color);
+    padding: 6px;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    width: 270px;
+}
+
+.attackContainer:hover{
+    cursor: pointer;
+    background-color: var(--select-bg-color);
+    color: var(--select-color);
+}
+
+.attackContainer .name{
+    margin-left: 10px;
+}
+
+.attackContainer .icons{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+.attackContainer .icon{
+    width: 30px;
+    height: 30px;
+}
+
+.category{
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    padding: 3px;
+}
+
+.physical{
+    background-color: red;
+}
+
+.special{
+    background-color: rgb(80, 186, 247);
+}
+
+.support{
+    background-color: rgb(80, 247, 197);
+}

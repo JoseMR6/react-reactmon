@@ -19,10 +19,12 @@ export function useGame(){
         contCreatureIds,
         player, setPlayer,
         playerCreatures, setPlayerCreatures,
-        lifeActualCreaturePlayer, setLifeActualCreaturePlayer,
+        healthActualCreaturePlayer, setHealthActualCreaturePlayer,
+        buffsActualCreaturePlayer, setBuffsActualCreaturePlayer,
         rival, setRival,
         rivalCreatures, setRivalCreatures,
-        lifeActualCreatureRival, setLifeActualCreatureRival
+        healthActualCreatureRival, setHealthActualCreatureRival,
+        buffsActualCreatureRival, setBuffsActualCreatureRival
     } = context
 
     function reset(){
@@ -33,10 +35,12 @@ export function useGame(){
         formerWindow.current=null
         contCreatureIds.current=0
         setPlayerCreatures(null)
-        setLifeActualCreaturePlayer(null)
+        setHealthActualCreaturePlayer(null)
+        setBuffsActualCreaturePlayer(null)
         setRival(null)
         setRivalCreatures(null)
-        setLifeActualCreatureRival(null)
+        setHealthActualCreatureRival(null)
+        setBuffsActualCreatureRival(null)
     }
 
     return{
@@ -50,10 +54,12 @@ export function useGame(){
         contCreatureIds,
         player, setPlayer,
         playerCreatures, setPlayerCreatures,
-        lifeActualCreaturePlayer, setLifeActualCreaturePlayer,
+        healthActualCreaturePlayer, setHealthActualCreaturePlayer,
+        buffsActualCreaturePlayer, setBuffsActualCreaturePlayer,
         rival, setRival,
         rivalCreatures, setRivalCreatures,
-        lifeActualCreatureRival, setLifeActualCreatureRival,
+        healthActualCreatureRival, setHealthActualCreatureRival,
+        buffsActualCreatureRival, setBuffsActualCreatureRival,
         reset
     }
 }
