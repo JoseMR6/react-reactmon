@@ -20,10 +20,13 @@ export function GameProvider({ children }) {
         contCreatureIds,
         player, setPlayer,
         playerCreatures, setPlayerCreatures,
-        lifeActualCreaturePlayer, setLifeActualCreaturePlayer,
+        healthActualCreaturePlayer, setHealthActualCreaturePlayer,
+        buffsActualCreaturePlayer, setBuffsActualCreaturePlayer,
         rival, setRival,
         rivalCreatures, setRivalCreatures,
-        lifeActualCreatureRival, setLifeActualCreatureRival
+        healthActualCreatureRival, setHealthActualCreatureRival,
+        buffsActualCreatureRival, setBuffsActualCreatureRival,
+        selectedItem, setSelectedItem
     } = useMechanics()
 
 
@@ -39,10 +42,13 @@ export function GameProvider({ children }) {
             contCreatureIds,
             player, setPlayer,
             playerCreatures, setPlayerCreatures,
-            lifeActualCreaturePlayer, setLifeActualCreaturePlayer,
+            healthActualCreaturePlayer, setHealthActualCreaturePlayer,
+            buffsActualCreaturePlayer, setBuffsActualCreaturePlayer,
             rival, setRival,
             rivalCreatures, setRivalCreatures,
-            lifeActualCreatureRival, setLifeActualCreatureRival
+            healthActualCreatureRival, setHealthActualCreatureRival,
+            buffsActualCreatureRival, setBuffsActualCreatureRival,
+            selectedItem, setSelectedItem
         }}>
             {children}
         </GameContext.Provider>

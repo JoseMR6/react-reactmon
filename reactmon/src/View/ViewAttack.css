@@ -1,0 +1,56 @@
+.positionContainer{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 10px;
+}
+
+.basicInfoCotainer{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.typeContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+.icon{
+    width: 40px;
+    height: 40px;
+}
+
+.categoryInfoCotainer{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid var(--main-border-color);
+    border-radius: 15px;
+    padding: 10px;
+    gap: 15px;
+}
+
+.infoText{
+    text-align: justify;
+    font-size: 11px;
+}
+
+.categoryInfoCotainer .category{
+    width: 45px;
+    height: 45px;
+}
+
+.attackDescriptionContainer{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--main-border-color);
+    border-radius: 15px;
+    padding: 10px;
+    text-align: left;
+    font-size: 12px;
+}
+

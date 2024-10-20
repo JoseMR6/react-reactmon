@@ -15,12 +15,17 @@ export const HEAL = 50
 
 export const MAX_STAT_VALUE = 100
 
-export const TOTAL_STATS = 230
+export const TOTAL_STATS = 280
 
 export const MIN_HEALTH = 30
 
 export const GAME_STATES = {
     START: 'start',
+}
+
+export const ITEM_TYPES = {
+    CREATURE:"creature",
+    ATTACK:"attack"
 }
 
 export const WINDOW_NAMES = {
@@ -37,19 +42,18 @@ export const ELEMENTAL_TYPES = {
     NEUTRAL: 'neutral'
 }
 
+export const TEXT_VARIABLES ={
+    'power':ATTACKS_POWER,
+    'base':BUFF_BASE,
+    'maxLayer':BUFF_LAYER_MAX,
+    'heal':HEAL
+}
+    
+
 export const ATTACK_CATEGORYS = {
-    PHYSICAL:{
-        name:"physical",
-        description:"Ataque que reduce la vida del enemigo infligiendo daño físico con una potencia básica de {power}. Perderá potencia en función de la defensa física enemiga."
-    },
-    SPECIAL:{
-        name:"special",
-        description:"Ataque que reduce la vida del enemigo infligiendo daño especial con una potencia básica de {power}. Perderá potencia en función de la defensa especial enemiga."
-    },
-    SUPPORT:{
-        name:"support",
-        description:"No afecta a la vida del enemigo de forma directa. En su lugar causa distintos efectos como mejorar estadísticas (añadiendo {base} puntos permanentes por uso hasta un máximo de {maxLayer} usos mientras no salga del combate) o recuperar vida (+{heal})."
-    }
+    PHYSICAL:"physical",
+    SPECIAL:"special",
+    SUPPORT:"support"
 }
 
 export const STAT_NAMES = {
@@ -58,93 +62,79 @@ export const STAT_NAMES = {
     PH_ATTACK:'physicalAttack',
     SP_ATTACK:'specialAttack',
     PH_DEFENSE:'physicalDefense',
-    SP_DEFENSE:'SpecialDefense'
+    SP_DEFENSE:'specialDefense'
 }
 
 export const ATTACKS = [
     {
-        name:"Puño Fuego",
+        name:"FireFist",
         category:ATTACK_CATEGORYS.PHYSICAL,
         type:ELEMENTAL_TYPES.FIRE,
-        description:"El enemigo recibe un puñetazo envuelto en llamas."
     },
     {
-        name:"Lanzallamas",
+        name:"Flamethrower",
         category:ATTACK_CATEGORYS.SPECIAL,
         type:ELEMENTAL_TYPES.FIRE,
-        description:"El enemigo es abrasado por una intensa explosión de fuego."
     },
     {
-        name:"Afilado Térmico",
+        name:"ThermalSharpening",
         category:ATTACK_CATEGORYS.SUPPORT,
         type:ELEMENTAL_TYPES.FIRE,
-        description:"Aumenta el daño físico puliendo sus garras con calor."
     },
     {
-        name:"Ignición",
+        name:"Ignition",
         category:ATTACK_CATEGORYS.SUPPORT,
         type:ELEMENTAL_TYPES.FIRE,
-        description:"Aumenta el daño especial aumentando su energía elemental."
     },
     {
-        name:"Cuchillada Fluida",
+        name:"FluidSlash",
         category:ATTACK_CATEGORYS.PHYSICAL,
         type:ELEMENTAL_TYPES.WATER,
-        description:"El enemigo recibe una cuchillada lubricada con agua."
     },
     {
-        name:"Hidrocañón",
+        name:"WaterCanon",
         category:ATTACK_CATEGORYS.SPECIAL,
         type:ELEMENTAL_TYPES.WATER,
-        description:"El enemigo recibe un potente chorro de agua a presión."
     },
     {
-        name:"Blindaje Helado",
+        name:"FrozenShield",
         category:ATTACK_CATEGORYS.SUPPORT,
         type:ELEMENTAL_TYPES.WATER,
-        description:"Aumenta su defensa física rodeando su cuerpo con hielo."
     },
     {
-        name:"Aura acuática",
+        name:"AquaticAura",
         category:ATTACK_CATEGORYS.SUPPORT,
         type:ELEMENTAL_TYPES.WATER,
-        description:"Aumenta su defensa especial manipulando el agua a su alrededor."
     },
     {
-        name:"Espina Empaladora",
+        name:"ImpalingSpike",
         category:ATTACK_CATEGORYS.PHYSICAL,
         type:ELEMENTAL_TYPES.GRASS,
-        description:"El enemigo es impactado por una espina grande y afilada."
     },
     {
-        name:"Bomba Ácida",
+        name:"AcidBomb",
         category:ATTACK_CATEGORYS.SPECIAL,
         type:ELEMENTAL_TYPES.GRASS,
-        description:"El enemigo recibe una explosión química corrosiva."
     },
     {
-        name:"Autoestimulante",
+        name:"Doping",
         category:ATTACK_CATEGORYS.SUPPORT,
         type:ELEMENTAL_TYPES.GRASS,
-        description:"Aumenta su velocidad generando sustancias estimulantes dentro de su cuerpo."
     },
     {
-        name:"Absorber Nutrientes",
+        name:"Absorption",
         category:ATTACK_CATEGORYS.SUPPORT,
         type:ELEMENTAL_TYPES.GRASS,
-        description:"Regenera parte de su vida absorbiendo nutrientes del terreno."
     },
     {
-        name:"Cabezazo",
+        name:"Headbutt",
         category:ATTACK_CATEGORYS.PHYSICAL,
         type:ELEMENTAL_TYPES.NEUTRAL,
-        description:"El enemigo recibe un cabezazo a gran velocidad."
     },
     {
-        name:"Rayo de Aura",
+        name:"AuraRay",
         category:ATTACK_CATEGORYS.SPECIAL,
         type:ELEMENTAL_TYPES.NEUTRAL,
-        description:"El enemigo recibe un rayo generado a partir de pura energía."
     }
 ]
 

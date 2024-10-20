@@ -12,9 +12,9 @@ import { createElement } from "react"
 
 export function GeneralContainer() {
     const { actualWindow
-        , setActualWindow
+        //, setActualWindow
     } = useGame()
-    setActualWindow(WINDOW_NAMES.VIEW_CREATURE)
+    //setActualWindow(WINDOW_NAMES.VIEW_CREATURE)
 
     const windowComponents = [
         {

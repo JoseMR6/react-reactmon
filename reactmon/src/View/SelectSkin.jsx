@@ -5,8 +5,8 @@ import { PLAYER_SKINS, WINDOW_NAMES } from '../Model/constants'
 import './SelectSkin.css'
 
 export function SelectSkin() {
-    const {player,setPlayer,actualWindow,formerWindow,setActualWindow,
-        languajeDocument
+    const {player,setPlayer,
+        languajeDocument, changeWindow
     } = useGame()
 
     const lang = languajeDocument.SelectSkin
@@ -23,9 +23,9 @@ export function SelectSkin() {
                                 alt={skin} className='skinImg'
                                 onClick={()=>{
                                     setPlayer(new Player(player.name,skin,
-                                        player.record))
-                                    formerWindow.current = actualWindow
-                                    setActualWindow(WINDOW_NAMES.WRITE_NAME)
+                                        player.record)
+                                    )
+                                    changeWindow(WINDOW_NAMES.WRITE_NAME)
                                 }}
                             />
                         )

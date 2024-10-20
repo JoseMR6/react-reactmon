@@ -33,6 +33,85 @@
         "selectButton":"Select",
         "viewButton":"View"
     },
+    "ViewCreature": {
+        "title": "Creature Information",
+        "statsButton": "Stats",
+        "returnButton": "Return"
+    },
+    "StatsText": {
+        "maxHealth": "Max Life",
+        "speed": "Speed",
+        "physicalAttack": "Physical Attack",
+        "specialAttack": "Special Attack",
+        "physicalDefense": "Physical Defense",
+        "specialDefense": "Special Defense"
+    },
+    "ViewAttack": {
+        "elemntIconText": "Type"
+    },
+    "CategorysText": {
+        "physical": "Attack that reduces the enemy's health by dealing physical damage with a base power of {power}. It will lose power based on the enemy's physical defense.",
+        "special": "Attack that reduces the enemy's health by dealing special damage with a base power of {power}. It will lose power based on the enemy's special defense.",
+        "support": "It does not affect the enemy's health directly. Instead, it causes different effects such as improving stats (adding {base} permanent points per use up to a maximum of {maxLayer} uses while not leaving combat) or recovering health (+{heal})."
+    },
+    "AttacksText": {
+        "FireFist": {
+            "name": "Fire Fist",
+            "description": "The enemy receives a punch engulfed in flames."
+        },
+        "Flamethrower": {
+            "name": "Flamethrower",
+            "description": "The enemy is incinerated by an intense explosion of fire."
+        },
+        "ThermalSharpening":{
+            "name":"Thermal Sharpening",
+            "description":"Increases physical damage by polishing its claws with heat."
+        },
+        "Ignition":{
+            "name":"Ignition",
+            "description":"Increases special damage by increasing elemental energy."
+        },
+        "FluidSlash":{
+            "name":"Fluid Slash",
+            "description":"The enemy receives a water-lubricated slash."
+        },
+        "WaterCanon":{
+            "name":"Water Canon",
+            "description":"The enemy receives a powerful jet of pressurized water."
+        },
+        "FrozenShield":{
+            "name":"Frozen Shield",
+            "description":"Increases his physical defense by surrounding his body with ice."
+        },
+        "AquaticAura":{
+            "name":"Aquatic Aura",
+            "description":"Increases its special defense by manipulating the water around."
+        },
+        "ImpalingSpike":{
+            "name":"Impaling Spike",
+            "description":"The enemy is hit by a large, sharp thorn."
+        },
+        "AcidBomb":{
+            "name":"Acid Bomb",
+            "description":"The enemy receives a corrosive chemical explosion."
+        },
+        "Doping":{
+            "name":"Doping",
+            "description":"Increases speed by generating stimulating substances inside the body."
+        },
+        "Absorption":{
+            "name":"Absorption",
+            "description":"Regenerates part of the health by absorbing nutrients from the ground."
+        },
+        "Headbutt":{
+            "name":"Headbutt",
+            "description":"The enemy receives a high-speed headbutt."
+        },
+        "AuraRay":{
+            "name":"Aura Ray",
+            "description":"The enemy receives a beam generated from pure energy."
+        }
+    },
     "Footer":{
         "author":"Author",
         "images":"Images from"

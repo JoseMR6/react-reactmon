@@ -6,6 +6,8 @@
 .viewCreatureContainer .sectionsContainer{
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    gap: 20px;
 }
 
 .section1{
@@ -46,6 +48,11 @@
     color: var(--select-color);
 }
 
+.selected{
+    background-color: var(--select-bg-color);
+    color: var(--select-color);
+}
+
 .attackContainer .name{
     margin-left: 10px;
 }
@@ -78,4 +85,75 @@
 
 .support{
     background-color: rgb(80, 247, 197);
+}
+
+.section2{
+    display: flex;
+    flex-direction: column;
+    width: 480px;
+    gap: 15px;
+}
+
+.healthContainer{
+    display: flex;
+    flex-direction: row;
+    gap:20px;
+    justify-content: space-between;
+}
+
+.healthBar{
+    --optimun-color-stat: #7ad844;
+    
+    background: rgba(228, 228, 228, 0.911);
+    width: 390px;
+}
+
+/*Color valor optimo firefox*/
+.healthBar:-moz-meter-optimum::-moz-meter-bar {
+    background: var(--optimun-color-stat);
+}
+
+/*Color valor optimo Chrome*/
+.healthBar::-webkit-meter-optimum-value {
+    background: var(--optimun-color-stat);
+}
+
+.buttonsContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+}
+
+.buttonStats{
+    border-radius: 5px;
+    border: 1px solid var(--main-border-color);
+    box-shadow: 0px 0px 10px var(--main-color);
+    padding: 10px;
+    width: 100%;
+}
+
+.buttonStats:hover{
+    cursor: pointer;
+    background-color: var(--select-bg-color);
+    color: var(--select-color);
+}
+
+.buttonReturn{
+    border-radius: 5px;
+    border: 1px solid var(--main-border-color);
+    box-shadow: 0px 0px 10px var(--main-color);
+    padding: 10px;
+}
+
+.buttonReturn:hover{
+    cursor: pointer;
+    background-color: var(--select-bg-color);
+    color: var(--select-color);
+}
+
+.infoContainer{
+    border-radius: 20px;
+    border: 2px solid var(--main-border-color);
+    height: 100%;
 }

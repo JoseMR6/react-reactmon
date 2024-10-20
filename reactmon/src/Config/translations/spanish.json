@@ -1,40 +1,119 @@
 {
-    "LeftMenu":{
-        "Reactmon":{
-            "imgAlt":"Icono de React",
-            "text":"Reactmon"
+    "LeftMenu": {
+        "Reactmon": {
+            "imgAlt": "Icono de React",
+            "text": "Reactmon"
         },
-        "Help":{
-            "imgAlt":"Icono de Ayuda",
-            "text":"Ayuda"
+        "Help": {
+            "imgAlt": "Icono de Ayuda",
+            "text": "Ayuda"
         },
-        "Reset":{
-            "imgAlt":"Icono de Reiniciar",
-            "text":"Reiniciar"
+        "Reset": {
+            "imgAlt": "Icono de Reiniciar",
+            "text": "Reiniciar"
         }
     },
-    "RightPanel":{
-        "Record":"Record",
-        "Round":"Ronda",
-        "Coins":{
-            "text":"Monedas",
-            "imgAlt":"Icono de Moneda"
+    "RightPanel": {
+        "Record": "Record",
+        "Round": "Ronda",
+        "Coins": {
+            "text": "Monedas",
+            "imgAlt": "Icono de Moneda"
         }
     },
-    "SelectSkin":{
-        "title":"Elije Avatar"
+    "SelectSkin": {
+        "title": "Elije Avatar"
     },
-    "WriteName":{
-        "title":"Escribe tu Nombre",
-        "continueText":"Continuar"
+    "WriteName": {
+        "title": "Escribe tu Nombre",
+        "continueText": "Continuar"
     },
-    "ChooseCreature":{
-        "title":"Elige primera Criatura",
-        "selectButton":"Elegir",
-        "viewButton":"Ver"
+    "ChooseCreature": {
+        "title": "Elige primera Criatura",
+        "selectButton": "Elegir",
+        "viewButton": "Ver"
     },
-    "Footer":{
-        "author":"Autor",
-        "images":"Imágenes de"
+    "ViewCreature": {
+        "title": "Información de Criatura",
+        "statsButton": "Estadísticas",
+        "returnButton": "Volver"
+    },
+    "StatsText": {
+        "maxHealth": "Vida Máxima",
+        "speed": "Velocidad",
+        "physicalAttack": "Ataque Físico",
+        "specialAttack": "Ataque Especial",
+        "physicalDefense": "Defensa Física",
+        "specialDefense": "Desfensa Especial"
+    },
+    "ViewAttack": {
+        "elemntIconText": "Tipo"
+    },
+    "CategorysText": {
+        "physical": "Ataque que reduce la vida del enemigo infligiendo daño físico con una potencia básica de {power}. Perderá potencia en función de la defensa física enemiga.",
+        "special": "Ataque que reduce la vida del enemigo infligiendo daño especial con una potencia básica de {power}. Perderá potencia en función de la defensa especial enemiga.",
+        "support": "No afecta a la vida del enemigo de forma directa. En su lugar causa distintos efectos como mejorar estadísticas (añadiendo {base} puntos permanentes por uso hasta un máximo de {maxLayer} usos mientras no salga del combate) o recuperar vida (+{heal})."
+    },
+    "AttacksText": {
+        "FireFist": {
+            "name": "Puño Fuego",
+            "description": "El enemigo recibe un puñetazo envuelto en llamas."
+        },
+        "Flamethrower": {
+            "name": "Lanzallamas",
+            "description": "El enemigo es abrasado por una intensa explosión de fuego."
+        },
+        "ThermalSharpening":{
+            "name":"Afilado Térmico",
+            "description":"Aumenta el daño físico puliendo sus garras con calor."
+        },
+        "Ignition":{
+            "name":"Ignición",
+            "description":"Aumenta el daño especial aumentando su energía elemental."
+        },
+        "FluidSlash":{
+            "name":"Cuchillada Fluida",
+            "description":"El enemigo recibe una cuchillada lubricada con agua."
+        },
+        "WaterCanon":{
+            "name":"Hidrocañón",
+            "description":"El enemigo recibe un potente chorro de agua a presión."
+        },
+        "FrozenShield":{
+            "name":"Blindaje Helado",
+            "description":"Aumenta su defensa física rodeando su cuerpo con hielo."
+        },
+        "AquaticAura":{
+            "name":"Aura acuática",
+            "description":"Aumenta su defensa especial manipulando el agua a su alrededor."
+        },
+        "ImpalingSpike":{
+            "name":"Espina Empaladora",
+            "description":"El enemigo es impactado por una espina grande y afilada."
+        },
+        "AcidBomb":{
+            "name":"Bomba Ácida",
+            "description":"El enemigo recibe una explosión química corrosiva."
+        },
+        "Doping":{
+            "name":"Autoestimulante",
+            "description":"Aumenta su velocidad generando sustancias estimulantes dentro de su cuerpo."
+        },
+        "Absorption":{
+            "name":"Absorber Nutrientes",
+            "description":"Regenera parte de su vida absorbiendo nutrientes del terreno."
+        },
+        "Headbutt":{
+            "name":"Cabezazo",
+            "description":"El enemigo recibe un cabezazo a gran velocidad."
+        },
+        "AuraRay":{
+            "name":"Rayo de Aura",
+            "description":"El enemigo recibe un rayo generado a partir de pura energía."
+        }
+    },
+    "Footer": {
+        "author": "Autor",
+        "images": "Imágenes de"
     }
 }

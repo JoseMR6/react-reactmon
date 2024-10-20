@@ -5,8 +5,7 @@ import { WINDOW_NAMES } from "../Model/constants"
 import './WriteName.css'
 
 export function WriteName() {
-    const { player, setPlayer, languajeDocument, setActualWindow,
-        formerWindow, actualWindow
+    const { player, setPlayer, languajeDocument, changeWindow
     } = useGame()
     const skinImg = (player.image != '') ? player.image : 'acetrainer'
     const lang = languajeDocument.WriteName
@@ -27,8 +26,7 @@ export function WriteName() {
                         const name = document.getElementById("setName").value
                         if (name.length >= 3) {
                             setPlayer(new Player(name, skinImg, player.record))
-                            formerWindow.current = actualWindow
-                            setActualWindow(WINDOW_NAMES.CHOOSE_CREATURE)
+                            changeWindow(WINDOW_NAMES.CHOOSE_CREATURE)
                         }
                     }}
                 >

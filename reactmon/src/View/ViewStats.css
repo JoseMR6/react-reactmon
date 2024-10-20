@@ -1,0 +1,38 @@
+.statsContainer{
+    list-style: none;
+    line-height: 1;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px
+}
+
+.statsContainer .statInfo{
+    width: 300px;
+}
+
+.textContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.statBar{
+    --optimun-color-stat: #e0cb51;
+    
+    background: rgba(228, 228, 228, 0.911);
+    width: 100%;
+    height: 10px;
+}
+
+/*Color valor optimo firefox*/
+.statBar:-moz-meter-optimum::-moz-meter-bar {
+    background: var(--optimun-color-stat);
+}
+
+/*Color valor optimo Chrome*/
+.statBar::-webkit-meter-optimum-value {
+    background: var(--optimun-color-stat);
+}
