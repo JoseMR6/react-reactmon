@@ -112,6 +112,10 @@
             "description":"El enemigo recibe un rayo generado a partir de pura energía."
         }
     },
+    "BattlePreview":{
+        "title":"Vista Previa de la Batalla",
+        "record": "Record"
+    },
     "Footer": {
         "author": "Autor",
         "images": "Imágenes de"

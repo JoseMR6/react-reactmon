@@ -112,6 +112,10 @@
             "description":"The enemy receives a beam generated from pure energy."
         }
     },
+    "BattlePreview":{
+        "title":"Battle Preview",
+        "record": "Record"
+    },
     "Footer":{
         "author":"Author",
         "images":"Images from"

@@ -1,11 +1,13 @@
 import { getSkinRoute } from "../Controller/functions/skins"
 import { useGame } from "../Controller/hooks/useGame"
+import { Creature } from "../Model/Creature"
 import { Player } from "../Model/Player"
-import { WINDOW_NAMES } from "../Model/constants"
+import { ELEMENTAL_TYPES, WINDOW_NAMES } from "../Model/constants"
 import './WriteName.css'
 
 export function WriteName() {
-    const { player, setPlayer, languajeDocument, changeWindow
+    const { player, setPlayer, languajeDocument, changeWindow,
+        setChooseOptions, getNewId
     } = useGame()
     const skinImg = (player.image != '') ? player.image : 'acetrainer'
     const lang = languajeDocument.WriteName
@@ -26,6 +28,27 @@ export function WriteName() {
                         const name = document.getElementById("setName").value
                         if (name.length >= 3) {
                             setPlayer(new Player(name, skinImg, player.record))
+                            setChooseOptions([
+                                Creature.generateCreature({
+                                    id:getNewId(),
+                                    type:ELEMENTAL_TYPES.FIRE,
+                                    numAttacks:1,
+                                    maxedStatsNum:1
+                                }),
+                                Creature.generateCreature({
+                                    id:getNewId(),
+                                    type:ELEMENTAL_TYPES.WATER,
+                                    numAttacks:1,
+                                    maxedStatsNum:1
+                                }),
+                                Creature.generateCreature({
+                                    id:getNewId(),
+                                    type:ELEMENTAL_TYPES.GRASS,
+                                    numAttacks:1,
+                                    maxedStatsNum:1
+                                })
+                            ])
+                            
                             changeWindow(WINDOW_NAMES.CHOOSE_CREATURE)
                         }
                     }}

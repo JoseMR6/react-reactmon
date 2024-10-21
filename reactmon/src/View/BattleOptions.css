@@ -1,0 +1,65 @@
+.generalBattleContainer{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.battleContainer{
+    width: 100%;
+    height: 100%;
+}
+
+.optionsContainer{
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    border: solid 2px var(--main-border-color);
+    box-shadow: 0px 0px 10px var(--main-color);
+    padding: 10px;
+    width: 700px;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    align-self: center;
+    margin: 10px;
+}
+
+.optionsContainer .option{
+    border-radius: 10px;
+    border: solid 2px var(--main-border-color);
+    box-shadow: 0px 0px 10px var(--main-color);
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    line-height: 1;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+.optionsContainer .option:hover{
+    cursor: pointer;
+    background-color: var(--select-bg-color);
+    color: var(--select-color);
+}
+
+.optionsContainer img{
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.attack{
+    background-color: rgb(236, 24, 24);
+}
+
+.change{
+    background-color: rgb(35, 231, 9);
+}
+
+.surrender{
+    background-color: rgb(255, 255, 255);
+}

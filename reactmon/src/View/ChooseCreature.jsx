@@ -1,79 +1,49 @@
 import { useGame } from '../Controller/hooks/useGame'
 import { Creature } from '../Model/Creature'
-import { ATTACKS, CREATURES, ELEMENTAL_TYPES, ITEM_TYPES, WINDOW_NAMES } from '../Model/constants'
+import { Player } from '../Model/Player'
+import { GAME_STATES, ITEM_TYPES, LOSER_TYPE_OF, PLAYER_SKINS, WINDOW_NAMES } from '../Model/constants'
 import './ChooseCreature.css'
 import { ElemntIcon } from './Types'
 import { CreatureImg } from './creatures/CreatureImg'
 import { PropTypes } from 'prop-types'
 
 export function ChooseCreature() {
-    const {languajeDocument} = useGame()
+    const { languajeDocument, chooseOptions } = useGame()
     const lang = languajeDocument.ChooseCreature
-    
-    const creature1 = new Creature(
-        0,
-        {
-            name: CREATURES[0].name,
-            dark: 0
-        },
-        ELEMENTAL_TYPES.FIRE,
-        [
-            ATTACKS[0],
-            ATTACKS[1]
-        ],
-        {
-            maxHealth: 50,
-            speed: 50,
-            physicalAttack: 50,
-            specialAttack: 50,
-            physicalDefense: 50,
-            specialDefense: 50
-        }
-    )
 
-    const creature2 = new Creature(
-        1,
-        {
-            name: CREATURES[1].name,
-            dark: 0
-        },
-        ELEMENTAL_TYPES.WATER,
-        [
-            ATTACKS[4],
-            ATTACKS[5]
-        ],
-        {
-            maxHealth: 50,
-            speed: 50,
-            physicalAttack: 50,
-            specialAttack: 50,
-            physicalDefense: 50,
-            specialDefense: 50
-        }
-    )
+    let creatures = []
 
-    const creature3 = Creature.generateCreature({
-        id:2,
-        type:ELEMENTAL_TYPES.GRASS,
-        numAttacks:1
-    })
-    
+    if (chooseOptions.length < 3) {
+        creatures = [
+            new Creature(),
+            new Creature(),
+            new Creature()
+        ]
+    } else {
+        chooseOptions.forEach(option => {
+            creatures.push(option)
+        });
+    }
+
     return (
         <>
             <div className="chooseCreatureContainer">
                 <h1>{lang.title}</h1>
                 <div className='creaturesContainer'>
-                    <CreatureSelect creature={creature1}/>
-                    <CreatureSelect creature={creature2}/>
-                    <CreatureSelect creature={creature3}/>
+                    <CreatureSelect creature={creatures[0]} />
+                    <CreatureSelect creature={creatures[1]} />
+                    <CreatureSelect creature={creatures[2]} />
                 </div>
             </div>
         </>
     )
 }
 
-function CreatureSelect({creature}) {
-    const {languajeDocument, changeWindow, setSelectedItem} = useGame()
+function CreatureSelect({ creature }) {
+    const { languajeDocument, changeWindow, setSelectedItem,
+        setPlayerCreatures, setGameState,round,setRound,setRival,
+        setRivalCreatures,getNewId
+    } = useGame()
     const lang = languajeDocument.ChooseCreature
 
     return (
@@ -89,20 +59,41 @@ function CreatureSelect({creature}) {
                 </div>
 
                 <div className='creatureSection'>
-                    <ElemntIcon type={creature.type}/>
+                    <ElemntIcon type={creature.type} />
                     <div className='options'>
-                        <div className='buttonOption'>{lang.selectButton}</div>
                         <div className='buttonOption'
-                            onClick={()=>{
+                            onClick={() => {
+                                setPlayerCreatures([creature])
+                                setRound(round + 1)
+                                setRival(new Player(
+                                    'Kenny',
+                                    PLAYER_SKINS[0],
+                                    1
+                                ))
+                                setRivalCreatures([
+                                    Creature.generateCreature({
+                                        id: getNewId(),
+                                        type: LOSER_TYPE_OF[creature.type],
+                                        numAttacks: 1
+                                    })
+                                ])
+                                setGameState(GAME_STATES.BATTLE)
+                                changeWindow(WINDOW_NAMES.BATTLE_PREVIEW)
+                            }}
+                        >
+                            <b>{lang.selectButton}</b>
+                        </div>
+                        <div className='buttonOption'
+                            onClick={() => {
                                 const newSelected = {
-                                    itemType:ITEM_TYPES.CREATURE,
-                                    item:creature
+                                    itemType: ITEM_TYPES.CREATURE,
+                                    item: creature
                                 }
                                 setSelectedItem(newSelected)
                                 changeWindow(WINDOW_NAMES.VIEW_CREATURE)
                             }}
                         >
-                            {lang.viewButton}
+                            <b>{lang.viewButton}</b>
                         </div>
                     </div>
                 </div>

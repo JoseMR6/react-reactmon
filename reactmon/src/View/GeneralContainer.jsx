@@ -9,12 +9,14 @@ import { SelectSkin } from "./SelectSkin"
 import { WriteName } from "./WriteName"
 import { ViewCreature } from "./ViewCreature"
 import { createElement } from "react"
+import { BattlePreview } from "./BattlePreview"
+import { BattleOptions } from "./BattleOptions"
 
 export function GeneralContainer() {
     const { actualWindow
         //, setActualWindow
     } = useGame()
-    //setActualWindow(WINDOW_NAMES.VIEW_CREATURE)
+    //setActualWindow(WINDOW_NAMES.BATTLE_PREVIEW)
 
     const windowComponents = [
         {
@@ -32,6 +34,14 @@ export function GeneralContainer() {
         {
             name: WINDOW_NAMES.VIEW_CREATURE,
             component: ViewCreature
+        },
+        {
+            name: WINDOW_NAMES.BATTLE_PREVIEW,
+            component: BattlePreview
+        },
+        {
+            name: WINDOW_NAMES.BATTLE_OPTIONS,
+            component: BattleOptions
         }
     ]
 

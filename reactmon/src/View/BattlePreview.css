@@ -1,0 +1,91 @@
+.previewContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.playersContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+}
+
+.playerContainer{
+    display: flex;
+    flex-direction: column;
+    width: 380px;
+    border: 2px solid var(--main-border-color);
+    border-radius: 20px;
+    padding: 10px;
+    gap:20px;
+}
+
+.playerContainer.selected{
+    background-color: var(--select-bg-color);
+    color: var(--select-color);
+}
+
+.playerContainer.selected :hover{
+    cursor: initial;
+}
+
+.playerInfoContainer{
+    display: flex;
+    flex-direction: row;
+    gap:20px;
+}
+
+.playerInfoContainer img{
+    width: 200px;
+}
+
+.playerInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+
+.recordContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.creaturesInfo{
+    --creature-width:100px;
+    
+    display: grid;
+    grid-template-columns: repeat(3,var(--creature-width));
+    gap: 8px;
+    justify-content: center;
+}
+
+.creatureInfo{
+    border: 1px solid var(--main-border-color);
+    box-shadow: 0px 0px 10px var(--main-color);
+    border-radius: 20px;
+    width: var(--creature-width);
+    height: var(--creature-width);
+    position: relative;
+}
+
+.creatureInfo:hover{
+    cursor: pointer;
+    background-color: var(--select-bg-color);
+}
+
+.creatureInfo svg{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.creatureInfo .icon{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}

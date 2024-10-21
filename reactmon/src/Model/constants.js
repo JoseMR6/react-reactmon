@@ -21,6 +21,7 @@ export const MIN_HEALTH = 30
 
 export const GAME_STATES = {
     START: 'start',
+    BATTLE:'battle'
 }
 
 export const ITEM_TYPES = {
@@ -32,7 +33,9 @@ export const WINDOW_NAMES = {
     SELECT_SKIN: 'selectSkin',
     WRITE_NAME: 'writeName',
     CHOOSE_CREATURE: 'chooseCreature',
-    VIEW_CREATURE: 'viewCreature'
+    VIEW_CREATURE: 'viewCreature',
+    BATTLE_PREVIEW:'battlePreview',
+    BATTLE_OPTIONS:'battleOptions'
 }
 
 export const ELEMENTAL_TYPES = {
@@ -40,6 +43,12 @@ export const ELEMENTAL_TYPES = {
     GRASS: 'grass',
     WATER: 'water',
     NEUTRAL: 'neutral'
+}
+
+export const LOSER_TYPE_OF = {
+    fire: ELEMENTAL_TYPES.GRASS,
+    grass: ELEMENTAL_TYPES.WATER,
+    water: ELEMENTAL_TYPES.FIRE
 }
 
 export const TEXT_VARIABLES ={
