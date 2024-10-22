@@ -116,6 +116,12 @@
         "title":"Battle Preview",
         "record": "Record"
     },
+    "BattleOptions":{
+        "attackButton":"Attack",
+        "changeButton":"Change",
+        "surrenderButton":"Surrender",
+        "returnButton":"Return"
+    },
     "Footer":{
         "author":"Author",
         "images":"Images from"

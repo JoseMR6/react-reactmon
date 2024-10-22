@@ -116,6 +116,12 @@
         "title":"Vista Previa de la Batalla",
         "record": "Record"
     },
+    "BattleOptions":{
+        "attackButton":"Luchar",
+        "changeButton":"Cambiar",
+        "surrenderButton":"Rendirse",
+        "returnButton":"Volver"
+    },
     "Footer": {
         "author": "Autor",
         "images": "Imágenes de"

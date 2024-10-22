@@ -1,6 +1,7 @@
 .leftMenu{
-    float: left;
+    left: 0;
     display: flex;
+    position: absolute;
     flex-direction: column;
     gap: 10px;
     margin-left: 20px;

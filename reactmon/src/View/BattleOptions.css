@@ -7,6 +7,118 @@
 .battleContainer{
     width: 100%;
     height: 100%;
+    position: relative;
+}
+
+.playerCreatureContainer{
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+}
+
+.playerCreatureContainer.rival{
+    top: 60px;
+    right: 40px;
+    left: auto;
+    width: 200px;
+    height: 200px;
+}
+
+.playerCreatureContainer .healthContainer{
+    width: 100%;
+}
+
+.playerCreatureContainer .healthBar{
+    width: 100%;
+}
+
+.rival .icon{
+    width: 26px;
+    height: 26px;
+}
+
+.buffContainer{
+    position: relative;
+}
+
+.rival .category{
+    width: 26px;
+    height: 26px;
+}
+
+.buffCount{
+    background-color: var(--select-bg-color);
+    color: var(--select-color);
+    border-radius: 5px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 25px;
+    height: 25px;
+}
+
+.rival .buffCount{
+    width: 22px;
+    height: 22px;
+    font-size: small;
+}
+
+.imgsContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.iconsContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.rival .imgsContainer{
+    justify-content: right;
+}
+
+.rival .iconsContainer{
+    order: 1;
+}
+
+.rival .creatureImgContainer{
+    order: 0;
+}
+
+.playerCreatureContainer .creatureImgContainer svg{
+    width: 220px;
+    height: 220px;
+    transform: scale(-1,1);
+}
+
+.playerCreatureContainer.rival .creatureImgContainer svg{
+    width: 130px;
+    height: 130px;
+    transform: scale(1,1);
+}
+
+.battleGround{
+    width: 290px;
+    height: 60px;
+    background-color: rgb(117, 59, 21);
+    border-radius: 100%;
+    position: absolute;
+    bottom: 10px;
+    border: solid 3px var(--main-border-color);
+}
+
+.rival .battleGround{
+    width: 195px;
+    height: 40px;
+    bottom: 18px;
 }
 
 .optionsContainer{
@@ -62,4 +174,20 @@
 
 .surrender{
     background-color: rgb(255, 255, 255);
+}
+
+.optionsContainer .option .icons{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+.optionsContainer .option .icons .icon{
+    width: 25px;
+    height: 25px;
+}
+
+.optionsContainer .option{
+    height: 50px;
 }

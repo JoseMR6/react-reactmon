@@ -32,19 +32,19 @@ export function WriteName() {
                                 Creature.generateCreature({
                                     id:getNewId(),
                                     type:ELEMENTAL_TYPES.FIRE,
-                                    numAttacks:1,
+                                    numAttacks:2,
                                     maxedStatsNum:1
                                 }),
                                 Creature.generateCreature({
                                     id:getNewId(),
                                     type:ELEMENTAL_TYPES.WATER,
-                                    numAttacks:1,
+                                    numAttacks:2,
                                     maxedStatsNum:1
                                 }),
                                 Creature.generateCreature({
                                     id:getNewId(),
                                     type:ELEMENTAL_TYPES.GRASS,
-                                    numAttacks:1,
+                                    numAttacks:2,
                                     maxedStatsNum:1
                                 })
                             ])

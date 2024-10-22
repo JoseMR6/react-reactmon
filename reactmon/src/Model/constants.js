@@ -19,6 +19,14 @@ export const TOTAL_STATS = 280
 
 export const MIN_HEALTH = 30
 
+export const ADJUSTMENT = 0.15
+
+export const OWN_TYPE = 1.5
+
+export const EFFECTIVE_TYPE = 2
+
+export const WEAK_TYPE = 0.5
+
 export const GAME_STATES = {
     START: 'start',
     BATTLE:'battle'
@@ -45,10 +53,11 @@ export const ELEMENTAL_TYPES = {
     NEUTRAL: 'neutral'
 }
 
-export const LOSER_TYPE_OF = {
+export const WEAK_TYPE_OF = {
     fire: ELEMENTAL_TYPES.GRASS,
     grass: ELEMENTAL_TYPES.WATER,
-    water: ELEMENTAL_TYPES.FIRE
+    water: ELEMENTAL_TYPES.FIRE,
+    neutral: ''
 }
 
 export const TEXT_VARIABLES ={

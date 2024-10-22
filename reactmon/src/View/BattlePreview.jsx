@@ -104,13 +104,13 @@ function PlayerPreview({ player, playerCreatures, selected = false }) {
                                         setHealthActualCreaturePlayer(
                                             creature.recordedHealth
                                         )
-                                        setBuffsActualCreaturePlayer(0)
+                                        setBuffsActualCreaturePlayer({cont:0,stat:null})
                                         const randomIndex = Math.floor(Math.random()*(rivalCreatures.length))
                                         setIndexActualCreatureRival(randomIndex)
                                         setHealthActualCreatureRival(
                                             rivalCreatures[randomIndex].recordedHealth
                                         )
-                                        setBuffsActualCreatureRival(0)
+                                        setBuffsActualCreatureRival({cont:0,stat:null})
                                         changeWindow(WINDOW_NAMES.BATTLE_OPTIONS)
                                     }
                                 }}

@@ -1,5 +1,6 @@
 .rightPanel{
-    float: right;
+    right: 0;
+    position: absolute;
     margin-right: 20px;
     display: flex;
     flex-direction: column;

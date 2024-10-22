@@ -16,7 +16,7 @@ export function GeneralContainer() {
     const { actualWindow
         //, setActualWindow
     } = useGame()
-    //setActualWindow(WINDOW_NAMES.BATTLE_PREVIEW)
+    //setActualWindow(WINDOW_NAMES.BATTLE_OPTIONS)
 
     const windowComponents = [
         {

@@ -1,7 +1,7 @@
 import { useGame } from '../Controller/hooks/useGame'
 import { Creature } from '../Model/Creature'
 import { Player } from '../Model/Player'
-import { GAME_STATES, ITEM_TYPES, LOSER_TYPE_OF, PLAYER_SKINS, WINDOW_NAMES } from '../Model/constants'
+import { GAME_STATES, ITEM_TYPES, WEAK_TYPE_OF, PLAYER_SKINS, WINDOW_NAMES } from '../Model/constants'
 import './ChooseCreature.css'
 import { ElemntIcon } from './Types'
 import { CreatureImg } from './creatures/CreatureImg'
@@ -73,8 +73,8 @@ function CreatureSelect({ creature }) {
                                 setRivalCreatures([
                                     Creature.generateCreature({
                                         id: getNewId(),
-                                        type: LOSER_TYPE_OF[creature.type],
-                                        numAttacks: 1
+                                        type: WEAK_TYPE_OF[creature.type],
+                                        numAttacks: 2
                                     })
                                 ])
                                 setGameState(GAME_STATES.BATTLE)
