@@ -57,8 +57,8 @@ export class Creature {
                 defense += BUFF_BASE * rivalBuffs.cont * ownType
             }
         }
-        console.log(attack)
-        console.log(defense)
+        console.log("attack "+attack)
+        console.log("defense "+defense)
 
         if (category != ATTACK_CATEGORYS.SUPPORT) {
             const ownType = (this.attacks[attackIndex].type == this.type) ? OWN_TYPE : 1
@@ -95,26 +95,35 @@ export class Creature {
             rivalSpeed += BUFF_BASE * rivalBuffs.cont * ownType
         }
 
+        console.log("playerSpeed "+playerSpeed)
+        console.log("rivalSpeed "+rivalSpeed)
+
         const playerFirst = playerSpeed >= rivalSpeed
 
         return playerFirst
     }
 
-    static generateCreature({ id = 0, type = 'random', numAttacks = 'random',
-        maxedStatsNum = 0
-    }) {
-        //generar tipo
+    static generateType(){
         const possibleTypes = [
             ELEMENTAL_TYPES.FIRE,
             ELEMENTAL_TYPES.WATER,
             ELEMENTAL_TYPES.GRASS
         ]
 
+        const randomNumber = Math.floor(Math.random() * 3)  //0 a 2
+        const type = possibleTypes[randomNumber]
+        
+        return type
+    }
+
+    static generateCreature({ id = 0, type = 'random', numAttacks = 'random',
+        maxedStatsNum = 0
+    }) {
+        //generar tipo
         let randomNumber
 
         if (type == 'random') {
-            randomNumber = Math.floor(Math.random() * 3)  //0 a 2
-            type = possibleTypes[randomNumber]
+            type = Creature.generateType()
         }
 
         //generar ataques 

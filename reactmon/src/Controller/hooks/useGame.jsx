@@ -14,6 +14,7 @@ export function useGame() {
         gameState, setGameState,
         actualWindow, setActualWindow,
         formerWindow,
+        initWindow,setInitWindow,
         round, setRound,
         coins, setCoins,
         contCreatureIds,
@@ -28,7 +29,7 @@ export function useGame() {
         healthActualCreatureRival, setHealthActualCreatureRival,
         buffsActualCreatureRival, setBuffsActualCreatureRival,
         selectedItem, setSelectedItem,
-        chooseOptions, setChooseOptions
+        chooseOptions
     } = context
 
     function reset() {
@@ -37,6 +38,7 @@ export function useGame() {
         setGameState(GAME_STATES.START)
         setRound(0)
         formerWindow.current = null
+        setInitWindow(null)
         contCreatureIds.current = 0
         setPlayerCreatures(null)
         setIndexActualCreaturePlayer(null)
@@ -48,7 +50,7 @@ export function useGame() {
         setHealthActualCreatureRival(null)
         setBuffsActualCreatureRival(null)
         setSelectedItem({ itemType: null, item: null })
-        setChooseOptions([])
+        chooseOptions.current=[]
     }
 
     function changeWindow(newWindow) {
@@ -68,6 +70,7 @@ export function useGame() {
         gameState, setGameState,
         actualWindow, setActualWindow,
         formerWindow,
+        initWindow,setInitWindow,
         round, setRound,
         coins, setCoins,
         contCreatureIds,
@@ -82,7 +85,7 @@ export function useGame() {
         indexActualCreatureRival, setIndexActualCreatureRival,
         buffsActualCreatureRival, setBuffsActualCreatureRival,
         selectedItem, setSelectedItem,
-        chooseOptions, setChooseOptions,
+        chooseOptions,
         reset, changeWindow, getNewId
     }
 }

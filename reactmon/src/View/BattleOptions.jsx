@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useGame } from '../Controller/hooks/useGame'
-import { ATTACKS, ATTACK_CATEGORYS, BUFF_LAYER_MAX, CREATURES, ELEMENTAL_TYPES, STAT_NAMES } from '../Model/constants'
+import { ATTACKS, ATTACK_CATEGORYS, BUFF_LAYER_MAX, CREATURES, ELEMENTAL_TYPES, STAT_NAMES, WINDOW_NAMES } from '../Model/constants'
 import './BattleOptions.css'
 import { ElemntIcon } from './Types'
 import { CreatureImg } from './creatures/CreatureImg'
@@ -11,24 +11,17 @@ export function BattleOptions() {
     const { playerCreatures, rivalCreatures, indexActualCreaturePlayer,
         indexActualCreatureRival, healthActualCreaturePlayer,
         healthActualCreatureRival, buffsActualCreaturePlayer,
-        buffsActualCreatureRival
+        buffsActualCreatureRival, initWindow, setInitWindow,
+        setHealthActualCreaturePlayer,
+        setBuffsActualCreaturePlayer, setHealthActualCreatureRival,
+        setBuffsActualCreatureRival
     } = useGame()
 
     const [menu, setMenu] = useState(0)
 
-    let localPlayerCreature
-    let localRivalCreature
-    let localPlayerHealth
-    let localRivalHealth
-    let localPlayerBuffs
-    let localRivalBuffs
-
-    if (playerCreatures) {
-        localPlayerCreature = playerCreatures[indexActualCreaturePlayer]
-        localPlayerHealth = healthActualCreaturePlayer
-        localPlayerBuffs = buffsActualCreaturePlayer
-    } else {
-        localPlayerCreature = new Creature(
+    const localPlayerCreature = playerCreatures
+        ? playerCreatures[indexActualCreaturePlayer]
+        : new Creature(
             0,
             {
                 name: CREATURES[0].name,
@@ -48,16 +41,10 @@ export function BattleOptions() {
                 specialDefense: 30
             }
         )
-        localPlayerHealth = localPlayerCreature.recordedHealth
-        localPlayerBuffs = { cont: 1, stat: STAT_NAMES.PH_ATTACK }
-    }
 
-    if (rivalCreatures) {
-        localRivalCreature = rivalCreatures[indexActualCreatureRival]
-        localRivalHealth = healthActualCreatureRival
-        localRivalBuffs = buffsActualCreatureRival
-    } else {
-        localRivalCreature = new Creature(
+    const localRivalCreature = rivalCreatures
+        ? rivalCreatures[indexActualCreatureRival]
+        : new Creature(
             1,
             {
                 name: CREATURES[1].name,
@@ -77,26 +64,58 @@ export function BattleOptions() {
                 specialDefense: 30
             }
         )
-        localRivalHealth = localRivalCreature.recordedHealth
-        localRivalBuffs = { cont: 1, stat: STAT_NAMES.SP_DEFENSE }
-    }
+
+    useEffect(() => {
+        if (initWindow == WINDOW_NAMES.BATTLE_OPTIONS) {
+            setHealthActualCreaturePlayer(
+                localPlayerCreature.recordedHealth
+            )
+            setBuffsActualCreaturePlayer({ cont: 0, stat: null })
+            setHealthActualCreatureRival(
+                localRivalCreature.recordedHealth
+            )
+            setBuffsActualCreatureRival({ cont: 0, stat: null })
+            setInitWindow(null)
+        } else {
+            if (!playerCreatures || playerCreatures.length == 0) {
+                setHealthActualCreaturePlayer(localPlayerCreature.recordedHealth)
+                setBuffsActualCreaturePlayer({ cont: 1, stat: STAT_NAMES.PH_ATTACK })
+            }
+
+            if (!rivalCreatures || rivalCreatures.length == 0) {
+                setHealthActualCreatureRival(localRivalCreature.recordedHealth)
+                setBuffsActualCreatureRival({ cont: 1, stat: STAT_NAMES.SP_DEFENSE })
+            }
+
+        }
+    }, []);
 
     return (
         <>
+
             <div className='generalBattleContainer'>
+
                 <div className='battleContainer'>
-                    <PlayerCreatureContainer
-                        player={localPlayerCreature}
-                        health={localPlayerHealth}
-                        buffs={localPlayerBuffs}
-                    />
-                    <PlayerCreatureContainer
-                        player={localRivalCreature}
-                        health={localRivalHealth}
-                        buffs={localRivalBuffs}
-                        main={false}
-                    />
+                    {(healthActualCreaturePlayer !== null
+                        && buffsActualCreaturePlayer !== null
+                        && healthActualCreatureRival !== null
+                        && buffsActualCreatureRival !== null
+                    )
+                        &&
+                        <>
+                            <PlayerCreatureContainer
+                                player={localPlayerCreature}
+                                health={healthActualCreaturePlayer}
+                            />
+                            <PlayerCreatureContainer
+                                player={localRivalCreature}
+                                health={healthActualCreatureRival}
+                                main={false}
+                            />
+                        </>
+                    }
                 </div>
+                
                 <div className='optionsContainer'>
                     {menu == 0 &&
                         <GeneralOptions setMenu={setMenu} />
@@ -115,7 +134,12 @@ export function BattleOptions() {
     )
 }
 
-function PlayerCreatureContainer({ player, health, buffs, main = true }) {
+export function PlayerCreatureContainer({ player, health, main = true }) {
+    const { buffsActualCreaturePlayer, buffsActualCreatureRival } = useGame()
+
+    const buffs = main ? buffsActualCreaturePlayer : buffsActualCreatureRival
+
+    console.log('holi')
 
     return (
         <>
@@ -141,7 +165,13 @@ function PlayerCreatureContainer({ player, health, buffs, main = true }) {
                                 <img className={'category ' + ATTACK_CATEGORYS.SUPPORT}
                                     src={'./src/assets/categories/' + ATTACK_CATEGORYS.SUPPORT + '.svg'}
                                 />
-                                <div className='buffCount'>{buffs.cont}</div>
+                                <div className='buffCount'>
+                                    {
+                                        main
+                                            ? buffsActualCreaturePlayer.cont
+                                            : buffsActualCreatureRival.cont
+                                    }
+                                </div>
                             </div>
                         }
 
@@ -163,7 +193,6 @@ function PlayerCreatureContainer({ player, health, buffs, main = true }) {
 PlayerCreatureContainer.propTypes = {
     player: PropTypes.object.isRequired,
     health: PropTypes.number.isRequired,
-    buffs: PropTypes.object.isRequired,
     main: PropTypes.bool
 }
 
@@ -206,7 +235,7 @@ function AttackOptions({ creature, rivalCreature, setMenu }) {
         buffsActualCreaturePlayer, buffsActualCreatureRival,
         healthActualCreatureRival, setHealthActualCreatureRival,
         healthActualCreaturePlayer, setHealthActualCreaturePlayer,
-        setBuffsActualCreaturePlayer,setBuffsActualCreatureRival
+        setBuffsActualCreaturePlayer, setBuffsActualCreatureRival
     } = useGame()
     const lang = languajeDocument.BattleOptions
     const langA = languajeDocument.AttacksText
@@ -224,61 +253,62 @@ function AttackOptions({ creature, rivalCreature, setMenu }) {
                 BuffsRival
             )
 
-            console.log(damage)
+            console.log("damage " + damage)
             let health = healthRival - damage
             if (health < 0) health = 0
             setHealthRival(health)
-        }else if(attack.category == ATTACK_CATEGORYS.SUPPORT){
-            console.log(buffsPlayer)
-            
+        } else if (attack.category == ATTACK_CATEGORYS.SUPPORT) {
+            //console.log(buffsPlayer)
+
             //Curacion
-            if(attack.name=='Absorption'){
-                let heal = healthPlayer+creaturePlayer.getHeal()
-                if(heal>creaturePlayer.stats.maxHealth)heal=creaturePlayer.stats.maxHealth
-                const healSet=heal
+            if (attack.name == 'Absorption') {
+                let heal = healthPlayer + creaturePlayer.getHeal()
+                console.log("curacion " + heal)
+                if (heal > creaturePlayer.stats.maxHealth) heal = creaturePlayer.stats.maxHealth
+                const healSet = heal
                 setHealthPlayer(healSet)
             }
 
             //velocidad
-            if(attack.name=='Doping'){
-                let buff={cont:0,stat:STAT_NAMES.SPEED}
-                if(buffsPlayer.stat==buff.stat)buff=buffsPlayer
-                if(buff.cont+1<=BUFF_LAYER_MAX)buff.cont++
-                const buffSet=buff
+            if (attack.name == 'Doping') {
+                let buff = { cont: 0, stat: STAT_NAMES.SPEED }
+                if (buffsPlayer.stat == buff.stat) buff = buffsPlayer
+                if (buff.cont + 1 <= BUFF_LAYER_MAX) buff.cont++
+                const buffSet = buff
                 setBuffsPlayer(buffSet)
             }
 
             //Ataque fisico
-            if(attack.name=='ThermalSharpening'){
-                let buff={cont:0,stat:STAT_NAMES.PH_ATTACK}
-                if(buffsPlayer.stat==buff.stat)buff=buffsPlayer
-                if(buff.cont+1<=BUFF_LAYER_MAX)buff.cont++
-                const buffSet=buff
+            if (attack.name == 'ThermalSharpening') {
+                let buff = { cont: 0, stat: STAT_NAMES.PH_ATTACK }
+                if (buffsPlayer.stat == buff.stat) buff = buffsPlayer
+                if (buff.cont + 1 <= BUFF_LAYER_MAX) buff.cont++
+                const buffSet = buff
                 setBuffsPlayer(buffSet)
             }
             //Ataque especial
-            if(attack.name=='Ignition'){
-                let buff={cont:0,stat:STAT_NAMES.SP_ATTACK}
-                if(buffsPlayer.stat==buff.stat)buff=buffsPlayer
-                if(buff.cont+1<=BUFF_LAYER_MAX)buff.cont++
-                const buffSet=buff
+            if (attack.name == 'Ignition') {
+                let buff = { cont: 0, stat: STAT_NAMES.SP_ATTACK }
+                if (buffsPlayer.stat == buff.stat) buff = buffsPlayer
+                if (buff.cont + 1 <= BUFF_LAYER_MAX) buff.cont++
+                const buffSet = buff
                 setBuffsPlayer(buffSet)
             }
 
             //Defensa fisica
-            if(attack.name=='FrozenShield'){
-                let buff={cont:0,stat:STAT_NAMES.PH_DEFENSE}
-                if(buffsPlayer.stat==buff.stat)buff=buffsPlayer
-                if(buff.cont+1<=BUFF_LAYER_MAX)buff.cont++
-                const buffSet=buff
+            if (attack.name == 'FrozenShield') {
+                let buff = { cont: 0, stat: STAT_NAMES.PH_DEFENSE }
+                if (buffsPlayer.stat == buff.stat) buff = buffsPlayer
+                if (buff.cont + 1 <= BUFF_LAYER_MAX) buff.cont++
+                const buffSet = buff
                 setBuffsPlayer(buffSet)
             }
             //Defensa especial
-            if(attack.name=='AquaticAura'){
-                let buff={cont:0,stat:STAT_NAMES.SP_DEFENSE}
-                if(buffsPlayer.stat==buff.stat)buff=buffsPlayer
-                if(buff.cont+1<=BUFF_LAYER_MAX)buff.cont++
-                const buffSet=buff
+            if (attack.name == 'AquaticAura') {
+                let buff = { cont: 0, stat: STAT_NAMES.SP_DEFENSE }
+                if (buffsPlayer.stat == buff.stat) buff = buffsPlayer
+                if (buff.cont + 1 <= BUFF_LAYER_MAX) buff.cont++
+                const buffSet = buff
                 setBuffsPlayer(buffSet)
             }
             console.log(attack.name)

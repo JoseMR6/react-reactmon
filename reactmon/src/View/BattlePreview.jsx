@@ -1,81 +1,97 @@
+import { useEffect, } from 'react'
 import { getSkinRoute } from '../Controller/functions/skins'
 import { useGame } from '../Controller/hooks/useGame'
 import { Creature } from '../Model/Creature'
 import { Player } from '../Model/Player'
-import { CREATURES, ELEMENTAL_TYPES, PLAYER_SKINS, WINDOW_NAMES } from '../Model/constants'
+import { CREATURES, ELEMENTAL_TYPES, PLAYER_SKINS, WEAK_TYPE_OF, WINDOW_NAMES } from '../Model/constants'
 import './BattlePreview.css'
 import { ElemntIcon } from './Types'
 import { CreatureImg } from './creatures/CreatureImg'
 import { PropTypes } from 'prop-types'
 
 export function BattlePreview() {
-    const { rival, rivalCreatures, player, playerCreatures,
-        languajeDocument
+    const { rival, rivalCreatures, player, setPlayer, playerCreatures, setPlayerCreatures,
+        languajeDocument, initWindow,setInitWindow, setRival, setRivalCreatures, setRound, round,
+        getNewId
     } = useGame()
 
     const lang = languajeDocument.BattlePreview
 
-    let localPlayer = player
-    let localPlayerCreatures = playerCreatures
-    let localRival = rival
-    let localRivalCreatures = rivalCreatures
+    useEffect(() => {
+        if (initWindow == WINDOW_NAMES.BATTLE_PREVIEW) {
+            setRound(round + 1)
 
-    if (!player || player.name == "") {
-        localPlayer = new Player(
-            'Jhon',
-            PLAYER_SKINS[0],
-            0
-        )
-    }
-    if (!playerCreatures) {
-        const creature = new Creature(0,
-            { name: CREATURES[0].name, dark: 0 }, ELEMENTAL_TYPES.FIRE)
-        localPlayerCreatures = [
-            creature, creature, creature, creature, creature, creature
-        ]
-    }
+            const { newRival,
+                newRivalCreatures
+            } = Player.generateRival(
+                round, getNewId, WEAK_TYPE_OF[playerCreatures[0].type]
+            )
 
-    if (!rival) {
-        localRival = new Player(
-            'Kenny',
-            PLAYER_SKINS[1],
-            1
-        )
-    }
-    if (!rivalCreatures) {
-        const creature = new Creature(1,
-            { name: CREATURES[1].name, dark: 6 }, ELEMENTAL_TYPES.GRASS)
-        localRivalCreatures = [
-            creature, creature, creature, creature, creature, creature
-        ]
-    }
+            setRival(newRival)
+            setRivalCreatures(newRivalCreatures)
+            setInitWindow(null)
+        } else {
+            if (!player)
+                setPlayer(new Player(
+                    'Jhon',
+                    PLAYER_SKINS[0],
+                    0
+                ))
+            if (!rival)
+                setRival(new Player(
+                    'Kenny',
+                    PLAYER_SKINS[1],
+                    1
+                ))
+            const defaultCreature = new Creature(
+                0,
+                { name: CREATURES[0].name, dark: 0 },
+                ELEMENTAL_TYPES.FIRE
+            )
+            const defaultRivalCreature = new Creature(
+                1,
+                { name: CREATURES[1].name, dark: 6 },
+                ELEMENTAL_TYPES.GRASS
+            )
+            if (!playerCreatures || playerCreatures.length == 0)
+                setPlayerCreatures([
+                    defaultCreature, defaultCreature, defaultCreature,
+                    defaultCreature, defaultCreature, defaultCreature
+                ])
+            if (rivalCreatures || rivalCreatures.length == 0)
+                setRivalCreatures([
+                    defaultRivalCreature, defaultRivalCreature, defaultRivalCreature,
+                    defaultRivalCreature, defaultRivalCreature, defaultRivalCreature
+                ])
+        }
+    }, []);
 
     return (
         <>
-            <div className='previewContainer'>
-                <h2>{lang.title}</h2>
-                <div className='playersContainer'>
-                    <PlayerPreview
-                        player={localPlayer}
-                        playerCreatures={localPlayerCreatures}
-                    />
-                    <PlayerPreview
-                        player={localRival}
-                        playerCreatures={localRivalCreatures}
-                        selected={true}
-                    />
+            {(player && playerCreatures && rival && rivalCreatures) &&
+                <div className='previewContainer'>
+                    <h2>{lang.title}</h2>
+                    <div className='playersContainer'>
+                        <PlayerPreview
+                            player={player}
+                            playerCreatures={playerCreatures}
+                        />
+                        <PlayerPreview
+                            player={rival}
+                            playerCreatures={rivalCreatures}
+                            selected={true}
+                        />
+                    </div>
                 </div>
-            </div>
-
+            }
         </>
     )
 }
 
 function PlayerPreview({ player, playerCreatures, selected = false }) {
     const { languajeDocument, changeWindow, setIndexActualCreaturePlayer,
-        setIndexActualCreatureRival, rivalCreatures, 
-        setHealthActualCreaturePlayer, setHealthActualCreatureRival,
-        setBuffsActualCreaturePlayer,setBuffsActualCreatureRival
+        setIndexActualCreatureRival, rivalCreatures,
+        setInitWindow
     } = useGame()
     const lang = languajeDocument.BattlePreview
 
@@ -101,16 +117,9 @@ function PlayerPreview({ player, playerCreatures, selected = false }) {
                                 onClick={() => {
                                     if (!selected) {
                                         setIndexActualCreaturePlayer(index)
-                                        setHealthActualCreaturePlayer(
-                                            creature.recordedHealth
-                                        )
-                                        setBuffsActualCreaturePlayer({cont:0,stat:null})
-                                        const randomIndex = Math.floor(Math.random()*(rivalCreatures.length))
+                                        const randomIndex = Math.floor(Math.random() * (rivalCreatures.length))
                                         setIndexActualCreatureRival(randomIndex)
-                                        setHealthActualCreatureRival(
-                                            rivalCreatures[randomIndex].recordedHealth
-                                        )
-                                        setBuffsActualCreatureRival({cont:0,stat:null})
+                                        setInitWindow(WINDOW_NAMES.BATTLE_OPTIONS)
                                         changeWindow(WINDOW_NAMES.BATTLE_OPTIONS)
                                     }
                                 }}

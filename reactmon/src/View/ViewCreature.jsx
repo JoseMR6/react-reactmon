@@ -15,30 +15,28 @@ export function ViewCreature() {
 
     const lang = languajeDocument.ViewCreature
 
-    let creature = selectedItem.item
-
-    if (!creature) {
-        creature = new Creature(
-            0,
-            {
-                name: CREATURES[0].name,
-                dark: 0
-            },
-            ELEMENTAL_TYPES.FIRE,
-            [
-                ATTACKS[0],
-                ATTACKS[1]
-            ],
-            {
-                maxHealth: 50,
-                speed: 50,
-                physicalAttack: 50,
-                specialAttack: 50,
-                physicalDefense: 50,
-                specialDefense: 50
-            }
-        )
-    }
+    const creature = (selectedItem&&selectedItem.item) 
+    ? selectedItem.item 
+    : new Creature(
+        0,
+        {
+            name: CREATURES[0].name,
+            dark: 0
+        },
+        ELEMENTAL_TYPES.FIRE,
+        [
+            ATTACKS[0],
+            ATTACKS[1]
+        ],
+        {
+            maxHealth: 50,
+            speed: 50,
+            physicalAttack: 50,
+            specialAttack: 50,
+            physicalDefense: 50,
+            specialDefense: 50
+        }
+    )
 
     return (
         <>
@@ -63,7 +61,7 @@ export function ViewCreature() {
                             select={select}
                             setSelect={setSelect}
                         />
-                        {creature.attacks.length>1 &&
+                        {creature.attacks.length > 1 &&
                             <AttackContainer
                                 index={1}
                                 attack={creature.attacks[1]}
@@ -71,7 +69,7 @@ export function ViewCreature() {
                                 setSelect={setSelect}
                             />
                         }
-                        
+
                     </div>
                     <div className='section2'>
                         <div className='healthContainer'>
@@ -95,8 +93,8 @@ export function ViewCreature() {
                                 <b>{lang.statsButton}</b>
                             </div>
                             <div className='buttonReturn'
-                                onClick={()=>{
-                                    if(gameState==GAME_STATES.START)
+                                onClick={() => {
+                                    if (gameState == GAME_STATES.START)
                                         changeWindow(WINDOW_NAMES.CHOOSE_CREATURE)
                                 }}
                             >
@@ -123,7 +121,7 @@ export function ViewCreature() {
 export function AttackContainer({ index, attack, select, setSelect }) {
     const { languajeDocument } = useGame()
     const langA = languajeDocument.AttacksText
-    
+
     return (
         <>
             <div

@@ -1,48 +1,69 @@
+import { useEffect } from 'react'
 import { useGame } from '../Controller/hooks/useGame'
 import { Creature } from '../Model/Creature'
-import { Player } from '../Model/Player'
-import { GAME_STATES, ITEM_TYPES, WEAK_TYPE_OF, PLAYER_SKINS, WINDOW_NAMES } from '../Model/constants'
+import { ELEMENTAL_TYPES, GAME_STATES, ITEM_TYPES, WINDOW_NAMES } from '../Model/constants'
 import './ChooseCreature.css'
 import { ElemntIcon } from './Types'
 import { CreatureImg } from './creatures/CreatureImg'
 import { PropTypes } from 'prop-types'
 
 export function ChooseCreature() {
-    const { languajeDocument, chooseOptions } = useGame()
+    const { languajeDocument, chooseOptions,
+        initWindow, getNewId, setInitWindow
+    } = useGame()
     const lang = languajeDocument.ChooseCreature
-
-    let creatures = []
-
-    if (chooseOptions.length < 3) {
-        creatures = [
-            new Creature(),
-            new Creature(),
-            new Creature()
-        ]
-    } else {
-        chooseOptions.forEach(option => {
-            creatures.push(option)
-        });
-    }
+    
+    useEffect(() => {
+        if (initWindow == WINDOW_NAMES.CHOOSE_CREATURE) {
+            chooseOptions.current = [
+                Creature.generateCreature({
+                    id: getNewId(),
+                    type: ELEMENTAL_TYPES.FIRE,
+                    numAttacks: 2,
+                    maxedStatsNum: 1
+                }),
+                Creature.generateCreature({
+                    id: getNewId(),
+                    type: ELEMENTAL_TYPES.WATER,
+                    numAttacks: 2,
+                    maxedStatsNum: 1
+                }),
+                Creature.generateCreature({
+                    id: getNewId(),
+                    type: ELEMENTAL_TYPES.GRASS,
+                    numAttacks: 2,
+                    maxedStatsNum: 1
+                })
+            ]
+            setInitWindow(null)
+        } else if(!chooseOptions.current||chooseOptions.current.length==0) {
+            chooseOptions.current = [
+                new Creature(),
+                new Creature(),
+                new Creature()
+            ]
+        }
+    }, [])
 
     return (
         <>
-            <div className="chooseCreatureContainer">
-                <h1>{lang.title}</h1>
-                <div className='creaturesContainer'>
-                    <CreatureSelect creature={creatures[0]} />
-                    <CreatureSelect creature={creatures[1]} />
-                    <CreatureSelect creature={creatures[2]} />
+            {(chooseOptions.current&&chooseOptions.current.length!=0)&&
+                <div className="chooseCreatureContainer">
+                    <h1>{lang.title}</h1>
+                    <div className='creaturesContainer'>
+                        <CreatureSelect creature={chooseOptions.current[0]} />
+                        <CreatureSelect creature={chooseOptions.current[1]} />
+                        <CreatureSelect creature={chooseOptions.current[2]} />
+                    </div>
                 </div>
-            </div>
+            }
         </>
     )
 }
 
 function CreatureSelect({ creature }) {
     const { languajeDocument, changeWindow, setSelectedItem,
-        setPlayerCreatures, setGameState,round,setRound,setRival,
-        setRivalCreatures,getNewId
+        setPlayerCreatures, setGameState, setInitWindow
     } = useGame()
     const lang = languajeDocument.ChooseCreature
 
@@ -64,19 +85,7 @@ function CreatureSelect({ creature }) {
                         <div className='buttonOption'
                             onClick={() => {
                                 setPlayerCreatures([creature])
-                                setRound(round + 1)
-                                setRival(new Player(
-                                    'Kenny',
-                                    PLAYER_SKINS[0],
-                                    1
-                                ))
-                                setRivalCreatures([
-                                    Creature.generateCreature({
-                                        id: getNewId(),
-                                        type: WEAK_TYPE_OF[creature.type],
-                                        numAttacks: 2
-                                    })
-                                ])
+                                setInitWindow(WINDOW_NAMES.BATTLE_PREVIEW)
                                 setGameState(GAME_STATES.BATTLE)
                                 changeWindow(WINDOW_NAMES.BATTLE_PREVIEW)
                             }}

@@ -10,6 +10,7 @@ export function useConfig() {
     const [gameState, setGameState] = new useState(GAME_STATES.START)
     const [actualWindow, setActualWindow] = new useState(WINDOW_NAMES.SELECT_SKIN)
     const formerWindow = new useRef(null)
+    const [initWindow, setInitWindow] = new useState(null)
 
     useMemo(() => {
         const initLanguaje=Object.keys(TRANSLATIONS)[0]
@@ -27,6 +28,7 @@ export function useConfig() {
         languajeDocument, setLanguajeDocument,
         gameState, setGameState,
         actualWindow, setActualWindow,
-        formerWindow
+        formerWindow,
+        initWindow, setInitWindow
     }
 }

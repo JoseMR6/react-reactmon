@@ -11,7 +11,8 @@ export function GameProvider({ children }) {
         languajeDocument, setLanguajeDocument,
         gameState, setGameState,
         actualWindow, setActualWindow,
-        formerWindow
+        formerWindow,
+        initWindow,setInitWindow
     } = useConfig()
 
     const {
@@ -29,7 +30,7 @@ export function GameProvider({ children }) {
         healthActualCreatureRival, setHealthActualCreatureRival,
         buffsActualCreatureRival, setBuffsActualCreatureRival,
         selectedItem, setSelectedItem,
-        chooseOptions, setChooseOptions
+        chooseOptions
     } = useMechanics()
 
 
@@ -40,6 +41,7 @@ export function GameProvider({ children }) {
             gameState, setGameState,
             actualWindow, setActualWindow,
             formerWindow,
+            initWindow,setInitWindow,
             round, setRound,
             coins, setCoins,
             contCreatureIds,
@@ -54,7 +56,7 @@ export function GameProvider({ children }) {
             healthActualCreatureRival, setHealthActualCreatureRival,
             buffsActualCreatureRival, setBuffsActualCreatureRival,
             selectedItem, setSelectedItem,
-            chooseOptions, setChooseOptions
+            chooseOptions
         }}>
             {children}
         </GameContext.Provider>
