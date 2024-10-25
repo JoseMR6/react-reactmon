@@ -9,13 +9,9 @@ export function useMechanics(initialCoins=INITIAL_COINS){
     const [player, setPlayer] = useState(new Player())
     const [playerCreatures, setPlayerCreatures] = useState(null)
     const [indexActualCreaturePlayer, setIndexActualCreaturePlayer] = useState(null)
-    const [healthActualCreaturePlayer, setHealthActualCreaturePlayer] = useState(null)
-    const [buffsActualCreaturePlayer, setBuffsActualCreaturePlayer] = useState({cont:0,stat:null})
     const [rival, setRival] = useState(null)
     const [rivalCreatures, setRivalCreatures] = useState(null)
     const [indexActualCreatureRival, setIndexActualCreatureRival] = useState(null)
-    const [healthActualCreatureRival, setHealthActualCreatureRival] = useState(null)
-    const [buffsActualCreatureRival, setBuffsActualCreatureRival] = useState({cont:0,stat:null})
     const [selectedItem, setSelectedItem] = useState({itemType:null,item:null})
     const chooseOptions = new useRef([])
 
@@ -26,13 +22,9 @@ export function useMechanics(initialCoins=INITIAL_COINS){
         player, setPlayer,
         playerCreatures, setPlayerCreatures,
         indexActualCreaturePlayer, setIndexActualCreaturePlayer,
-        healthActualCreaturePlayer, setHealthActualCreaturePlayer,
-        buffsActualCreaturePlayer, setBuffsActualCreaturePlayer,
         rival, setRival,
         rivalCreatures, setRivalCreatures,
         indexActualCreatureRival, setIndexActualCreatureRival,
-        healthActualCreatureRival, setHealthActualCreatureRival,
-        buffsActualCreatureRival, setBuffsActualCreatureRival,
         selectedItem, setSelectedItem,
         chooseOptions
     }

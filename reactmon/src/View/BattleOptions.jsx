@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useGame } from '../Controller/hooks/useGame'
-import { ATTACKS, ATTACK_CATEGORYS, BUFF_LAYER_MAX, CREATURES, ELEMENTAL_TYPES, STAT_NAMES, WINDOW_NAMES } from '../Model/constants'
+import { ATTACKS, ATTACK_CATEGORYS, CREATURES, ELEMENTAL_TYPES, GAME_STATES, WINDOW_NAMES } from '../Model/constants'
 import './BattleOptions.css'
 import { ElemntIcon } from './Types'
 import { CreatureImg } from './creatures/CreatureImg'
@@ -9,15 +9,11 @@ import { Creature } from '../Model/Creature'
 
 export function BattleOptions() {
     const { playerCreatures, rivalCreatures, indexActualCreaturePlayer,
-        indexActualCreatureRival, healthActualCreaturePlayer,
-        healthActualCreatureRival, buffsActualCreaturePlayer,
-        buffsActualCreatureRival, initWindow, setInitWindow,
-        setHealthActualCreaturePlayer,
-        setBuffsActualCreaturePlayer, setHealthActualCreatureRival,
-        setBuffsActualCreatureRival
+        indexActualCreatureRival, initWindow, player, setPlayer, rival, setRival
     } = useGame()
 
     const [menu, setMenu] = useState(0)
+    const [messages, setMessages] = useState([])
 
     const localPlayerCreature = playerCreatures
         ? playerCreatures[indexActualCreaturePlayer]
@@ -67,26 +63,13 @@ export function BattleOptions() {
 
     useEffect(() => {
         if (initWindow == WINDOW_NAMES.BATTLE_OPTIONS) {
-            setHealthActualCreaturePlayer(
-                localPlayerCreature.recordedHealth
-            )
-            setBuffsActualCreaturePlayer({ cont: 0, stat: null })
-            setHealthActualCreatureRival(
-                localRivalCreature.recordedHealth
-            )
-            setBuffsActualCreatureRival({ cont: 0, stat: null })
-            setInitWindow(null)
-        } else {
-            if (!playerCreatures || playerCreatures.length == 0) {
-                setHealthActualCreaturePlayer(localPlayerCreature.recordedHealth)
-                setBuffsActualCreaturePlayer({ cont: 1, stat: STAT_NAMES.PH_ATTACK })
-            }
+            const modPlayer = structuredClone(player)
+            modPlayer.liveCreatures = playerCreatures.length
+            setPlayer(modPlayer)
 
-            if (!rivalCreatures || rivalCreatures.length == 0) {
-                setHealthActualCreatureRival(localRivalCreature.recordedHealth)
-                setBuffsActualCreatureRival({ cont: 1, stat: STAT_NAMES.SP_DEFENSE })
-            }
-
+            const modRival = structuredClone(rival)
+            modRival.liveCreatures = rivalCreatures.length
+            setRival(modRival)
         }
     }, []);
 
@@ -96,34 +79,34 @@ export function BattleOptions() {
             <div className='generalBattleContainer'>
 
                 <div className='battleContainer'>
-                    {(healthActualCreaturePlayer !== null
-                        && buffsActualCreaturePlayer !== null
-                        && healthActualCreatureRival !== null
-                        && buffsActualCreatureRival !== null
-                    )
+                    {(localPlayerCreature && localRivalCreature)
                         &&
                         <>
                             <PlayerCreatureContainer
                                 player={localPlayerCreature}
-                                health={healthActualCreaturePlayer}
                             />
                             <PlayerCreatureContainer
                                 player={localRivalCreature}
-                                health={healthActualCreatureRival}
                                 main={false}
                             />
                         </>
                     }
                 </div>
-                
+
                 <div className='optionsContainer'>
                     {menu == 0 &&
                         <GeneralOptions setMenu={setMenu} />
                     }
                     {menu == 1 &&
-                        <AttackOptions creature={localPlayerCreature}
-                            rivalCreature={localRivalCreature}
+                        <AttackOptions
                             setMenu={setMenu}
+                            setMessages={setMessages}
+                        />
+                    }
+                    {menu == 2 &&
+                        <BattleMessage
+                            setMenu={setMenu}
+                            messages={messages}
                         />
                     }
 
@@ -134,12 +117,7 @@ export function BattleOptions() {
     )
 }
 
-export function PlayerCreatureContainer({ player, health, main = true }) {
-    const { buffsActualCreaturePlayer, buffsActualCreatureRival } = useGame()
-
-    const buffs = main ? buffsActualCreaturePlayer : buffsActualCreatureRival
-
-    console.log('holi')
+function PlayerCreatureContainer({ player, main = true }) {
 
     return (
         <>
@@ -147,11 +125,11 @@ export function PlayerCreatureContainer({ player, health, main = true }) {
                 <div className='battleGround' />
                 <div className='healthContainer'>
                     <meter className='healthBar'
-                        value={health} min="0"
+                        value={player.recordedHealth} min="0"
                         max={player.stats.maxHealth}
                     />
                     {main &&
-                        <span>{health}
+                        <span>{player.recordedHealth}
                             /{player.stats.maxHealth}
                         </span>
                     }
@@ -160,16 +138,14 @@ export function PlayerCreatureContainer({ player, health, main = true }) {
                 <div className='imgsContainer'>
                     <div className='iconsContainer'>
                         <ElemntIcon type={player.type} />
-                        {buffs.cont > 0 &&
+                        {player.recordedBuffs.cont > 0 &&
                             <div className='buffContainer'>
                                 <img className={'category ' + ATTACK_CATEGORYS.SUPPORT}
                                     src={'./src/assets/categories/' + ATTACK_CATEGORYS.SUPPORT + '.svg'}
                                 />
                                 <div className='buffCount'>
                                     {
-                                        main
-                                            ? buffsActualCreaturePlayer.cont
-                                            : buffsActualCreatureRival.cont
+                                        player.recordedBuffs.cont
                                     }
                                 </div>
                             </div>
@@ -192,7 +168,6 @@ export function PlayerCreatureContainer({ player, health, main = true }) {
 
 PlayerCreatureContainer.propTypes = {
     player: PropTypes.object.isRequired,
-    health: PropTypes.number.isRequired,
     main: PropTypes.bool
 }
 
@@ -230,92 +205,26 @@ GeneralOptions.propTypes = {
     setMenu: PropTypes.func.isRequired
 }
 
-function AttackOptions({ creature, rivalCreature, setMenu }) {
-    const { languajeDocument,
-        buffsActualCreaturePlayer, buffsActualCreatureRival,
-        healthActualCreatureRival, setHealthActualCreatureRival,
-        healthActualCreaturePlayer, setHealthActualCreaturePlayer,
-        setBuffsActualCreaturePlayer, setBuffsActualCreatureRival
+function AttackOptions({ setMenu, setMessages }) {
+    const { languajeDocument, setPlayerCreatures, setRivalCreatures, playerCreatures, rivalCreatures,
+        indexActualCreaturePlayer, indexActualCreatureRival, player, setPlayer, rival, setRival,
+        setGameState//, changeWindow
     } = useGame()
     const lang = languajeDocument.BattleOptions
     const langA = languajeDocument.AttacksText
 
-    const doAttack = (indexAttack, creaturePlayer, creatureRival, buffsPlayer,
-        BuffsRival, healthRival, setHealthRival, healthPlayer, setHealthPlayer,
-        setBuffsPlayer
-    ) => {
-        const attack = creaturePlayer.attacks[indexAttack]
-        if (attack.category == ATTACK_CATEGORYS.PHYSICAL
-            || attack.category == ATTACK_CATEGORYS.SPECIAL
-        ) {
-            let damage = creaturePlayer.getAttackDamage(
-                indexAttack, creatureRival, buffsPlayer,
-                BuffsRival
-            )
+    const creature = playerCreatures[indexActualCreaturePlayer]
+    const rivalCreature = rivalCreatures[indexActualCreatureRival]
 
-            console.log("damage " + damage)
-            let health = healthRival - damage
-            if (health < 0) health = 0
-            setHealthRival(health)
-        } else if (attack.category == ATTACK_CATEGORYS.SUPPORT) {
-            //console.log(buffsPlayer)
-
-            //Curacion
-            if (attack.name == 'Absorption') {
-                let heal = healthPlayer + creaturePlayer.getHeal()
-                console.log("curacion " + heal)
-                if (heal > creaturePlayer.stats.maxHealth) heal = creaturePlayer.stats.maxHealth
-                const healSet = heal
-                setHealthPlayer(healSet)
-            }
-
-            //velocidad
-            if (attack.name == 'Doping') {
-                let buff = { cont: 0, stat: STAT_NAMES.SPEED }
-                if (buffsPlayer.stat == buff.stat) buff = buffsPlayer
-                if (buff.cont + 1 <= BUFF_LAYER_MAX) buff.cont++
-                const buffSet = buff
-                setBuffsPlayer(buffSet)
-            }
-
-            //Ataque fisico
-            if (attack.name == 'ThermalSharpening') {
-                let buff = { cont: 0, stat: STAT_NAMES.PH_ATTACK }
-                if (buffsPlayer.stat == buff.stat) buff = buffsPlayer
-                if (buff.cont + 1 <= BUFF_LAYER_MAX) buff.cont++
-                const buffSet = buff
-                setBuffsPlayer(buffSet)
-            }
-            //Ataque especial
-            if (attack.name == 'Ignition') {
-                let buff = { cont: 0, stat: STAT_NAMES.SP_ATTACK }
-                if (buffsPlayer.stat == buff.stat) buff = buffsPlayer
-                if (buff.cont + 1 <= BUFF_LAYER_MAX) buff.cont++
-                const buffSet = buff
-                setBuffsPlayer(buffSet)
-            }
-
-            //Defensa fisica
-            if (attack.name == 'FrozenShield') {
-                let buff = { cont: 0, stat: STAT_NAMES.PH_DEFENSE }
-                if (buffsPlayer.stat == buff.stat) buff = buffsPlayer
-                if (buff.cont + 1 <= BUFF_LAYER_MAX) buff.cont++
-                const buffSet = buff
-                setBuffsPlayer(buffSet)
-            }
-            //Defensa especial
-            if (attack.name == 'AquaticAura') {
-                let buff = { cont: 0, stat: STAT_NAMES.SP_DEFENSE }
-                if (buffsPlayer.stat == buff.stat) buff = buffsPlayer
-                if (buff.cont + 1 <= BUFF_LAYER_MAX) buff.cont++
-                const buffSet = buff
-                setBuffsPlayer(buffSet)
-            }
-            console.log(attack.name)
-            console.log(buffsPlayer)
+    const checkWinner = ((player, rival) => {
+        if (player == null || player.liveCreatures <= 0) {
+            setGameState(GAME_STATES.LOSE)
+            //changeWindow(WINDOW_NAMES.LOSE_GAME)
+        } else if (rival == null || rival.liveCreatures <= 0) {
+            setGameState(GAME_STATES.WIN)
+            //changeWindow(WINDOW_NAMES.WIN_OPTIONS)
         }
-
-    }
+    })
 
     return (
         <>
@@ -324,54 +233,117 @@ function AttackOptions({ creature, rivalCreature, setMenu }) {
                     <div key={index} className='option'
                         onClick={() => {
                             const playerFirst = creature.getFirst(
-                                rivalCreature, buffsActualCreaturePlayer,
-                                buffsActualCreatureRival
+                                rivalCreature, creature.recordedBuffs,
+                                rivalCreature.recordedBuffs
                             )
 
+                            const newPlayerCreatures = structuredClone(playerCreatures)
+                            const newRivalCreatures = structuredClone(rivalCreatures)
+                            const newMessages = []
                             let randomAttackIndex = Math.floor(Math.random() * rivalCreature.attacks.length)
 
                             if (playerFirst) {
-                                doAttack(index, creature, rivalCreature,
-                                    buffsActualCreaturePlayer,
-                                    buffsActualCreatureRival,
-                                    healthActualCreatureRival,
-                                    setHealthActualCreatureRival,
-                                    healthActualCreaturePlayer,
-                                    setHealthActualCreaturePlayer,
-                                    setBuffsActualCreaturePlayer
+                                const [newCreaturePlayer, newCreatureRival,
+                                    newPlayer, newRival
+                                ] = creature.doAttack(
+                                    index, rivalCreature, player, rival
                                 )
-                                doAttack(randomAttackIndex, rivalCreature, creature,
-                                    buffsActualCreatureRival,
-                                    buffsActualCreaturePlayer,
-                                    healthActualCreaturePlayer,
-                                    setHealthActualCreaturePlayer,
-                                    healthActualCreatureRival,
-                                    setHealthActualCreatureRival,
-                                    setBuffsActualCreatureRival
+
+                                if (newCreaturePlayer != null && newCreatureRival != null) {
+                                    newPlayerCreatures[indexActualCreaturePlayer] = newCreaturePlayer
+                                    setPlayerCreatures(newPlayerCreatures)
+                                    newRivalCreatures[indexActualCreatureRival] = newCreatureRival
+                                    setRivalCreatures(newRivalCreatures)
+                                    setPlayer(newPlayer)
+                                    setRival(newRival)
+
+                                    newMessages.push("Criatura de " + player.name
+                                        + " usó " + attack.name
+                                    )
+                                }
+
+                                checkWinner(newPlayer, newRival)
+
+                                const [newCreatureRival2, newCreaturePlayer2,
+                                    newRival2, newPlayer2
+                                ] = rivalCreature.doAttack(
+                                    randomAttackIndex, creature, rival, player
                                 )
+
+                                if (newCreaturePlayer2 != null && newCreatureRival2 != null) {
+                                    newPlayerCreatures[indexActualCreaturePlayer] = newCreaturePlayer2
+                                    setPlayerCreatures(newPlayerCreatures)
+                                    newRivalCreatures[indexActualCreatureRival] = newCreatureRival2
+                                    setRivalCreatures(newRivalCreatures)
+                                    setPlayer(newPlayer2)
+                                    setRival(newRival2)
+
+                                    newMessages.push("Criatura de " + rival.name
+                                        + " usó "
+                                        + rivalCreature.attacks[randomAttackIndex].name
+                                    )
+                                }
+
+                                checkWinner(newPlayer2, newRival2)
                             } else {
-                                doAttack(randomAttackIndex, rivalCreature, creature,
-                                    buffsActualCreatureRival,
-                                    buffsActualCreaturePlayer,
-                                    healthActualCreaturePlayer,
-                                    setHealthActualCreaturePlayer,
-                                    healthActualCreatureRival,
-                                    setHealthActualCreatureRival,
-                                    setBuffsActualCreatureRival
+                                const [newCreatureRival2, newCreaturePlayer2,
+                                    newRival2, newPlayer2
+                                ] = rivalCreature.doAttack(
+                                    randomAttackIndex, creature, rival, player
                                 )
-                                doAttack(index, creature, rivalCreature,
-                                    buffsActualCreaturePlayer,
-                                    buffsActualCreatureRival,
-                                    healthActualCreatureRival,
-                                    setHealthActualCreatureRival,
-                                    healthActualCreaturePlayer,
-                                    setHealthActualCreaturePlayer,
-                                    setBuffsActualCreaturePlayer
+
+                                if (newCreaturePlayer2 != null && newCreatureRival2 != null) {
+                                    newPlayerCreatures[indexActualCreaturePlayer] = newCreaturePlayer2
+                                    setPlayerCreatures(newPlayerCreatures)
+                                    newRivalCreatures[indexActualCreatureRival] = newCreatureRival2
+                                    setRivalCreatures(newRivalCreatures)
+                                    setPlayer(newPlayer2)
+                                    setRival(newRival2)
+
+                                    newMessages.push("Criatura de " + rival.name
+                                        + " usó "
+                                        + rivalCreature.attacks[randomAttackIndex].name
+                                    )
+                                }
+
+                                checkWinner(newPlayer2, newRival2)
+
+                                const [newCreaturePlayer, newCreatureRival,
+                                    newPlayer, newRival
+                                ] = creature.doAttack(
+                                    index, rivalCreature, player, rival
+                                )
+
+                                if (newCreaturePlayer != null && newCreatureRival != null) {
+                                    newPlayerCreatures[indexActualCreaturePlayer] = newCreaturePlayer
+                                    setPlayerCreatures(newPlayerCreatures)
+                                    newRivalCreatures[indexActualCreatureRival] = newCreatureRival
+                                    setRivalCreatures(newRivalCreatures)
+                                    setPlayer(newPlayer)
+                                    setRival(newRival)
+
+                                    newMessages.push("Criatura de " + player.name
+                                        + " usó " + attack.name
+                                    )
+                                }
+
+                                checkWinner(newPlayer, newRival)
+                            }
+
+                            if (playerCreatures[indexActualCreaturePlayer].dead) {
+                                newMessages.push("Criatura de " + player.name
+                                    + " se ha debilitado "
                                 )
                             }
 
-                            console.log(creature)
-                            console.log(rivalCreature)
+                            if (rivalCreatures[indexActualCreatureRival].dead) {
+                                newMessages.push("Criatura de " + rival.name
+                                    + " se ha debilitado "
+                                )
+                            }
+
+                            setMessages(newMessages)
+                            setMenu(2)
                         }}
                     >
                         <span className='name'>
@@ -398,7 +370,47 @@ function AttackOptions({ creature, rivalCreature, setMenu }) {
 }
 
 AttackOptions.propTypes = {
-    creature: PropTypes.object.isRequired,
-    rivalCreature: PropTypes.object.isRequired,
-    setMenu: PropTypes.func.isRequired
+    setMenu: PropTypes.func.isRequired,
+    setMessages: PropTypes.func.isRequired
+}
+
+function BattleMessage({ setMenu, messages }) {
+    const [actual, setActual] = useState(0)
+    const {gameState, changeWindow} = useGame()
+
+    return (
+        <>
+            {messages.map((message, index) => {
+                const sig = actual + 1
+
+                if (actual == index){
+                    return (
+                        <div key={index} className='messageContainer'>
+                            <div className='battleMessage'>{messages[index]}</div>
+                            <div className='continue'
+                                onClick={() => {
+                                    if (sig != messages.length) setActual(sig)
+                                    else if(gameState==GAME_STATES.LOSE) 
+                                        changeWindow(WINDOW_NAMES.LOSE_GAME)
+                                    else if(gameState==GAME_STATES.WIN)
+                                        changeWindow(WINDOW_NAMES.WIN_OPTIONS)
+                                    else setMenu(0)
+                                }}
+                            >
+                                <b>Continuar</b>
+                            </div>
+                        </div>
+                    )
+                }
+                    
+            })}
+
+
+        </>
+    )
+}
+
+BattleMessage.propTypes = {
+    setMenu: PropTypes.func.isRequired,
+    messages: PropTypes.array.isRequired
 }

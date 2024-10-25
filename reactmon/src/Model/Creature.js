@@ -1,4 +1,4 @@
-import { ADJUSTMENT, ATTACKS, ATTACKS_POWER, ATTACK_CATEGORYS, BUFF_BASE, CREATURES, EFFECTIVE_TYPE, ELEMENTAL_TYPES, HEAL, MAX_STAT_VALUE, MIN_HEALTH, OWN_TYPE, STAT_NAMES, TOTAL_STATS, WEAK_TYPE, WEAK_TYPE_OF } from "./constants"
+import { ADJUSTMENT, ATTACKS, ATTACKS_POWER, ATTACK_CATEGORYS, BUFF_BASE, BUFF_LAYER_MAX, CREATURES, EFFECTIVE_TYPE, ELEMENTAL_TYPES, HEAL, MAX_STAT_VALUE, MIN_HEALTH, OWN_TYPE, STAT_NAMES, TOTAL_STATS, WEAK_TYPE, WEAK_TYPE_OF } from "./constants"
 
 export class Creature {
     constructor(
@@ -22,6 +22,8 @@ export class Creature {
         this.image = image
         this.type = type
         this.recordedHealth = stats.maxHealth
+        this.recordedBuffs = {cont:0,stat:null}
+        this.dead = false
         this.attacks = attacks
         this.stats = stats
     }
@@ -57,8 +59,6 @@ export class Creature {
                 defense += BUFF_BASE * rivalBuffs.cont * ownType
             }
         }
-        console.log("attack "+attack)
-        console.log("defense "+defense)
 
         if (category != ATTACK_CATEGORYS.SUPPORT) {
             const ownType = (this.attacks[attackIndex].type == this.type) ? OWN_TYPE : 1
@@ -71,6 +71,7 @@ export class Creature {
             if (defense == 0) defense = 1
 
             damage = Math.round((ADJUSTMENT * ownType * effect * ATTACKS_POWER * attack) / defense)
+            if(damage<0)damage=1
         }
 
         return damage
@@ -95,12 +96,73 @@ export class Creature {
             rivalSpeed += BUFF_BASE * rivalBuffs.cont * ownType
         }
 
-        console.log("playerSpeed "+playerSpeed)
-        console.log("rivalSpeed "+rivalSpeed)
-
         const playerFirst = playerSpeed >= rivalSpeed
 
         return playerFirst
+    }
+
+    doAttack(indexAttack,creatureRival, player, rival){
+        if(this.dead) return [null,creatureRival,player,rival]
+        if(creatureRival.dead) return [this,null,player,rival]
+        
+        const attack = this.attacks[indexAttack]
+        let newCreaturePlayer = this
+        let newCreatureRival = creatureRival
+
+        if (attack.category == ATTACK_CATEGORYS.PHYSICAL
+            || attack.category == ATTACK_CATEGORYS.SPECIAL
+        ) {
+            let damage = newCreaturePlayer.getAttackDamage(
+                indexAttack, newCreatureRival, newCreaturePlayer.recordedBuffs,
+                newCreatureRival.recordedBuffs
+            )
+
+            let health = newCreatureRival.recordedHealth - damage
+            if (health < 0) health = 0
+            newCreatureRival.recordedHealth = health
+        } else if (attack.category == ATTACK_CATEGORYS.SUPPORT) {
+            //Curacion
+            if (attack.name == 'Absorption') {
+                let heal = newCreaturePlayer.recordedHealth + newCreaturePlayer.getHeal()
+                if (heal > newCreaturePlayer.stats.maxHealth) heal = newCreaturePlayer.stats.maxHealth
+                newCreaturePlayer.recordedHealth = heal
+            }
+
+            //bufos
+            const attackBuffs = {
+                Doping: STAT_NAMES.SPEED,
+                ThermalSharpening: STAT_NAMES.PH_ATTACK,
+                Ignition: STAT_NAMES.SP_ATTACK,
+                FrozenShield: STAT_NAMES.PH_DEFENSE,
+                AquaticAura: STAT_NAMES.SP_DEFENSE
+            }
+
+            for (const statAttack in attackBuffs) {
+                if (attack.name == statAttack) {
+                    let buff = { cont: 0, stat: attackBuffs[statAttack] }
+                    if (newCreaturePlayer.recordedBuffs.stat == buff.stat) 
+                        buff = newCreaturePlayer.recordedBuffs
+                    if (buff.cont + 1 <= BUFF_LAYER_MAX) buff.cont++
+                    newCreaturePlayer.recordedBuffs=buff
+                }
+            }
+
+        }
+
+        const newPlayer = structuredClone(player)
+        const newRival = structuredClone(rival)
+
+        if(newCreaturePlayer.recordedHealth<=0){
+            newCreaturePlayer.dead=true
+            newPlayer.liveCreatures--
+        }
+
+        if(newCreatureRival.recordedHealth<=0){
+            newCreatureRival.dead=true
+            newRival.liveCreatures--
+        }
+
+        return [newCreaturePlayer, newCreatureRival,newPlayer,newRival]
     }
 
     static generateType(){

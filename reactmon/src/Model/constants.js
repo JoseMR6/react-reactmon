@@ -29,7 +29,9 @@ export const WEAK_TYPE = 0.5
 
 export const GAME_STATES = {
     START: 'start',
-    BATTLE:'battle'
+    BATTLE:'battle',
+    WIN: 'win',
+    LOSE: 'lose'
 }
 
 export const ITEM_TYPES = {
@@ -43,7 +45,9 @@ export const WINDOW_NAMES = {
     CHOOSE_CREATURE: 'chooseCreature',
     VIEW_CREATURE: 'viewCreature',
     BATTLE_PREVIEW:'battlePreview',
-    BATTLE_OPTIONS:'battleOptions'
+    BATTLE_OPTIONS:'battleOptions',
+    WIN_OPTIONS:'WinOptions',
+    LOSE_GAME:'LoseGame'
 }
 
 export const ELEMENTAL_TYPES = {

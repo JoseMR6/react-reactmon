@@ -11,6 +11,8 @@ import { ViewCreature } from "./ViewCreature"
 import { createElement } from "react"
 import { BattlePreview } from "./BattlePreview"
 import { BattleOptions } from "./BattleOptions"
+import { WinOptions } from "./WinOptions"
+import { LoseGame } from "./LoseGame"
 
 export function GeneralContainer() {
     const { actualWindow
@@ -42,6 +44,14 @@ export function GeneralContainer() {
         {
             name: WINDOW_NAMES.BATTLE_OPTIONS,
             component: BattleOptions
+        },
+        {
+            name: WINDOW_NAMES.WIN_OPTIONS,
+            component: WinOptions
+        },
+        {
+            name: WINDOW_NAMES.LOSE_GAME,
+            component: LoseGame
         }
     ]
 

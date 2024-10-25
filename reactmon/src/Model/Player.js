@@ -6,6 +6,7 @@ export class Player{
         this.name=nom
         this.image=img
         this.record=rec
+        this.liveCreatures=0
     }
 
     static generateRival(round, getNewId, firstType=null){

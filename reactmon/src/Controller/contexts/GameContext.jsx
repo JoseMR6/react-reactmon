@@ -22,13 +22,9 @@ export function GameProvider({ children }) {
         player, setPlayer,
         playerCreatures, setPlayerCreatures,
         indexActualCreaturePlayer, setIndexActualCreaturePlayer,
-        healthActualCreaturePlayer, setHealthActualCreaturePlayer,
-        buffsActualCreaturePlayer, setBuffsActualCreaturePlayer,
         rival, setRival,
         rivalCreatures, setRivalCreatures,
         indexActualCreatureRival, setIndexActualCreatureRival,
-        healthActualCreatureRival, setHealthActualCreatureRival,
-        buffsActualCreatureRival, setBuffsActualCreatureRival,
         selectedItem, setSelectedItem,
         chooseOptions
     } = useMechanics()
@@ -48,13 +44,9 @@ export function GameProvider({ children }) {
             player, setPlayer,
             playerCreatures, setPlayerCreatures,
             indexActualCreaturePlayer, setIndexActualCreaturePlayer,
-            healthActualCreaturePlayer, setHealthActualCreaturePlayer,
-            buffsActualCreaturePlayer, setBuffsActualCreaturePlayer,
             rival, setRival,
             rivalCreatures, setRivalCreatures,
             indexActualCreatureRival, setIndexActualCreatureRival,
-            healthActualCreatureRival, setHealthActualCreatureRival,
-            buffsActualCreatureRival, setBuffsActualCreatureRival,
             selectedItem, setSelectedItem,
             chooseOptions
         }}>
