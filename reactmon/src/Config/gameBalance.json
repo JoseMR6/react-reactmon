@@ -1,3 +1,14 @@
 {
-    "initialCoins":1000
+    "initialCoins":1000,
+    "attacksPower": 100,
+    "buffBase": 15,
+    "buffLayerMax": 5,
+    "heal": 50,
+    "maxStatValue": 100,
+    "totalStats": 280,
+    "minHealth": 30,
+    "adjustment": 0.15,
+    "ownType": 1.5,
+    "effectiveType": 2,
+    "weakType": 0.5
 }

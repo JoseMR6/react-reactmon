@@ -1,6 +1,6 @@
 import './App.css'
-import { GameProvider } from './Controller/contexts/GameContext'
-import { GeneralContainer } from './View/GeneralContainer'
+import { GameProvider } from './Logic/contexts/GameContext'
+import { GeneralContainer } from './Components/GeneralContainer'
 
 function App() {
 
