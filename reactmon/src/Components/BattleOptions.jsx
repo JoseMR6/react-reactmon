@@ -6,6 +6,7 @@ import { ElemntIcon } from './Types'
 import { CreatureImg } from './creatures/CreatureImg'
 import { PropTypes } from 'prop-types'
 import { Creature } from '../Logic/classes/Creature'
+import { applyMessageVars } from '../Logic/functions/languaje'
 
 export function BattleOptions() {
     const { playerCreatures, rivalCreatures, indexActualCreaturePlayer,
@@ -185,14 +186,18 @@ function GeneralOptions({ setMenu }) {
                     src={'./src/assets/options/battle.svg'}
                 />
             </div>
-            <div className='option'>
+            <div className='option'
+                onClick={() => {
+                    changeWindow(WINDOW_NAMES.CREATURES_BACKPACK)
+                }}
+            >
                 <span><b>{lang.changeButton}</b></span>
                 <img className='change'
                     src={'./src/assets/options/change.svg'}
                 />
             </div>
             <div className='option'
-                onClick={()=>{
+                onClick={() => {
                     setGameState(GAME_STATES.LOSE)
                     changeWindow(WINDOW_NAMES.LOSE_GAME)
                 }}
@@ -260,8 +265,14 @@ function AttackOptions({ setMenu, setMessages }) {
                                     setPlayer(newPlayer)
                                     setRival(newRival)
 
-                                    newMessages.push("Criatura de " + player.name
-                                        + " usó " + attack.name
+                                    newMessages.push(
+                                        {
+                                            name:"useAttack",
+                                            vars:{
+                                                "player": player.name,
+                                                "attackName": attack.name
+                                            }
+                                        }
                                     )
                                 }
 
@@ -281,9 +292,14 @@ function AttackOptions({ setMenu, setMessages }) {
                                     setPlayer(newPlayer2)
                                     setRival(newRival2)
 
-                                    newMessages.push("Criatura de " + rival.name
-                                        + " usó "
-                                        + rivalCreature.attacks[randomAttackIndex].name
+                                    newMessages.push(
+                                        {
+                                            name:"useAttack",
+                                            vars:{
+                                                "player": rival.name,
+                                                "attackName": rivalCreature.attacks[randomAttackIndex].name
+                                            }
+                                        }
                                     )
                                 }
 
@@ -303,9 +319,14 @@ function AttackOptions({ setMenu, setMessages }) {
                                     setPlayer(newPlayer2)
                                     setRival(newRival2)
 
-                                    newMessages.push("Criatura de " + rival.name
-                                        + " usó "
-                                        + rivalCreature.attacks[randomAttackIndex].name
+                                    newMessages.push(
+                                        {
+                                            name:"useAttack",
+                                            vars:{
+                                                "player": rival.name,
+                                                "attackName": rivalCreature.attacks[randomAttackIndex].name
+                                            }
+                                        }
                                     )
                                 }
 
@@ -325,8 +346,14 @@ function AttackOptions({ setMenu, setMessages }) {
                                     setPlayer(newPlayer)
                                     setRival(newRival)
 
-                                    newMessages.push("Criatura de " + player.name
-                                        + " usó " + attack.name
+                                    newMessages.push(
+                                        {
+                                            name:"useAttack",
+                                            vars:{
+                                                "player": player.name,
+                                                "attackName": attack.name
+                                            }
+                                        }
                                     )
                                 }
 
@@ -334,14 +361,24 @@ function AttackOptions({ setMenu, setMessages }) {
                             }
 
                             if (playerCreatures[indexActualCreaturePlayer].dead) {
-                                newMessages.push("Criatura de " + player.name
-                                    + " se ha debilitado "
+                                newMessages.push(
+                                    {
+                                        name:"isDead",
+                                        vars:{
+                                            "player": player.name
+                                        }
+                                    }
                                 )
                             }
 
                             if (rivalCreatures[indexActualCreatureRival].dead) {
-                                newMessages.push("Criatura de " + rival.name
-                                    + " se ha debilitado "
+                                newMessages.push(
+                                    {
+                                        name:"isDead",
+                                        vars:{
+                                            "player": rival.name
+                                        }
+                                    }
                                 )
                             }
 
@@ -379,33 +416,43 @@ AttackOptions.propTypes = {
 
 function BattleMessage({ setMenu, messages }) {
     const [actual, setActual] = useState(0)
-    const {gameState, changeWindow} = useGame()
+    const { gameState, changeWindow, languajeDocument } = useGame()
+    const langM = languajeDocument.BattleMessages
+    const langA = languajeDocument.AttacksText
 
     return (
         <>
             {messages.map((message, index) => {
                 const sig = actual + 1
+                
+                if(message.vars && message.vars.attackName){
+                    message.vars.attack = langA[message.vars.attackName].name
+                }
 
-                if (actual == index){
+                if (actual == index) {
                     return (
                         <div key={index} className='messageContainer'>
-                            <div className='battleMessage'>{messages[index]}</div>
+                            <div className='battleMessage'>
+                                {applyMessageVars(langM[message.name], 
+                                    message.vars
+                                )}
+                            </div>
                             <div className='continue'
                                 onClick={() => {
                                     if (sig != messages.length) setActual(sig)
-                                    else if(gameState==GAME_STATES.LOSE) 
+                                    else if (gameState == GAME_STATES.LOSE)
                                         changeWindow(WINDOW_NAMES.LOSE_GAME)
-                                    else if(gameState==GAME_STATES.WIN)
+                                    else if (gameState == GAME_STATES.WIN)
                                         changeWindow(WINDOW_NAMES.WIN_OPTIONS)
                                     else setMenu(0)
                                 }}
                             >
-                                <b>Continuar</b>
+                                <b>{langM.continue}</b>
                             </div>
                         </div>
                     )
                 }
-                    
+
             })}
 
 

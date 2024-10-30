@@ -31,7 +31,7 @@ export function ViewAttack({ attack }) {
                     />
                 </div>
                 <div className='attackDescriptionContainer'>
-                    <div><b>Descripción</b></div>
+                    <div><b>{lang.description}</b></div>
                     <div className='attackDescriptionText'>
                         {langA[attack.name].description}
                     </div>

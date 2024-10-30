@@ -46,8 +46,9 @@ export const WINDOW_NAMES = {
     VIEW_CREATURE: 'viewCreature',
     BATTLE_PREVIEW:'battlePreview',
     BATTLE_OPTIONS:'battleOptions',
-    WIN_OPTIONS:'WinOptions',
-    LOSE_GAME:'LoseGame'
+    CREATURES_BACKPACK: 'creaturesBackpack',
+    WIN_OPTIONS:'winOptions',
+    LOSE_GAME:'loseGame'
 }
 
 export const ELEMENTAL_TYPES = {

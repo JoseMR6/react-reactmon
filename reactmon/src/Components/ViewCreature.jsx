@@ -96,6 +96,8 @@ export function ViewCreature() {
                                 onClick={() => {
                                     if (gameState == GAME_STATES.START)
                                         changeWindow(WINDOW_NAMES.CHOOSE_CREATURE)
+                                    else if(gameState == GAME_STATES.BATTLE)
+                                        changeWindow(WINDOW_NAMES.CREATURES_BACKPACK)
                                 }}
                             >
                                 <b>{lang.returnButton}</b>

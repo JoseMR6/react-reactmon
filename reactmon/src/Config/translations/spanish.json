@@ -47,7 +47,8 @@
         "specialDefense": "Desfensa Especial"
     },
     "ViewAttack": {
-        "elemntIconText": "Tipo"
+        "elemntIconText": "Tipo",
+        "description":"Descripción"
     },
     "CategorysText": {
         "physical": "Ataque que reduce la vida del enemigo infligiendo daño físico con una potencia básica de {power}. Perderá potencia en función de la defensa física enemiga.",
@@ -120,6 +121,17 @@
         "attackButton":"Luchar",
         "changeButton":"Cambiar",
         "surrenderButton":"Rendirse",
+        "returnButton":"Volver"
+    },
+    "BattleMessages":{
+        "continue":"Continuar",
+        "useAttack":"Criatura de {player} usó {attack}.",
+        "isDead":"Criatura de {player} se ha debilitado."
+    },
+    "CreaturesBackpack":{
+        "title":"Mochila",
+        "viewButton":"Ver",
+        "chooseButton":"Elegir",
         "returnButton":"Volver"
     },
     "Footer": {

@@ -47,7 +47,8 @@
         "specialDefense": "Special Defense"
     },
     "ViewAttack": {
-        "elemntIconText": "Type"
+        "elemntIconText": "Type",
+        "description":"Description"
     },
     "CategorysText": {
         "physical": "Attack that reduces the enemy's health by dealing physical damage with a base power of {power}. It will lose power based on the enemy's physical defense.",
@@ -120,6 +121,17 @@
         "attackButton":"Attack",
         "changeButton":"Change",
         "surrenderButton":"Surrender",
+        "returnButton":"Return"
+    },
+    "BattleMessages":{
+        "continue":"Continue",
+        "useAttack":"Creature from {player} used {attack}.",
+        "isDead":"Creature from {player} has fainted."
+    },
+    "CreaturesBackpack":{
+        "title":"Backpack",
+        "viewButton":"View",
+        "chooseButton":"Choose",
         "returnButton":"Return"
     },
     "Footer":{

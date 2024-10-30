@@ -20,11 +20,15 @@ export async function getLanguajeDocument(lang){
 }
 
 export function applyTextVars(text){
+    return applyMessageVars(text,TEXT_VARIABLES)
+}
+
+export function applyMessageVars(text, varObject){
     let transformedText = text
 
-    for (const variable in TEXT_VARIABLES) {
+    for (const variable in varObject) {
         transformedText = transformedText.replace(
-            '{'+variable+'}',TEXT_VARIABLES[variable]
+            '{'+variable+'}',varObject[variable]
         )
     }
 

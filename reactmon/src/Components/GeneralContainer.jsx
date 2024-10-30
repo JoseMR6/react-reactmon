@@ -13,6 +13,7 @@ import { BattlePreview } from "./BattlePreview"
 import { BattleOptions } from "./BattleOptions"
 import { WinOptions } from "./WinOptions"
 import { LoseGame } from "./LoseGame"
+import { CreaturesBackpack } from "./CreaturesBackpack"
 
 export function GeneralContainer() {
     const { actualWindow
@@ -44,6 +45,10 @@ export function GeneralContainer() {
         {
             name: WINDOW_NAMES.BATTLE_OPTIONS,
             component: BattleOptions
+        },
+        {
+            name: WINDOW_NAMES.CREATURES_BACKPACK,
+            component: CreaturesBackpack
         },
         {
             name: WINDOW_NAMES.WIN_OPTIONS,
