@@ -10,7 +10,8 @@ import { applyMessageVars } from '../Logic/functions/languaje'
 
 export function BattleOptions() {
     const { playerCreatures, rivalCreatures, indexActualCreaturePlayer,
-        indexActualCreatureRival, initWindow, player, setPlayer, rival, setRival
+        indexActualCreatureRival, initWindow, player, setPlayer, rival, setRival,
+        setInitWindow, processAttack, setPlayerCreatures
     } = useGame()
 
     const [menu, setMenu] = useState(0)
@@ -71,7 +72,47 @@ export function BattleOptions() {
             const modRival = structuredClone(rival)
             modRival.liveCreatures = rivalCreatures.length
             setRival(modRival)
+
+            setInitWindow(null)
+        } else if (initWindow == 'change' || initWindow == 'forcedChange') {
+            const newMessages = []
+            let randomAttackIndex = Math.floor(Math.random() * localRivalCreature.attacks.length)
+
+            newMessages.push(
+                {
+                    name: "change",
+                    vars: {
+                        "player": player.name
+                    }
+                }
+            )
+
+            if (initWindow != 'forcedChange') {
+                const message = processAttack(randomAttackIndex, false)
+                if (message) newMessages.push(message)
+
+                if (playerCreatures[indexActualCreaturePlayer].dead) {
+                    newMessages.push(
+                        {
+                            name: "isDead",
+                            vars: {
+                                "player": player.name
+                            }
+                        }
+                    )
+                }
+            }
+
+            setInitWindow(null)
+            setMessages(newMessages)
+            setMenu(2)
         }
+
+        const cloneCreatures=[]
+        playerCreatures.forEach(creature => {
+            cloneCreatures.push(Creature.cloneFromObject(creature))
+        });
+        setPlayerCreatures(cloneCreatures)
     }, []);
 
     return (
@@ -216,23 +257,15 @@ GeneralOptions.propTypes = {
 }
 
 function AttackOptions({ setMenu, setMessages }) {
-    const { languajeDocument, setPlayerCreatures, setRivalCreatures, playerCreatures, rivalCreatures,
-        indexActualCreaturePlayer, indexActualCreatureRival, player, setPlayer, rival, setRival,
-        setGameState
+    const { languajeDocument, playerCreatures, rivalCreatures,
+        indexActualCreaturePlayer, indexActualCreatureRival, player, rival,
+        processAttack
     } = useGame()
     const lang = languajeDocument.BattleOptions
     const langA = languajeDocument.AttacksText
 
-    const creature = playerCreatures[indexActualCreaturePlayer]
-    const rivalCreature = rivalCreatures[indexActualCreatureRival]
-
-    const checkWinner = ((player, rival) => {
-        if (player == null || player.liveCreatures <= 0) {
-            setGameState(GAME_STATES.LOSE)
-        } else if (rival == null || rival.liveCreatures <= 0) {
-            setGameState(GAME_STATES.WIN)
-        }
-    })
+    const creature = Creature.cloneFromObject(playerCreatures[indexActualCreaturePlayer])
+    const rivalCreature = Creature.cloneFromObject(rivalCreatures[indexActualCreatureRival])
 
     return (
         <>
@@ -245,126 +278,28 @@ function AttackOptions({ setMenu, setMessages }) {
                                 rivalCreature.recordedBuffs
                             )
 
-                            const newPlayerCreatures = structuredClone(playerCreatures)
-                            const newRivalCreatures = structuredClone(rivalCreatures)
                             const newMessages = []
                             let randomAttackIndex = Math.floor(Math.random() * rivalCreature.attacks.length)
 
                             if (playerFirst) {
-                                const [newCreaturePlayer, newCreatureRival,
-                                    newPlayer, newRival
-                                ] = creature.doAttack(
-                                    index, rivalCreature, player, rival
-                                )
+                                const message = processAttack(index, true)
+                                if (message) newMessages.push(message)
 
-                                if (newCreaturePlayer != null && newCreatureRival != null) {
-                                    newPlayerCreatures[indexActualCreaturePlayer] = newCreaturePlayer
-                                    setPlayerCreatures(newPlayerCreatures)
-                                    newRivalCreatures[indexActualCreatureRival] = newCreatureRival
-                                    setRivalCreatures(newRivalCreatures)
-                                    setPlayer(newPlayer)
-                                    setRival(newRival)
-
-                                    newMessages.push(
-                                        {
-                                            name:"useAttack",
-                                            vars:{
-                                                "player": player.name,
-                                                "attackName": attack.name
-                                            }
-                                        }
-                                    )
-                                }
-
-                                checkWinner(newPlayer, newRival)
-
-                                const [newCreatureRival2, newCreaturePlayer2,
-                                    newRival2, newPlayer2
-                                ] = rivalCreature.doAttack(
-                                    randomAttackIndex, creature, rival, player
-                                )
-
-                                if (newCreaturePlayer2 != null && newCreatureRival2 != null) {
-                                    newPlayerCreatures[indexActualCreaturePlayer] = newCreaturePlayer2
-                                    setPlayerCreatures(newPlayerCreatures)
-                                    newRivalCreatures[indexActualCreatureRival] = newCreatureRival2
-                                    setRivalCreatures(newRivalCreatures)
-                                    setPlayer(newPlayer2)
-                                    setRival(newRival2)
-
-                                    newMessages.push(
-                                        {
-                                            name:"useAttack",
-                                            vars:{
-                                                "player": rival.name,
-                                                "attackName": rivalCreature.attacks[randomAttackIndex].name
-                                            }
-                                        }
-                                    )
-                                }
-
-                                checkWinner(newPlayer2, newRival2)
+                                const message2 = processAttack(randomAttackIndex, false)
+                                if (message2) newMessages.push(message2)
                             } else {
-                                const [newCreatureRival2, newCreaturePlayer2,
-                                    newRival2, newPlayer2
-                                ] = rivalCreature.doAttack(
-                                    randomAttackIndex, creature, rival, player
-                                )
+                                const message2 = processAttack(randomAttackIndex, false)
+                                if (message2) newMessages.push(message2)
 
-                                if (newCreaturePlayer2 != null && newCreatureRival2 != null) {
-                                    newPlayerCreatures[indexActualCreaturePlayer] = newCreaturePlayer2
-                                    setPlayerCreatures(newPlayerCreatures)
-                                    newRivalCreatures[indexActualCreatureRival] = newCreatureRival2
-                                    setRivalCreatures(newRivalCreatures)
-                                    setPlayer(newPlayer2)
-                                    setRival(newRival2)
-
-                                    newMessages.push(
-                                        {
-                                            name:"useAttack",
-                                            vars:{
-                                                "player": rival.name,
-                                                "attackName": rivalCreature.attacks[randomAttackIndex].name
-                                            }
-                                        }
-                                    )
-                                }
-
-                                checkWinner(newPlayer2, newRival2)
-
-                                const [newCreaturePlayer, newCreatureRival,
-                                    newPlayer, newRival
-                                ] = creature.doAttack(
-                                    index, rivalCreature, player, rival
-                                )
-
-                                if (newCreaturePlayer != null && newCreatureRival != null) {
-                                    newPlayerCreatures[indexActualCreaturePlayer] = newCreaturePlayer
-                                    setPlayerCreatures(newPlayerCreatures)
-                                    newRivalCreatures[indexActualCreatureRival] = newCreatureRival
-                                    setRivalCreatures(newRivalCreatures)
-                                    setPlayer(newPlayer)
-                                    setRival(newRival)
-
-                                    newMessages.push(
-                                        {
-                                            name:"useAttack",
-                                            vars:{
-                                                "player": player.name,
-                                                "attackName": attack.name
-                                            }
-                                        }
-                                    )
-                                }
-
-                                checkWinner(newPlayer, newRival)
+                                const message = processAttack(index, true)
+                                if (message) newMessages.push(message)
                             }
 
                             if (playerCreatures[indexActualCreaturePlayer].dead) {
                                 newMessages.push(
                                     {
-                                        name:"isDead",
-                                        vars:{
+                                        name: "isDead",
+                                        vars: {
                                             "player": player.name
                                         }
                                     }
@@ -374,8 +309,8 @@ function AttackOptions({ setMenu, setMessages }) {
                             if (rivalCreatures[indexActualCreatureRival].dead) {
                                 newMessages.push(
                                     {
-                                        name:"isDead",
-                                        vars:{
+                                        name: "isDead",
+                                        vars: {
                                             "player": rival.name
                                         }
                                     }
@@ -416,7 +351,7 @@ AttackOptions.propTypes = {
 
 function BattleMessage({ setMenu, messages }) {
     const [actual, setActual] = useState(0)
-    const { gameState, changeWindow, languajeDocument } = useGame()
+    const { gameState, changeWindow, languajeDocument, setInitWindow } = useGame()
     const langM = languajeDocument.BattleMessages
     const langA = languajeDocument.AttacksText
 
@@ -424,8 +359,8 @@ function BattleMessage({ setMenu, messages }) {
         <>
             {messages.map((message, index) => {
                 const sig = actual + 1
-                
-                if(message.vars && message.vars.attackName){
+
+                if (message.vars && message.vars.attackName) {
                     message.vars.attack = langA[message.vars.attackName].name
                 }
 
@@ -433,7 +368,7 @@ function BattleMessage({ setMenu, messages }) {
                     return (
                         <div key={index} className='messageContainer'>
                             <div className='battleMessage'>
-                                {applyMessageVars(langM[message.name], 
+                                {applyMessageVars(langM[message.name],
                                     message.vars
                                 )}
                             </div>
@@ -444,7 +379,14 @@ function BattleMessage({ setMenu, messages }) {
                                         changeWindow(WINDOW_NAMES.LOSE_GAME)
                                     else if (gameState == GAME_STATES.WIN)
                                         changeWindow(WINDOW_NAMES.WIN_OPTIONS)
+                                    else if (message.name == 'isDead') {
+                                        setInitWindow('dead')
+                                        changeWindow(WINDOW_NAMES.CREATURES_BACKPACK)
+                                    }
                                     else setMenu(0)
+
+
+
                                 }}
                             >
                                 <b>{langM.continue}</b>

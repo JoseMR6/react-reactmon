@@ -12,7 +12,7 @@ export function ChooseCreature() {
         initWindow, getNewId, setInitWindow
     } = useGame()
     const lang = languajeDocument.ChooseCreature
-    
+
     useEffect(() => {
         if (initWindow == WINDOW_NAMES.CHOOSE_CREATURE) {
             chooseOptions.current = [
@@ -36,7 +36,7 @@ export function ChooseCreature() {
                 })
             ]
             setInitWindow(null)
-        } else if(!chooseOptions.current||chooseOptions.current.length==0) {
+        } else if (!chooseOptions.current || chooseOptions.current.length == 0) {
             chooseOptions.current = [
                 new Creature(),
                 new Creature(),
@@ -47,13 +47,18 @@ export function ChooseCreature() {
 
     return (
         <>
-            {(chooseOptions.current&&chooseOptions.current.length!=0)&&
+            {(chooseOptions.current && chooseOptions.current.length != 0) &&
                 <div className="chooseCreatureContainer">
                     <h1>{lang.title}</h1>
                     <div className='creaturesContainer'>
-                        <CreatureSelect creature={chooseOptions.current[0]} />
-                        <CreatureSelect creature={chooseOptions.current[1]} />
-                        <CreatureSelect creature={chooseOptions.current[2]} />
+                        {chooseOptions.current.map((creature, index) => {
+                            if (index < 3) {
+                                return (
+                                    <CreatureSelect key={index} creature={creature} />
+                                )
+                            }
+
+                        })}
                     </div>
                 </div>
             }
@@ -63,7 +68,8 @@ export function ChooseCreature() {
 
 function CreatureSelect({ creature }) {
     const { languajeDocument, changeWindow, setSelectedItem,
-        setPlayerCreatures, setGameState, setInitWindow
+        setPlayerCreatures, setGameState, setInitWindow,
+        gameState, playerCreatures
     } = useGame()
     const lang = languajeDocument.ChooseCreature
 
@@ -84,7 +90,11 @@ function CreatureSelect({ creature }) {
                     <div className='options'>
                         <div className='buttonOption'
                             onClick={() => {
-                                setPlayerCreatures([creature])
+                                if(gameState==GAME_STATES.START){
+                                    setPlayerCreatures([creature])
+                                }else if(gameState==GAME_STATES.WIN){
+                                    setPlayerCreatures([...playerCreatures, creature])
+                                }
                                 setInitWindow(WINDOW_NAMES.BATTLE_PREVIEW)
                                 setGameState(GAME_STATES.BATTLE)
                                 changeWindow(WINDOW_NAMES.BATTLE_PREVIEW)

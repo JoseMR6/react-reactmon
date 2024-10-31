@@ -5,6 +5,8 @@ export const TRANSLATIONS = translations
 
 export const INITIAL_COINS = gameBalance.initialCoins
 
+export const WIN_COINS = gameBalance.winCoins
+
 export const ATTACKS_POWER = gameBalance.attacksPower
 
 export const BUFF_BASE = gameBalance.buffBase

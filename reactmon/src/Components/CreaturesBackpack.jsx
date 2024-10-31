@@ -40,7 +40,8 @@ export function CreaturesBackpack() {
 
 function CreatureBackpack({ index, creature }) {
     const { changeWindow, setSelectedItem,
-        languajeDocument, indexActualCreaturePlayer
+        languajeDocument, indexActualCreaturePlayer,setIndexActualCreaturePlayer,
+        setInitWindow, initWindow, playerCreatures, setPlayerCreatures
     } = useGame()
     const lang = languajeDocument.CreaturesBackpack
 
@@ -71,8 +72,22 @@ function CreatureBackpack({ index, creature }) {
                             >
                                 {lang.viewButton}
                             </div>
-                            {index != indexActualCreaturePlayer &&
-                                <div className='choose button'>
+                            {(index != indexActualCreaturePlayer && !creature.dead) &&
+                                <div className='choose button'
+                                    onClick={()=>{
+                                        const cloneCreatures = structuredClone(playerCreatures)
+                                        cloneCreatures[index].recordedBuffs={cont:0,stat:null}
+                                        setPlayerCreatures(cloneCreatures)
+                                        
+                                        setIndexActualCreaturePlayer(index)
+                                        if(initWindow=='dead'){
+                                            setInitWindow('forcedChange')
+                                        }else{
+                                            setInitWindow('change')
+                                        }
+                                        changeWindow(WINDOW_NAMES.BATTLE_OPTIONS)
+                                    }}
+                                >
                                     {lang.chooseButton}
                                 </div>
                             }

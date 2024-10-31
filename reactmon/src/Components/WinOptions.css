@@ -1,0 +1,49 @@
+.winOptionsContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.winOptionsContainer .optionsContainer{
+    all: unset;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+}
+
+.winOptionsContainer .optionContainer{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--main-border-color);
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px var(--main-color);
+    padding: 15px;
+    align-items: center;
+    gap: 15px;
+}
+
+.winOptionsContainer .optionContainer:hover{
+    cursor: pointer;
+    background-color: var(--select-bg-color);
+    color: var(--select-color);
+}
+
+.winOptionsContainer .imgOption{
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.winOptionsContainer .imgOption svg{
+    width: 100%;
+    height: 100%;
+}
+
+img.category{
+    width: 45px;
+    height: 45px;
+}

@@ -126,7 +126,8 @@
     "BattleMessages":{
         "continue":"Continuar",
         "useAttack":"Criatura de {player} usó {attack}.",
-        "isDead":"Criatura de {player} se ha debilitado."
+        "isDead":"Criatura de {player} se ha debilitado.",
+        "change":"{player} cambió de criatura."
     },
     "CreaturesBackpack":{
         "title":"Mochila",

@@ -21,6 +21,14 @@ export function BattlePreview() {
         if (initWindow == WINDOW_NAMES.BATTLE_PREVIEW) {
             setRound(round + 1)
 
+            const playerCreaturesClone = []
+            playerCreatures.forEach((creature) => {
+                const creatureClone =  Creature.cloneFromObject(creature)
+                creatureClone.reset()
+                playerCreaturesClone.push(creatureClone)
+            });
+            setPlayerCreatures(playerCreaturesClone)
+
             const { newRival,
                 newRivalCreatures
             } = Player.generateRival(

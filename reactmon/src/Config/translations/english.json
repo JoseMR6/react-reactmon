@@ -126,7 +126,8 @@
     "BattleMessages":{
         "continue":"Continue",
         "useAttack":"Creature from {player} used {attack}.",
-        "isDead":"Creature from {player} has fainted."
+        "isDead":"Creature from {player} has fainted.",
+        "change":"{player} switched creatures."
     },
     "CreaturesBackpack":{
         "title":"Backpack",

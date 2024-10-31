@@ -16,16 +16,40 @@ export class Creature {
             specialAttack: 0,
             physicalDefense: 0,
             specialDefense: 0
-        }
+        },
+        recordedHealth = null,
+        recordedBuffs = null,
+        dead = null
     ) {
+        if(recordedHealth===null) recordedHealth=stats.maxHealth
+        if(recordedBuffs===null) recordedBuffs={cont:0,stat:null}
+        if(dead===null) dead=false
+        
         this.id = id
         this.image = image
         this.type = type
-        this.recordedHealth = stats.maxHealth
-        this.recordedBuffs = {cont:0,stat:null}
-        this.dead = false
         this.attacks = attacks
         this.stats = stats
+
+        this.recordedHealth=recordedHealth
+        this.recordedBuffs=recordedBuffs
+        this.dead=dead
+    }
+
+    reset(){
+        this.recordedHealth = this.stats.maxHealth
+        this.recordedBuffs = {cont:0,stat:null}
+        this.dead = false
+    }
+
+    clone(){
+        return new Creature(this.id,this.image,this.type,this.attacks,this.stats)
+    }
+
+    static cloneFromObject(object){
+        return new Creature(object.id,object.image,object.type,object.attacks,object.stats,
+            object.recordedHealth,object.recordedBuffs,object.dead
+        )
     }
 
     getAttackDamage(attackIndex, rivalCreature, playerBuffs = { cont: 0, stat: null },

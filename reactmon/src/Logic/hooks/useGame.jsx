@@ -14,7 +14,7 @@ export function useGame() {
         gameState, setGameState,
         actualWindow, setActualWindow,
         formerWindow,
-        initWindow,setInitWindow,
+        initWindow, setInitWindow,
         round, setRound,
         coins, setCoins,
         contCreatureIds,
@@ -42,7 +42,7 @@ export function useGame() {
         setRivalCreatures(null)
         setIndexActualCreatureRival(null)
         setSelectedItem({ itemType: null, item: null })
-        chooseOptions.current=[]
+        chooseOptions.current = []
     }
 
     function changeWindow(newWindow) {
@@ -50,10 +50,81 @@ export function useGame() {
         setActualWindow(newWindow)
     }
 
-    function getNewId(){
+    function getNewId() {
         const newId = contCreatureIds.current
         contCreatureIds.current++
         return newId
+    }
+
+    function checkWinner(player, rival) {
+        if (player == null || player.liveCreatures <= 0) {
+            setGameState(GAME_STATES.LOSE)
+        } else if (rival == null || rival.liveCreatures <= 0) {
+            setGameState(GAME_STATES.WIN)
+        }
+    }
+
+    function processAttack(index, isPlayer = true) {
+        const newPlayerCreatures = structuredClone(playerCreatures)
+        const newRivalCreatures = structuredClone(rivalCreatures)
+        const creature = playerCreatures[indexActualCreaturePlayer]
+        const rivalCreature = rivalCreatures[indexActualCreatureRival]
+        let message = null
+
+        if (isPlayer) {
+            const [newCreaturePlayer, newCreatureRival,
+                newPlayer, newRival
+            ] = creature.doAttack(
+                index, rivalCreature, player, rival
+            )
+
+            if (newCreaturePlayer != null && newCreatureRival != null) {
+                newPlayerCreatures[indexActualCreaturePlayer] = newCreaturePlayer
+                setPlayerCreatures(newPlayerCreatures)
+                newRivalCreatures[indexActualCreatureRival] = newCreatureRival
+                setRivalCreatures(newRivalCreatures)
+                setPlayer(newPlayer)
+                setRival(newRival)
+
+                message = {
+                    name: "useAttack",
+                    vars: {
+                        "player": player.name,
+                        "attackName": creature.attacks[index].name
+                    }
+                }
+
+            }
+
+            checkWinner(newPlayer, newRival)
+        } else {
+            const [newCreatureRival, newCreaturePlayer,
+                newRival, newPlayer
+            ] = rivalCreature.doAttack(
+                index, creature, rival, player
+            )
+
+            if (newCreaturePlayer != null && newCreatureRival != null) {
+                newPlayerCreatures[indexActualCreaturePlayer] = newCreaturePlayer
+                setPlayerCreatures(newPlayerCreatures)
+                newRivalCreatures[indexActualCreatureRival] = newCreatureRival
+                setRivalCreatures(newRivalCreatures)
+                setPlayer(newPlayer)
+                setRival(newRival)
+
+                message = {
+                    name: "useAttack",
+                    vars: {
+                        "player": rival.name,
+                        "attackName": rivalCreature.attacks[index].name
+                    }
+                }
+            }
+
+            checkWinner(newPlayer, newRival)
+        }
+
+        return message
     }
 
     return {
@@ -62,7 +133,7 @@ export function useGame() {
         gameState, setGameState,
         actualWindow, setActualWindow,
         formerWindow,
-        initWindow,setInitWindow,
+        initWindow, setInitWindow,
         round, setRound,
         coins, setCoins,
         contCreatureIds,
@@ -74,6 +145,6 @@ export function useGame() {
         indexActualCreatureRival, setIndexActualCreatureRival,
         selectedItem, setSelectedItem,
         chooseOptions,
-        reset, changeWindow, getNewId
+        reset, changeWindow, getNewId, checkWinner, processAttack
     }
 }

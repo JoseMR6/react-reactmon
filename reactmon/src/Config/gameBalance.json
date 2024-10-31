@@ -1,5 +1,6 @@
 {
     "initialCoins":1000,
+    "winCoins":100,
     "attacksPower": 100,
     "buffBase": 15,
     "buffLayerMax": 5,
