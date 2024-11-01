@@ -19,19 +19,19 @@ export function ChooseCreature() {
                 Creature.generateCreature({
                     id: getNewId(),
                     type: ELEMENTAL_TYPES.FIRE,
-                    numAttacks: 2,
+                    numAttacks: 1,
                     maxedStatsNum: 1
                 }),
                 Creature.generateCreature({
                     id: getNewId(),
                     type: ELEMENTAL_TYPES.WATER,
-                    numAttacks: 2,
+                    numAttacks: 1,
                     maxedStatsNum: 1
                 }),
                 Creature.generateCreature({
                     id: getNewId(),
                     type: ELEMENTAL_TYPES.GRASS,
-                    numAttacks: 2,
+                    numAttacks: 1,
                     maxedStatsNum: 1
                 })
             ]
@@ -69,7 +69,7 @@ export function ChooseCreature() {
 function CreatureSelect({ creature }) {
     const { languajeDocument, changeWindow, setSelectedItem,
         setPlayerCreatures, setGameState, setInitWindow,
-        gameState, playerCreatures
+        gameState, playerCreatures, setExtraItem
     } = useGame()
     const lang = languajeDocument.ChooseCreature
 
@@ -90,14 +90,20 @@ function CreatureSelect({ creature }) {
                     <div className='options'>
                         <div className='buttonOption'
                             onClick={() => {
-                                if(gameState==GAME_STATES.START){
-                                    setPlayerCreatures([creature])
-                                }else if(gameState==GAME_STATES.WIN){
-                                    setPlayerCreatures([...playerCreatures, creature])
+                                if (gameState == GAME_STATES.WIN && playerCreatures.length >= 6) {
+                                    setExtraItem({ itemType: ITEM_TYPES.CREATURE, item: creature })
+                                    setGameState(GAME_STATES.NEW_ITEM)
+                                    changeWindow(WINDOW_NAMES.CREATURES_BACKPACK)
+                                } else {
+                                    if (gameState == GAME_STATES.START) {
+                                        setPlayerCreatures([creature])
+                                    } else if (gameState == GAME_STATES.WIN) {
+                                        setPlayerCreatures([...playerCreatures, creature])
+                                    }
+                                    setInitWindow(WINDOW_NAMES.BATTLE_PREVIEW)
+                                    setGameState(GAME_STATES.BATTLE)
+                                    changeWindow(WINDOW_NAMES.BATTLE_PREVIEW)
                                 }
-                                setInitWindow(WINDOW_NAMES.BATTLE_PREVIEW)
-                                setGameState(GAME_STATES.BATTLE)
-                                changeWindow(WINDOW_NAMES.BATTLE_PREVIEW)
                             }}
                         >
                             <b>{lang.selectButton}</b>

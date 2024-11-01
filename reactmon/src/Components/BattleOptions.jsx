@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useGame } from '../Logic/hooks/useGame'
-import { ATTACKS, ATTACK_CATEGORYS, CREATURES, ELEMENTAL_TYPES, GAME_STATES, WINDOW_NAMES } from '../Logic/constants'
+import { ATTACKS, ATTACK_CATEGORYS, CREATURES, ELEMENTAL_TYPES, GAME_STATES, INIT_STATES, WINDOW_NAMES } from '../Logic/constants'
 import './BattleOptions.css'
 import { ElemntIcon } from './Types'
 import { CreatureImg } from './creatures/CreatureImg'
@@ -11,7 +11,7 @@ import { applyMessageVars } from '../Logic/functions/languaje'
 export function BattleOptions() {
     const { playerCreatures, rivalCreatures, indexActualCreaturePlayer,
         indexActualCreatureRival, initWindow, player, setPlayer, rival, setRival,
-        setInitWindow, processAttack, setPlayerCreatures
+        setInitWindow, processAttack, setPlayerCreatures, setRivalCreatures
     } = useGame()
 
     const [menu, setMenu] = useState(0)
@@ -74,7 +74,7 @@ export function BattleOptions() {
             setRival(modRival)
 
             setInitWindow(null)
-        } else if (initWindow == 'change' || initWindow == 'forcedChange') {
+        } else if (initWindow == INIT_STATES.CHANGE || initWindow == INIT_STATES.FORCED_CHANGE) {
             const newMessages = []
             let randomAttackIndex = Math.floor(Math.random() * localRivalCreature.attacks.length)
 
@@ -87,7 +87,7 @@ export function BattleOptions() {
                 }
             )
 
-            if (initWindow != 'forcedChange') {
+            if (initWindow != INIT_STATES.FORCED_CHANGE) {
                 const message = processAttack(randomAttackIndex, false)
                 if (message) newMessages.push(message)
 
@@ -96,7 +96,8 @@ export function BattleOptions() {
                         {
                             name: "isDead",
                             vars: {
-                                "player": player.name
+                                "player": player.name,
+                                "isplayer1": true
                             }
                         }
                     )
@@ -108,12 +109,19 @@ export function BattleOptions() {
             setMenu(2)
         }
 
-        const cloneCreatures=[]
+        const cloneCreatures = []
         playerCreatures.forEach(creature => {
             cloneCreatures.push(Creature.cloneFromObject(creature))
         });
         setPlayerCreatures(cloneCreatures)
-    }, []);
+
+        const cloneCreaturesRival = []
+        rivalCreatures.forEach(creature => {
+            cloneCreaturesRival.push(Creature.cloneFromObject(creature))
+        });
+        setRivalCreatures(cloneCreaturesRival)
+
+    }, [indexActualCreatureRival]);
 
     return (
         <>
@@ -259,7 +267,7 @@ GeneralOptions.propTypes = {
 function AttackOptions({ setMenu, setMessages }) {
     const { languajeDocument, playerCreatures, rivalCreatures,
         indexActualCreaturePlayer, indexActualCreatureRival, player, rival,
-        processAttack
+        processAttack, setIndexActualCreatureRival
     } = useGame()
     const lang = languajeDocument.BattleOptions
     const langA = languajeDocument.AttacksText
@@ -300,7 +308,8 @@ function AttackOptions({ setMenu, setMessages }) {
                                     {
                                         name: "isDead",
                                         vars: {
-                                            "player": player.name
+                                            "player": player.name,
+                                            "isplayer1": true
                                         }
                                     }
                                 )
@@ -311,10 +320,27 @@ function AttackOptions({ setMenu, setMessages }) {
                                     {
                                         name: "isDead",
                                         vars: {
-                                            "player": rival.name
+                                            "player": rival.name,
+                                            "isplayer1": false
                                         }
                                     }
                                 )
+
+                                const newIndexCreature = Creature.deadFilterChoose(rivalCreatures)
+
+                                if (newIndexCreature!==null) {
+                                    setIndexActualCreatureRival(newIndexCreature)
+
+                                    newMessages.push(
+                                        {
+                                            name: "change",
+                                            vars: {
+                                                "player": rival.name
+                                            }
+                                        }
+                                    )
+                                }
+
                             }
 
                             setMessages(newMessages)
@@ -351,7 +377,8 @@ AttackOptions.propTypes = {
 
 function BattleMessage({ setMenu, messages }) {
     const [actual, setActual] = useState(0)
-    const { gameState, changeWindow, languajeDocument, setInitWindow } = useGame()
+    const { gameState, changeWindow, languajeDocument, setInitWindow
+    } = useGame()
     const langM = languajeDocument.BattleMessages
     const langA = languajeDocument.AttacksText
 
@@ -379,14 +406,11 @@ function BattleMessage({ setMenu, messages }) {
                                         changeWindow(WINDOW_NAMES.LOSE_GAME)
                                     else if (gameState == GAME_STATES.WIN)
                                         changeWindow(WINDOW_NAMES.WIN_OPTIONS)
-                                    else if (message.name == 'isDead') {
-                                        setInitWindow('dead')
+                                    else if (message.name == 'isDead' && message.vars.isplayer1) {
+                                        setInitWindow(INIT_STATES.DEAD)
                                         changeWindow(WINDOW_NAMES.CREATURES_BACKPACK)
                                     }
                                     else setMenu(0)
-
-
-
                                 }}
                             >
                                 <b>{langM.continue}</b>

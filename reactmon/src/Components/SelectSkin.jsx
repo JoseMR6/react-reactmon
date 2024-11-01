@@ -3,6 +3,7 @@ import { useGame } from '../Logic/hooks/useGame'
 import { Player } from '../Logic/classes/Player'
 import { PLAYER_SKINS, WINDOW_NAMES } from '../Logic/constants'
 import './SelectSkin.css'
+import { useEffect } from 'react'
 
 export function SelectSkin() {
     const {player,setPlayer,
@@ -10,6 +11,11 @@ export function SelectSkin() {
     } = useGame()
 
     const lang = languajeDocument.SelectSkin
+
+    useEffect(()=>{
+        const playerStored=localStorage.getItem("reactmonPayer")
+        if(playerStored) setPlayer(JSON.parse(playerStored))
+    },[])
 
     return (
         <>
@@ -20,7 +26,7 @@ export function SelectSkin() {
                         return (
                             <img key={index} 
                                 src={getSkinRoute(skin)}
-                                alt={skin} className='skinImg'
+                                alt={skin} className={'skinImg '+(player.image==skin?'selected':'')}
                                 onClick={()=>{
                                     setPlayer(new Player(player.name,skin,
                                         player.record)

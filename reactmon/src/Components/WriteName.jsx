@@ -18,7 +18,7 @@ export function WriteName() {
                     className="skinImg"
                     alt={skinImg}
                 />
-                <input id="setName" type="text" placeholder={player.name}
+                <input id="setName" type="text" defaultValue={player.name}
                     maxLength="13"
                 />
                 <div className="continueButton"

@@ -19,3 +19,7 @@
     cursor: pointer;
     background-color: var(--select-bg-color);
 }
+
+.skinContainer .selected{
+    background-color: var(--select-bg-color);
+}

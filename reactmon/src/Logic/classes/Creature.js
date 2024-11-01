@@ -52,6 +52,44 @@ export class Creature {
         )
     }
 
+    canLearnAttack(attack){
+        let can = attack.type == this.type || attack.type==ELEMENTAL_TYPES.NEUTRAL
+        if(!can && WEAK_TYPE_OF[attack.type] == this.type) can=true
+
+        return can
+    }
+
+    canForget(actualIndex,newAttack){
+        let can=true
+        if(actualIndex>=2) return true
+
+        let otherDamageAttack=false
+        this.attacks.forEach((attack, index)=>{
+            if(actualIndex!=index&&!otherDamageAttack) 
+                otherDamageAttack=(attack.category!=ATTACK_CATEGORYS.SUPPORT)
+        })
+        if(newAttack.category==ATTACK_CATEGORYS.SUPPORT && !otherDamageAttack && this.attacks.length>=2)
+            can=false
+
+        return can
+    }
+
+    static deadFilterChoose(creatures){
+        let liveCreaturesIndex = []
+
+        creatures.forEach((creature,index)=>{
+            if(!creature.dead){
+                liveCreaturesIndex.push(index)
+            }
+        })
+
+        const randomNumber = Math.floor(Math.random() * liveCreaturesIndex.length)
+
+        if(liveCreaturesIndex.length==0) return null
+
+        return liveCreaturesIndex[randomNumber]
+    }
+
     getAttackDamage(attackIndex, rivalCreature, playerBuffs = { cont: 0, stat: null },
         rivalBuffs = { cont: 0, stat: null }
     ) {

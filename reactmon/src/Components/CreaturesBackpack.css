@@ -80,3 +80,72 @@
     background-color: var(--select-bg-color);
     color: var(--select-color);
 }
+
+
+.creaturesBackpackContainer .attackContainer{
+    all: unset;
+
+    display: flex;
+    flex-direction: row;
+    border: 1px solid var(--main-border-color);
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px var(--main-color);
+    padding: 8px;
+    gap: 10px;
+}
+
+.creaturesBackpackContainer .section1{
+    all: unset;
+
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.creaturesBackpackContainer .section1 .icons{
+    all: unset;
+
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.creaturesBackpackContainer .section2{
+    all: unset;
+
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.creaturesBackpackContainer .buttonOption{
+    border: 1px solid var(--main-border-color);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px var(--main-color);
+    padding: 6px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.creaturesBackpackContainer .buttonOption:hover{
+    cursor: pointer;
+    background-color: var(--select-bg-color);
+    color: var(--select-color);
+}
+
+.creaturesBackpackContainer .attackDescription{
+    position: absolute;
+    background-color: var(--select-bg-color);
+    color: var(--select-color);
+    width: 230px;
+    height: 120px;
+    border: 1px solid var(--main-border-color);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px var(--main-color);
+    visibility: hidden;
+    align-content: center;
+}

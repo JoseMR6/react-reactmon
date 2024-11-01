@@ -32,8 +32,15 @@ export const WEAK_TYPE = gameBalance.weakType
 export const GAME_STATES = {
     START: 'start',
     BATTLE:'battle',
+    NEW_ITEM: 'newItem',
     WIN: 'win',
     LOSE: 'lose'
+}
+
+export const INIT_STATES = {
+    DEAD:"dead",
+    CHANGE:"change",
+    FORCED_CHANGE:"forcedChange"
 }
 
 export const ITEM_TYPES = {
@@ -50,6 +57,7 @@ export const WINDOW_NAMES = {
     BATTLE_OPTIONS:'battleOptions',
     CREATURES_BACKPACK: 'creaturesBackpack',
     WIN_OPTIONS:'winOptions',
+    CHOOSE_ATTACK:'chooseAttack',
     LOSE_GAME:'loseGame'
 }
 

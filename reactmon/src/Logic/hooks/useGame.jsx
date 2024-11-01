@@ -25,6 +25,7 @@ export function useGame() {
         rivalCreatures, setRivalCreatures,
         indexActualCreatureRival, setIndexActualCreatureRival,
         selectedItem, setSelectedItem,
+        extraItem, setExtraItem,
         chooseOptions
     } = context
 
@@ -42,6 +43,7 @@ export function useGame() {
         setRivalCreatures(null)
         setIndexActualCreatureRival(null)
         setSelectedItem({ itemType: null, item: null })
+        setExtraItem({ itemType: null, item: null })
         chooseOptions.current = []
     }
 
@@ -144,6 +146,7 @@ export function useGame() {
         rivalCreatures, setRivalCreatures,
         indexActualCreatureRival, setIndexActualCreatureRival,
         selectedItem, setSelectedItem,
+        extraItem, setExtraItem,
         chooseOptions,
         reset, changeWindow, getNewId, checkWinner, processAttack
     }

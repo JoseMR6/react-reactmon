@@ -29,14 +29,16 @@
         "continueText":"Continue"
     },
     "ChooseCreature":{
-        "title":"Choose first Creature",
+        "title":"Choose Creature",
         "selectButton":"Select",
         "viewButton":"View"
     },
     "ViewCreature": {
         "title": "Creature Information",
         "statsButton": "Stats",
-        "returnButton": "Return"
+        "returnButton": "Return",
+        "forgetText":"Forget",
+        "teachText":"Teach"
     },
     "StatsText": {
         "maxHealth": "Max Life",
@@ -133,7 +135,26 @@
         "title":"Backpack",
         "viewButton":"View",
         "chooseButton":"Choose",
-        "returnButton":"Return"
+        "returnButton":"Return",
+        "teachButton":"View / Teach",
+        "deleteButton":"Delete",
+        "discardButton":"Discard"
+    },
+    "WinOptions":{
+        "title":"You Won: Choose Reward",
+        "optionCreature":"Enemy Creature",
+        "optionAttack":"Enemy Attack",
+        "optionCoins":"Coins"
+    },
+    "ChooseAttack":{
+        "title":"Choose Attack",
+        "chooseButton":"Choose"
+    },
+    "LoseGame":{
+        "title":"Game Over: Summary",
+        "record":"Record",
+        "round":"Round",
+        "finalTeam":"Final Team"
     },
     "Footer":{
         "author":"Author",

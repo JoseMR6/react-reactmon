@@ -1,3 +1,4 @@
+import { Creature } from '../Logic/classes/Creature'
 import { GAME_STATES, WINDOW_NAMES, WIN_COINS } from '../Logic/constants'
 import { shuffle } from '../Logic/functions/arrays'
 import { useGame } from '../Logic/hooks/useGame'
@@ -8,12 +9,12 @@ import CoinIcon from '/coin.svg'
 
 export function WinOptions() {
     const { coins, setCoins, changeWindow, chooseOptions, rivalCreatures,
-        setGameState,setInitWindow
+        setGameState,setInitWindow, languajeDocument
      } = useGame()
 
     const rivalClone = []
     rivalCreatures.forEach(creature => {
-        const creatureClone = creature.clone()
+        const creatureClone = Creature.cloneFromObject(creature)
         creatureClone.reset()
         rivalClone.push(creatureClone)
     });
@@ -21,10 +22,12 @@ export function WinOptions() {
 
     const creature = rivalClone[0]
 
+    const lang = languajeDocument.WinOptions
+
     return (
         <>
             <div className="winOptionsContainer">
-                <h1>Has Ganado: Elije Recompensa</h1>
+                <h1>{lang.title}</h1>
                 <div className='optionsContainer'>
                     <div className='optionContainer'
                         onClick={() => {
@@ -40,19 +43,24 @@ export function WinOptions() {
                             />
                         </div>
                         <div className='optionText'>
-                            <b>Criatura Enemiga</b>
+                            <b>{lang.optionCreature}</b>
                         </div>
                     </div>
 
                     <div className='optionContainer'>
-                        <div className='imgOption'>
+                        <div className='imgOption'
+                            onClick={()=>{
+                                chooseOptions.current = rivalClone
+                                changeWindow(WINDOW_NAMES.CHOOSE_ATTACK)
+                            }}
+                        >
                             <img className={'category ' + creature.attacks[0].category}
                                 src={'./src/assets/categories/' + creature.attacks[0].category + '.svg'}
                             />
                             <ElemntIcon type={creature.attacks[0].type} />
                         </div>
                         <div className='optionText'>
-                            <b>Ataque Enemigo</b>
+                            <b>{lang.optionAttack}</b>
                         </div>
                     </div>
 
@@ -71,7 +79,7 @@ export function WinOptions() {
                             />
                         </div>
                         <div className='optionText'>
-                            <b>Monedas</b>
+                            <b>{lang.optionCoins}</b>
                         </div>
                     </div>
                 </div>

@@ -11,7 +11,7 @@ import { PropTypes } from 'prop-types'
 
 export function BattlePreview() {
     const { rival, rivalCreatures, player, setPlayer, playerCreatures, setPlayerCreatures,
-        languajeDocument, initWindow,setInitWindow, setRival, setRivalCreatures, setRound, round,
+        languajeDocument, initWindow, setInitWindow, setRival, setRivalCreatures, setRound, round,
         getNewId
     } = useGame()
 
@@ -23,7 +23,7 @@ export function BattlePreview() {
 
             const playerCreaturesClone = []
             playerCreatures.forEach((creature) => {
-                const creatureClone =  Creature.cloneFromObject(creature)
+                const creatureClone = Creature.cloneFromObject(creature)
                 creatureClone.reset()
                 playerCreaturesClone.push(creatureClone)
             });
@@ -32,7 +32,7 @@ export function BattlePreview() {
             const { newRival,
                 newRivalCreatures
             } = Player.generateRival(
-                round, getNewId, WEAK_TYPE_OF[playerCreatures[0].type]
+                round+1, getNewId, WEAK_TYPE_OF[playerCreatures[0].type]
             )
 
             setRival(newRival)

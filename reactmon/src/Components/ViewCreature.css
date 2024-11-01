@@ -1,6 +1,7 @@
 .viewCreatureContainer{
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .viewCreatureContainer .sectionsContainer{
@@ -123,6 +124,7 @@
     flex-direction: row;
     gap: 20px;
     justify-content: center;
+    align-items: center;
 }
 
 .buttonStats{
@@ -144,6 +146,12 @@
     border: 1px solid var(--main-border-color);
     box-shadow: 0px 0px 10px var(--main-color);
     padding: 10px;
+}
+
+.buttonReturn.stats{
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
 
 .buttonReturn:hover{

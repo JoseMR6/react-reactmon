@@ -14,6 +14,7 @@ import { BattleOptions } from "./BattleOptions"
 import { WinOptions } from "./WinOptions"
 import { LoseGame } from "./LoseGame"
 import { CreaturesBackpack } from "./CreaturesBackpack"
+import { ChooseAttack } from "./ChooseAttack"
 
 export function GeneralContainer() {
     const { actualWindow
@@ -57,6 +58,10 @@ export function GeneralContainer() {
         {
             name: WINDOW_NAMES.LOSE_GAME,
             component: LoseGame
+        },
+        {
+            name: WINDOW_NAMES.CHOOSE_ATTACK,
+            component: ChooseAttack
         }
     ]
 

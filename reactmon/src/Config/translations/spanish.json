@@ -29,14 +29,16 @@
         "continueText": "Continuar"
     },
     "ChooseCreature": {
-        "title": "Elige primera Criatura",
+        "title": "Elige Criatura",
         "selectButton": "Elegir",
         "viewButton": "Ver"
     },
     "ViewCreature": {
         "title": "Información de Criatura",
         "statsButton": "Estadísticas",
-        "returnButton": "Volver"
+        "returnButton": "Volver",
+        "forgetText":"Olvidar",
+        "teachText":"Enseñar"
     },
     "StatsText": {
         "maxHealth": "Vida Máxima",
@@ -133,7 +135,26 @@
         "title":"Mochila",
         "viewButton":"Ver",
         "chooseButton":"Elegir",
-        "returnButton":"Volver"
+        "returnButton":"Volver",
+        "teachButton":"Ver / Enseñar",
+        "deleteButton":"Eliminar",
+        "discardButton":"Descartar"
+    },
+    "WinOptions":{
+        "title":"Has Ganado: Elije Recompensa",
+        "optionCreature":"Criatura Enemiga",
+        "optionAttack":"Ataque Enemigo",
+        "optionCoins":"Monedas"
+    },
+    "ChooseAttack":{
+        "title":"Elige Ataque",
+        "chooseButton":"Elegir"
+    },
+    "LoseGame":{
+        "title":"Fin del Juego: Resumen",
+        "record":"Record",
+        "round":"Ronda",
+        "finalTeam":"Equipo Final"
     },
     "Footer": {
         "author": "Autor",

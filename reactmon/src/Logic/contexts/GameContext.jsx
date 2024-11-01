@@ -26,6 +26,7 @@ export function GameProvider({ children }) {
         rivalCreatures, setRivalCreatures,
         indexActualCreatureRival, setIndexActualCreatureRival,
         selectedItem, setSelectedItem,
+        extraItem, setExtraItem,
         chooseOptions
     } = useMechanics()
 
@@ -48,6 +49,7 @@ export function GameProvider({ children }) {
             rivalCreatures, setRivalCreatures,
             indexActualCreatureRival, setIndexActualCreatureRival,
             selectedItem, setSelectedItem,
+            extraItem, setExtraItem,
             chooseOptions
         }}>
             {children}
