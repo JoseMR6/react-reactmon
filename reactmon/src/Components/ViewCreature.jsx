@@ -125,17 +125,18 @@ export function ViewCreature() {
                                     </div>
 
                                     {(extraItem.item.name != creature.attacks[0].name
-                                        && (!creature.attacks[1]||extraItem.item.name != creature.attacks[1].name)
+                                        && (!creature.attacks[1] || extraItem.item.name != creature.attacks[1].name)
                                         && cloneCreature.canForget(select, extraItem.item)
-                                        && select!=3
+                                        && select != 3
                                     ) &&
                                         <div className='buttonReturn'
                                             onClick={() => {
-                                                if (select < 2) {
-                                                    const cloneCreatures = structuredClone(playerCreatures)
-                                                    const attacks = cloneCreatures[indexActualCreaturePlayer].attacks
-                                                    if (attacks.length >= 2)
-                                                        attacks.splice(select, 1)
+                                                const cloneCreatures = structuredClone(playerCreatures)
+                                                const attacks = cloneCreatures[indexActualCreaturePlayer].attacks
+                                                if (select < 2&&attacks.length >= 2) {
+                                                    attacks.splice(select, 1)
+                                                }
+                                                if (select != 2||attacks.length<2) {
                                                     attacks.push(extraItem.item)
                                                     setPlayerCreatures(cloneCreatures)
                                                 }
