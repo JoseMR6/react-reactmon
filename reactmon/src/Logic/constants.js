@@ -9,6 +9,8 @@ export const INITIAL_COINS = gameBalance.initialCoins
 
 export const WIN_COINS = gameBalance.winCoins
 
+export const BOSS_WIN_COINS = gameBalance.bossWinCoins
+
 export const ATTACKS_POWER = gameBalance.attacksPower
 
 export const BUFF_BASE = gameBalance.buffBase
@@ -30,6 +32,10 @@ export const OWN_TYPE = gameBalance.ownType
 export const EFFECTIVE_TYPE = gameBalance.effectiveType
 
 export const WEAK_TYPE = gameBalance.weakType
+
+export const ROUND_FIRST_BOSS = gameBalance.roundFirstBoss
+
+export const ROUNDS_PER_STAGE = gameBalance.roundsPerStage
 
 export const GAME_STATES = {
     START: 'start',

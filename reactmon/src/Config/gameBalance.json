@@ -1,6 +1,7 @@
 {
     "initialCoins":1000,
     "winCoins":100,
+    "bossWinCoins":500,
     "attacksPower": 100,
     "buffBase": 15,
     "buffLayerMax": 5,
@@ -11,5 +12,7 @@
     "adjustment": 0.15,
     "ownType": 1.5,
     "effectiveType": 2,
-    "weakType": 0.5
+    "weakType": 0.5,
+    "roundFirstBoss":20,
+    "roundsPerStage":10
 }

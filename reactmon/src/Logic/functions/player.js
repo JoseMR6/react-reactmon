@@ -1,5 +1,5 @@
 import { Player } from "../classes/Player"
-import { MAX_CREATURES_RIVAL, PLAYER_SKINS } from "../constants"
+import { MAX_CREATURES, MAX_CREATURES_RIVAL, PLAYER_SKINS, ROUNDS_PER_STAGE, ROUND_FIRST_BOSS } from "../constants"
 import { getRandomInt } from "./calculations"
 import { generateCreature, generateType } from "./creature"
 
@@ -52,10 +52,16 @@ export function generateRival(round, getNewId, firstType = null) {
             round
         )
 
-        const numCreatures = (round <= MAX_CREATURES_RIVAL) ? round : MAX_CREATURES_RIVAL
+        let numCreatures = (round <= MAX_CREATURES_RIVAL) ? round : MAX_CREATURES_RIVAL
         let numCrMaxAttack = ((round - MAX_CREATURES_RIVAL) < MAX_CREATURES_RIVAL)
             ? (round - MAX_CREATURES_RIVAL)
             : MAX_CREATURES_RIVAL
+        let maxedStatsNum=0
+
+        if(round>=ROUND_FIRST_BOSS && round%ROUNDS_PER_STAGE==0){
+            numCreatures=MAX_CREATURES
+            numCrMaxAttack=MAX_CREATURES
+        }
 
         newRivalCreatures = []
 
@@ -66,11 +72,18 @@ export function generateRival(round, getNewId, firstType = null) {
                 numCrMaxAttack--
             }
 
+            if(numCreatures==MAX_CREATURES){
+                if(i==0) maxedStatsNum=1
+                else if(i==1) maxedStatsNum=2
+                else maxedStatsNum=0
+            }
+
             newRivalCreatures.push(
                 generateCreature({
                     id: getNewId(),
                     type: generateType(),
-                    numAttacks: nAttacks
+                    numAttacks: nAttacks,
+                    maxedStatsNum: maxedStatsNum
                 })
             )
         }

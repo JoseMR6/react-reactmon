@@ -1,4 +1,4 @@
-import { GAME_STATES, WINDOW_NAMES, WIN_COINS } from '../Logic/constants'
+import { BOSS_WIN_COINS, GAME_STATES, MAX_CREATURES, WINDOW_NAMES, WIN_COINS } from '../Logic/constants'
 import { shuffle } from '../Logic/functions/calculations'
 import { creatureReset } from '../Logic/functions/creature'
 import { useGame } from '../Logic/hooks/useGame'
@@ -25,7 +25,8 @@ export function WinOptions() {
     const lang = languajeDocument.WinOptions
 
     const handleCoinsClick=()=>{
-        setCoins(coins + WIN_COINS)
+        const coinsReward = (rivalCreatures.length>=MAX_CREATURES)?BOSS_WIN_COINS:WIN_COINS
+        setCoins(coins + coinsReward)
         setInitWindow(WINDOW_NAMES.BATTLE_PREVIEW)
         setGameState(GAME_STATES.BATTLE)
         changeWindow(WINDOW_NAMES.BATTLE_PREVIEW)

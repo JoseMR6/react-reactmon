@@ -29,9 +29,10 @@ export function BattleOptions() {
     useEffect(() => {
         if (initWindow == WINDOW_NAMES.BATTLE_OPTIONS) {
             const modPlayer = structuredClone(player)
-            modPlayer.liveCreatures = playerCreatures.length
+            playerCreatures.forEach(creature => {
+                if(!creature.dead) modPlayer.liveCreatures++
+            })
             setPlayer(modPlayer)
-
             const modRival = structuredClone(rival)
             modRival.liveCreatures = rivalCreatures.length
             setRival(modRival)

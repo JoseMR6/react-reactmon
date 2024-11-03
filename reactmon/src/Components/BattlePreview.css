@@ -72,6 +72,10 @@
     position: relative;
 }
 
+.creatureInfo.selected{
+    background-color: var(--select-bg-color);
+}
+
 .creatureInfo:hover{
     cursor: pointer;
     background-color: var(--select-bg-color);

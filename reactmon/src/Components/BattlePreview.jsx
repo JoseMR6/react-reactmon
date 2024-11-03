@@ -1,7 +1,7 @@
 import { useEffect, } from 'react'
 import { getSkinRoute } from '../Logic/functions/parse'
 import { useGame } from '../Logic/hooks/useGame'
-import { PLAYER_CREATURES_EXAMPLE, PLAYER_EXAMPLE, RIVAL_CREATURES_EXAMPLE, RIVAL_EXAMPLE, WEAK_TYPE_OF, WINDOW_NAMES } from '../Logic/constants'
+import { PLAYER_CREATURES_EXAMPLE, PLAYER_EXAMPLE, RIVAL_CREATURES_EXAMPLE, RIVAL_EXAMPLE, ROUNDS_PER_STAGE, ROUND_FIRST_BOSS, WEAK_TYPE_OF, WINDOW_NAMES } from '../Logic/constants'
 import './BattlePreview.css'
 import { ElemntIcon } from './Types'
 import { CreatureImg } from './creatures/CreatureImg'
@@ -19,12 +19,17 @@ export function BattlePreview() {
 
     useEffect(() => {
         if (initWindow == WINDOW_NAMES.BATTLE_PREVIEW) {
-            setRound(round + 1)
+            const newRound=round + 1
+            setRound(newRound)
 
             const playerCreaturesClone = []
             playerCreatures.forEach((creature) => {
                 const creatureClone = structuredClone(creature)
-                creatureReset(creatureClone)
+                if(newRound<=ROUND_FIRST_BOSS || newRound%ROUNDS_PER_STAGE==0
+                    || newRound%ROUNDS_PER_STAGE==1
+                ){
+                    creatureReset(creatureClone)
+                }
                 playerCreaturesClone.push(creatureClone)
             });
             setPlayerCreatures(playerCreaturesClone)
@@ -32,7 +37,7 @@ export function BattlePreview() {
             const { newRival,
                 newRivalCreatures
             } = generateRival(
-                round+1, getNewId, WEAK_TYPE_OF[playerCreatures[0].type]
+                newRound, getNewId, WEAK_TYPE_OF[playerCreatures[0].type]
             )
 
             setRival(newRival)
@@ -107,8 +112,8 @@ function PlayerPreview({ player, playerCreatures, selected = false }) {
                 <div className='creaturesInfo'>
                     {playerCreatures.map((creature, index) => {
                         return (
-                            <div key={index} className='creatureInfo'
-                                onClick={() => {handleCreatureClick(index)}}
+                            <div key={index} className={'creatureInfo '+(creature.dead?'selected':'')}
+                                onClick={() => {if(!creature.dead)handleCreatureClick(index)}}
                             >
                                 <ElemntIcon type={creature.type} />
                                 <CreatureImg
