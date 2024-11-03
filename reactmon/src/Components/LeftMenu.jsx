@@ -5,7 +5,7 @@ import resetIcon from '/reset.svg'
 import './LeftMenu.css'
 import { useGame } from '../Logic/hooks/useGame'
 import { TRANSLATIONS } from '../Logic/constants'
-import { getLanguajeDocument } from '../Logic/functions/languaje'
+import { getLanguajeDocument } from '../Logic/functions/parse'
 
 export function LeftMenu() {
     const { languaje, setLanguaje,

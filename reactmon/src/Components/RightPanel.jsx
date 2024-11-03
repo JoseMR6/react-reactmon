@@ -1,4 +1,4 @@
-import { getSkinRoute } from '../Logic/functions/skins'
+import { getSkinRoute } from '../Logic/functions/parse'
 import { useGame } from '../Logic/hooks/useGame'
 import './RightPanel.css'
 

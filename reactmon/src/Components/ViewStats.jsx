@@ -14,7 +14,7 @@ export function ViewStats({ stats }) {
             <ul className='statsContainer'>
                 {statsList.map((statName, index) => {
                     return (
-                        <li key={index + 'li'} className='statInfo'>
+                        <li key={index} className='statInfo'>
                             <div className='textContainer'>
                                 <span ><b>{lang[statName]}</b>:</span>
                                 <span >{stats[statName]}/{MAX_STAT_VALUE}</span>

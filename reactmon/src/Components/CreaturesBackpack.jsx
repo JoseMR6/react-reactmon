@@ -1,5 +1,5 @@
-import { Creature } from '../Logic/classes/Creature'
 import { GAME_STATES, INIT_STATES, ITEM_TYPES, WINDOW_NAMES } from '../Logic/constants'
+import { creatureCanLearnAttack } from '../Logic/functions/creature'
 import { useGame } from '../Logic/hooks/useGame'
 import './CreaturesBackpack.css'
 import { ElemntIcon } from './Types'
@@ -59,7 +59,40 @@ function CreatureBackpack({ index, creature }) {
     } = useGame()
     const lang = languajeDocument.CreaturesBackpack
     const newAttack = (gameState == GAME_STATES.NEW_ITEM && extraItem.itemType == ITEM_TYPES.ATTACK)
-    const cloneCreature = Creature.cloneFromObject(creature) 
+    const cloneCreature = structuredClone(creature)
+
+    const handleViewClick = () => {
+        if (newAttack) setIndexActualCreaturePlayer(index)
+        setSelectedItem({ itemType: ITEM_TYPES.CREATURE, item: creature })
+        changeWindow(WINDOW_NAMES.VIEW_CREATURE)
+    }
+
+    const handleChooseClick = () => {
+        const cloneCreatures = structuredClone(playerCreatures)
+        cloneCreatures[index].recordedBuffs = { cont: 0, stat: null }
+        setPlayerCreatures(cloneCreatures)
+
+        setIndexActualCreaturePlayer(index)
+        if (initWindow == INIT_STATES.DEAD) {
+            setInitWindow(INIT_STATES.FORCED_CHANGE)
+        } else {
+            setInitWindow(INIT_STATES.CHANGE)
+        }
+        changeWindow(WINDOW_NAMES.BATTLE_OPTIONS)
+    }
+
+    const handleDeleteClick = () => {
+        if (index < 6) {
+            const cloneCreatures = structuredClone(playerCreatures)
+            cloneCreatures.splice(index, 1)
+            cloneCreatures.push(extraItem.item)
+            setPlayerCreatures(cloneCreatures)
+        }
+        setExtraItem({ itemType: null, item: null })
+        setInitWindow(WINDOW_NAMES.BATTLE_PREVIEW)
+        setGameState(GAME_STATES.BATTLE)
+        changeWindow(WINDOW_NAMES.BATTLE_PREVIEW)
+    }
 
     return (
         <>
@@ -71,7 +104,6 @@ function CreatureBackpack({ index, creature }) {
                         dark={creature.image.dark}
                     />
                 </div>
-
                 <div className='basicInfoContainer'>
                     <meter className='healthBar'
                         value={creature.recordedHealth} min="0"
@@ -80,13 +112,9 @@ function CreatureBackpack({ index, creature }) {
                     <div className='iconContainer'>
                         <ElemntIcon type={creature.type} />
                         <div className='buttonsContainer'>
-                            {(!newAttack || newAttack && cloneCreature.canLearnAttack(extraItem.item)) &&
+                            {(!newAttack || newAttack && creatureCanLearnAttack(cloneCreature, extraItem.item)) &&
                                 <div className='view button'
-                                    onClick={() => {
-                                        if (newAttack) setIndexActualCreaturePlayer(index)
-                                        setSelectedItem({ itemType: ITEM_TYPES.CREATURE, item: creature })
-                                        changeWindow(WINDOW_NAMES.VIEW_CREATURE)
-                                    }}
+                                    onClick={handleViewClick}
                                 >
                                     {newAttack &&
                                         lang.teachButton
@@ -96,42 +124,18 @@ function CreatureBackpack({ index, creature }) {
                                     }
                                 </div>
                             }
-
                             {(index != indexActualCreaturePlayer && !creature.dead
                                 && gameState != GAME_STATES.NEW_ITEM
                             ) &&
                                 <div className='choose button'
-                                    onClick={() => {
-                                        const cloneCreatures = structuredClone(playerCreatures)
-                                        cloneCreatures[index].recordedBuffs = { cont: 0, stat: null }
-                                        setPlayerCreatures(cloneCreatures)
-
-                                        setIndexActualCreaturePlayer(index)
-                                        if (initWindow == INIT_STATES.DEAD) {
-                                            setInitWindow(INIT_STATES.FORCED_CHANGE)
-                                        } else {
-                                            setInitWindow(INIT_STATES.CHANGE)
-                                        }
-                                        changeWindow(WINDOW_NAMES.BATTLE_OPTIONS)
-                                    }}
+                                    onClick={handleChooseClick}
                                 >
                                     {lang.chooseButton}
                                 </div>
                             }
                             {(gameState == GAME_STATES.NEW_ITEM && extraItem.itemType == ITEM_TYPES.CREATURE) &&
                                 <div className='delete button'
-                                    onClick={() => {
-                                        if (index < 6) {
-                                            const cloneCreatures = structuredClone(playerCreatures)
-                                            cloneCreatures.splice(index, 1)
-                                            cloneCreatures.push(extraItem.item)
-                                            setPlayerCreatures(cloneCreatures)
-                                        }
-                                        setExtraItem({ itemType: null, item: null })
-                                        setInitWindow(WINDOW_NAMES.BATTLE_PREVIEW)
-                                        setGameState(GAME_STATES.BATTLE)
-                                        changeWindow(WINDOW_NAMES.BATTLE_PREVIEW)
-                                    }}
+                                    onClick={handleDeleteClick}
                                 >
                                     {lang.deleteButton}
                                 </div>
@@ -156,6 +160,24 @@ function AttackBackpack({ attack }) {
     const lang = languajeDocument.CreaturesBackpack
     const langA = languajeDocument.AttacksText
 
+    const handleDiscardClick = () => {
+        setExtraItem({ itemType: null, item: null })
+        setInitWindow(WINDOW_NAMES.BATTLE_PREVIEW)
+        setGameState(GAME_STATES.BATTLE)
+        changeWindow(WINDOW_NAMES.BATTLE_PREVIEW)
+    }
+
+    const handleExtraAttackInfoClick=(event)=>{
+        if (event.target.className == 'buttonOption')
+            event.target.children[0].style.visibility = 'visible'
+    }
+
+    const handleExtraAttackInfoLeave=(event)=>{
+        let description = event.target.children[0]
+        if (event.target.className == 'attackDescription') description = event.target
+        description.style.visibility = 'hidden'
+    }
+
     return (
         <>
             <div className='attackContainer'>
@@ -172,24 +194,13 @@ function AttackBackpack({ attack }) {
                 </div>
                 <div className='section2'>
                     <div className='buttonOption'
-                        onClick={() => {
-                            setExtraItem({ itemType: null, item: null })
-                            setInitWindow(WINDOW_NAMES.BATTLE_PREVIEW)
-                            setGameState(GAME_STATES.BATTLE)
-                            changeWindow(WINDOW_NAMES.BATTLE_PREVIEW)
-                        }}
+                        onClick={handleDiscardClick}
                     >
                         {lang.discardButton}
                     </div>
                     <div className='buttonOption'
-                        onClick={(event) => {
-                            event.target.children[0].style.visibility = 'visible'
-                        }}
-                        onMouseLeave={(event) => {
-                            let description = event.target.children[0]
-                            if (event.target.className == 'attackDescription') description = event.target
-                            description.style.visibility = 'hidden'
-                        }}
+                        onClick={handleExtraAttackInfoClick}
+                        onMouseLeave={handleExtraAttackInfoLeave}
                     >
                         ?
                         <div className='attackDescription'>{langA[attack.name].description}</div>

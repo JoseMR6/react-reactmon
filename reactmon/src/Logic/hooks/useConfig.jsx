@@ -1,7 +1,7 @@
-import { useMemo, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { GAME_STATES, TRANSLATIONS, WINDOW_NAMES } from "../constants"
 import english from '../../Config/translations/english.json'
-import { getLanguajeDocument } from "../functions/languaje"
+import { getLanguajeDocument } from "../functions/parse"
 
 export function useConfig() {
     const [languaje, setLanguaje] = new useState('english')
@@ -12,7 +12,7 @@ export function useConfig() {
     const formerWindow = new useRef(null)
     const [initWindow, setInitWindow] = new useState(null)
 
-    useMemo(() => {
+    useEffect(() => {
         const initLanguaje=Object.keys(TRANSLATIONS)[0]
         if (initLanguaje != languaje) {
             getLanguajeDocument(initLanguaje).then((initLanguajeDocument) => {

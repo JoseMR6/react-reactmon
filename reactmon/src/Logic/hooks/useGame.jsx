@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { GameContext } from "../contexts/GameContext";
 import { checkContextProvider } from "../errors";
 import { GAME_STATES, INITIAL_COINS, WINDOW_NAMES } from "../constants";
+import { doAttack } from "../functions/creature";
 
 export function useGame() {
     const context = useContext(GameContext)
@@ -66,17 +67,17 @@ export function useGame() {
         }
     }
 
-    function processAttack(index, isPlayer = true) {
-        const newPlayerCreatures = structuredClone(playerCreatures)
-        const newRivalCreatures = structuredClone(rivalCreatures)
-        const creature = playerCreatures[indexActualCreaturePlayer]
-        const rivalCreature = rivalCreatures[indexActualCreatureRival]
+    function processAttack(index, inputPlayerCreatures, inputRivalCreatures, isPlayer = true) {
+        const newPlayerCreatures = structuredClone(inputPlayerCreatures)
+        const newRivalCreatures = structuredClone(inputRivalCreatures)
+        const creature = structuredClone(newPlayerCreatures[indexActualCreaturePlayer])
+        const rivalCreature = structuredClone(newRivalCreatures[indexActualCreatureRival])
         let message = null
 
         if (isPlayer) {
             const [newCreaturePlayer, newCreatureRival,
                 newPlayer, newRival
-            ] = creature.doAttack(
+            ] = doAttack(creature,
                 index, rivalCreature, player, rival
             )
 
@@ -95,14 +96,13 @@ export function useGame() {
                         "attackName": creature.attacks[index].name
                     }
                 }
-
             }
 
             checkWinner(newPlayer, newRival)
         } else {
             const [newCreatureRival, newCreaturePlayer,
                 newRival, newPlayer
-            ] = rivalCreature.doAttack(
+            ] = doAttack(rivalCreature,
                 index, creature, rival, player
             )
 
@@ -126,7 +126,7 @@ export function useGame() {
             checkWinner(newPlayer, newRival)
         }
 
-        return message
+        return [newPlayerCreatures,newRivalCreatures,message]
     }
 
     return {

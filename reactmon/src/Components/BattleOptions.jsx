@@ -1,67 +1,30 @@
 import { useEffect, useState } from 'react'
 import { useGame } from '../Logic/hooks/useGame'
-import { ATTACKS, ATTACK_CATEGORYS, CREATURES, ELEMENTAL_TYPES, GAME_STATES, INIT_STATES, WINDOW_NAMES } from '../Logic/constants'
+import { ATTACK_CATEGORYS, GAME_STATES, INIT_STATES, PLAYER_ACTIONS, PLAYER_CREATURE_EXAMPLE, RIVAL_CREATURE_EXAMPLE, WINDOW_NAMES } from '../Logic/constants'
 import './BattleOptions.css'
 import { ElemntIcon } from './Types'
 import { CreatureImg } from './creatures/CreatureImg'
 import { PropTypes } from 'prop-types'
-import { Creature } from '../Logic/classes/Creature'
-import { applyMessageVars } from '../Logic/functions/languaje'
+import { applyMessageVars } from '../Logic/functions/parse'
+import { getRandomInt } from '../Logic/functions/calculations'
+import { deadFilterChoose, getFirst } from '../Logic/functions/creature'
 
 export function BattleOptions() {
     const { playerCreatures, rivalCreatures, indexActualCreaturePlayer,
         indexActualCreatureRival, initWindow, player, setPlayer, rival, setRival,
-        setInitWindow, processAttack, setPlayerCreatures, setRivalCreatures
+        setInitWindow
     } = useGame()
 
     const [menu, setMenu] = useState(0)
-    const [messages, setMessages] = useState([])
+    const [playerAction, setPlayerAction] = useState({ action: null, param: null })
 
     const localPlayerCreature = playerCreatures
         ? playerCreatures[indexActualCreaturePlayer]
-        : new Creature(
-            0,
-            {
-                name: CREATURES[0].name,
-                dark: 0
-            },
-            ELEMENTAL_TYPES.FIRE,
-            [
-                ATTACKS[0],
-                ATTACKS[1]
-            ],
-            {
-                maxHealth: 100,
-                speed: 0,
-                physicalAttack: 100,
-                specialAttack: 20,
-                physicalDefense: 30,
-                specialDefense: 30
-            }
-        )
+        : PLAYER_CREATURE_EXAMPLE
 
     const localRivalCreature = rivalCreatures
         ? rivalCreatures[indexActualCreatureRival]
-        : new Creature(
-            1,
-            {
-                name: CREATURES[1].name,
-                dark: 6
-            },
-            ELEMENTAL_TYPES.GRASS,
-            [
-                ATTACKS[8],
-                ATTACKS[9]
-            ],
-            {
-                maxHealth: 100,
-                speed: 0,
-                physicalAttack: 20,
-                specialAttack: 30,
-                physicalDefense: 100,
-                specialDefense: 30
-            }
-        )
+        : RIVAL_CREATURE_EXAMPLE
 
     useEffect(() => {
         if (initWindow == WINDOW_NAMES.BATTLE_OPTIONS) {
@@ -75,59 +38,15 @@ export function BattleOptions() {
 
             setInitWindow(null)
         } else if (initWindow == INIT_STATES.CHANGE || initWindow == INIT_STATES.FORCED_CHANGE) {
-            const newMessages = []
-            let randomAttackIndex = Math.floor(Math.random() * localRivalCreature.attacks.length)
-
-            newMessages.push(
-                {
-                    name: "change",
-                    vars: {
-                        "player": player.name
-                    }
-                }
-            )
-
-            if (initWindow != INIT_STATES.FORCED_CHANGE) {
-                const message = processAttack(randomAttackIndex, false)
-                if (message) newMessages.push(message)
-
-                if (playerCreatures[indexActualCreaturePlayer].dead) {
-                    newMessages.push(
-                        {
-                            name: "isDead",
-                            vars: {
-                                "player": player.name,
-                                "isplayer1": true
-                            }
-                        }
-                    )
-                }
-            }
-
+            setPlayerAction({ action: PLAYER_ACTIONS.CHANGE, param: initWindow })
             setInitWindow(null)
-            setMessages(newMessages)
             setMenu(2)
         }
-
-        const cloneCreatures = []
-        playerCreatures.forEach(creature => {
-            cloneCreatures.push(Creature.cloneFromObject(creature))
-        });
-        setPlayerCreatures(cloneCreatures)
-
-        const cloneCreaturesRival = []
-        rivalCreatures.forEach(creature => {
-            cloneCreaturesRival.push(Creature.cloneFromObject(creature))
-        });
-        setRivalCreatures(cloneCreaturesRival)
-
-    }, [indexActualCreatureRival]);
+    }, []);
 
     return (
         <>
-
             <div className='generalBattleContainer'>
-
                 <div className='battleContainer'>
                     {(localPlayerCreature && localRivalCreature)
                         &&
@@ -142,7 +61,6 @@ export function BattleOptions() {
                         </>
                     }
                 </div>
-
                 <div className='optionsContainer'>
                     {menu == 0 &&
                         <GeneralOptions setMenu={setMenu} />
@@ -150,16 +68,15 @@ export function BattleOptions() {
                     {menu == 1 &&
                         <AttackOptions
                             setMenu={setMenu}
-                            setMessages={setMessages}
+                            setPlayerAction={setPlayerAction}
                         />
                     }
                     {menu == 2 &&
                         <BattleMessage
                             setMenu={setMenu}
-                            messages={messages}
+                            playerAction={playerAction}
                         />
                     }
-
                 </div>
             </div>
 
@@ -168,7 +85,6 @@ export function BattleOptions() {
 }
 
 function PlayerCreatureContainer({ player, main = true }) {
-
     return (
         <>
             <div className={'playerCreatureContainer ' + (!main ? 'rival' : '')}>
@@ -183,7 +99,6 @@ function PlayerCreatureContainer({ player, main = true }) {
                             /{player.stats.maxHealth}
                         </span>
                     }
-
                 </div>
                 <div className='imgsContainer'>
                     <div className='iconsContainer'>
@@ -191,7 +106,9 @@ function PlayerCreatureContainer({ player, main = true }) {
                         {player.recordedBuffs.cont > 0 &&
                             <div className='buffContainer'>
                                 <img className={'category ' + ATTACK_CATEGORYS.SUPPORT}
-                                    src={'./src/assets/categories/' + ATTACK_CATEGORYS.SUPPORT + '.svg'}
+                                    src={'./src/assets/categories/' +
+                                        ATTACK_CATEGORYS.SUPPORT + '.svg'
+                                    }
                                 />
                                 <div className='buffCount'>
                                     {
@@ -200,7 +117,6 @@ function PlayerCreatureContainer({ player, main = true }) {
                                 </div>
                             </div>
                         }
-
                     </div>
                     <div className='creatureImgContainer'>
                         <CreatureImg
@@ -209,7 +125,6 @@ function PlayerCreatureContainer({ player, main = true }) {
                             dark={player.image.dark}
                         />
                     </div>
-
                 </div>
             </div>
         </>
@@ -264,88 +179,26 @@ GeneralOptions.propTypes = {
     setMenu: PropTypes.func.isRequired
 }
 
-function AttackOptions({ setMenu, setMessages }) {
-    const { languajeDocument, playerCreatures, rivalCreatures,
-        indexActualCreaturePlayer, indexActualCreatureRival, player, rival,
-        processAttack, setIndexActualCreatureRival
+function AttackOptions({ setMenu, setPlayerAction }) {
+    const { languajeDocument, playerCreatures,
+        indexActualCreaturePlayer
     } = useGame()
     const lang = languajeDocument.BattleOptions
     const langA = languajeDocument.AttacksText
 
-    const creature = Creature.cloneFromObject(playerCreatures[indexActualCreaturePlayer])
-    const rivalCreature = Creature.cloneFromObject(rivalCreatures[indexActualCreatureRival])
+    const creature = structuredClone(playerCreatures[indexActualCreaturePlayer])
+
+    const handleAttackClick = (index) => {
+        setPlayerAction({ action: PLAYER_ACTIONS.ATTACK, param: index })
+        setMenu(2)
+    }
 
     return (
         <>
             {creature.attacks.map((attack, index) => {
                 return (
                     <div key={index} className='option'
-                        onClick={() => {
-                            const playerFirst = creature.getFirst(
-                                rivalCreature, creature.recordedBuffs,
-                                rivalCreature.recordedBuffs
-                            )
-
-                            const newMessages = []
-                            let randomAttackIndex = Math.floor(Math.random() * rivalCreature.attacks.length)
-
-                            if (playerFirst) {
-                                const message = processAttack(index, true)
-                                if (message) newMessages.push(message)
-
-                                const message2 = processAttack(randomAttackIndex, false)
-                                if (message2) newMessages.push(message2)
-                            } else {
-                                const message2 = processAttack(randomAttackIndex, false)
-                                if (message2) newMessages.push(message2)
-
-                                const message = processAttack(index, true)
-                                if (message) newMessages.push(message)
-                            }
-
-                            if (playerCreatures[indexActualCreaturePlayer].dead) {
-                                newMessages.push(
-                                    {
-                                        name: "isDead",
-                                        vars: {
-                                            "player": player.name,
-                                            "isplayer1": true
-                                        }
-                                    }
-                                )
-                            }
-
-                            if (rivalCreatures[indexActualCreatureRival].dead) {
-                                newMessages.push(
-                                    {
-                                        name: "isDead",
-                                        vars: {
-                                            "player": rival.name,
-                                            "isplayer1": false
-                                        }
-                                    }
-                                )
-
-                                const newIndexCreature = Creature.deadFilterChoose(rivalCreatures)
-
-                                if (newIndexCreature!==null) {
-                                    setIndexActualCreatureRival(newIndexCreature)
-
-                                    newMessages.push(
-                                        {
-                                            name: "change",
-                                            vars: {
-                                                "player": rival.name
-                                            }
-                                        }
-                                    )
-                                }
-
-                            }
-
-                            setMessages(newMessages)
-                            setMenu(2)
-                        }}
+                        onClick={() => { handleAttackClick(index) }}
                     >
                         <span className='name'>
                             <b>{langA[attack.name].name}</b>
@@ -372,61 +225,210 @@ function AttackOptions({ setMenu, setMessages }) {
 
 AttackOptions.propTypes = {
     setMenu: PropTypes.func.isRequired,
-    setMessages: PropTypes.func.isRequired
+    setPlayerAction: PropTypes.func.isRequired
 }
 
-function BattleMessage({ setMenu, messages }) {
-    const [actual, setActual] = useState(0)
-    const { gameState, changeWindow, languajeDocument, setInitWindow
+function BattleMessage({ setMenu, playerAction }) {
+    const { gameState, changeWindow, languajeDocument, setInitWindow,
+        playerCreatures, rivalCreatures, indexActualCreaturePlayer, indexActualCreatureRival,
+        processAttack, player, rival, setIndexActualCreatureRival
     } = useGame()
+    const [message, setMessage] = useState(null)
+    const [nextAction, setNextAction] = useState(null)
     const langM = languajeDocument.BattleMessages
     const langA = languajeDocument.AttacksText
 
+    useEffect(() => {
+        let newAction = null
+        const creature = structuredClone(playerCreatures[indexActualCreaturePlayer])
+            const rivalCreature = structuredClone(rivalCreatures[indexActualCreatureRival])
+
+        if (playerAction.action == PLAYER_ACTIONS.ATTACK) {
+            const index = playerAction.param
+
+            const playerFirst = getFirst(creature,
+                rivalCreature
+            )
+
+            let randomAttackIndex = getRandomInt(rivalCreature.attacks.length)
+            let processedCreatures
+            let processedCreaturesRival
+
+            if (playerFirst) {
+                const [outputCreatures, outputCreaturesrival,
+                    newMessage
+                ] = processAttack(index, playerCreatures, rivalCreatures, true)
+                setMessage(newMessage)
+
+                processedCreatures = outputCreatures
+                processedCreaturesRival = outputCreaturesrival
+
+                if (!processedCreaturesRival[indexActualCreatureRival].dead) {
+                    newAction = {
+                        action: PLAYER_ACTIONS.ATTACK,
+                        param: randomAttackIndex,
+                        rival: true
+                    }
+                } else {
+                    newAction = {
+                        action: PLAYER_ACTIONS.DEAD,
+                        param: null,
+                        rival: true
+                    }
+                }
+
+            } else {
+                const [outputCreatures2, outputCreaturesrival2,
+                    newMessage2
+                ] = processAttack(randomAttackIndex, playerCreatures, rivalCreatures, false)
+                setMessage(newMessage2)
+
+                processedCreatures = outputCreatures2
+                processedCreaturesRival = outputCreaturesrival2
+
+                if (!processedCreatures[indexActualCreaturePlayer].dead) {
+                    newAction = {
+                        action: PLAYER_ACTIONS.ATTACK,
+                        param: index,
+                        rival: false
+                    }
+                } else {
+                    newAction = {
+                        action: PLAYER_ACTIONS.DEAD,
+                        param: null,
+                        rival: false
+                    }
+                }
+            }
+        } else if (playerAction.action == PLAYER_ACTIONS.CHANGE) {
+            setMessage(
+                {
+                    name: "change",
+                    vars: {
+                        "player": player.name
+                    }
+                }
+            )
+
+            if (playerAction.param != INIT_STATES.FORCED_CHANGE) {
+                const randomAttackIndex = getRandomInt(rivalCreature.attacks.length)
+                newAction = {
+                    action: PLAYER_ACTIONS.ATTACK,
+                    param: randomAttackIndex,
+                    rival: true
+                }
+            }
+        }
+
+        setNextAction(newAction)
+    }, [])
+
+    const handleContinueClick = (action) => {
+        if (nextAction != null) {
+            let newAction = null
+
+            if (action.action == PLAYER_ACTIONS.ATTACK) {
+                if (action.rival) {
+                    const [outputCreatures2, ,
+                        newMessage2
+                    ] = processAttack(action.param, playerCreatures, rivalCreatures, false)
+                    setMessage(newMessage2)
+
+                    if (outputCreatures2[indexActualCreaturePlayer].dead) {
+                        newAction = {
+                            action: PLAYER_ACTIONS.DEAD,
+                            param: null,
+                            rival: false
+                        }
+                    }
+                } else {
+                    const [, outputCreaturesrival,
+                        newMessage
+                    ] = processAttack(action.param, playerCreatures, rivalCreatures, true)
+                    setMessage(newMessage)
+
+                    if (outputCreaturesrival[indexActualCreatureRival].dead) {
+                        newAction = {
+                            action: PLAYER_ACTIONS.DEAD,
+                            param: null,
+                            rival: true
+                        }
+                    }
+                }
+            } else if (action.action == PLAYER_ACTIONS.DEAD) {
+                const playerName = action.rival ? rival.name : player.name
+                const isplayer1 = action.rival ? false : true
+
+                setMessage({
+                    name: "isDead",
+                    vars: {
+                        "player": playerName,
+                        "isplayer1": isplayer1
+                    }
+                })
+
+                if (action.rival && rival.liveCreatures > 0) {
+                    newAction = {
+                        action: PLAYER_ACTIONS.CHANGE,
+                        param: INIT_STATES.FORCED_CHANGE,
+                        rival: true
+                    }
+                }
+            } else if (action.action == PLAYER_ACTIONS.CHANGE) {
+                const playerName = action.rival ? rival.name : player.name
+                const newIndexCreature = deadFilterChoose(rivalCreatures)
+
+                if (newIndexCreature !== null) {
+                    setIndexActualCreatureRival(newIndexCreature)
+
+                    setMessage({
+                        name: "change",
+                        vars: {
+                            "player": playerName
+                        }
+                    })
+                }
+
+            }
+
+            setNextAction(newAction)
+        }
+        else if (gameState == GAME_STATES.LOSE)
+            changeWindow(WINDOW_NAMES.LOSE_GAME)
+        else if (gameState == GAME_STATES.WIN)
+            changeWindow(WINDOW_NAMES.WIN_OPTIONS)
+        else if (message.name == 'isDead' && message.vars.isplayer1) {
+            setInitWindow(INIT_STATES.DEAD)
+            changeWindow(WINDOW_NAMES.CREATURES_BACKPACK)
+        }
+        else setMenu(0)
+    }
+
+    if (message && message.vars && message.vars.attackName) {
+        message.vars.attack = langA[message.vars.attackName].name
+    }
+
     return (
         <>
-            {messages.map((message, index) => {
-                const sig = actual + 1
-
-                if (message.vars && message.vars.attackName) {
-                    message.vars.attack = langA[message.vars.attackName].name
-                }
-
-                if (actual == index) {
-                    return (
-                        <div key={index} className='messageContainer'>
-                            <div className='battleMessage'>
-                                {applyMessageVars(langM[message.name],
-                                    message.vars
-                                )}
-                            </div>
-                            <div className='continue'
-                                onClick={() => {
-                                    if (sig != messages.length) setActual(sig)
-                                    else if (gameState == GAME_STATES.LOSE)
-                                        changeWindow(WINDOW_NAMES.LOSE_GAME)
-                                    else if (gameState == GAME_STATES.WIN)
-                                        changeWindow(WINDOW_NAMES.WIN_OPTIONS)
-                                    else if (message.name == 'isDead' && message.vars.isplayer1) {
-                                        setInitWindow(INIT_STATES.DEAD)
-                                        changeWindow(WINDOW_NAMES.CREATURES_BACKPACK)
-                                    }
-                                    else setMenu(0)
-                                }}
-                            >
-                                <b>{langM.continue}</b>
-                            </div>
-                        </div>
-                    )
-                }
-
-            })}
-
-
+            <div className='messageContainer'>
+                <div className='battleMessage'>
+                    {message &&
+                        applyMessageVars(langM[message.name],
+                            message.vars
+                        )
+                    }
+                </div>
+                <div className='continue'
+                    onClick={() => { handleContinueClick(nextAction) }}
+                >
+                    <b>{langM.continue}</b>
+                </div>
+            </div>
         </>
     )
 }
 
 BattleMessage.propTypes = {
     setMenu: PropTypes.func.isRequired,
-    messages: PropTypes.array.isRequired
+    playerAction: PropTypes.object.isRequired
 }

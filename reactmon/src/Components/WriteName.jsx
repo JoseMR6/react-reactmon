@@ -1,14 +1,23 @@
-import { getSkinRoute } from "../Logic/functions/skins"
+import { getSkinRoute } from "../Logic/functions/parse"
 import { useGame } from "../Logic/hooks/useGame"
 import { Player } from "../Logic/classes/Player"
-import { WINDOW_NAMES } from "../Logic/constants"
+import { WINDOW_NAMES, PLAYER_EXAMPLE } from "../Logic/constants"
 import './WriteName.css'
 
 export function WriteName() {
     const { player, setPlayer, languajeDocument, changeWindow, setInitWindow
     } = useGame()
-    const skinImg = (player.image != '') ? player.image : 'acetrainer'
+    const skinImg = (player.image != '') ? player.image : PLAYER_EXAMPLE.name
     const lang = languajeDocument.WriteName
+
+    const handleContinueClick = () => {
+        const name = document.getElementById("setName").value
+        if (name.length >= 3) {
+            setPlayer(new Player(name, skinImg, player.record))
+            setInitWindow(WINDOW_NAMES.CHOOSE_CREATURE)
+            changeWindow(WINDOW_NAMES.CHOOSE_CREATURE)
+        }
+    }
 
     return (
         <>
@@ -22,14 +31,7 @@ export function WriteName() {
                     maxLength="13"
                 />
                 <div className="continueButton"
-                    onClick={() => {
-                        const name = document.getElementById("setName").value
-                        if (name.length >= 3) {
-                            setPlayer(new Player(name, skinImg, player.record))
-                            setInitWindow(WINDOW_NAMES.CHOOSE_CREATURE)
-                            changeWindow(WINDOW_NAMES.CHOOSE_CREATURE)
-                        }
-                    }}
+                    onClick={handleContinueClick}
                 >
                     <b>{lang.continueText}</b>
                 </div>

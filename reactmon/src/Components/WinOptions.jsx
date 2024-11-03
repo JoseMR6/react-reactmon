@@ -1,6 +1,6 @@
-import { Creature } from '../Logic/classes/Creature'
 import { GAME_STATES, WINDOW_NAMES, WIN_COINS } from '../Logic/constants'
-import { shuffle } from '../Logic/functions/arrays'
+import { shuffle } from '../Logic/functions/calculations'
+import { creatureReset } from '../Logic/functions/creature'
 import { useGame } from '../Logic/hooks/useGame'
 import { ElemntIcon } from './Types'
 import './WinOptions.css'
@@ -9,13 +9,13 @@ import CoinIcon from '/coin.svg'
 
 export function WinOptions() {
     const { coins, setCoins, changeWindow, chooseOptions, rivalCreatures,
-        setGameState,setInitWindow, languajeDocument
-     } = useGame()
+        setGameState, setInitWindow, languajeDocument
+    } = useGame()
 
     const rivalClone = []
     rivalCreatures.forEach(creature => {
-        const creatureClone = Creature.cloneFromObject(creature)
-        creatureClone.reset()
+        const creatureClone = structuredClone(creature)
+        creatureReset(creatureClone)
         rivalClone.push(creatureClone)
     });
     shuffle(rivalClone)
@@ -23,6 +23,13 @@ export function WinOptions() {
     const creature = rivalClone[0]
 
     const lang = languajeDocument.WinOptions
+
+    const handleCoinsClick=()=>{
+        setCoins(coins + WIN_COINS)
+        setInitWindow(WINDOW_NAMES.BATTLE_PREVIEW)
+        setGameState(GAME_STATES.BATTLE)
+        changeWindow(WINDOW_NAMES.BATTLE_PREVIEW)
+    }
 
     return (
         <>
@@ -47,13 +54,13 @@ export function WinOptions() {
                         </div>
                     </div>
 
-                    <div className='optionContainer'>
-                        <div className='imgOption'
-                            onClick={()=>{
-                                chooseOptions.current = rivalClone
-                                changeWindow(WINDOW_NAMES.CHOOSE_ATTACK)
-                            }}
-                        >
+                    <div className='optionContainer'
+                        onClick={() => {
+                            chooseOptions.current = rivalClone
+                            changeWindow(WINDOW_NAMES.CHOOSE_ATTACK)
+                        }}
+                    >
+                        <div className='imgOption'>
                             <img className={'category ' + creature.attacks[0].category}
                                 src={'./src/assets/categories/' + creature.attacks[0].category + '.svg'}
                             />
@@ -65,12 +72,7 @@ export function WinOptions() {
                     </div>
 
                     <div className='optionContainer'
-                        onClick={() => {
-                            setCoins(coins + WIN_COINS)
-                            setInitWindow(WINDOW_NAMES.BATTLE_PREVIEW)
-                            setGameState(GAME_STATES.BATTLE)
-                            changeWindow(WINDOW_NAMES.BATTLE_PREVIEW)
-                        }}
+                        onClick={handleCoinsClick}
                     >
                         <div className='imgOption'>
                             <img

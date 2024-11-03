@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { getSkinRoute } from '../Logic/functions/skins'
+import { getSkinRoute } from '../Logic/functions/parse'
 import { useGame } from '../Logic/hooks/useGame'
 import './LoseGame.css'
 import { ElemntIcon } from './Types'

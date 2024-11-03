@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import { useGame } from '../Logic/hooks/useGame'
-import { Creature } from '../Logic/classes/Creature'
-import { ELEMENTAL_TYPES, GAME_STATES, ITEM_TYPES, WINDOW_NAMES } from '../Logic/constants'
+import { ELEMENTAL_TYPES, GAME_STATES, ITEM_TYPES, MAX_CREATURES, PLAYER_CREATURE_EXAMPLE, WINDOW_NAMES } from '../Logic/constants'
 import './ChooseCreature.css'
 import { ElemntIcon } from './Types'
 import { CreatureImg } from './creatures/CreatureImg'
 import { PropTypes } from 'prop-types'
+import { generateCreature } from '../Logic/functions/creature'
 
 export function ChooseCreature() {
     const { languajeDocument, chooseOptions,
@@ -16,19 +16,19 @@ export function ChooseCreature() {
     useEffect(() => {
         if (initWindow == WINDOW_NAMES.CHOOSE_CREATURE) {
             chooseOptions.current = [
-                Creature.generateCreature({
+                generateCreature({
                     id: getNewId(),
                     type: ELEMENTAL_TYPES.FIRE,
                     numAttacks: 1,
                     maxedStatsNum: 1
                 }),
-                Creature.generateCreature({
+                generateCreature({
                     id: getNewId(),
                     type: ELEMENTAL_TYPES.WATER,
                     numAttacks: 1,
                     maxedStatsNum: 1
                 }),
-                Creature.generateCreature({
+                generateCreature({
                     id: getNewId(),
                     type: ELEMENTAL_TYPES.GRASS,
                     numAttacks: 1,
@@ -38,9 +38,9 @@ export function ChooseCreature() {
             setInitWindow(null)
         } else if (!chooseOptions.current || chooseOptions.current.length == 0) {
             chooseOptions.current = [
-                new Creature(),
-                new Creature(),
-                new Creature()
+                PLAYER_CREATURE_EXAMPLE,
+                PLAYER_CREATURE_EXAMPLE,
+                PLAYER_CREATURE_EXAMPLE
             ]
         }
     }, [])
@@ -73,6 +73,32 @@ function CreatureSelect({ creature }) {
     } = useGame()
     const lang = languajeDocument.ChooseCreature
 
+    const handleSelectClick=()=>{
+        if (gameState == GAME_STATES.WIN && playerCreatures.length >= MAX_CREATURES) {
+            setExtraItem({ itemType: ITEM_TYPES.CREATURE, item: creature })
+            setGameState(GAME_STATES.NEW_ITEM)
+            changeWindow(WINDOW_NAMES.CREATURES_BACKPACK)
+        } else {
+            if (gameState == GAME_STATES.START) {
+                setPlayerCreatures([creature])
+            } else if (gameState == GAME_STATES.WIN) {
+                setPlayerCreatures([...playerCreatures, creature])
+            }
+            setInitWindow(WINDOW_NAMES.BATTLE_PREVIEW)
+            setGameState(GAME_STATES.BATTLE)
+            changeWindow(WINDOW_NAMES.BATTLE_PREVIEW)
+        }
+    }
+
+    const handleViewClick=()=>{
+        const newSelected = {
+            itemType: ITEM_TYPES.CREATURE,
+            item: creature
+        }
+        setSelectedItem(newSelected)
+        changeWindow(WINDOW_NAMES.VIEW_CREATURE)
+    }
+
     return (
         <>
             <div className='creatureContainer'>
@@ -89,34 +115,12 @@ function CreatureSelect({ creature }) {
                     <ElemntIcon type={creature.type} />
                     <div className='options'>
                         <div className='buttonOption'
-                            onClick={() => {
-                                if (gameState == GAME_STATES.WIN && playerCreatures.length >= 6) {
-                                    setExtraItem({ itemType: ITEM_TYPES.CREATURE, item: creature })
-                                    setGameState(GAME_STATES.NEW_ITEM)
-                                    changeWindow(WINDOW_NAMES.CREATURES_BACKPACK)
-                                } else {
-                                    if (gameState == GAME_STATES.START) {
-                                        setPlayerCreatures([creature])
-                                    } else if (gameState == GAME_STATES.WIN) {
-                                        setPlayerCreatures([...playerCreatures, creature])
-                                    }
-                                    setInitWindow(WINDOW_NAMES.BATTLE_PREVIEW)
-                                    setGameState(GAME_STATES.BATTLE)
-                                    changeWindow(WINDOW_NAMES.BATTLE_PREVIEW)
-                                }
-                            }}
+                            onClick={handleSelectClick}
                         >
                             <b>{lang.selectButton}</b>
                         </div>
                         <div className='buttonOption'
-                            onClick={() => {
-                                const newSelected = {
-                                    itemType: ITEM_TYPES.CREATURE,
-                                    item: creature
-                                }
-                                setSelectedItem(newSelected)
-                                changeWindow(WINDOW_NAMES.VIEW_CREATURE)
-                            }}
+                            onClick={handleViewClick}
                         >
                             <b>{lang.viewButton}</b>
                         </div>

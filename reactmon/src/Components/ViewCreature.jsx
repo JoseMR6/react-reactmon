@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { Creature } from '../Logic/classes/Creature'
-import { ATTACKS, CREATURES, ELEMENTAL_TYPES, GAME_STATES, ITEM_TYPES, WINDOW_NAMES } from '../Logic/constants'
+import { GAME_STATES, ITEM_TYPES, PLAYER_CREATURE_EXAMPLE, WINDOW_NAMES } from '../Logic/constants'
 import { ElemntIcon } from './Types'
 import { ViewAttack } from './ViewAttack'
 import './ViewCreature.css'
@@ -8,6 +7,7 @@ import { ViewStats } from './ViewStats'
 import { CreatureImg } from './creatures/CreatureImg'
 import { useGame } from '../Logic/hooks/useGame'
 import { PropTypes } from 'prop-types'
+import { creatureCanForget } from '../Logic/functions/creature'
 
 export function ViewCreature() {
     const { languajeDocument, selectedItem, changeWindow, gameState,
@@ -21,28 +21,32 @@ export function ViewCreature() {
 
     const creature = (selectedItem && selectedItem.item)
         ? selectedItem.item
-        : new Creature(
-            0,
-            {
-                name: CREATURES[0].name,
-                dark: 0
-            },
-            ELEMENTAL_TYPES.FIRE,
-            [
-                ATTACKS[0],
-                ATTACKS[1]
-            ],
-            {
-                maxHealth: 50,
-                speed: 50,
-                physicalAttack: 50,
-                specialAttack: 50,
-                physicalDefense: 50,
-                specialDefense: 50
-            }
-        )
+        : PLAYER_CREATURE_EXAMPLE
 
-    const cloneCreature = Creature.cloneFromObject(creature)
+    const cloneCreature = structuredClone(creature)
+
+    const handleTeachAttackClick=()=>{
+        const cloneCreatures = structuredClone(playerCreatures)
+        const attacks = cloneCreatures[indexActualCreaturePlayer].attacks
+        if (select < 2&&attacks.length >= 2) {
+            attacks.splice(select, 1)
+        }
+        if (select != 2||attacks.length<2) {
+            attacks.push(extraItem.item)
+            setPlayerCreatures(cloneCreatures)
+        }
+        setExtraItem({ itemType: null, item: null })
+        setInitWindow(WINDOW_NAMES.BATTLE_PREVIEW)
+        setGameState(GAME_STATES.BATTLE)
+        changeWindow(WINDOW_NAMES.BATTLE_PREVIEW)
+    }
+
+    const handleReturnClick=()=>{
+        if (gameState == GAME_STATES.START || gameState == GAME_STATES.WIN)
+            changeWindow(WINDOW_NAMES.CHOOSE_CREATURE)
+        else if (gameState == GAME_STATES.BATTLE || gameState == GAME_STATES.NEW_ITEM)
+            changeWindow(WINDOW_NAMES.CREATURES_BACKPACK)
+    }
 
     return (
         <>
@@ -89,7 +93,6 @@ export function ViewCreature() {
                                 </span>
                             </div>
                         }
-
                         <div className='buttonsContainer'>
                             {!newAttack &&
                                 <div
@@ -103,7 +106,6 @@ export function ViewCreature() {
                                     <b>{lang.statsButton}</b>
                                 </div>
                             }
-
                             {newAttack &&
                                 <>
                                     <AttackContainer
@@ -112,7 +114,6 @@ export function ViewCreature() {
                                         select={select}
                                         setSelect={setSelect}
                                     />
-
                                     <div
                                         className={'buttonReturn stats '
                                             + (select == 3 ? 'selected' : '')
@@ -123,28 +124,13 @@ export function ViewCreature() {
                                     >
                                         <b>Stats</b>
                                     </div>
-
                                     {(extraItem.item.name != creature.attacks[0].name
                                         && (!creature.attacks[1] || extraItem.item.name != creature.attacks[1].name)
-                                        && cloneCreature.canForget(select, extraItem.item)
+                                        && creatureCanForget(cloneCreature,select, extraItem.item)
                                         && select != 3
                                     ) &&
                                         <div className='buttonReturn'
-                                            onClick={() => {
-                                                const cloneCreatures = structuredClone(playerCreatures)
-                                                const attacks = cloneCreatures[indexActualCreaturePlayer].attacks
-                                                if (select < 2&&attacks.length >= 2) {
-                                                    attacks.splice(select, 1)
-                                                }
-                                                if (select != 2||attacks.length<2) {
-                                                    attacks.push(extraItem.item)
-                                                    setPlayerCreatures(cloneCreatures)
-                                                }
-                                                setExtraItem({ itemType: null, item: null })
-                                                setInitWindow(WINDOW_NAMES.BATTLE_PREVIEW)
-                                                setGameState(GAME_STATES.BATTLE)
-                                                changeWindow(WINDOW_NAMES.BATTLE_PREVIEW)
-                                            }}
+                                            onClick={handleTeachAttackClick}
                                         >
                                             {playerCreatures[indexActualCreaturePlayer].attacks.length >= 2 &&
                                                 <b>{lang.forgetText}</b>
@@ -155,18 +141,10 @@ export function ViewCreature() {
 
                                         </div>
                                     }
-
                                 </>
-
                             }
-
                             <div className='buttonReturn'
-                                onClick={() => {
-                                    if (gameState == GAME_STATES.START || gameState == GAME_STATES.WIN)
-                                        changeWindow(WINDOW_NAMES.CHOOSE_CREATURE)
-                                    else if (gameState == GAME_STATES.BATTLE || gameState == GAME_STATES.NEW_ITEM)
-                                        changeWindow(WINDOW_NAMES.CREATURES_BACKPACK)
-                                }}
+                                onClick={handleReturnClick}
                             >
                                 <b>{lang.returnButton}</b>
                             </div>

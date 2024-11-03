@@ -39,6 +39,23 @@ function AttackSelect({ attack }) {
     const lang = languajeDocument.ChooseAttack
     const langA = languajeDocument.AttacksText
 
+    const handleChooseClick = () => {
+        setExtraItem({ itemType: ITEM_TYPES.ATTACK, item: attack })
+        setGameState(GAME_STATES.NEW_ITEM)
+        changeWindow(WINDOW_NAMES.CREATURES_BACKPACK)
+    }
+
+    const handleExtraAttackInfoClick = (event) => {
+        if (event.target.className == 'buttonOption')
+            event.target.children[0].style.visibility = 'visible'
+    }
+
+    const handleExtraAttackInfoLeave = (event) => {
+        let description = event.target.children[0]
+        if (event.target.className == 'attackDescription') description = event.target
+        description.style.visibility = 'hidden'
+    }
+
     return (
         <>
             <div className='attackContainer'>
@@ -55,32 +72,19 @@ function AttackSelect({ attack }) {
                 </div>
                 <div className='section2'>
                     <div className='buttonOption'
-                        onClick={() => {
-                            setExtraItem({ itemType: ITEM_TYPES.ATTACK, item: attack })
-                            setGameState(GAME_STATES.NEW_ITEM)
-                            changeWindow(WINDOW_NAMES.CREATURES_BACKPACK)
-                        }}
+                        onClick={handleChooseClick}
                     >
                         {lang.chooseButton}
                     </div>
                     <div className='buttonOption'
-                        onClick={(event) => {
-                            if( event.target.className=='buttonOption')
-                                event.target.children[0].style.visibility = 'visible'
-                        }}
-                        onMouseLeave={(event) => {
-                            let description = event.target.children[0]
-                            if (event.target.className == 'attackDescription') description = event.target
-                            description.style.visibility = 'hidden'
-                        }}
+                        onClick={handleExtraAttackInfoClick}
+                        onMouseLeave={handleExtraAttackInfoLeave}
                     >
                         ?
                         <div className='attackDescription'>{langA[attack.name].description}</div>
                     </div>
-
                 </div>
             </div>
-
         </>
     )
 }

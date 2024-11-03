@@ -1,13 +1,13 @@
 import { useEffect, } from 'react'
-import { getSkinRoute } from '../Logic/functions/skins'
+import { getSkinRoute } from '../Logic/functions/parse'
 import { useGame } from '../Logic/hooks/useGame'
-import { Creature } from '../Logic/classes/Creature'
-import { Player } from '../Logic/classes/Player'
-import { CREATURES, ELEMENTAL_TYPES, PLAYER_SKINS, WEAK_TYPE_OF, WINDOW_NAMES } from '../Logic/constants'
+import { PLAYER_CREATURES_EXAMPLE, PLAYER_EXAMPLE, RIVAL_CREATURES_EXAMPLE, RIVAL_EXAMPLE, WEAK_TYPE_OF, WINDOW_NAMES } from '../Logic/constants'
 import './BattlePreview.css'
 import { ElemntIcon } from './Types'
 import { CreatureImg } from './creatures/CreatureImg'
 import { PropTypes } from 'prop-types'
+import { creatureReset } from '../Logic/functions/creature'
+import { generateRival } from '../Logic/functions/player'
 
 export function BattlePreview() {
     const { rival, rivalCreatures, player, setPlayer, playerCreatures, setPlayerCreatures,
@@ -23,15 +23,15 @@ export function BattlePreview() {
 
             const playerCreaturesClone = []
             playerCreatures.forEach((creature) => {
-                const creatureClone = Creature.cloneFromObject(creature)
-                creatureClone.reset()
+                const creatureClone = structuredClone(creature)
+                creatureReset(creatureClone)
                 playerCreaturesClone.push(creatureClone)
             });
             setPlayerCreatures(playerCreaturesClone)
 
             const { newRival,
                 newRivalCreatures
-            } = Player.generateRival(
+            } = generateRival(
                 round+1, getNewId, WEAK_TYPE_OF[playerCreatures[0].type]
             )
 
@@ -40,37 +40,13 @@ export function BattlePreview() {
             setInitWindow(null)
         } else {
             if (!player)
-                setPlayer(new Player(
-                    'Jhon',
-                    PLAYER_SKINS[0],
-                    0
-                ))
+                setPlayer(PLAYER_EXAMPLE)
             if (!rival)
-                setRival(new Player(
-                    'Kenny',
-                    PLAYER_SKINS[1],
-                    1
-                ))
-            const defaultCreature = new Creature(
-                0,
-                { name: CREATURES[0].name, dark: 0 },
-                ELEMENTAL_TYPES.FIRE
-            )
-            const defaultRivalCreature = new Creature(
-                1,
-                { name: CREATURES[1].name, dark: 6 },
-                ELEMENTAL_TYPES.GRASS
-            )
+                setRival(RIVAL_EXAMPLE)
             if (!playerCreatures || playerCreatures.length == 0)
-                setPlayerCreatures([
-                    defaultCreature, defaultCreature, defaultCreature,
-                    defaultCreature, defaultCreature, defaultCreature
-                ])
+                setPlayerCreatures(PLAYER_CREATURES_EXAMPLE)
             if (rivalCreatures || rivalCreatures.length == 0)
-                setRivalCreatures([
-                    defaultRivalCreature, defaultRivalCreature, defaultRivalCreature,
-                    defaultRivalCreature, defaultRivalCreature, defaultRivalCreature
-                ])
+                setRivalCreatures(RIVAL_CREATURES_EXAMPLE)
         }
     }, []);
 
@@ -103,6 +79,16 @@ function PlayerPreview({ player, playerCreatures, selected = false }) {
     } = useGame()
     const lang = languajeDocument.BattlePreview
 
+    const handleCreatureClick=(index)=>{
+        if (!selected) {
+            setIndexActualCreaturePlayer(index)
+            const randomIndex = Math.floor(Math.random() * (rivalCreatures.length))
+            setIndexActualCreatureRival(randomIndex)
+            setInitWindow(WINDOW_NAMES.BATTLE_OPTIONS)
+            changeWindow(WINDOW_NAMES.BATTLE_OPTIONS)
+        }
+    }
+
     return (
         <>
             <div className={'playerContainer ' + (selected ? 'selected' : '')}>
@@ -122,15 +108,7 @@ function PlayerPreview({ player, playerCreatures, selected = false }) {
                     {playerCreatures.map((creature, index) => {
                         return (
                             <div key={index} className='creatureInfo'
-                                onClick={() => {
-                                    if (!selected) {
-                                        setIndexActualCreaturePlayer(index)
-                                        const randomIndex = Math.floor(Math.random() * (rivalCreatures.length))
-                                        setIndexActualCreatureRival(randomIndex)
-                                        setInitWindow(WINDOW_NAMES.BATTLE_OPTIONS)
-                                        changeWindow(WINDOW_NAMES.BATTLE_OPTIONS)
-                                    }
-                                }}
+                                onClick={() => {handleCreatureClick(index)}}
                             >
                                 <ElemntIcon type={creature.type} />
                                 <CreatureImg

@@ -17,10 +17,7 @@ import { CreaturesBackpack } from "./CreaturesBackpack"
 import { ChooseAttack } from "./ChooseAttack"
 
 export function GeneralContainer() {
-    const { actualWindow
-        //, setActualWindow
-    } = useGame()
-    //setActualWindow(WINDOW_NAMES.BATTLE_OPTIONS)
+    const { actualWindow } = useGame()
 
     const windowComponents = [
         {

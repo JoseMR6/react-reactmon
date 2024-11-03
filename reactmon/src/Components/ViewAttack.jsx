@@ -1,4 +1,4 @@
-import { applyTextVars } from '../Logic/functions/languaje'
+import { applyTextVars } from '../Logic/functions/parse'
 import { useGame } from '../Logic/hooks/useGame'
 import { ElemntIcon } from './Types'
 import './ViewAttack.css'

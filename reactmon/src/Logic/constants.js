@@ -1,5 +1,7 @@
 import gameBalance from '../Config/gameBalance.json'
 import translations from '../Config/translations.json'
+import { Creature, CreatureImage } from './classes/Creature'
+import { Player } from './classes/Player'
 
 export const TRANSLATIONS = translations
 
@@ -31,21 +33,21 @@ export const WEAK_TYPE = gameBalance.weakType
 
 export const GAME_STATES = {
     START: 'start',
-    BATTLE:'battle',
+    BATTLE: 'battle',
     NEW_ITEM: 'newItem',
     WIN: 'win',
     LOSE: 'lose'
 }
 
 export const INIT_STATES = {
-    DEAD:"dead",
-    CHANGE:"change",
-    FORCED_CHANGE:"forcedChange"
+    DEAD: "dead",
+    CHANGE: "change",
+    FORCED_CHANGE: "forcedChange"
 }
 
 export const ITEM_TYPES = {
-    CREATURE:"creature",
-    ATTACK:"attack"
+    CREATURE: "creature",
+    ATTACK: "attack"
 }
 
 export const WINDOW_NAMES = {
@@ -53,12 +55,12 @@ export const WINDOW_NAMES = {
     WRITE_NAME: 'writeName',
     CHOOSE_CREATURE: 'chooseCreature',
     VIEW_CREATURE: 'viewCreature',
-    BATTLE_PREVIEW:'battlePreview',
-    BATTLE_OPTIONS:'battleOptions',
+    BATTLE_PREVIEW: 'battlePreview',
+    BATTLE_OPTIONS: 'battleOptions',
     CREATURES_BACKPACK: 'creaturesBackpack',
-    WIN_OPTIONS:'winOptions',
-    CHOOSE_ATTACK:'chooseAttack',
-    LOSE_GAME:'loseGame'
+    WIN_OPTIONS: 'winOptions',
+    CHOOSE_ATTACK: 'chooseAttack',
+    LOSE_GAME: 'loseGame'
 }
 
 export const ELEMENTAL_TYPES = {
@@ -75,99 +77,105 @@ export const WEAK_TYPE_OF = {
     neutral: ''
 }
 
-export const TEXT_VARIABLES ={
-    'power':ATTACKS_POWER,
-    'base':BUFF_BASE,
-    'maxLayer':BUFF_LAYER_MAX,
-    'heal':HEAL
+export const TEXT_VARIABLES = {
+    'power': ATTACKS_POWER,
+    'base': BUFF_BASE,
+    'maxLayer': BUFF_LAYER_MAX,
+    'heal': HEAL
 }
-    
+
 
 export const ATTACK_CATEGORYS = {
-    PHYSICAL:"physical",
-    SPECIAL:"special",
-    SUPPORT:"support"
+    PHYSICAL: "physical",
+    SPECIAL: "special",
+    SUPPORT: "support"
 }
 
 export const STAT_NAMES = {
-    MAX_HEALTH:'maxHealth',
-    SPEED:'speed',
-    PH_ATTACK:'physicalAttack',
-    SP_ATTACK:'specialAttack',
-    PH_DEFENSE:'physicalDefense',
-    SP_DEFENSE:'specialDefense'
+    MAX_HEALTH: 'maxHealth',
+    SPEED: 'speed',
+    PH_ATTACK: 'physicalAttack',
+    SP_ATTACK: 'specialAttack',
+    PH_DEFENSE: 'physicalDefense',
+    SP_DEFENSE: 'specialDefense'
+}
+
+export const PLAYER_ACTIONS = {
+    ATTACK:'attack',
+    CHANGE:'change',
+    DEAD:'dead'
 }
 
 export const ATTACKS = [
     {
-        name:"FireFist",
-        category:ATTACK_CATEGORYS.PHYSICAL,
-        type:ELEMENTAL_TYPES.FIRE,
+        name: "FireFist",
+        category: ATTACK_CATEGORYS.PHYSICAL,
+        type: ELEMENTAL_TYPES.FIRE,
     },
     {
-        name:"Flamethrower",
-        category:ATTACK_CATEGORYS.SPECIAL,
-        type:ELEMENTAL_TYPES.FIRE,
+        name: "Flamethrower",
+        category: ATTACK_CATEGORYS.SPECIAL,
+        type: ELEMENTAL_TYPES.FIRE,
     },
     {
-        name:"ThermalSharpening",
-        category:ATTACK_CATEGORYS.SUPPORT,
-        type:ELEMENTAL_TYPES.FIRE,
+        name: "ThermalSharpening",
+        category: ATTACK_CATEGORYS.SUPPORT,
+        type: ELEMENTAL_TYPES.FIRE,
     },
     {
-        name:"Ignition",
-        category:ATTACK_CATEGORYS.SUPPORT,
-        type:ELEMENTAL_TYPES.FIRE,
+        name: "Ignition",
+        category: ATTACK_CATEGORYS.SUPPORT,
+        type: ELEMENTAL_TYPES.FIRE,
     },
     {
-        name:"FluidSlash",
-        category:ATTACK_CATEGORYS.PHYSICAL,
-        type:ELEMENTAL_TYPES.WATER,
+        name: "FluidSlash",
+        category: ATTACK_CATEGORYS.PHYSICAL,
+        type: ELEMENTAL_TYPES.WATER,
     },
     {
-        name:"WaterCanon",
-        category:ATTACK_CATEGORYS.SPECIAL,
-        type:ELEMENTAL_TYPES.WATER,
+        name: "WaterCanon",
+        category: ATTACK_CATEGORYS.SPECIAL,
+        type: ELEMENTAL_TYPES.WATER,
     },
     {
-        name:"FrozenShield",
-        category:ATTACK_CATEGORYS.SUPPORT,
-        type:ELEMENTAL_TYPES.WATER,
+        name: "FrozenShield",
+        category: ATTACK_CATEGORYS.SUPPORT,
+        type: ELEMENTAL_TYPES.WATER,
     },
     {
-        name:"AquaticAura",
-        category:ATTACK_CATEGORYS.SUPPORT,
-        type:ELEMENTAL_TYPES.WATER,
+        name: "AquaticAura",
+        category: ATTACK_CATEGORYS.SUPPORT,
+        type: ELEMENTAL_TYPES.WATER,
     },
     {
-        name:"ImpalingSpike",
-        category:ATTACK_CATEGORYS.PHYSICAL,
-        type:ELEMENTAL_TYPES.GRASS,
+        name: "ImpalingSpike",
+        category: ATTACK_CATEGORYS.PHYSICAL,
+        type: ELEMENTAL_TYPES.GRASS,
     },
     {
-        name:"AcidBomb",
-        category:ATTACK_CATEGORYS.SPECIAL,
-        type:ELEMENTAL_TYPES.GRASS,
+        name: "AcidBomb",
+        category: ATTACK_CATEGORYS.SPECIAL,
+        type: ELEMENTAL_TYPES.GRASS,
     },
     {
-        name:"Doping",
-        category:ATTACK_CATEGORYS.SUPPORT,
-        type:ELEMENTAL_TYPES.GRASS,
+        name: "Doping",
+        category: ATTACK_CATEGORYS.SUPPORT,
+        type: ELEMENTAL_TYPES.GRASS,
     },
     {
-        name:"Absorption",
-        category:ATTACK_CATEGORYS.SUPPORT,
-        type:ELEMENTAL_TYPES.GRASS,
+        name: "Absorption",
+        category: ATTACK_CATEGORYS.SUPPORT,
+        type: ELEMENTAL_TYPES.GRASS,
     },
     {
-        name:"Headbutt",
-        category:ATTACK_CATEGORYS.PHYSICAL,
-        type:ELEMENTAL_TYPES.NEUTRAL,
+        name: "Headbutt",
+        category: ATTACK_CATEGORYS.PHYSICAL,
+        type: ELEMENTAL_TYPES.NEUTRAL,
     },
     {
-        name:"AuraRay",
-        category:ATTACK_CATEGORYS.SPECIAL,
-        type:ELEMENTAL_TYPES.NEUTRAL,
+        name: "AuraRay",
+        category: ATTACK_CATEGORYS.SPECIAL,
+        type: ELEMENTAL_TYPES.NEUTRAL,
     }
 ]
 
@@ -255,4 +263,48 @@ export const PLAYER_SKINS = [
     'acetrainerf',
     'magmagrunt',
     'battlegirl'
+]
+
+export const RANDOM = 'random'
+
+export const TYPE_STATS_RELATIONS = {
+    fire: [STAT_NAMES.PH_ATTACK, STAT_NAMES.SP_ATTACK],
+    grass: [STAT_NAMES.MAX_HEALTH, STAT_NAMES.SPEED],
+    water: [STAT_NAMES.PH_DEFENSE, STAT_NAMES.SP_DEFENSE]
+}
+
+export const MIN_SLICE = 10
+
+export const DARK_VALUES = 7
+
+export const MAX_CREATURES_RIVAL = 3
+
+export const MAX_CREATURES = 6
+
+export const PLAYER_EXAMPLE = new Player('Player', PLAYER_SKINS[0], 0)
+
+export const PLAYER_CREATURE_EXAMPLE = new Creature(0, new CreatureImage(),
+    ELEMENTAL_TYPES.FIRE, [ATTACKS[0], ATTACKS[1]])
+
+export const PLAYER_CREATURES_EXAMPLE = [
+    PLAYER_CREATURE_EXAMPLE,
+    PLAYER_CREATURE_EXAMPLE,
+    PLAYER_CREATURE_EXAMPLE,
+    PLAYER_CREATURE_EXAMPLE,
+    PLAYER_CREATURE_EXAMPLE,
+    PLAYER_CREATURE_EXAMPLE
+]
+
+export const RIVAL_EXAMPLE = new Player('Rival', PLAYER_SKINS[1], 0)
+
+export const RIVAL_CREATURE_EXAMPLE = new Creature(1, new CreatureImage(),
+    ELEMENTAL_TYPES.GRASS, [ATTACKS[8], ATTACKS[9]])
+
+export const RIVAL_CREATURES_EXAMPLE = [
+    RIVAL_CREATURE_EXAMPLE,
+    RIVAL_CREATURE_EXAMPLE,
+    RIVAL_CREATURE_EXAMPLE,
+    RIVAL_CREATURE_EXAMPLE,
+    RIVAL_CREATURE_EXAMPLE,
+    RIVAL_CREATURE_EXAMPLE
 ]
