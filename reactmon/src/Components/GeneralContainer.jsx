@@ -15,6 +15,8 @@ import { WinOptions } from "./WinOptions"
 import { LoseGame } from "./LoseGame"
 import { CreaturesBackpack } from "./CreaturesBackpack"
 import { ChooseAttack } from "./ChooseAttack"
+import { Shop } from "./Shop"
+import { DevPanel } from "./DevPanel"
 
 export function GeneralContainer() {
     const { actualWindow } = useGame()
@@ -59,23 +61,34 @@ export function GeneralContainer() {
         {
             name: WINDOW_NAMES.CHOOSE_ATTACK,
             component: ChooseAttack
+        },
+        {
+            name: WINDOW_NAMES.SHOP,
+            component: Shop
         }
     ]
 
+    const seeDevPanel = false
+
     return (
         <>
-            <LeftMenu />
-            <RightPanel />
+            <div className="generalContainer">
+                <div className="generalPosition">
+                    <LeftMenu />
+                    <RightPanel />
+                    {seeDevPanel && <DevPanel />}
 
-            <div className="centralContainer">
-                {windowComponents.map((windowComponent,index) => {
-                    if (actualWindow == windowComponent.name) {
-                        return createElement(windowComponent.component,{key:index})
-                    }
-                })}
+                    <div className="centralContainer">
+                        {windowComponents.map((windowComponent, index) => {
+                            if (actualWindow == windowComponent.name) {
+                                return createElement(windowComponent.component, { key: index })
+                            }
+                        })}
+                    </div>
+
+                    <Footer />
+                </div>
             </div>
-
-            <Footer />
         </>
     )
 }

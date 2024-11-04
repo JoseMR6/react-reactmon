@@ -1,0 +1,59 @@
+.shopContainer {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.shopContainer .rightOptions {
+    display: flex;
+    flex-direction: row;
+
+    position: absolute;
+    top:20px;
+    right: 20px;
+    gap: 10px;
+}
+
+.shopContainer .option{
+    all: unset;
+
+    border-radius: 10px;
+    border: 1px solid var(--main-border-color);
+    box-shadow: 0px 0px 10px var(--main-color);
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    padding: 6px;
+    align-items: center;
+    justify-content: center;
+}
+
+.shopContainer .option:hover{
+    cursor: pointer;
+    background-color: var(--select-bg-color);
+    color: var(--select-color);
+}
+
+.shopContainer .creaturesContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.shopContainer .creatureContainer {
+    width: 300px;
+}
+
+.shopContainer .creatureSection {
+    align-items: center;
+}
+
+.shopContainer .price {
+    border-radius: 10px;
+    border: 2px solid var(--main-border-color);
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    padding: 6px;
+    align-items: center;
+}

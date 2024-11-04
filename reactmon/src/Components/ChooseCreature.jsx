@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useGame } from '../Logic/hooks/useGame'
-import { ELEMENTAL_TYPES, GAME_STATES, ITEM_TYPES, MAX_CREATURES, PLAYER_CREATURE_EXAMPLE, WINDOW_NAMES } from '../Logic/constants'
+import { ELEMENTAL_TYPES, GAME_STATES, ITEM_TYPES, MAX_CREATURES, PLAYER_CREATURE_EXAMPLE, ROUNDS_PER_STAGE, WINDOW_NAMES } from '../Logic/constants'
 import './ChooseCreature.css'
 import { ElemntIcon } from './Types'
 import { CreatureImg } from './creatures/CreatureImg'
@@ -69,7 +69,7 @@ export function ChooseCreature() {
 function CreatureSelect({ creature }) {
     const { languajeDocument, changeWindow, setSelectedItem,
         setPlayerCreatures, setGameState, setInitWindow,
-        gameState, playerCreatures, setExtraItem
+        gameState, playerCreatures, setExtraItem,round
     } = useGame()
     const lang = languajeDocument.ChooseCreature
 
@@ -84,9 +84,15 @@ function CreatureSelect({ creature }) {
             } else if (gameState == GAME_STATES.WIN) {
                 setPlayerCreatures([...playerCreatures, creature])
             }
-            setInitWindow(WINDOW_NAMES.BATTLE_PREVIEW)
-            setGameState(GAME_STATES.BATTLE)
-            changeWindow(WINDOW_NAMES.BATTLE_PREVIEW)
+            if ((round>=ROUNDS_PER_STAGE)&&(round%ROUNDS_PER_STAGE == 0)) {
+                setGameState(GAME_STATES.SHOPPING)
+                setInitWindow(WINDOW_NAMES.SHOP)
+                changeWindow(WINDOW_NAMES.SHOP)
+            }else{
+                setInitWindow(WINDOW_NAMES.BATTLE_PREVIEW)
+                setGameState(GAME_STATES.BATTLE)
+                changeWindow(WINDOW_NAMES.BATTLE_PREVIEW)
+            }
         }
     }
 

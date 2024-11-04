@@ -1,4 +1,4 @@
-import { BOSS_WIN_COINS, GAME_STATES, MAX_CREATURES, WINDOW_NAMES, WIN_COINS } from '../Logic/constants'
+import { BOSS_WIN_COINS, GAME_STATES, MAX_CREATURES, ROUNDS_PER_STAGE, WINDOW_NAMES, WIN_COINS } from '../Logic/constants'
 import { shuffle } from '../Logic/functions/calculations'
 import { creatureReset } from '../Logic/functions/creature'
 import { useGame } from '../Logic/hooks/useGame'
@@ -9,7 +9,7 @@ import CoinIcon from '/coin.svg'
 
 export function WinOptions() {
     const { coins, setCoins, changeWindow, chooseOptions, rivalCreatures,
-        setGameState, setInitWindow, languajeDocument
+        setGameState, setInitWindow, languajeDocument, round
     } = useGame()
 
     const rivalClone = []
@@ -24,12 +24,18 @@ export function WinOptions() {
 
     const lang = languajeDocument.WinOptions
 
-    const handleCoinsClick=()=>{
-        const coinsReward = (rivalCreatures.length>=MAX_CREATURES)?BOSS_WIN_COINS:WIN_COINS
+    const handleCoinsClick = () => {
+        const coinsReward = (rivalCreatures.length >= MAX_CREATURES) ? BOSS_WIN_COINS : WIN_COINS
         setCoins(coins + coinsReward)
-        setInitWindow(WINDOW_NAMES.BATTLE_PREVIEW)
-        setGameState(GAME_STATES.BATTLE)
-        changeWindow(WINDOW_NAMES.BATTLE_PREVIEW)
+        if ((round>=ROUNDS_PER_STAGE)&&(round%ROUNDS_PER_STAGE == 0)) {
+            setGameState(GAME_STATES.SHOPPING)
+            setInitWindow(WINDOW_NAMES.SHOP)
+            changeWindow(WINDOW_NAMES.SHOP)
+        }else{
+            setInitWindow(WINDOW_NAMES.BATTLE_PREVIEW)
+            setGameState(GAME_STATES.BATTLE)
+            changeWindow(WINDOW_NAMES.BATTLE_PREVIEW)
+        }
     }
 
     return (

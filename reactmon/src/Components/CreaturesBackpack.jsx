@@ -1,4 +1,4 @@
-import { GAME_STATES, INIT_STATES, ITEM_TYPES, WINDOW_NAMES } from '../Logic/constants'
+import { GAME_STATES, INIT_STATES, ITEM_TYPES, ROUNDS_PER_STAGE, WINDOW_NAMES } from '../Logic/constants'
 import { creatureCanLearnAttack } from '../Logic/functions/creature'
 import { useGame } from '../Logic/hooks/useGame'
 import './CreaturesBackpack.css'
@@ -55,7 +55,7 @@ function CreatureBackpack({ index, creature }) {
     const { changeWindow, setSelectedItem,
         languajeDocument, indexActualCreaturePlayer, setIndexActualCreaturePlayer,
         setInitWindow, initWindow, playerCreatures, setPlayerCreatures, gameState, extraItem,
-        setExtraItem, setGameState
+        setExtraItem, setGameState, round
     } = useGame()
     const lang = languajeDocument.CreaturesBackpack
     const newAttack = (gameState == GAME_STATES.NEW_ITEM && extraItem.itemType == ITEM_TYPES.ATTACK)
@@ -89,9 +89,15 @@ function CreatureBackpack({ index, creature }) {
             setPlayerCreatures(cloneCreatures)
         }
         setExtraItem({ itemType: null, item: null })
-        setInitWindow(WINDOW_NAMES.BATTLE_PREVIEW)
-        setGameState(GAME_STATES.BATTLE)
-        changeWindow(WINDOW_NAMES.BATTLE_PREVIEW)
+        if ((round>=ROUNDS_PER_STAGE)&&(round%ROUNDS_PER_STAGE == 0)) {
+            setGameState(GAME_STATES.SHOPPING)
+            setInitWindow(WINDOW_NAMES.SHOP)
+            changeWindow(WINDOW_NAMES.SHOP)
+        }else{
+            setInitWindow(WINDOW_NAMES.BATTLE_PREVIEW)
+            setGameState(GAME_STATES.BATTLE)
+            changeWindow(WINDOW_NAMES.BATTLE_PREVIEW)
+        }
     }
 
     return (
@@ -156,15 +162,23 @@ CreatureBackpack.propTypes = {
 }
 
 function AttackBackpack({ attack }) {
-    const { setExtraItem, setInitWindow, setGameState, changeWindow, languajeDocument } = useGame()
+    const { setExtraItem, setInitWindow, setGameState, changeWindow, languajeDocument, 
+        round
+    } = useGame()
     const lang = languajeDocument.CreaturesBackpack
     const langA = languajeDocument.AttacksText
 
     const handleDiscardClick = () => {
         setExtraItem({ itemType: null, item: null })
-        setInitWindow(WINDOW_NAMES.BATTLE_PREVIEW)
-        setGameState(GAME_STATES.BATTLE)
-        changeWindow(WINDOW_NAMES.BATTLE_PREVIEW)
+        if ((round>=ROUNDS_PER_STAGE)&&(round%ROUNDS_PER_STAGE == 0)) {
+            setGameState(GAME_STATES.SHOPPING)
+            setInitWindow(WINDOW_NAMES.SHOP)
+            changeWindow(WINDOW_NAMES.SHOP)
+        }else{
+            setInitWindow(WINDOW_NAMES.BATTLE_PREVIEW)
+            setGameState(GAME_STATES.BATTLE)
+            changeWindow(WINDOW_NAMES.BATTLE_PREVIEW)
+        }
     }
 
     const handleExtraAttackInfoClick=(event)=>{

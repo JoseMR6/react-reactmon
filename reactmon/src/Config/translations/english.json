@@ -38,7 +38,9 @@
         "statsButton": "Stats",
         "returnButton": "Return",
         "forgetText":"Forget",
-        "teachText":"Teach"
+        "teachText":"Teach",
+        "getCreature":"Creature",
+        "getAttack":"Attack"
     },
     "StatsText": {
         "maxHealth": "Max Life",
@@ -155,6 +157,12 @@
         "record":"Record",
         "round":"Round",
         "finalTeam":"Final Team"
+    },
+    "Shop":{
+        "title":"Shop",
+        "exitButton":"Exit",
+        "buyButton":"Buy",
+        "viewButton":"View"
     },
     "Footer":{
         "author":"Author",

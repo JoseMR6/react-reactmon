@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { GAME_STATES, ITEM_TYPES, PLAYER_CREATURE_EXAMPLE, WINDOW_NAMES } from '../Logic/constants'
+import { GAME_STATES, INIT_STATES, ITEM_TYPES, MAX_CREATURES, PLAYER_CREATURE_EXAMPLE, WINDOW_NAMES } from '../Logic/constants'
 import { ElemntIcon } from './Types'
 import { ViewAttack } from './ViewAttack'
 import './ViewCreature.css'
@@ -12,7 +12,7 @@ import { creatureCanForget } from '../Logic/functions/creature'
 export function ViewCreature() {
     const { languajeDocument, selectedItem, changeWindow, gameState,
         extraItem, setExtraItem, setInitWindow, setGameState, playerCreatures, setPlayerCreatures,
-        indexActualCreaturePlayer
+        indexActualCreaturePlayer, initWindow
     } = useGame()
     const [select, setSelect] = useState(2) //stats
 
@@ -25,27 +25,59 @@ export function ViewCreature() {
 
     const cloneCreature = structuredClone(creature)
 
-    const handleTeachAttackClick=()=>{
+    const handleTeachAttackClick = () => {
         const cloneCreatures = structuredClone(playerCreatures)
         const attacks = cloneCreatures[indexActualCreaturePlayer].attacks
-        if (select < 2&&attacks.length >= 2) {
+        if (select < 2 && attacks.length >= 2) {
             attacks.splice(select, 1)
         }
-        if (select != 2||attacks.length<2) {
+        if (select != 2 || attacks.length < 2) {
             attacks.push(extraItem.item)
             setPlayerCreatures(cloneCreatures)
         }
         setExtraItem({ itemType: null, item: null })
-        setInitWindow(WINDOW_NAMES.BATTLE_PREVIEW)
-        setGameState(GAME_STATES.BATTLE)
-        changeWindow(WINDOW_NAMES.BATTLE_PREVIEW)
+
+        if (initWindow == INIT_STATES.PURCHASED) {
+            setInitWindow(WINDOW_NAMES.SHOP)
+            setGameState(GAME_STATES.SHOPPING)
+            changeWindow(WINDOW_NAMES.SHOP)
+        } else {
+            setInitWindow(WINDOW_NAMES.BATTLE_PREVIEW)
+            setGameState(GAME_STATES.BATTLE)
+            changeWindow(WINDOW_NAMES.BATTLE_PREVIEW)
+        }
+
     }
 
-    const handleReturnClick=()=>{
+    const handleReturnClick = () => {
         if (gameState == GAME_STATES.START || gameState == GAME_STATES.WIN)
             changeWindow(WINDOW_NAMES.CHOOSE_CREATURE)
         else if (gameState == GAME_STATES.BATTLE || gameState == GAME_STATES.NEW_ITEM)
             changeWindow(WINDOW_NAMES.CREATURES_BACKPACK)
+        else if (gameState == GAME_STATES.SHOPPING)
+            changeWindow(WINDOW_NAMES.SHOP)
+    }
+
+    const handleGetCreature = () => {
+        if (playerCreatures.length >= MAX_CREATURES) {
+            setExtraItem({ itemType: ITEM_TYPES.CREATURE, item: creature })
+            setGameState(GAME_STATES.NEW_ITEM)
+            changeWindow(WINDOW_NAMES.CREATURES_BACKPACK)
+        } else {
+            setPlayerCreatures([...playerCreatures, creature])
+
+            setInitWindow(WINDOW_NAMES.SHOP)
+            setGameState(GAME_STATES.SHOPPING)
+            changeWindow(WINDOW_NAMES.SHOP)
+        }
+    }
+
+    const handleGetAttack = () => {
+        if (select < 2) {
+            setExtraItem({ itemType: ITEM_TYPES.ATTACK, item: creature.attacks[select] })
+            setGameState(GAME_STATES.NEW_ITEM)
+            changeWindow(WINDOW_NAMES.CREATURES_BACKPACK)
+        }
     }
 
     return (
@@ -126,7 +158,7 @@ export function ViewCreature() {
                                     </div>
                                     {(extraItem.item.name != creature.attacks[0].name
                                         && (!creature.attacks[1] || extraItem.item.name != creature.attacks[1].name)
-                                        && creatureCanForget(cloneCreature,select, extraItem.item)
+                                        && creatureCanForget(cloneCreature, select, extraItem.item)
                                         && select != 3
                                     ) &&
                                         <div className='buttonReturn'
@@ -138,16 +170,39 @@ export function ViewCreature() {
                                             {!(playerCreatures[indexActualCreaturePlayer].attacks.length >= 2) &&
                                                 <b>{lang.teachText}</b>
                                             }
-
                                         </div>
                                     }
                                 </>
                             }
-                            <div className='buttonReturn'
-                                onClick={handleReturnClick}
-                            >
-                                <b>{lang.returnButton}</b>
-                            </div>
+                            {!(initWindow == INIT_STATES.PURCHASED
+                                && gameState == GAME_STATES.SHOPPING)
+                                &&
+                                <div className='buttonReturn'
+                                    onClick={handleReturnClick}
+                                >
+                                    <b>{lang.returnButton}</b>
+                                </div>
+                            }
+                            {(initWindow == INIT_STATES.PURCHASED
+                                && gameState == GAME_STATES.SHOPPING)
+                                &&
+                                <>
+                                    <div className='buttonReturn'
+                                        onClick={handleGetCreature}
+                                    >
+                                        <b>{lang.getCreature}</b>
+                                    </div>
+                                    {select < 2 &&
+                                        <div className='buttonReturn'
+                                            onClick={handleGetAttack}
+                                        >
+                                            <b>{lang.getAttack}</b>
+                                        </div>
+                                    }
+
+                                </>
+                            }
+
                         </div>
                         <div className='infoContainer'>
                             {select == 3 &&

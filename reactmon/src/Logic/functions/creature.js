@@ -1,11 +1,24 @@
 import { Buff, Creature, CreatureImage } from "../classes/Creature"
-import { ADJUSTMENT, ATTACKS, ATTACKS_POWER, ATTACK_CATEGORYS, BUFF_BASE, BUFF_LAYER_MAX, CREATURES, DARK_VALUES, EFFECTIVE_TYPE, ELEMENTAL_TYPES, HEAL, MAX_STAT_VALUE, MIN_HEALTH, MIN_SLICE, OWN_TYPE, RANDOM, STAT_NAMES, TOTAL_STATS, TYPE_STATS_RELATIONS, WEAK_TYPE, WEAK_TYPE_OF } from "../constants"
+import { ADJUSTMENT, ATTACKS, ATTACKS_POWER, ATTACK_CATEGORYS, BUFF_BASE, BUFF_LAYER_MAX, CREATURES, CREATURE_PRICE, DARK_VALUES, EFFECTIVE_TYPE, ELEMENTAL_TYPES, HEAL, MAX_STAT_VALUE, MIN_HEALTH, MIN_SLICE, OWN_TYPE, RANDOM, RARE_CREATURE_PRICE, STAT_NAMES, TOTAL_STATS, TYPE_STATS_RELATIONS, ULTRA_RARE_CREATURE_PRICE, WEAK_TYPE, WEAK_TYPE_OF } from "../constants"
 import { getRandomInt } from "./calculations"
 
 export function creatureReset(creature) {
     creature.recordedHealth = creature.stats.maxHealth
     creature.recordedBuffs = new Buff()
     creature.dead = false
+}
+
+export function getCreaturePrice(creature){
+    let maxedStats=0
+    const stats = creature.stats
+    
+    for (const statName in stats) {
+        if(stats[statName]==MAX_STAT_VALUE) maxedStats++
+    }
+
+    if(maxedStats<=0) return CREATURE_PRICE
+    else if(maxedStats==1) return RARE_CREATURE_PRICE
+    else if(maxedStats>=2) return ULTRA_RARE_CREATURE_PRICE
 }
 
 export function creatureCanLearnAttack(creature, attack) {
@@ -270,7 +283,8 @@ export function generateCreature({ id = 0, type = RANDOM, numAttacks = RANDOM,
 
     //calcular vida si no se ha hecho ya
     if (stats[STAT_NAMES.MAX_HEALTH] != MAX_STAT_VALUE) {
-        randomNumber = getRandomInt(MAX_STAT_VALUE + 1)
+        const maxValue = (sumStats >= MAX_STAT_VALUE) ? MAX_STAT_VALUE : sumStats
+        randomNumber = getRandomInt(maxValue + 1)
         if (randomNumber < MIN_HEALTH) randomNumber = MIN_HEALTH
         stats[STAT_NAMES.MAX_HEALTH] = randomNumber
         sumStats = sumStats - randomNumber

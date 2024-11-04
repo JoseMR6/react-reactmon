@@ -11,6 +11,18 @@ export const WIN_COINS = gameBalance.winCoins
 
 export const BOSS_WIN_COINS = gameBalance.bossWinCoins
 
+export const CREATURE_PRICE = gameBalance.creaturePrice
+
+export const RARE_CREATURE_PRICE = gameBalance.rareCreaturePrice
+
+export const ULTRA_RARE_CREATURE_PRICE = gameBalance.ultraRareCreaturePrice
+
+export const REFRESH_PRICE = gameBalance.refreshPrice
+
+export const RARE_PERCENTAGE = gameBalance.rarePercentage
+
+export const ULTRA_RARE_PERCENTAGE = gameBalance.ultraRarePercentaje
+
 export const ATTACKS_POWER = gameBalance.attacksPower
 
 export const BUFF_BASE = gameBalance.buffBase
@@ -41,6 +53,7 @@ export const GAME_STATES = {
     START: 'start',
     BATTLE: 'battle',
     NEW_ITEM: 'newItem',
+    SHOPPING: 'shopping',
     WIN: 'win',
     LOSE: 'lose'
 }
@@ -48,7 +61,8 @@ export const GAME_STATES = {
 export const INIT_STATES = {
     DEAD: "dead",
     CHANGE: "change",
-    FORCED_CHANGE: "forcedChange"
+    FORCED_CHANGE: "forcedChange",
+    PURCHASED:'purchased'
 }
 
 export const ITEM_TYPES = {
@@ -64,6 +78,7 @@ export const WINDOW_NAMES = {
     BATTLE_PREVIEW: 'battlePreview',
     BATTLE_OPTIONS: 'battleOptions',
     CREATURES_BACKPACK: 'creaturesBackpack',
+    SHOP: 'shop',
     WIN_OPTIONS: 'winOptions',
     CHOOSE_ATTACK: 'chooseAttack',
     LOSE_GAME: 'loseGame'

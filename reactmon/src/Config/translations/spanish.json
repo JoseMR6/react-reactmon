@@ -38,7 +38,9 @@
         "statsButton": "Estadísticas",
         "returnButton": "Volver",
         "forgetText":"Olvidar",
-        "teachText":"Enseñar"
+        "teachText":"Enseñar",
+        "getCreature":"Criatura",
+        "getAttack":"Ataque"
     },
     "StatsText": {
         "maxHealth": "Vida Máxima",
@@ -155,6 +157,12 @@
         "record":"Record",
         "round":"Ronda",
         "finalTeam":"Equipo Final"
+    },
+    "Shop":{
+        "title":"Tienda",
+        "exitButton":"Salir",
+        "buyButton":"Comprar",
+        "viewButton":"Ver"
     },
     "Footer": {
         "author": "Autor",
