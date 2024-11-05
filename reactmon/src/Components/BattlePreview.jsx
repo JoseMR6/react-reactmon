@@ -8,11 +8,12 @@ import { CreatureImg } from './creatures/CreatureImg'
 import { PropTypes } from 'prop-types'
 import { creatureReset } from '../Logic/functions/creature'
 import { generateRival } from '../Logic/functions/player'
+import { nextBackground } from '../Logic/functions/calculations'
 
 export function BattlePreview() {
     const { rival, rivalCreatures, player, setPlayer, playerCreatures, setPlayerCreatures,
         languajeDocument, initWindow, setInitWindow, setRival, setRivalCreatures, setRound, round,
-        getNewId
+        getNewId, setBackground
     } = useGame()
 
     const lang = languajeDocument.BattlePreview
@@ -34,6 +35,10 @@ export function BattlePreview() {
             });
             setPlayerCreatures(playerCreaturesClone)
 
+            if(newRound%ROUNDS_PER_STAGE==1){
+                setBackground(nextBackground(round))
+            }
+            
             const { newRival,
                 newRivalCreatures
             } = generateRival(

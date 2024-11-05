@@ -12,7 +12,8 @@ export function GameProvider({ children }) {
         gameState, setGameState,
         actualWindow, setActualWindow,
         formerWindow,
-        initWindow,setInitWindow
+        initWindow,setInitWindow,
+        background, setBackground
     } = useConfig()
 
     const {
@@ -27,9 +28,8 @@ export function GameProvider({ children }) {
         indexActualCreatureRival, setIndexActualCreatureRival,
         selectedItem, setSelectedItem,
         extraItem, setExtraItem,
-        chooseOptions
+        chooseOptions, setChooseOptions
     } = useMechanics()
-
 
     return (
         <GameContext.Provider value={{
@@ -39,6 +39,7 @@ export function GameProvider({ children }) {
             actualWindow, setActualWindow,
             formerWindow,
             initWindow,setInitWindow,
+            background, setBackground,
             round, setRound,
             coins, setCoins,
             contCreatureIds,
@@ -50,7 +51,7 @@ export function GameProvider({ children }) {
             indexActualCreatureRival, setIndexActualCreatureRival,
             selectedItem, setSelectedItem,
             extraItem, setExtraItem,
-            chooseOptions
+            chooseOptions, setChooseOptions
         }}>
             {children}
         </GameContext.Provider>

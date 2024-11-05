@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { GameContext } from "../contexts/GameContext";
 import { checkContextProvider } from "../errors";
-import { GAME_STATES, INITIAL_COINS, WINDOW_NAMES } from "../constants";
+import { BACKGROUNDS, GAME_STATES, INITIAL_COINS, WINDOW_NAMES } from "../constants";
 import { doAttack } from "../functions/creature";
 
 export function useGame() {
@@ -16,6 +16,7 @@ export function useGame() {
         actualWindow, setActualWindow,
         formerWindow,
         initWindow, setInitWindow,
+        background, setBackground,
         round, setRound,
         coins, setCoins,
         contCreatureIds,
@@ -27,7 +28,7 @@ export function useGame() {
         indexActualCreatureRival, setIndexActualCreatureRival,
         selectedItem, setSelectedItem,
         extraItem, setExtraItem,
-        chooseOptions
+        chooseOptions, setChooseOptions
     } = context
 
     function reset() {
@@ -37,6 +38,7 @@ export function useGame() {
         setRound(0)
         formerWindow.current = null
         setInitWindow(null)
+        setBackground(BACKGROUNDS[BACKGROUNDS.length-1])
         contCreatureIds.current = 0
         setPlayerCreatures(null)
         setIndexActualCreaturePlayer(null)
@@ -45,7 +47,7 @@ export function useGame() {
         setIndexActualCreatureRival(null)
         setSelectedItem({ itemType: null, item: null })
         setExtraItem({ itemType: null, item: null })
-        chooseOptions.current = []
+        setChooseOptions([])
     }
 
     function changeWindow(newWindow) {
@@ -136,6 +138,7 @@ export function useGame() {
         actualWindow, setActualWindow,
         formerWindow,
         initWindow, setInitWindow,
+        background, setBackground,
         round, setRound,
         coins, setCoins,
         contCreatureIds,
@@ -147,7 +150,7 @@ export function useGame() {
         indexActualCreatureRival, setIndexActualCreatureRival,
         selectedItem, setSelectedItem,
         extraItem, setExtraItem,
-        chooseOptions,
+        chooseOptions, setChooseOptions,
         reset, changeWindow, getNewId, checkWinner, processAttack
     }
 }

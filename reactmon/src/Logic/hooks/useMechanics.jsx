@@ -14,7 +14,7 @@ export function useMechanics(initialCoins=INITIAL_COINS){
     const [indexActualCreatureRival, setIndexActualCreatureRival] = useState(null)
     const [selectedItem, setSelectedItem] = useState({itemType:null,item:null})
     const [extraItem, setExtraItem] = useState({itemType:null,item:null})
-    const chooseOptions = new useRef([])
+    const [chooseOptions, setChooseOptions] = useState([])
 
     return{
         round, setRound,
@@ -28,6 +28,6 @@ export function useMechanics(initialCoins=INITIAL_COINS){
         indexActualCreatureRival, setIndexActualCreatureRival,
         selectedItem, setSelectedItem,
         extraItem, setExtraItem,
-        chooseOptions
+        chooseOptions, setChooseOptions
     }
 }

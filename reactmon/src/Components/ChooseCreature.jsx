@@ -8,14 +8,14 @@ import { PropTypes } from 'prop-types'
 import { generateCreature } from '../Logic/functions/creature'
 
 export function ChooseCreature() {
-    const { languajeDocument, chooseOptions,
+    const { languajeDocument, chooseOptions, setChooseOptions,
         initWindow, getNewId, setInitWindow
     } = useGame()
     const lang = languajeDocument.ChooseCreature
 
     useEffect(() => {
         if (initWindow == WINDOW_NAMES.CHOOSE_CREATURE) {
-            chooseOptions.current = [
+            setChooseOptions([
                 generateCreature({
                     id: getNewId(),
                     type: ELEMENTAL_TYPES.FIRE,
@@ -34,24 +34,24 @@ export function ChooseCreature() {
                     numAttacks: 1,
                     maxedStatsNum: 1
                 })
-            ]
+            ])
             setInitWindow(null)
-        } else if (!chooseOptions.current || chooseOptions.current.length == 0) {
-            chooseOptions.current = [
+        } else if (!chooseOptions || chooseOptions.length == 0) {
+            setChooseOptions([
                 PLAYER_CREATURE_EXAMPLE,
                 PLAYER_CREATURE_EXAMPLE,
                 PLAYER_CREATURE_EXAMPLE
-            ]
+            ])
         }
     }, [])
 
     return (
         <>
-            {(chooseOptions.current && chooseOptions.current.length != 0) &&
+            {(chooseOptions && chooseOptions.length != 0) &&
                 <div className="chooseCreatureContainer">
                     <h1>{lang.title}</h1>
                     <div className='creaturesContainer'>
-                        {chooseOptions.current.map((creature, index) => {
+                        {chooseOptions.map((creature, index) => {
                             if (index < 3) {
                                 return (
                                     <CreatureSelect key={index} creature={creature} />

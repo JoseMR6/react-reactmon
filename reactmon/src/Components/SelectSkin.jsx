@@ -1,13 +1,13 @@
 import { getSkinRoute } from '../Logic/functions/parse'
 import { useGame } from '../Logic/hooks/useGame'
 import { Player } from '../Logic/classes/Player'
-import { PLAYER_SKINS, WINDOW_NAMES } from '../Logic/constants'
+import { BACKGROUNDS, PLAYER_SKINS, WINDOW_NAMES } from '../Logic/constants'
 import './SelectSkin.css'
 import { useEffect } from 'react'
 
 export function SelectSkin() {
     const { player, setPlayer,
-        languajeDocument, changeWindow
+        languajeDocument, changeWindow, setBackground
     } = useGame()
 
     const lang = languajeDocument.SelectSkin
@@ -15,6 +15,8 @@ export function SelectSkin() {
     useEffect(() => {
         const playerStored = localStorage.getItem("reactmonPayer")
         if (playerStored) setPlayer(JSON.parse(playerStored))
+        
+        setBackground(BACKGROUNDS[BACKGROUNDS.length-1])
     }, [])
 
     const handleSkinClick=(skin)=>{

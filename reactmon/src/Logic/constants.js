@@ -286,6 +286,33 @@ export const PLAYER_SKINS = [
     'battlegirl'
 ]
 
+export const BACKGROUNDS=[
+    {
+        image:"grassland",
+        color:"#bbff9985"
+    },
+    {
+        image:"forest",
+        color:"#32b62685"
+    },
+    {
+        image:"sea",
+        color:"#5adcf385"
+    },
+    {
+        image:"desert",
+        color:"#c8d64c85"
+    },
+    {
+        image:"volcano",
+        color:"#6e010185"
+    },
+    {
+        image:"city",
+        color:"#416f8a85"
+    }
+]
+
 export const RANDOM = 'random'
 
 export const TYPE_STATS_RELATIONS = {

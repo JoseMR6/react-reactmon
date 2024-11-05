@@ -1,5 +1,6 @@
 import { ELEMENTAL_TYPES } from "../constants"
 import { errorType } from "../errors"
+import { getBackgroundRoute } from "./parse"
 
 export function getColorPattern(type, dark) {
     const variation = 0x55
@@ -66,7 +67,7 @@ export function getColorPattern(type, dark) {
         secondIntense = secondColor
         secondDark = "#" + third.toString(16) + "00" + second.toString(16) + ""
         secondLight = "#" + (second + secondVariation).toString(16) + variation.toString(16) + base.toString(16)
-    } else{
+    } else {
         errorType()
     }
 
@@ -79,4 +80,13 @@ export function getColorPattern(type, dark) {
         secondIntense, secondDark, secondLight,
         black, white, gray
     }
+}
+
+export function changeBackground(background) {
+    const root = document.body
+    const bgImage = getBackgroundRoute(background.image)
+    const bgColor = background.color
+    root.style.backgroundImage = `url('${bgImage}')`
+    const gc = document.getElementsByClassName("generalContainer")[0]
+    gc.style.backgroundColor = bgColor
 }

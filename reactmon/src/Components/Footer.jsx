@@ -28,6 +28,12 @@ export function Footer(){
                             SVG-Repo.
                         </a>
                         <a 
+                            href='https://www.freepik.es/'
+                            target='_blank'
+                        >
+                            FREEPIK.
+                        </a>
+                        <a 
                             href='https://play.pokemonshowdown.com/sprites/trainers/'
                             target='_blank'
                         >

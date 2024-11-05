@@ -4,7 +4,7 @@
   font-weight: 400;
 
   /*Constantes de estilo*/
-  --default-bg-color: #bbff9956;
+  --default-bg-color: #416f8a85;
   --main-bg-color: rgba(255, 255, 255, 0.719);
   --main-color: black;
   --main-border-color: rgb(61, 61, 61); 
@@ -13,12 +13,6 @@
   --skin-width: 100px;
 
   color: var(--main-color);
-  background: url("./src/assets/backgrounds/test.jpg");
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  opacity: 1;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -28,6 +22,12 @@
 
 body {
   margin: 0;
+
+  background-image: url("/src/assets/backgrounds/city.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 h1 {

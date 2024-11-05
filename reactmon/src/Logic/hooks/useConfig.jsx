@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react"
-import { GAME_STATES, TRANSLATIONS, WINDOW_NAMES } from "../constants"
+import { BACKGROUNDS, GAME_STATES, TRANSLATIONS, WINDOW_NAMES } from "../constants"
 import english from '../../Config/translations/english.json'
 import { getLanguajeDocument } from "../functions/parse"
+import { changeBackground } from "../functions/draw"
 
 export function useConfig() {
     const [languaje, setLanguaje] = new useState('english')
@@ -11,6 +12,7 @@ export function useConfig() {
     const [actualWindow, setActualWindow] = new useState(WINDOW_NAMES.SELECT_SKIN)
     const formerWindow = new useRef(null)
     const [initWindow, setInitWindow] = new useState(null)
+    const [background, setBackground] = new useState(BACKGROUNDS[BACKGROUNDS.length-1])
 
     useEffect(() => {
         const initLanguaje=Object.keys(TRANSLATIONS)[0]
@@ -22,6 +24,10 @@ export function useConfig() {
         }
     },[])
 
+    useEffect(()=>{
+        changeBackground(background)
+    },[background])
+
 
     return {
         languaje, setLanguaje,
@@ -29,6 +35,7 @@ export function useConfig() {
         gameState, setGameState,
         actualWindow, setActualWindow,
         formerWindow,
-        initWindow, setInitWindow
+        initWindow, setInitWindow,
+        background, setBackground
     }
 }

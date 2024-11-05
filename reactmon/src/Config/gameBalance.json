@@ -1,7 +1,7 @@
 {
     "initialCoins":1000,
-    "winCoins":100,
-    "bossWinCoins":500,
+    "winCoins":200,
+    "bossWinCoins":1000,
     "creaturePrice":1000,
     "rareCreaturePrice":3000,
     "ultraRareCreaturePrice":5000,

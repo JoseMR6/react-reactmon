@@ -68,12 +68,13 @@ export function GeneralContainer() {
         }
     ]
 
+    document.oncontextmenu = function () { return false }
     const seeDevPanel = false
 
     return (
         <>
             <div className="generalContainer">
-                <div className="generalPosition">
+                <div className="generalPositioner">
                     <LeftMenu />
                     <RightPanel />
                     {seeDevPanel && <DevPanel />}

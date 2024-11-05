@@ -10,11 +10,11 @@ export function ChooseAttack() {
 
     return (
         <>
-            {(chooseOptions.current && chooseOptions.current.length != 0) &&
+            {(chooseOptions && chooseOptions.length != 0) &&
                 <div className="chooseAttackContainer">
                     <h1>{lang.title}</h1>
                     <div className='attacksContainer'>
-                        {chooseOptions.current.map((creature, index) => {
+                        {chooseOptions.map((creature, index) => {
                             if (index < 3) {
                                 return (
                                     <div key={index} className='creatureAttacks'>
@@ -74,7 +74,7 @@ function AttackSelect({ attack }) {
                     <div className='buttonOption'
                         onClick={handleChooseClick}
                     >
-                        {lang.chooseButton}
+                        <b>{lang.chooseButton}</b>
                     </div>
                     <div className='buttonOption'
                         onClick={handleExtraAttackInfoClick}

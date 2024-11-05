@@ -8,7 +8,7 @@ import { CreatureImg } from './creatures/CreatureImg'
 import CoinIcon from '/coin.svg'
 
 export function WinOptions() {
-    const { coins, setCoins, changeWindow, chooseOptions, rivalCreatures,
+    const { coins, setCoins, changeWindow, setChooseOptions, rivalCreatures,
         setGameState, setInitWindow, languajeDocument, round
     } = useGame()
 
@@ -45,7 +45,7 @@ export function WinOptions() {
                 <div className='optionsContainer'>
                     <div className='optionContainer'
                         onClick={() => {
-                            chooseOptions.current = rivalClone
+                            setChooseOptions(rivalClone)
                             changeWindow(WINDOW_NAMES.CHOOSE_CREATURE)
                         }}
                     >
@@ -63,7 +63,7 @@ export function WinOptions() {
 
                     <div className='optionContainer'
                         onClick={() => {
-                            chooseOptions.current = rivalClone
+                            setChooseOptions(rivalClone)
                             changeWindow(WINDOW_NAMES.CHOOSE_ATTACK)
                         }}
                     >

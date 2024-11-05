@@ -5,7 +5,7 @@ import './BattleOptions.css'
 import { ElemntIcon } from './Types'
 import { CreatureImg } from './creatures/CreatureImg'
 import { PropTypes } from 'prop-types'
-import { applyMessageVars } from '../Logic/functions/parse'
+import { applyMessageVars, getAsset } from '../Logic/functions/parse'
 import { getRandomInt } from '../Logic/functions/calculations'
 import { deadFilterChoose, getFirst } from '../Logic/functions/creature'
 
@@ -87,10 +87,13 @@ export function BattleOptions() {
 }
 
 function PlayerCreatureContainer({ player, main = true }) {
+    const {background} = useGame()
+    const ground = background.color.slice(0,-2)
+    
     return (
         <>
             <div className={'playerCreatureContainer ' + (!main ? 'rival' : '')}>
-                <div className='battleGround' />
+                <div className='battleGround' style={{backgroundColor:ground}}/>
                 <div className='healthContainer'>
                     <meter className='healthBar'
                         value={player.recordedHealth} min="0"
@@ -108,9 +111,7 @@ function PlayerCreatureContainer({ player, main = true }) {
                         {player.recordedBuffs.cont > 0 &&
                             <div className='buffContainer'>
                                 <img className={'category ' + ATTACK_CATEGORYS.SUPPORT}
-                                    src={'./src/assets/categories/' +
-                                        ATTACK_CATEGORYS.SUPPORT + '.svg'
-                                    }
+                                    src={getAsset(ATTACK_CATEGORYS.SUPPORT,'categories','svg')}
                                 />
                                 <div className='buffCount'>
                                     {
@@ -207,7 +208,7 @@ function AttackOptions({ setMenu, setPlayerAction }) {
                         </span>
                         <div className='icons'>
                             <img className={'category ' + attack.category}
-                                src={'./src/assets/categories/' + attack.category + '.svg'}
+                                src={getAsset(attack.category,'categories','svg')}
                             />
                             <ElemntIcon type={attack.type} />
                         </div>

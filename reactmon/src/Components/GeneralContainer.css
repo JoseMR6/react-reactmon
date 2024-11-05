@@ -1,15 +1,15 @@
-.generalContainer{
-    width: 100vw;
-    height: 100vh;
-
-    background-color: #ca262644/*var(--default-bg-color)*/;
+.generalContainer {
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: var(--default-bg-color);
 }
 
-.generalPosition{
+.generalPositioner{
     padding-top: 2rem;
+    padding-bottom: 45px;
 }
 
-.centralContainer{
+.centralContainer {
     margin: 0 auto;
     background-color: var(--main-bg-color);
     color: var(--default-color);

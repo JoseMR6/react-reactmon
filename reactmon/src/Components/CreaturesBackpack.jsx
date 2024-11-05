@@ -33,7 +33,7 @@ export function CreaturesBackpack() {
                             changeWindow(WINDOW_NAMES.BATTLE_OPTIONS)
                         }}
                     >
-                        {lang.returnButton}
+                        <b>{lang.returnButton}</b>
                     </div>
                 }
                 {(gameState == GAME_STATES.NEW_ITEM && extraItem.itemType == ITEM_TYPES.CREATURE) &&
@@ -122,12 +122,14 @@ function CreatureBackpack({ index, creature }) {
                                 <div className='view button'
                                     onClick={handleViewClick}
                                 >
+                                    <b>
                                     {newAttack &&
                                         lang.teachButton
                                     }
                                     {!newAttack &&
                                         lang.viewButton
                                     }
+                                    </b>
                                 </div>
                             }
                             {(index != indexActualCreaturePlayer && !creature.dead
@@ -136,14 +138,14 @@ function CreatureBackpack({ index, creature }) {
                                 <div className='choose button'
                                     onClick={handleChooseClick}
                                 >
-                                    {lang.chooseButton}
+                                    <b>{lang.chooseButton}</b>
                                 </div>
                             }
                             {(gameState == GAME_STATES.NEW_ITEM && extraItem.itemType == ITEM_TYPES.CREATURE) &&
                                 <div className='delete button'
                                     onClick={handleDeleteClick}
                                 >
-                                    {lang.deleteButton}
+                                    <b>{lang.deleteButton}</b>
                                 </div>
                             }
 
@@ -210,7 +212,7 @@ function AttackBackpack({ attack }) {
                     <div className='buttonOption'
                         onClick={handleDiscardClick}
                     >
-                        {lang.discardButton}
+                        <b>{lang.discardButton}</b>
                     </div>
                     <div className='buttonOption'
                         onClick={handleExtraAttackInfoClick}

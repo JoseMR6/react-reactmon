@@ -94,8 +94,8 @@
 }
 
 .generalBattleContainer .playerCreatureContainer .creatureImgContainer svg{
-    width: 220px;
-    height: 220px;
+    width: 210px;
+    height: 210px;
     transform: scale(-1,1);
 }
 
@@ -106,12 +106,12 @@
 }
 
 .generalBattleContainer .battleGround{
-    width: 290px;
+    width: 300px;
     height: 60px;
     background-color: rgb(117, 59, 21);
     border-radius: 100%;
     position: absolute;
-    bottom: 10px;
+    bottom: 20px;
     border: solid 3px var(--main-border-color);
 }
 
