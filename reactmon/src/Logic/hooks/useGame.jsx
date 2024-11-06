@@ -17,6 +17,7 @@ export function useGame() {
         formerWindow,
         initWindow, setInitWindow,
         background, setBackground,
+        battleOptions,
         round, setRound,
         coins, setCoins,
         contCreatureIds,
@@ -39,6 +40,7 @@ export function useGame() {
         formerWindow.current = null
         setInitWindow(null)
         setBackground(BACKGROUNDS[BACKGROUNDS.length-1])
+        battleOptions.current = null
         contCreatureIds.current = 0
         setPlayerCreatures(null)
         setIndexActualCreaturePlayer(null)
@@ -51,7 +53,8 @@ export function useGame() {
     }
 
     function changeWindow(newWindow) {
-        formerWindow.current = actualWindow
+        if(actualWindow!=WINDOW_NAMES.HELP)
+            formerWindow.current = actualWindow
         setActualWindow(newWindow)
     }
 
@@ -139,6 +142,7 @@ export function useGame() {
         formerWindow,
         initWindow, setInitWindow,
         background, setBackground,
+        battleOptions,
         round, setRound,
         coins, setCoins,
         contCreatureIds,

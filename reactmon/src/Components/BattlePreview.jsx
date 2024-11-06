@@ -55,7 +55,7 @@ export function BattlePreview() {
                 setRival(RIVAL_EXAMPLE)
             if (!playerCreatures || playerCreatures.length == 0)
                 setPlayerCreatures(PLAYER_CREATURES_EXAMPLE)
-            if (rivalCreatures || rivalCreatures.length == 0)
+            if (!rivalCreatures || rivalCreatures.length == 0)
                 setRivalCreatures(RIVAL_CREATURES_EXAMPLE)
         }
     }, []);

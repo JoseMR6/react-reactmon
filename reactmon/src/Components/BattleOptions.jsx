@@ -12,7 +12,7 @@ import { deadFilterChoose, getFirst } from '../Logic/functions/creature'
 export function BattleOptions() {
     const { playerCreatures, rivalCreatures, indexActualCreaturePlayer,
         indexActualCreatureRival, initWindow, player, setPlayer, rival, setRival,
-        setInitWindow
+        setInitWindow, battleOptions
     } = useGame()
 
     const [menu, setMenu] = useState(0)
@@ -29,20 +29,29 @@ export function BattleOptions() {
     useEffect(() => {
         if (initWindow == WINDOW_NAMES.BATTLE_OPTIONS) {
             const modPlayer = structuredClone(player)
-            modPlayer.liveCreatures=0
+            modPlayer.liveCreatures = 0
             playerCreatures.forEach(creature => {
-                if(!creature.dead) modPlayer.liveCreatures++
+                if (!creature.dead) modPlayer.liveCreatures++
             })
             setPlayer(modPlayer)
             const modRival = structuredClone(rival)
             modRival.liveCreatures = rivalCreatures.length
             setRival(modRival)
 
+            battleOptions.current = {}
             setInitWindow(null)
         } else if (initWindow == INIT_STATES.CHANGE || initWindow == INIT_STATES.FORCED_CHANGE) {
-            setPlayerAction({ action: PLAYER_ACTIONS.CHANGE, param: initWindow })
+            battleOptions.current.playerAction = { action: PLAYER_ACTIONS.CHANGE, param: initWindow }
+            setPlayerAction(battleOptions.current.playerAction)
             setInitWindow(null)
-            setMenu(2)
+            battleOptions.current.menu = 2
+            setMenu(battleOptions.current.menu)
+        }
+
+        if (battleOptions.current) {
+            const boMenu = battleOptions.current.menu
+            if (boMenu)
+                setMenu(boMenu)
         }
     }, []);
 
@@ -87,13 +96,13 @@ export function BattleOptions() {
 }
 
 function PlayerCreatureContainer({ player, main = true }) {
-    const {background} = useGame()
-    const ground = background.color.slice(0,-2)
-    
+    const { background } = useGame()
+    const ground = background.color.slice(0, -2)
+
     return (
         <>
             <div className={'playerCreatureContainer ' + (!main ? 'rival' : '')}>
-                <div className='battleGround' style={{backgroundColor:ground}}/>
+                <div className='battleGround' style={{ backgroundColor: ground }} />
                 <div className='healthContainer'>
                     <meter className='healthBar'
                         value={player.recordedHealth} min="0"
@@ -111,7 +120,7 @@ function PlayerCreatureContainer({ player, main = true }) {
                         {player.recordedBuffs.cont > 0 &&
                             <div className='buffContainer'>
                                 <img className={'category ' + ATTACK_CATEGORYS.SUPPORT}
-                                    src={getAsset(ATTACK_CATEGORYS.SUPPORT,'categories','svg')}
+                                    src={getAsset(ATTACK_CATEGORYS.SUPPORT, 'categories', 'svg')}
                                 />
                                 <div className='buffCount'>
                                     {
@@ -140,13 +149,17 @@ PlayerCreatureContainer.propTypes = {
 }
 
 function GeneralOptions({ setMenu }) {
-    const { languajeDocument, setGameState, changeWindow } = useGame()
+    const { languajeDocument, setGameState, changeWindow,
+        battleOptions } = useGame()
     const lang = languajeDocument.BattleOptions
 
     return (
         <>
             <div className='option'
-                onClick={() => { setMenu(1) }}
+                onClick={() => {
+                    battleOptions.current.menu = 1
+                    setMenu(battleOptions.current.menu)
+                }}
             >
                 <span><b>{lang.attackButton}</b></span>
                 <img className='attack'
@@ -184,7 +197,7 @@ GeneralOptions.propTypes = {
 
 function AttackOptions({ setMenu, setPlayerAction }) {
     const { languajeDocument, playerCreatures,
-        indexActualCreaturePlayer
+        indexActualCreaturePlayer, battleOptions
     } = useGame()
     const lang = languajeDocument.BattleOptions
     const langA = languajeDocument.AttacksText
@@ -192,8 +205,10 @@ function AttackOptions({ setMenu, setPlayerAction }) {
     const creature = structuredClone(playerCreatures[indexActualCreaturePlayer])
 
     const handleAttackClick = (index) => {
-        setPlayerAction({ action: PLAYER_ACTIONS.ATTACK, param: index })
-        setMenu(2)
+        battleOptions.current.playerAction = { action: PLAYER_ACTIONS.ATTACK, param: index }
+        setPlayerAction(battleOptions.current.playerAction)
+        battleOptions.current.menu = 2
+        setMenu(battleOptions.current.menu)
     }
 
     return (
@@ -208,7 +223,7 @@ function AttackOptions({ setMenu, setPlayerAction }) {
                         </span>
                         <div className='icons'>
                             <img className={'category ' + attack.category}
-                                src={getAsset(attack.category,'categories','svg')}
+                                src={getAsset(attack.category, 'categories', 'svg')}
                             />
                             <ElemntIcon type={attack.type} />
                         </div>
@@ -217,7 +232,10 @@ function AttackOptions({ setMenu, setPlayerAction }) {
             })}
 
             <div className='option'
-                onClick={() => { setMenu(0) }}
+                onClick={() => {
+                    battleOptions.current.menu = 0
+                    setMenu(battleOptions.current.menu)
+                }}
             >
                 <b>{lang.returnButton}</b>
             </div>
@@ -234,7 +252,7 @@ AttackOptions.propTypes = {
 function BattleMessage({ setMenu, playerAction }) {
     const { gameState, changeWindow, languajeDocument, setInitWindow,
         playerCreatures, rivalCreatures, indexActualCreaturePlayer, indexActualCreatureRival,
-        processAttack, player, rival, setIndexActualCreatureRival
+        processAttack, player, rival, setIndexActualCreatureRival, battleOptions
     } = useGame()
     const [message, setMessage] = useState(null)
     const [nextAction, setNextAction] = useState(null)
@@ -242,92 +260,105 @@ function BattleMessage({ setMenu, playerAction }) {
     const langA = languajeDocument.AttacksText
 
     useEffect(() => {
-        let newAction = null
-        const creature = structuredClone(playerCreatures[indexActualCreaturePlayer])
+        if (playerAction && playerAction.action != null) {
+            let newAction = null
+            const creature = structuredClone(playerCreatures[indexActualCreaturePlayer])
             const rivalCreature = structuredClone(rivalCreatures[indexActualCreatureRival])
 
-        if (playerAction.action == PLAYER_ACTIONS.ATTACK) {
-            const index = playerAction.param
+            if (playerAction.action == PLAYER_ACTIONS.ATTACK) {
+                const index = playerAction.param
 
-            const playerFirst = getFirst(creature,
-                rivalCreature
-            )
+                const playerFirst = getFirst(creature,
+                    rivalCreature
+                )
 
-            let randomAttackIndex = getRandomInt(rivalCreature.attacks.length)
-            let processedCreatures
-            let processedCreaturesRival
+                let randomAttackIndex = getRandomInt(rivalCreature.attacks.length)
+                let processedCreatures
+                let processedCreaturesRival
 
-            if (playerFirst) {
-                const [outputCreatures, outputCreaturesrival,
-                    newMessage
-                ] = processAttack(index, playerCreatures, rivalCreatures, true)
-                setMessage(newMessage)
+                if (playerFirst) {
+                    const [outputCreatures, outputCreaturesrival,
+                        newMessage
+                    ] = processAttack(index, playerCreatures, rivalCreatures, true)
+                    battleOptions.current.message = newMessage
+                    setMessage(battleOptions.current.message)
 
-                processedCreatures = outputCreatures
-                processedCreaturesRival = outputCreaturesrival
+                    processedCreatures = outputCreatures
+                    processedCreaturesRival = outputCreaturesrival
 
-                if (!processedCreaturesRival[indexActualCreatureRival].dead) {
-                    newAction = {
-                        action: PLAYER_ACTIONS.ATTACK,
-                        param: randomAttackIndex,
-                        rival: true
+                    if (!processedCreaturesRival[indexActualCreatureRival].dead) {
+                        newAction = {
+                            action: PLAYER_ACTIONS.ATTACK,
+                            param: randomAttackIndex,
+                            rival: true
+                        }
+                    } else {
+                        newAction = {
+                            action: PLAYER_ACTIONS.DEAD,
+                            param: null,
+                            rival: true
+                        }
                     }
+
                 } else {
-                    newAction = {
-                        action: PLAYER_ACTIONS.DEAD,
-                        param: null,
-                        rival: true
+                    const [outputCreatures2, outputCreaturesrival2,
+                        newMessage2
+                    ] = processAttack(randomAttackIndex, playerCreatures, rivalCreatures, false)
+                    battleOptions.current.message = newMessage2
+                    setMessage(battleOptions.current.message)
+
+                    processedCreatures = outputCreatures2
+                    processedCreaturesRival = outputCreaturesrival2
+
+                    if (!processedCreatures[indexActualCreaturePlayer].dead) {
+                        newAction = {
+                            action: PLAYER_ACTIONS.ATTACK,
+                            param: index,
+                            rival: false
+                        }
+                    } else {
+                        newAction = {
+                            action: PLAYER_ACTIONS.DEAD,
+                            param: null,
+                            rival: false
+                        }
                     }
                 }
-
-            } else {
-                const [outputCreatures2, outputCreaturesrival2,
-                    newMessage2
-                ] = processAttack(randomAttackIndex, playerCreatures, rivalCreatures, false)
-                setMessage(newMessage2)
-
-                processedCreatures = outputCreatures2
-                processedCreaturesRival = outputCreaturesrival2
-
-                if (!processedCreatures[indexActualCreaturePlayer].dead) {
-                    newAction = {
-                        action: PLAYER_ACTIONS.ATTACK,
-                        param: index,
-                        rival: false
-                    }
-                } else {
-                    newAction = {
-                        action: PLAYER_ACTIONS.DEAD,
-                        param: null,
-                        rival: false
-                    }
-                }
-            }
-        } else if (playerAction.action == PLAYER_ACTIONS.CHANGE) {
-            setMessage(
-                {
+            } else if (playerAction.action == PLAYER_ACTIONS.CHANGE) {
+                battleOptions.current.message = {
                     name: "change",
                     vars: {
                         "player": player.name
                     }
                 }
-            )
+                setMessage(battleOptions.current.message)
 
-            if (playerAction.param != INIT_STATES.FORCED_CHANGE) {
-                const randomAttackIndex = getRandomInt(rivalCreature.attacks.length)
-                newAction = {
-                    action: PLAYER_ACTIONS.ATTACK,
-                    param: randomAttackIndex,
-                    rival: true
+                if (playerAction.param != INIT_STATES.FORCED_CHANGE) {
+                    const randomAttackIndex = getRandomInt(rivalCreature.attacks.length)
+                    newAction = {
+                        action: PLAYER_ACTIONS.ATTACK,
+                        param: randomAttackIndex,
+                        rival: true
+                    }
                 }
             }
+
+            battleOptions.current.nextAction = newAction
+            setNextAction(battleOptions.current.nextAction)
         }
 
-        setNextAction(newAction)
+        if (battleOptions.current) {
+            const boMessage = battleOptions.current.message
+            const boNextAction = battleOptions.current.nextAction
+            if (boMessage)
+                setMessage(boMessage)
+            if (boNextAction)
+                setNextAction(boNextAction)
+        }
     }, [])
 
     const handleContinueClick = (action) => {
-        if (nextAction != null) {
+        if (action != null) {
             let newAction = null
 
             if (action.action == PLAYER_ACTIONS.ATTACK) {
@@ -335,7 +366,8 @@ function BattleMessage({ setMenu, playerAction }) {
                     const [outputCreatures2, ,
                         newMessage2
                     ] = processAttack(action.param, playerCreatures, rivalCreatures, false)
-                    setMessage(newMessage2)
+                    battleOptions.current.message = newMessage2
+                    setMessage(battleOptions.current.message)
 
                     if (outputCreatures2[indexActualCreaturePlayer].dead) {
                         newAction = {
@@ -348,7 +380,8 @@ function BattleMessage({ setMenu, playerAction }) {
                     const [, outputCreaturesrival,
                         newMessage
                     ] = processAttack(action.param, playerCreatures, rivalCreatures, true)
-                    setMessage(newMessage)
+                    battleOptions.current.message = newMessage
+                    setMessage(battleOptions.current.message)
 
                     if (outputCreaturesrival[indexActualCreatureRival].dead) {
                         newAction = {
@@ -362,13 +395,14 @@ function BattleMessage({ setMenu, playerAction }) {
                 const playerName = action.rival ? rival.name : player.name
                 const isplayer1 = action.rival ? false : true
 
-                setMessage({
+                battleOptions.current.message = {
                     name: "isDead",
                     vars: {
                         "player": playerName,
                         "isplayer1": isplayer1
                     }
-                })
+                }
+                setMessage(battleOptions.current.message)
 
                 if (action.rival && rival.liveCreatures > 0) {
                     newAction = {
@@ -384,27 +418,32 @@ function BattleMessage({ setMenu, playerAction }) {
                 if (newIndexCreature !== null) {
                     setIndexActualCreatureRival(newIndexCreature)
 
-                    setMessage({
+                    battleOptions.current.message = {
                         name: "change",
                         vars: {
                             "player": playerName
                         }
-                    })
+                    }
+                    setMessage(battleOptions.current.message)
                 }
 
             }
 
-            setNextAction(newAction)
+            battleOptions.current.nextAction = newAction
+            setNextAction(battleOptions.current.nextAction)
         }
         else if (gameState == GAME_STATES.LOSE)
             changeWindow(WINDOW_NAMES.LOSE_GAME)
-        else if (gameState == GAME_STATES.WIN)
+        else if (gameState == GAME_STATES.WIN){
+            setInitWindow(WINDOW_NAMES.WIN_OPTIONS)
             changeWindow(WINDOW_NAMES.WIN_OPTIONS)
-        else if (message.name == 'isDead' && message.vars.isplayer1) {
+        }else if (message.name == 'isDead' && message.vars.isplayer1) {
             setInitWindow(INIT_STATES.DEAD)
             changeWindow(WINDOW_NAMES.CREATURES_BACKPACK)
+        }else {
+            battleOptions.current.menu = 0
+            setMenu(battleOptions.current.menu)
         }
-        else setMenu(0)
     }
 
     if (message && message.vars && message.vars.attackName) {

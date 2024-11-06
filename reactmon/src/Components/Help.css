@@ -1,0 +1,35 @@
+.helpContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding-top: 15px;
+}
+
+.helpContainer h1{
+    margin-top: 10px;
+}
+
+.helpContainer .guideContainer{
+    width: 700px;
+    height: 400px;
+    overflow-y: scroll;
+    text-align: left;
+}
+
+.helpContainer .guideContainer img{
+    max-width: 100%;
+}
+
+.helpContainer .returnButton{
+    border-radius: 10px;
+    border: solid 2px var(--main-border-color);
+    box-shadow: 0px 0px 10px var(--main-color);
+    padding: 8px;
+}
+
+.helpContainer .returnButton:hover{
+    cursor: pointer;
+    background-color: var(--select-bg-color);
+    color: var(--select-color);
+}

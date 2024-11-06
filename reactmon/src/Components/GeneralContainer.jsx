@@ -17,6 +17,7 @@ import { CreaturesBackpack } from "./CreaturesBackpack"
 import { ChooseAttack } from "./ChooseAttack"
 import { Shop } from "./Shop"
 import { DevPanel } from "./DevPanel"
+import { Help } from "./Help"
 
 export function GeneralContainer() {
     const { actualWindow } = useGame()
@@ -65,6 +66,10 @@ export function GeneralContainer() {
         {
             name: WINDOW_NAMES.SHOP,
             component: Shop
+        },
+        {
+            name: WINDOW_NAMES.HELP,
+            component: Help
         }
     ]
 

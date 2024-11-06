@@ -13,6 +13,7 @@ export function useConfig() {
     const formerWindow = new useRef(null)
     const [initWindow, setInitWindow] = new useState(null)
     const [background, setBackground] = new useState(BACKGROUNDS[BACKGROUNDS.length-1])
+    const battleOptions = new useRef(null)
 
     useEffect(() => {
         const initLanguaje=Object.keys(TRANSLATIONS)[0]
@@ -36,6 +37,7 @@ export function useConfig() {
         actualWindow, setActualWindow,
         formerWindow,
         initWindow, setInitWindow,
-        background, setBackground
+        background, setBackground,
+        battleOptions
     }
 }

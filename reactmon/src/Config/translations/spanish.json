@@ -37,10 +37,10 @@
         "title": "Información de Criatura",
         "statsButton": "Estadísticas",
         "returnButton": "Volver",
-        "forgetText":"Olvidar",
-        "teachText":"Enseñar",
-        "getCreature":"Criatura",
-        "getAttack":"Ataque"
+        "forgetText": "Olvidar",
+        "teachText": "Enseñar",
+        "getCreature": "Criatura",
+        "getAttack": "Ataque"
     },
     "StatsText": {
         "maxHealth": "Vida Máxima",
@@ -52,7 +52,7 @@
     },
     "ViewAttack": {
         "elemntIconText": "Tipo",
-        "description":"Descripción"
+        "description": "Descripción"
     },
     "CategorysText": {
         "physical": "Ataque que reduce la vida del enemigo infligiendo daño físico con una potencia básica de {power}. Perderá potencia en función de la defensa física enemiga.",
@@ -68,104 +68,165 @@
             "name": "Lanzallamas",
             "description": "El enemigo es abrasado por una intensa explosión de fuego."
         },
-        "ThermalSharpening":{
-            "name":"Afilado Térmico",
-            "description":"Aumenta el daño físico puliendo sus garras con calor."
+        "ThermalSharpening": {
+            "name": "Afilado Térmico",
+            "description": "Aumenta el daño físico puliendo sus garras con calor."
         },
-        "Ignition":{
-            "name":"Ignición",
-            "description":"Aumenta el daño especial aumentando su energía elemental."
+        "Ignition": {
+            "name": "Ignición",
+            "description": "Aumenta el daño especial aumentando su energía elemental."
         },
-        "FluidSlash":{
-            "name":"Cuchillada Fluida",
-            "description":"El enemigo recibe una cuchillada lubricada con agua."
+        "FluidSlash": {
+            "name": "Cuchillada Fluida",
+            "description": "El enemigo recibe una cuchillada lubricada con agua."
         },
-        "WaterCanon":{
-            "name":"Hidrocañón",
-            "description":"El enemigo recibe un potente chorro de agua a presión."
+        "WaterCanon": {
+            "name": "Hidrocañón",
+            "description": "El enemigo recibe un potente chorro de agua a presión."
         },
-        "FrozenShield":{
-            "name":"Blindaje Helado",
-            "description":"Aumenta su defensa física rodeando su cuerpo con hielo."
+        "FrozenShield": {
+            "name": "Blindaje Helado",
+            "description": "Aumenta su defensa física rodeando su cuerpo con hielo."
         },
-        "AquaticAura":{
-            "name":"Aura acuática",
-            "description":"Aumenta su defensa especial manipulando el agua a su alrededor."
+        "AquaticAura": {
+            "name": "Aura acuática",
+            "description": "Aumenta su defensa especial manipulando el agua a su alrededor."
         },
-        "ImpalingSpike":{
-            "name":"Espina Empaladora",
-            "description":"El enemigo es impactado por una espina grande y afilada."
+        "ImpalingSpike": {
+            "name": "Espina Empaladora",
+            "description": "El enemigo es impactado por una espina grande y afilada."
         },
-        "AcidBomb":{
-            "name":"Bomba Ácida",
-            "description":"El enemigo recibe una explosión química corrosiva."
+        "AcidBomb": {
+            "name": "Bomba Ácida",
+            "description": "El enemigo recibe una explosión química corrosiva."
         },
-        "Doping":{
-            "name":"Autoestimulante",
-            "description":"Aumenta su velocidad generando sustancias estimulantes dentro de su cuerpo."
+        "Doping": {
+            "name": "Autoestimulante",
+            "description": "Aumenta su velocidad generando sustancias estimulantes dentro de su cuerpo."
         },
-        "Absorption":{
-            "name":"Absorber Nutrientes",
-            "description":"Regenera parte de su vida absorbiendo nutrientes del terreno."
+        "Absorption": {
+            "name": "Absorber Nutrientes",
+            "description": "Regenera parte de su vida absorbiendo nutrientes del terreno."
         },
-        "Headbutt":{
-            "name":"Cabezazo",
-            "description":"El enemigo recibe un cabezazo a gran velocidad."
+        "Headbutt": {
+            "name": "Cabezazo",
+            "description": "El enemigo recibe un cabezazo a gran velocidad."
         },
-        "AuraRay":{
-            "name":"Rayo de Aura",
-            "description":"El enemigo recibe un rayo generado a partir de pura energía."
+        "AuraRay": {
+            "name": "Rayo de Aura",
+            "description": "El enemigo recibe un rayo generado a partir de pura energía."
         }
     },
-    "BattlePreview":{
-        "title":"Vista Previa de la Batalla",
+    "BattlePreview": {
+        "title": "Vista Previa de la Batalla",
         "record": "Record"
     },
-    "BattleOptions":{
-        "attackButton":"Luchar",
-        "changeButton":"Cambiar",
-        "surrenderButton":"Rendirse",
-        "returnButton":"Volver"
+    "BattleOptions": {
+        "attackButton": "Luchar",
+        "changeButton": "Cambiar",
+        "surrenderButton": "Rendirse",
+        "returnButton": "Volver"
     },
-    "BattleMessages":{
-        "continue":"Continuar",
-        "useAttack":"Criatura de {player} usó {attack}.",
-        "isDead":"Criatura de {player} se ha debilitado.",
-        "change":"{player} cambió de criatura."
+    "BattleMessages": {
+        "continue": "Continuar",
+        "useAttack": "Criatura de {player} usó {attack}.",
+        "isDead": "Criatura de {player} se ha debilitado.",
+        "change": "{player} cambió de criatura."
     },
-    "CreaturesBackpack":{
-        "title":"Mochila",
-        "viewButton":"Ver",
-        "chooseButton":"Elegir",
-        "returnButton":"Volver",
-        "teachButton":"Ver / Enseñar",
-        "deleteButton":"Eliminar",
-        "discardButton":"Descartar"
+    "CreaturesBackpack": {
+        "title": "Mochila",
+        "viewButton": "Ver",
+        "chooseButton": "Elegir",
+        "returnButton": "Volver",
+        "teachButton": "Ver / Enseñar",
+        "deleteButton": "Eliminar",
+        "discardButton": "Descartar"
     },
-    "WinOptions":{
-        "title":"Has Ganado: Elije Recompensa",
-        "optionCreature":"Criatura Enemiga",
-        "optionAttack":"Ataque Enemigo",
-        "optionCoins":"Monedas"
+    "WinOptions": {
+        "title": "Has Ganado: Elije Recompensa",
+        "optionCreature": "Criatura Enemiga",
+        "optionAttack": "Ataque Enemigo",
+        "optionCoins": "Monedas"
     },
-    "ChooseAttack":{
-        "title":"Elige Ataque",
-        "chooseButton":"Elegir"
+    "ChooseAttack": {
+        "title": "Elige Ataque",
+        "chooseButton": "Elegir"
     },
-    "LoseGame":{
-        "title":"Fin del Juego: Resumen",
-        "record":"Record",
-        "round":"Ronda",
-        "finalTeam":"Equipo Final"
+    "LoseGame": {
+        "title": "Fin del Juego: Resumen",
+        "record": "Record",
+        "round": "Ronda",
+        "finalTeam": "Equipo Final"
     },
-    "Shop":{
-        "title":"Tienda",
-        "exitButton":"Salir",
-        "buyButton":"Comprar",
-        "viewButton":"Ver"
+    "Shop": {
+        "title": "Tienda",
+        "exitButton": "Salir",
+        "buyButton": "Comprar",
+        "viewButton": "Ver"
     },
     "Footer": {
         "author": "Autor",
         "images": "Imágenes de"
+    },
+    "Help": {
+        "text": [
+            "<h1>Reactmon: Guía</h1>",
+            "<h2>Tipos Elementales</h2>",
+            "<p><img src='./guide_images/tiposImgTr.png' alt='imagen de relación de tipos'></p>",
+            "<p>Fuego &gt; Planta &gt; Agua &gt; Fuego</p>",
+            "<p>Neutro no es débil ni fuerte contra ningún elemento (solo disponible para ataques).</p>",
+            "<p>Las criaturas pueden aprender ataques de su tipo, del tipo Neutro y del tipo contra el que son débiles:</p>",
+            "<ul>",
+            "<li>Fuego aprende: Fuego, Neutro, Agua.</li>",
+            "<li>Planta aprende: Planta, Neutro, Fuego.</li>",
+            "<li>Agua aprende: Agua, Neutro, Planta.</li>",
+            "</ul>",
+            "<p>Usar un ataque del mismo tipo que la criatura que lo lanza otorga daño extra.</p>",
+            "<p>Si la criatura que recibe el ataque es débil contra el tipo del ataque recibe daño extra, pero si la criatura es fuerte contra el tipo del ataque recibe daño reducido.</p>",
+            "<h2>Categorías de Ataque</h2>",
+            "<p><img src='./guide_images/categories.png' alt='imagen de categorías'></p>",
+            "<h3>Ataque Físico</h3>",
+            "<p>Reduce la vida del objetivo aumentando el daño según el ataque físico de la criatura que realiza el ataque y reduciendo el daño según la defensa física de la criatura que lo recibe.</p>",
+            "<h3>Ataque Especial</h3>",
+            "<p>Reduce la vida del objetivo aumentando el daño según el ataque especial de la criatura que realiza el ataque y reduciendo el daño según la defensa especial de la criatura que lo recibe.</p>",
+            "<h3>Ataque de Apoyo</h3>",
+            "<p>Aplica efectos beneficiosos al usuario:</p>",
+            "<ul>",
+            "<li>Mejora de Estadística: Mejora permanente (hasta debilitamiento o cambio) de una estadística concreta. Todas las estadísticas tienen su ataque de mejora asignado excepto la vida máxima. Se pueden acumular varias capas de la misma mejora.</li>",
+            "<li>Curación: Regenera una cantidad fija de vida por uso.</li>",
+            "</ul>",
+            "<p>La mejora por usar ataques del mismo tipo que la criatura que los lanza también se aplica a los ataques de apoyo.</p>",
+            "<h2>Estadísticas</h2>",
+            "<p><img src='./guide_images/stats.png' alt='imagen de estadísticas de criatura'></p>",
+            "<ul>",
+            "<li>Vida Máxima: Cantidad máxima de puntos de vida que puede tener la criatura completamente curada.</li>",
+            "<li>Velocidad: Establece que criatura ataca primero durante el combate.</li>",
+            "<li>Ataque Físico: Determina la potencia de los ataques Físicos.</li>",
+            "<li>Ataque Especial: Determina la potencia de los ataques Especiales.</li>",
+            "<li>Defensa Física: Determina la reducción de daño de los ataques Físicos recibidos.</li>",
+            "<li>Defensa Especial: Determina la reducción de daño de los ataques Especiales recibidos.</li>",
+            "</ul>",
+            "<p>Cada tipo Elemental tiene dos estadísticas relacionadas:</p>",
+            "<ul>",
+            "<li>Planta: Vida Máxima y Velocidad.</li>",
+            "<li>Fuego: Ataque Físico y Ataque Especial.</li>",
+            "<li>Agua: Defensa Física y Defensa Especial.</li>",
+            "</ul>",
+            "<p>Esta relación entre estadísticas y tipos sirve para ayudar a determinar el color de las criaturas y para decidir cómo asignar los tipos de los ataques de Apoyo de cada estadística.</p>",
+            "<h2>Criaturas</h2>",
+            "<p><img src='./guide_images/creature.png' alt='imagen de criatura'></p>",
+            "<p>Todas las criaturas tienen la misma cantidad de estadísticas totales, pero su repartición es aleatoria.</p>",
+            "<p>La imagen que representa a la criatura depende de su estadística principal (la más alta) o estadísticas principales si tiene varias estadísticas con valores cercanos a la principal.</p>",
+            "<p>El color general depende del tipo (Rojo, Verde, Azul), pero el tono (más claro o más oscuro) depende de la estadística relacionada con el tipo que más destaque por ser más alta o baja.</p>",
+            "<p>El tipo no está influenciado por la repartición de estadísticas por lo que las estadísticas relacionadas pueden no ser ninguna de las estadísticas principales.</p>",
+            "<h2>Tienda</h2>",
+            "<p><img src='./guide_images/shop.png' alt='imagen de la tienda'></p>",
+            "<p>Cada 10 rondas aparecerá una tienda en la que intercambiar las monedas acumuladas por criaturas.</p>",
+            "<p>Se puede pagar una pequeña suma por cambiar las criaturas disponibles.</p>",
+            "<p>En todo momento se puede consultar la información de las criaturas antes de comprarlas.</p>",
+            "<p>Las criaturas compradas pueden añadirse al equipo o se puede extraer uno de sus ataques para enseñárselo a una criatura del equipo.</p>",
+            "<p>Siempre que haya suficientes monedas se pueden comprar tantas criaturas como se quiera hasta que se decida salir de la tienda.</p>"
+        ],
+        "returnButton": "Volver"
     }
 }

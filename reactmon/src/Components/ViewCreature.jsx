@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { GAME_STATES, INIT_STATES, ITEM_TYPES, MAX_CREATURES, PLAYER_CREATURE_EXAMPLE, WINDOW_NAMES } from '../Logic/constants'
+import { GAME_STATES, INIT_STATES, ITEM_TYPES, MAX_CREATURES, PLAYER_CREATURE_EXAMPLE, ROUNDS_PER_STAGE, WINDOW_NAMES } from '../Logic/constants'
 import { ElemntIcon } from './Types'
 import { ViewAttack } from './ViewAttack'
 import './ViewCreature.css'
@@ -12,7 +12,7 @@ import { creatureCanForget } from '../Logic/functions/creature'
 export function ViewCreature() {
     const { languajeDocument, selectedItem, changeWindow, gameState,
         extraItem, setExtraItem, setInitWindow, setGameState, playerCreatures, setPlayerCreatures,
-        indexActualCreaturePlayer, initWindow
+        indexActualCreaturePlayer, initWindow,round
     } = useGame()
     const [select, setSelect] = useState(2) //stats
 
@@ -37,7 +37,9 @@ export function ViewCreature() {
         }
         setExtraItem({ itemType: null, item: null })
 
-        if (initWindow == INIT_STATES.PURCHASED) {
+        if (((round>=ROUNDS_PER_STAGE)&&(round%ROUNDS_PER_STAGE == 0))
+            ||initWindow == INIT_STATES.PURCHASED
+        ) {
             setInitWindow(WINDOW_NAMES.SHOP)
             setGameState(GAME_STATES.SHOPPING)
             changeWindow(WINDOW_NAMES.SHOP)

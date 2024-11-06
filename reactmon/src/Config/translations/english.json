@@ -1,46 +1,46 @@
 {
-    "LeftMenu":{
-        "Reactmon":{
-            "imgAlt":"React Icon",
-            "text":"Reactmon"
+    "LeftMenu": {
+        "Reactmon": {
+            "imgAlt": "React Icon",
+            "text": "Reactmon"
         },
-        "Help":{
-            "imgAlt":"Help Icon",
-            "text":"Help"
+        "Help": {
+            "imgAlt": "Help Icon",
+            "text": "Help"
         },
-        "Reset":{
-            "imgAlt":"Reset Icon",
-            "text":"Reset"
+        "Reset": {
+            "imgAlt": "Reset Icon",
+            "text": "Reset"
         }
     },
-    "RightPanel":{
-        "Record":"Record",
-        "Round":"Round",
-        "Coins":{
-            "text":"Coins",
-            "imgAlt":"Coins Icon"
+    "RightPanel": {
+        "Record": "Record",
+        "Round": "Round",
+        "Coins": {
+            "text": "Coins",
+            "imgAlt": "Coins Icon"
         }
     },
-    "SelectSkin":{
-        "title":"Choose Skin"
+    "SelectSkin": {
+        "title": "Choose Skin"
     },
-    "WriteName":{
-        "title":"Write your Name",
-        "continueText":"Continue"
+    "WriteName": {
+        "title": "Write your Name",
+        "continueText": "Continue"
     },
-    "ChooseCreature":{
-        "title":"Choose Creature",
-        "selectButton":"Select",
-        "viewButton":"View"
+    "ChooseCreature": {
+        "title": "Choose Creature",
+        "selectButton": "Select",
+        "viewButton": "View"
     },
     "ViewCreature": {
         "title": "Creature Information",
         "statsButton": "Stats",
         "returnButton": "Return",
-        "forgetText":"Forget",
-        "teachText":"Teach",
-        "getCreature":"Creature",
-        "getAttack":"Attack"
+        "forgetText": "Forget",
+        "teachText": "Teach",
+        "getCreature": "Creature",
+        "getAttack": "Attack"
     },
     "StatsText": {
         "maxHealth": "Max Life",
@@ -52,7 +52,7 @@
     },
     "ViewAttack": {
         "elemntIconText": "Type",
-        "description":"Description"
+        "description": "Description"
     },
     "CategorysText": {
         "physical": "Attack that reduces the enemy's health by dealing physical damage with a base power of {power}. It will lose power based on the enemy's physical defense.",
@@ -68,104 +68,165 @@
             "name": "Flamethrower",
             "description": "The enemy is incinerated by an intense explosion of fire."
         },
-        "ThermalSharpening":{
-            "name":"Thermal Sharpening",
-            "description":"Increases physical damage by polishing its claws with heat."
+        "ThermalSharpening": {
+            "name": "Thermal Sharpening",
+            "description": "Increases physical damage by polishing its claws with heat."
         },
-        "Ignition":{
-            "name":"Ignition",
-            "description":"Increases special damage by increasing elemental energy."
+        "Ignition": {
+            "name": "Ignition",
+            "description": "Increases special damage by increasing elemental energy."
         },
-        "FluidSlash":{
-            "name":"Fluid Slash",
-            "description":"The enemy receives a water-lubricated slash."
+        "FluidSlash": {
+            "name": "Fluid Slash",
+            "description": "The enemy receives a water-lubricated slash."
         },
-        "WaterCanon":{
-            "name":"Water Canon",
-            "description":"The enemy receives a powerful jet of pressurized water."
+        "WaterCanon": {
+            "name": "Water Canon",
+            "description": "The enemy receives a powerful jet of pressurized water."
         },
-        "FrozenShield":{
-            "name":"Frozen Shield",
-            "description":"Increases his physical defense by surrounding his body with ice."
+        "FrozenShield": {
+            "name": "Frozen Shield",
+            "description": "Increases his physical defense by surrounding his body with ice."
         },
-        "AquaticAura":{
-            "name":"Aquatic Aura",
-            "description":"Increases its special defense by manipulating the water around."
+        "AquaticAura": {
+            "name": "Aquatic Aura",
+            "description": "Increases its special defense by manipulating the water around."
         },
-        "ImpalingSpike":{
-            "name":"Impaling Spike",
-            "description":"The enemy is hit by a large, sharp thorn."
+        "ImpalingSpike": {
+            "name": "Impaling Spike",
+            "description": "The enemy is hit by a large, sharp thorn."
         },
-        "AcidBomb":{
-            "name":"Acid Bomb",
-            "description":"The enemy receives a corrosive chemical explosion."
+        "AcidBomb": {
+            "name": "Acid Bomb",
+            "description": "The enemy receives a corrosive chemical explosion."
         },
-        "Doping":{
-            "name":"Doping",
-            "description":"Increases speed by generating stimulating substances inside the body."
+        "Doping": {
+            "name": "Doping",
+            "description": "Increases speed by generating stimulating substances inside the body."
         },
-        "Absorption":{
-            "name":"Absorption",
-            "description":"Regenerates part of the health by absorbing nutrients from the ground."
+        "Absorption": {
+            "name": "Absorption",
+            "description": "Regenerates part of the health by absorbing nutrients from the ground."
         },
-        "Headbutt":{
-            "name":"Headbutt",
-            "description":"The enemy receives a high-speed headbutt."
+        "Headbutt": {
+            "name": "Headbutt",
+            "description": "The enemy receives a high-speed headbutt."
         },
-        "AuraRay":{
-            "name":"Aura Ray",
-            "description":"The enemy receives a beam generated from pure energy."
+        "AuraRay": {
+            "name": "Aura Ray",
+            "description": "The enemy receives a beam generated from pure energy."
         }
     },
-    "BattlePreview":{
-        "title":"Battle Preview",
+    "BattlePreview": {
+        "title": "Battle Preview",
         "record": "Record"
     },
-    "BattleOptions":{
-        "attackButton":"Attack",
-        "changeButton":"Change",
-        "surrenderButton":"Surrender",
-        "returnButton":"Return"
+    "BattleOptions": {
+        "attackButton": "Attack",
+        "changeButton": "Change",
+        "surrenderButton": "Surrender",
+        "returnButton": "Return"
     },
-    "BattleMessages":{
-        "continue":"Continue",
-        "useAttack":"Creature from {player} used {attack}.",
-        "isDead":"Creature from {player} has fainted.",
-        "change":"{player} switched creatures."
+    "BattleMessages": {
+        "continue": "Continue",
+        "useAttack": "Creature from {player} used {attack}.",
+        "isDead": "Creature from {player} has fainted.",
+        "change": "{player} switched creatures."
     },
-    "CreaturesBackpack":{
-        "title":"Backpack",
-        "viewButton":"View",
-        "chooseButton":"Choose",
-        "returnButton":"Return",
-        "teachButton":"View / Teach",
-        "deleteButton":"Delete",
-        "discardButton":"Discard"
+    "CreaturesBackpack": {
+        "title": "Backpack",
+        "viewButton": "View",
+        "chooseButton": "Choose",
+        "returnButton": "Return",
+        "teachButton": "View / Teach",
+        "deleteButton": "Delete",
+        "discardButton": "Discard"
     },
-    "WinOptions":{
-        "title":"You Won: Choose Reward",
-        "optionCreature":"Enemy Creature",
-        "optionAttack":"Enemy Attack",
-        "optionCoins":"Coins"
+    "WinOptions": {
+        "title": "You Won: Choose Reward",
+        "optionCreature": "Enemy Creature",
+        "optionAttack": "Enemy Attack",
+        "optionCoins": "Coins"
     },
-    "ChooseAttack":{
-        "title":"Choose Attack",
-        "chooseButton":"Choose"
+    "ChooseAttack": {
+        "title": "Choose Attack",
+        "chooseButton": "Choose"
     },
-    "LoseGame":{
-        "title":"Game Over: Summary",
-        "record":"Record",
-        "round":"Round",
-        "finalTeam":"Final Team"
+    "LoseGame": {
+        "title": "Game Over: Summary",
+        "record": "Record",
+        "round": "Round",
+        "finalTeam": "Final Team"
     },
-    "Shop":{
-        "title":"Shop",
-        "exitButton":"Exit",
-        "buyButton":"Buy",
-        "viewButton":"View"
+    "Shop": {
+        "title": "Shop",
+        "exitButton": "Exit",
+        "buyButton": "Buy",
+        "viewButton": "View"
     },
-    "Footer":{
-        "author":"Author",
-        "images":"Images from"
+    "Footer": {
+        "author": "Author",
+        "images": "Images from"
+    },
+    "Help": {
+        "text": [
+            "<h1>Reactmon: Guide</h1>",
+            "<h2>Elemental Types</h2>",
+            "<p><img src='./guide_images/tiposImgTr.png' alt='types relationship image'></p>",
+            "<p>Fire &gt; Grass &gt; Water &gt; Fire</p>",
+            "<p>Neutral is neither weak nor strong against any element (only available for attacks).</p>",
+            "<p>Creatures can learn attacks of their type, of the Neutral type, and of the type they are weak against:</p>",
+            "<ul>",
+            "<li>Fire learns: Fire, Neutral, Water.</li>",
+            "<li>Grass learns: Grass, Neutral, Fire.</li>",
+            "<li>Water learns: Water, Neutral, Grass.</li>",
+            "</ul>",
+            "<p>Using an attack of the same type as the creature casting it deals extra damage.</p>",
+            "<p>If the creature receiving the attack is weak against the attack type it takes extra damage, but if the creature is strong against the attack type it takes reduced damage.</p>",
+            "<h2>Attack Categories</h2>",
+            "<p><img src='./guide_images/categories.png' alt='categories image'></p>",
+            "<h3>Physical Attack</h3>",
+            "<p>Reduces the target's health, increasing damage based on the physical attack of the creature making the attack and reducing damage based on the physical defense of the creature receiving the attack.</p>",
+            "<h3>Special Attack</h3>",
+            "<p>Reduces the target's health, increasing damage based on the special attack of the creature making the attack and reducing damage based on the special defense of the creature receiving the attack.</p>",
+            "<h3>Support Attack</h3>",
+            "<p>Applies beneficial effects to the user:</p>",
+            "<ul>",
+            "<li>Stat Boost: Permanent boost (until fainted or changed) to a specific stat. All stats have their assigned boost attack except for maximum HP. Multiple layers of the same boost can be stacked.</li>",
+            "<li>Healing: Regenerates a fixed amount of health per use.</li>",
+            "</ul>",
+            "<p>The buff for using attacks of the same type as the casting creature also applies to support attacks.</p>",
+            "<h2>Stats</h2>",
+            "<p><img src='./guide_images/stats.png' alt='creature stats image'></p>",
+            "<ul>",
+            "<li>Max Life: Maximum amount of hit points the fully healed creature can have.</li>",
+            "<li>Speed: Determines which creature attacks first during combat.</li>",
+            "<li>Physical Attack: Determines the power of Physical attacks.</li>",
+            "<li>Special Attack: Determines the power of Special attacks.</li>",
+            "<li>Physical Defense: Determines the damage reduction of received Physical attacks.</li>",
+            "<li>Special Defense: Determines the damage reduction of received Special attacks.</li>",
+            "</ul>",
+            "<p>Each Elemental type has two related stats:</p>",
+            "<ul>",
+            "<li>Grass: Maximum Life and Speed.</li>",
+            "<li>Fire: Physical Attack and Special Attack.</li>",
+            "<li>Water: Physical Defense and Special Defense.</li>",
+            "</ul>",
+            "<p>This relationship between stats and types is used to help determine the color of creatures and to decide how to assign the types of each stat's Support attacks.</p>",
+            "<h2>Creatures</h2>",
+            "<p><img src='./guide_images/creature.png' alt='creature image'></p>",
+            "<p>All creatures have the same amount of total stats, but their distribution is random.</p>",
+            "<p>The image that represents the creature depends on its main stat (the highest one) or main stats if it has multiple stats with values close to the main one.</p>",
+            "<p>The overall color depends on the type (Red, Green, Blue), but the tone (lighter or darker) depends on the type-related statistic that stands out the most as being higher or lower.</p>",
+            "<p>Type is not influenced by stat distribution so related stats may not be any of the main stats.</p>",
+            "<h2>Shop</h2>",
+            "<p><img src='./guide_images/shop.png' alt='shop image'></p>",
+            "<p>Every 10 rounds a shop will appear where you can exchange the accumulated coins for creatures.</p>",
+            "<p>A small fee can be paid to change the available creatures.</p>",
+            "<p>At any time you can consult the information about the creatures before purchasing them.</p>",
+            "<p>Purchased creatures can be added to your team, or you can get one of their attacks and teach it to a creature on your team.</p>",
+            "<p>As long as you have enough coins you can buy as many creatures as you want until you decide to leave the store.</p>"
+        ],
+        "returnButton": "Return"
     }
 }

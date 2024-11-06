@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { BOSS_WIN_COINS, GAME_STATES, MAX_CREATURES, ROUNDS_PER_STAGE, WINDOW_NAMES, WIN_COINS } from '../Logic/constants'
 import { shuffle } from '../Logic/functions/calculations'
 import { creatureReset } from '../Logic/functions/creature'
@@ -9,18 +10,26 @@ import CoinIcon from '/coin.svg'
 
 export function WinOptions() {
     const { coins, setCoins, changeWindow, setChooseOptions, rivalCreatures,
-        setGameState, setInitWindow, languajeDocument, round
+        setGameState, setInitWindow, languajeDocument, round, initWindow,
+        chooseOptions
     } = useGame()
 
-    const rivalClone = []
-    rivalCreatures.forEach(creature => {
-        const creatureClone = structuredClone(creature)
-        creatureReset(creatureClone)
-        rivalClone.push(creatureClone)
-    });
-    shuffle(rivalClone)
+    useEffect(()=>{
+        if(initWindow==WINDOW_NAMES.WIN_OPTIONS){
+            const rivalClone = []
+            rivalCreatures.forEach(creature => {
+                const creatureClone = structuredClone(creature)
+                creatureReset(creatureClone)
+                rivalClone.push(creatureClone)
+            });
+            shuffle(rivalClone)
+            setChooseOptions(rivalClone)
 
-    const creature = rivalClone[0]
+            setInitWindow(null)
+        }
+    },[])
+
+    const creature = chooseOptions[0]
 
     const lang = languajeDocument.WinOptions
 
@@ -45,7 +54,6 @@ export function WinOptions() {
                 <div className='optionsContainer'>
                     <div className='optionContainer'
                         onClick={() => {
-                            setChooseOptions(rivalClone)
                             changeWindow(WINDOW_NAMES.CHOOSE_CREATURE)
                         }}
                     >
@@ -63,7 +71,6 @@ export function WinOptions() {
 
                     <div className='optionContainer'
                         onClick={() => {
-                            setChooseOptions(rivalClone)
                             changeWindow(WINDOW_NAMES.CHOOSE_ATTACK)
                         }}
                     >

@@ -81,7 +81,8 @@ export const WINDOW_NAMES = {
     SHOP: 'shop',
     WIN_OPTIONS: 'winOptions',
     CHOOSE_ATTACK: 'chooseAttack',
-    LOSE_GAME: 'loseGame'
+    LOSE_GAME: 'loseGame',
+    HELP: 'help'
 }
 
 export const ELEMENTAL_TYPES = {

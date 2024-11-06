@@ -4,12 +4,12 @@ import resetIcon from '/reset.svg'
 
 import './LeftMenu.css'
 import { useGame } from '../Logic/hooks/useGame'
-import { TRANSLATIONS } from '../Logic/constants'
+import { TRANSLATIONS, WINDOW_NAMES } from '../Logic/constants'
 import { getLanguajeDocument } from '../Logic/functions/parse'
 
 export function LeftMenu() {
     const { languaje, setLanguaje,
-        languajeDocument, setLanguajeDocument, reset
+        languajeDocument, setLanguajeDocument, reset, changeWindow
     } = useGame()
 
     const lang = languajeDocument.LeftMenu
@@ -28,7 +28,9 @@ export function LeftMenu() {
                     />
                     <span><b>{lang.Reactmon.text}</b></span>
                 </div>
-                <div className="option">
+                <div className="option"
+                    onClick={()=>{changeWindow(WINDOW_NAMES.HELP)}}
+                >
                     <img
                         src={helpIcon} className="imgOption"
                         alt={lang.Help.imgAlt}

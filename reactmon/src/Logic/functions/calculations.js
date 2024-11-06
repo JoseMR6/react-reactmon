@@ -1,4 +1,5 @@
 import { BACKGROUNDS, ROUNDS_PER_STAGE } from "../constants";
+import { rgbaToHex } from "./parse";
 
 export function getRandomInt(max) {
     return Math.floor(Math.random() * max)
@@ -13,10 +14,14 @@ export function nextBackground(round) {
 
     if (bgIndex >= BACKGROUNDS.length - 1) {
         bgIndex = getRandomInt(BACKGROUNDS.length - 1)
-        console.log(bgIndex)
-        const bgActual = document.getElementsByClassName("generalContainer")[0].style.backgroundColor
-        console.log(bgActual)
-        if (BACKGROUNDS[bgIndex].color == bgActual) {
+        let bgActual = document.getElementsByClassName("generalContainer")[0].style.backgroundColor
+        let bgNew = BACKGROUNDS[bgIndex].color
+        if(!bgActual.includes("#"))
+            bgActual=rgbaToHex(bgActual)
+        if(!bgNew.includes("#"))
+            bgNew=rgbaToHex(bgNew)
+
+        if (bgNew == bgActual) {
             bgIndex = (bgIndex + 1) % (BACKGROUNDS.length - 1)
         }
     }

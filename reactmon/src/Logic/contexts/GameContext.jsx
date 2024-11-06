@@ -13,7 +13,8 @@ export function GameProvider({ children }) {
         actualWindow, setActualWindow,
         formerWindow,
         initWindow,setInitWindow,
-        background, setBackground
+        background, setBackground,
+        battleOptions
     } = useConfig()
 
     const {
@@ -40,6 +41,7 @@ export function GameProvider({ children }) {
             formerWindow,
             initWindow,setInitWindow,
             background, setBackground,
+            battleOptions,
             round, setRound,
             coins, setCoins,
             contCreatureIds,
