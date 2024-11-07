@@ -172,7 +172,7 @@
         "text": [
             "<h1>Reactmon: Guía</h1>",
             "<h2>Tipos Elementales</h2>",
-            "<p><img src='./guide_images/tiposImgTr.png' alt='imagen de relación de tipos'></p>",
+            "<p><img src='./guide_images/typesImgTr.png' alt='imagen de relación de tipos'></p>",
             "<p>Fuego &gt; Planta &gt; Agua &gt; Fuego</p>",
             "<p>Neutro no es débil ni fuerte contra ningún elemento (solo disponible para ataques).</p>",
             "<p>Las criaturas pueden aprender ataques de su tipo, del tipo Neutro y del tipo contra el que son débiles:</p>",

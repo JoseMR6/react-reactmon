@@ -172,7 +172,7 @@
         "text": [
             "<h1>Reactmon: Guide</h1>",
             "<h2>Elemental Types</h2>",
-            "<p><img src='./guide_images/tiposImgTr.png' alt='types relationship image'></p>",
+            "<p><img src='./guide_images/typesImgTr.png' alt='types relationship image'></p>",
             "<p>Fire &gt; Grass &gt; Water &gt; Fire</p>",
             "<p>Neutral is neither weak nor strong against any element (only available for attacks).</p>",
             "<p>Creatures can learn attacks of their type, of the Neutral type, and of the type they are weak against:</p>",
