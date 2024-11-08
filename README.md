@@ -20,8 +20,7 @@ El objetivo principal es ganar todos los combates posibles para ver cuantas rond
 ### Generos
 
 - Combate por turnos.
-- Tercera persona.
-- Gestion de recursos.
+- Estrategia.
 - Roguelike.
 - Juego de navegador.
 
