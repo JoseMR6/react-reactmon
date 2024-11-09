@@ -81,6 +81,11 @@
     gap: 10px;
 }
 
+.generalBattleContainer .creatureImgContainer{
+    display: flex;
+    flex-direction: column;
+}
+
 .generalBattleContainer .rival .imgsContainer{
     justify-content: right;
 }
