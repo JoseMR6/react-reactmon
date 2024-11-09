@@ -49,7 +49,7 @@ Todo esto en conjunto trata de generar un ambiente de aventura tranquila situada
 
 ## Jugabilidad
 
-### Mecánicas
+### Resumen de Mecánicas
 
 - El jugador es un actor externo al juego que toma decisiones sobre las acciones y organizacion de las criaturas de su equipo.
 - En la pantalla de Elegir Avatar (la primera), el jugador elige un personaje que lo represente durante la partida, tras esto se cambia a la pantalla de Escribir Nombre.
@@ -141,6 +141,14 @@ Este es un recurso extra que sirve para obtener los dos anteriores en las Tienda
 
 ### Acciones
 
+**Simpre Disponibles**
+
+| Limitaciones | Acciones | Descripción | Resultados |
+| :--- | :---: | :--- | :--- |
+| | **Reiniciar Juego** | Volver al inicio del juego | - Se vuelven a inicializar las variables internas y se cambia a la pantalla de Seleccion de Avatar |
+| | **Ver Ayuda** | Mostrar informacion relevante del juego a modo de guía | - Cambia a la pantalla de Ayuda |
+| - El nuevo Idioma no es el actual | **Cambiar Idioma** | Cambiar el idioma de los textos del juego | - Establece el idioma elegido como el actual |
+
 **Modo Empezar**
 
 | Limitaciones | Acciones | Descripción | Resultados |
@@ -189,19 +197,66 @@ Este es un recurso extra que sirve para obtener los dos anteriores en las Tienda
 
 | Limitaciones | Acciones | Descripción | Resultados |
 | :--- | :---: | :--- | :--- |
-| | **Eliminar Criatura** | | |
-| | **Ver Informacion de Criatura** | | |
-| | **Enseñar Ataque** | | |
-| | **Olvidar Ataque** | | |
-| | **Ver Descripcion de Ataque** | | |
+| - Nueva criatura | **Eliminar Criatura** | Descarta la criatura elegida para añadir la nueva | - Elimina la criatura del equipo y añade la nueva si no era la seleccionada, avanza a la siguiente Batalla o a la Tienda |
+| | **Ver Informacion de Criatura** | Mostrar la informacion de la criatura seleccionada | - Cambia a la pantalla de Información de la criatura, si el nuevo objeto es un Ataque Muestra la opcion Enseñar u Olvidar |
+| - Nuevo Ataque | **Enseñar Ataque** | Añadir ataque a la criatura seleccionada | - Añade el ataque nuevo a la criatura seleccionada y avanza a la siguiente Batalla o a la Tienda |
+| - Nuevo Ataque | **Olvidar Ataque** | Eliminar ataque seleccionado para añadir el nuevo | - Elimina el ataque seleccionado para cambiarlo por el ataque nuevo y avanza a la siguiente Batalla o a la Tienda |
+| - Nuevo Ataque | **Ver Descripcion de Ataque** | Mostrar la descripción del ataque que se quiere añadir | - Hace visible la descripcion del Ataque que se quiere añadir |
 
 **Modo Perder**
 
+| Limitaciones | Acciones | Descripción | Resultados |
+| :--- | :---: | :--- | :--- |
+| | **Reiniciar Juego** | Volver al inicio del juego | - Se vuelven a inicializar las variables internas y se cambia a la pantalla de Seleccion de Avatar |
+
 **Modo Comprar**
+
+| Limitaciones | Acciones | Descripción | Resultados |
+| :--- | :---: | :--- | :--- |
+| - Tener Suficientes Monedas | **Comprar** | Gastar Monedas para obtener una criatura | - Cambia a la pantalla de Información de la criatura con las opciones de Añadir Criatura y Extraer Ataque |
+| - Haber Comprado una Criatura | **Añadir Criatura** | Añadir la criatura comprada al equipo | - Cambia a la pantalla de Nueva Criatura con la criatura seleccionada |
+| - Haber Comprado una Criatura | **Extraer Ataque** | Añadir el ataque seleccionado de la criatura comprada a una criatura del equipo | - Cambia a la pantalla de Nuevo Ataque con el ataque seleccionado |
+| | **Ver Informacion de Criatura** |  Mostrar la informacion de la criatura seleccionada | - Cambia a la pantalla de Información de la criatura |
+| - Tener Suficientes Monedas | **Actualizar Tienda** | Gastar monedas para cambiar las criaturas disponibles | - Genera nuevas criaturas disponibles en la Tienda |
+| | **Ver Criaturas para Vender** | Ver el equipo del Jugador | - Cambiar a la pantalla de la Mochila con la opcion de Vender Criatura incluida |
+| - No haber vendido ninguna criatura en esta tienda todavia | **Vender Criatura** | Eliminar una criatura del equipo para obtener Monedas | - Elimina una criatura del equipo y aumenta las monedas |
+| | **Salir** | Avanzar a la siguiente Batalla | - Avanzar a la siguiente Batalla |
 
 **Modo Ayuda**
 
+| Limitaciones | Acciones | Descripción | Resultados |
+| :--- | :---: | :--- | :--- |
+| | **Volver** | Volver a la pantalla anterior | - Cambia a la pantalla anterior |
+
 ### Interacciones
+
+**Interacciones del Inicio**
+
+| Limitaciones | Interacciones | Descripción | Resultados |
+| :--- | :---: | :--- | :--- |
+| - Hay Informacion local guardada | **Cargar Informacion del Jugador** | Iniciar los datos del jugador con informacion guardada de anteriores partidas | - Se inicializa el nombre, el Avatar y el record del jugador con la informacion almacenada en el cliente |
+
+**Interacciones de las Criaturas**
+| Limitaciones | Interacciones | Descripción | Resultados |
+| :--- | :---: | :--- | :--- |
+| - Estar en la Eleccion de Primera Criatura <br> - Estar en la Vista Previa de La Batalla <br> - Estar en la Tienda | **Generar Criatura** | Crear una nueva criatura de forma aleatoria | - Se genera una nueva criatura para ser utilizada en la pantalla correspondiente  |
+| - Estar en Batalla <br/> - Perder todos los puntos de vida | **Debilitarse** | La criatura queda fuera de combate | - Disminuyen las criaturas disponibles del jugador |
+| - Estar en Batalla <br/> - Jugador a seleccionado un ataque | **Realizar Ataque** | La criatura ejecuta un ataque indicado por el jugador | - Reduccion de vida de la criatura enemiga si es ataque Físico o Especial <br/> - Mejora de Estadisticas si es Ataque de Apoyo de Mejora <br/> - Regeneracion de vida si es Ataque de Apoyo de Curación |
+
+**Interacciones de los Jugadores**
+| Limitaciones | Interacciones | Descripción | Resultados |
+| :--- | :---: | :--- | :--- |
+| - Estar en la Vista Previa de la Batalla <br/> - No es Batalla Multijugador | **Generar Rival** | Generar un Rival NPC para la Batalla de forma aleatoria | - Generar Nombre, Avatar, Record y Criaturas |
+| - Estar En Batalla <br/> - Rival NPC | **Generar accion de ataque aleatorio** | El Rival elige un ataque aleatorio | - Se genera un indice aleatorio de la lista de ataques de la criatura actual del Rival |
+| - Estar en Batalla <br/> - Criatura del Jugdor o Rival debilitada <br/> - Quedan ciraturas disponibles | **Cambio Forzado** | Cambiar la criatura por otra debido a debilitamiento | - Ir a la mochila para elegir nueva criatura <br/> Si NPC se elige automaticamente una criatura aleatorio de entre las disponibles |
+| - Estar en Batalla <br/> - No quedan criaturas al Rival | **Ganar** | Ir a la Seleccion de Recompensas | - Avanzar a la pantalla de Ganar |
+| - Estar en Batalla <br/> - No quedan criaturas al Jugador | **Perder** | Terminar el juego e ir al resumen final | - Se avanza a la pantalla de Perder |
+
+**Interacciones del Fin**
+
+| Limitaciones | Interacciones | Descripción | Resultados |
+| :--- | :---: | :--- | :--- |
+| | **Guardar Informacion del Jugador** | Almacenar informacion del jugador en el cliente | - Guardar nombre, Avatar y record en el cliente |
 
 ### Reglas
 
@@ -236,5 +291,15 @@ Este es un recurso extra que sirve para obtener los dos anteriores en las Tienda
 
 ## Posibles Futuras Mejoras
 
+- Añadir Animaciones.
+- Añadir Sonidos.
+- Añadir Multijugador.
 
-## Creditos
+
+## Referencias
+
+- Iconos de Menús y Categorías de [SVG-Repo](https://www.svgrepo.com/).
+- Iconos de Tipos Elementales de [duiker101](https://github.com/duiker101/pokemon-type-svg-icons).
+- Aspectos de Personaje de [Pokémon-Showdown](https://play.pokemonshowdown.com/sprites/trainers/).
+- Imagenes de Criaturas de [jnovack](https://github.com/jnovack/pokemon-svg/tree/master).
+- Fondos de Pantalla de [FREEPIK](https://www.freepik.es/).
