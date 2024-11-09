@@ -11,7 +11,8 @@ export function WriteName() {
     const lang = languajeDocument.WriteName
 
     const handleContinueClick = () => {
-        const name = document.getElementById("setName").value
+        const name = document.getElementById("setName").value.trim()
+        
         if (name.length >= 3) {
             setPlayer(new Player(name, skinImg, player.record))
             setInitWindow(WINDOW_NAMES.CHOOSE_CREATURE)

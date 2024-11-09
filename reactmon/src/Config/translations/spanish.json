@@ -140,7 +140,8 @@
         "returnButton": "Volver",
         "teachButton": "Ver / Enseñar",
         "deleteButton": "Eliminar",
-        "discardButton": "Descartar"
+        "discardButton": "Descartar",
+        "sellButton": "Vender"
     },
     "WinOptions": {
         "title": "Has Ganado: Elije Recompensa",
@@ -162,7 +163,8 @@
         "title": "Tienda",
         "exitButton": "Salir",
         "buyButton": "Comprar",
-        "viewButton": "Ver"
+        "viewButton": "Ver",
+        "creaturesButton": "Criaturas"
     },
     "Footer": {
         "author": "Autor",

@@ -140,7 +140,8 @@
         "returnButton": "Return",
         "teachButton": "View / Teach",
         "deleteButton": "Delete",
-        "discardButton": "Discard"
+        "discardButton": "Discard",
+        "sellButton": "Sell"
     },
     "WinOptions": {
         "title": "You Won: Choose Reward",
@@ -162,7 +163,8 @@
         "title": "Shop",
         "exitButton": "Exit",
         "buyButton": "Buy",
-        "viewButton": "View"
+        "viewButton": "View",
+        "creaturesButton": "Creatures"
     },
     "Footer": {
         "author": "Author",

@@ -75,6 +75,13 @@
     padding-right: 15px;
 }
 
+.creaturesBackpackContainer .sell{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
 .creaturesBackpackContainer .button:hover{
     cursor: pointer;
     background-color: var(--select-bg-color);

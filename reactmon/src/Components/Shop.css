@@ -4,6 +4,16 @@
     position: relative;
 }
 
+.shopContainer .leftOptions{
+    display: flex;
+    flex-direction: row;
+
+    position: absolute;
+    top:20px;
+    left: 20px;
+    gap: 10px;
+}
+
 .shopContainer .rightOptions {
     display: flex;
     flex-direction: row;

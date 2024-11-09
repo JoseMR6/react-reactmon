@@ -7,6 +7,7 @@ import { ElemntIcon } from './Types'
 import CoinIcon from '/coin.svg'
 import Exit from '/exit.svg'
 import resetIcon from '/reset.svg'
+import backpack from '../assets/options/change.svg'
 import { BACKGROUNDS, GAME_STATES, INIT_STATES, ITEM_TYPES, RARE_PERCENTAGE, REFRESH_PRICE, ULTRA_RARE_PERCENTAGE, WINDOW_NAMES } from '../Logic/constants'
 import { getRandomInt } from '../Logic/functions/calculations'
 import { useEffect } from 'react'
@@ -14,7 +15,7 @@ import { useEffect } from 'react'
 export function Shop() {
     const { chooseOptions, setChooseOptions, getNewId, initWindow, setInitWindow,
         setCoins, coins,setGameState,changeWindow, languajeDocument,
-        setBackground
+        setBackground, setCanSell
     } = useGame()
 
     const lang=languajeDocument.Shop
@@ -47,6 +48,7 @@ export function Shop() {
         if (initWindow == WINDOW_NAMES.SHOP) {
             setBackground(BACKGROUNDS[BACKGROUNDS.length-1])
             setChooseOptions(generateCreatures())
+            setCanSell(true)
             setInitWindow(null)
         }
     }, [])
@@ -57,6 +59,10 @@ export function Shop() {
             setChooseOptions(generateCreatures())
             setCoins(newCoins)
         }
+    }
+
+    const handleCreaturesClick = () => {
+        changeWindow(WINDOW_NAMES.CREATURES_BACKPACK)
     }
 
     const handleExitClick=()=>{
@@ -70,7 +76,7 @@ export function Shop() {
             {(chooseOptions && chooseOptions.length != 0) &&
                 <div className="shopContainer">
                     <h1>{lang.title}</h1>
-                    <div className='rightOptions'>
+                    <div className='leftOptions'>
                         <div className='option'
                             onClick={handleRefreshClick}
                         >
@@ -78,6 +84,14 @@ export function Shop() {
                             {REFRESH_PRICE}
                             <img src={CoinIcon} className="imgOption" />
                         </div>
+                        <div className='option'
+                            onClick={handleCreaturesClick}
+                        >
+                            <img src={backpack} className="imgOption" />
+                            {lang.creaturesButton}
+                        </div>
+                    </div>
+                    <div className='rightOptions'>
                         <div className='option'
                             onClick={handleExitClick}
                         >

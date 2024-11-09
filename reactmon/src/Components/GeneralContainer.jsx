@@ -74,7 +74,7 @@ export function GeneralContainer() {
     ]
 
     document.oncontextmenu = function () { return false }
-    const seeDevPanel = false
+    const seeDevPanel = true
 
     return (
         <>

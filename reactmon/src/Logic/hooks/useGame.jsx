@@ -29,7 +29,8 @@ export function useGame() {
         indexActualCreatureRival, setIndexActualCreatureRival,
         selectedItem, setSelectedItem,
         extraItem, setExtraItem,
-        chooseOptions, setChooseOptions
+        chooseOptions, setChooseOptions,
+        canSell, setCanSell
     } = context
 
     function reset() {
@@ -49,7 +50,8 @@ export function useGame() {
         setIndexActualCreatureRival(null)
         setSelectedItem({ itemType: null, item: null })
         setExtraItem({ itemType: null, item: null })
-        setChooseOptions([])
+        setChooseOptions([]),
+        setCanSell(null)
     }
 
     function changeWindow(newWindow) {
@@ -155,6 +157,7 @@ export function useGame() {
         selectedItem, setSelectedItem,
         extraItem, setExtraItem,
         chooseOptions, setChooseOptions,
+        canSell, setCanSell,
         reset, changeWindow, getNewId, checkWinner, processAttack
     }
 }

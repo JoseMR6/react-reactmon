@@ -1,9 +1,10 @@
 import { GAME_STATES, INIT_STATES, ITEM_TYPES, ROUNDS_PER_STAGE, WINDOW_NAMES } from '../Logic/constants'
-import { creatureCanLearnAttack } from '../Logic/functions/creature'
+import { creatureCanLearnAttack, getCreaturePrice } from '../Logic/functions/creature'
 import { useGame } from '../Logic/hooks/useGame'
 import './CreaturesBackpack.css'
 import { ElemntIcon } from './Types'
 import { CreatureImg } from './creatures/CreatureImg'
+import CoinIcon from '/coin.svg'
 import { PropTypes } from 'prop-types'
 
 export function CreaturesBackpack() {
@@ -11,6 +12,14 @@ export function CreaturesBackpack() {
         languajeDocument, gameState, extraItem
     } = useGame()
     const lang = languajeDocument.CreaturesBackpack
+
+    const handleReturnClick = () => {
+        if (gameState == GAME_STATES.SHOPPING) {
+            changeWindow(WINDOW_NAMES.SHOP)
+        } else {
+            changeWindow(WINDOW_NAMES.BATTLE_OPTIONS)
+        }
+    }
 
     return (
         <>
@@ -29,9 +38,7 @@ export function CreaturesBackpack() {
                 </div>
                 {(initWindow != INIT_STATES.DEAD && gameState != GAME_STATES.NEW_ITEM) &&
                     <div className='return button'
-                        onClick={() => {
-                            changeWindow(WINDOW_NAMES.BATTLE_OPTIONS)
-                        }}
+                        onClick={handleReturnClick}
                     >
                         <b>{lang.returnButton}</b>
                     </div>
@@ -55,11 +62,12 @@ function CreatureBackpack({ index, creature }) {
     const { changeWindow, setSelectedItem,
         languajeDocument, indexActualCreaturePlayer, setIndexActualCreaturePlayer,
         setInitWindow, initWindow, playerCreatures, setPlayerCreatures, gameState, extraItem,
-        setExtraItem, setGameState, round
+        setExtraItem, setGameState, round, setCoins, coins, setCanSell, canSell
     } = useGame()
     const lang = languajeDocument.CreaturesBackpack
     const newAttack = (gameState == GAME_STATES.NEW_ITEM && extraItem.itemType == ITEM_TYPES.ATTACK)
     const cloneCreature = structuredClone(creature)
+    const price = Math.floor(getCreaturePrice(creature) / 2)
 
     const handleViewClick = () => {
         if (newAttack) setIndexActualCreaturePlayer(index)
@@ -89,15 +97,23 @@ function CreatureBackpack({ index, creature }) {
             setPlayerCreatures(cloneCreatures)
         }
         setExtraItem({ itemType: null, item: null })
-        if ((round>=ROUNDS_PER_STAGE)&&(round%ROUNDS_PER_STAGE == 0)) {
+        if ((round >= ROUNDS_PER_STAGE) && (round % ROUNDS_PER_STAGE == 0)) {
             setGameState(GAME_STATES.SHOPPING)
             setInitWindow(WINDOW_NAMES.SHOP)
             changeWindow(WINDOW_NAMES.SHOP)
-        }else{
+        } else {
             setInitWindow(WINDOW_NAMES.BATTLE_PREVIEW)
             setGameState(GAME_STATES.BATTLE)
             changeWindow(WINDOW_NAMES.BATTLE_PREVIEW)
         }
+    }
+
+    const handleSellClick = () => {
+        const cloneCreatures = structuredClone(playerCreatures)
+        cloneCreatures.splice(index, 1)
+        setPlayerCreatures(cloneCreatures)
+        setCoins(coins + price)
+        setCanSell(false)
     }
 
     return (
@@ -123,17 +139,17 @@ function CreatureBackpack({ index, creature }) {
                                     onClick={handleViewClick}
                                 >
                                     <b>
-                                    {newAttack &&
-                                        lang.teachButton
-                                    }
-                                    {!newAttack &&
-                                        lang.viewButton
-                                    }
+                                        {newAttack &&
+                                            lang.teachButton
+                                        }
+                                        {!newAttack &&
+                                            lang.viewButton
+                                        }
                                     </b>
                                 </div>
                             }
                             {(index != indexActualCreaturePlayer && !creature.dead
-                                && gameState != GAME_STATES.NEW_ITEM
+                                && gameState != GAME_STATES.NEW_ITEM && gameState != GAME_STATES.SHOPPING
                             ) &&
                                 <div className='choose button'
                                     onClick={handleChooseClick}
@@ -148,7 +164,19 @@ function CreatureBackpack({ index, creature }) {
                                     <b>{lang.deleteButton}</b>
                                 </div>
                             }
-
+                            {(gameState == GAME_STATES.SHOPPING
+                                && playerCreatures.length > 1
+                                && canSell
+                            )
+                                &&
+                                <div className='sell button'
+                                    onClick={handleSellClick}
+                                >
+                                    <b>{lang.sellButton}</b>
+                                    <div>{price}</div>
+                                    <img src={CoinIcon} className="imgOption" />
+                                </div>
+                            }
                         </div>
                     </div>
 
@@ -164,7 +192,7 @@ CreatureBackpack.propTypes = {
 }
 
 function AttackBackpack({ attack }) {
-    const { setExtraItem, setInitWindow, setGameState, changeWindow, languajeDocument, 
+    const { setExtraItem, setInitWindow, setGameState, changeWindow, languajeDocument,
         round
     } = useGame()
     const lang = languajeDocument.CreaturesBackpack
@@ -172,23 +200,23 @@ function AttackBackpack({ attack }) {
 
     const handleDiscardClick = () => {
         setExtraItem({ itemType: null, item: null })
-        if ((round>=ROUNDS_PER_STAGE)&&(round%ROUNDS_PER_STAGE == 0)) {
+        if ((round >= ROUNDS_PER_STAGE) && (round % ROUNDS_PER_STAGE == 0)) {
             setGameState(GAME_STATES.SHOPPING)
             setInitWindow(WINDOW_NAMES.SHOP)
             changeWindow(WINDOW_NAMES.SHOP)
-        }else{
+        } else {
             setInitWindow(WINDOW_NAMES.BATTLE_PREVIEW)
             setGameState(GAME_STATES.BATTLE)
             changeWindow(WINDOW_NAMES.BATTLE_PREVIEW)
         }
     }
 
-    const handleExtraAttackInfoClick=(event)=>{
+    const handleExtraAttackInfoClick = (event) => {
         if (event.target.className == 'buttonOption')
             event.target.children[0].style.visibility = 'visible'
     }
 
-    const handleExtraAttackInfoLeave=(event)=>{
+    const handleExtraAttackInfoLeave = (event) => {
         let description = event.target.children[0]
         if (event.target.className == 'attackDescription') description = event.target
         description.style.visibility = 'hidden'

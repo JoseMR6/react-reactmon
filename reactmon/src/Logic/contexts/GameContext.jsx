@@ -29,7 +29,8 @@ export function GameProvider({ children }) {
         indexActualCreatureRival, setIndexActualCreatureRival,
         selectedItem, setSelectedItem,
         extraItem, setExtraItem,
-        chooseOptions, setChooseOptions
+        chooseOptions, setChooseOptions,
+        canSell, setCanSell
     } = useMechanics()
 
     return (
@@ -53,7 +54,8 @@ export function GameProvider({ children }) {
             indexActualCreatureRival, setIndexActualCreatureRival,
             selectedItem, setSelectedItem,
             extraItem, setExtraItem,
-            chooseOptions, setChooseOptions
+            chooseOptions, setChooseOptions,
+            canSell, setCanSell
         }}>
             {children}
         </GameContext.Provider>
