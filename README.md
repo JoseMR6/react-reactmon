@@ -71,7 +71,7 @@ Las habilidades mínimas que se requieren por parte del jugador, que se utilizar
 
 - Mover el ratón hacia las opciones para seleccionarlas.
 - Pulsar los botones del ratón.
-- Escribir nombre.
+- Escribir.
 
 **Habilidades Mentales:**
 
@@ -130,7 +130,76 @@ Este es un recurso extra que sirve para obtener los dos anteriores en las Tienda
 
 ### Modos de Juego
 
+- Modo Empezar: Es la etapa inicial del juego donde el jugador determina los datos básicos del personaje y escoge la primera criatura para su equipo.
+- Modo Informacion: Es la pantalla que muestra las estadisticas y ataques de la criatura.
+- Modo Batalla: Es el desarrollo del combate, en donde los jugadores atacaran e intercambiaran criaturas segun la situacion.
+- Modo Ganar: Se desencadena al derrotar a todas las criaturas del oponente, se elige entre varias recompensas para fortalecerse para la siguiente batalla.
+- Modo Nuevo Objeto: Pantalla en la que tras obtener un nuevo elemento para añadir al equipo (criatura o ataque) se decidira por que otros elementos sustituirlo.
+- Modo Perder: Tras perder a todas las criaturas en combate se muestra el resumen final del estado del jugador y suscriaturas, solo queda iniciar otra partida.
+- Modo Comprar: Pantalla extra que aparecera cada varias rondas donde se podrán obtener criaturas y ataques con mas informacion disponible a cambio de monedas.
+- Modo Ayuda: Pantalla accesible en cualquier momento para consultar informacion relevante sobre el juego.
+
 ### Acciones
+
+**Modo Empezar**
+
+| Limitaciones | Acciones | Descripción | Resultados |
+| :--- | :---: | :--- | :--- |
+| | **Elegir Avatar** | Seleccionar uno de los aspectos de personaje disponibles para el jugador mostrados en pantalla | - Se guarda el personaje como avatar del jugador |
+| - Tiene al menos 3 letras <br/> - Tiene 13 letras maximo <br/> - No tiene solo espacios en blanco | **Escribir Nombre** | Escribir el nombre que utiliza el juego para referirse al jugador en la entra de texto disponible | - Se muestra el nombre escrito por el jugador |
+| - Hay un nombre válido | **Confirmar Nombre** | Al hacer click en continuar se guarda el nombre | - Guardar nombre y avanzar a la Eleccion de Criatura si es válido <br/> - Seguir en la pantalla actual si no es válido |
+| | **Elegir Criatura** | Seleccionar una criatura y empezar el combate | - Añadir la criatura indicada al equipo del jugador y Avanzar al modo de Batalla |
+| | **Ver Informacion de Criatura** | Abre la pantalla de Informacion de la criatura | - Cambia a la pantalla de Información de la criatura |
+
+**Modo Informacion**
+
+| Limitaciones | Acciones | Descripción | Resultados |
+| :--- | :---: | :--- | :--- |
+| | **Ver Estadisticas** | Mostrar la informacion de las estadisticas de la criatura seleccionada | - Mostrar los valores numericos de las estadisticas de la criatura |
+| | **Ver Ataque** | Mostrar la informacion del ataque seleccionado de la criatura | - Mostrar todos los datos relacionados con el ataque seleccionado |
+| | **Volver** | Regresar a la pantalla anterior | - Regresar a la pantalla donde se muestra la criatura que se seleccionó |
+
+**Modo Batalla**
+
+| Limitaciones | Acciones | Descripción | Resultados |
+| :--- | :---: | :--- | :--- |
+| - Estar en la Vista Previa de la Batalla <br/> - La criatura seleccionada no debe estar debilitada | **Elegir Primera Criatura** | Decidir cual de las criaturas del equipo iniciará el combate | - Avanza a la pantalla de Batalla y la criatura que en combate es la elegida |
+| - No estar en el menu de Mensajes de Batalla | **Luchar** | Ver los ataques para elegir realizar uno | - Muestra los ataques de la criatura en combate |
+| - No estar en el menu de Mensajes de Batalla | **Elegir Ataque** | Seleccionar un ataque de la criatura para ejecutarlo en el combate | - El ataque seleccionado se guarda como la accion que se realizará en combate y se avanza al menu de Mensajes de Batalla donde se describirá el curso del combate mediante texto |
+| - No estar en el menu de Mensajes de Batalla | **Cambiar** | Ver las criaturas del equipo para poder cambiar la actual | - Cambia a la pantalla Mochila en la que se muestran todas las criaturas del equipo |
+| - No estar en el menu de Mensajes de Batalla <br/> - La criatura seleccionada no debe estar debilitada | **Elegir Criatura** | Seleccionar una criatura del equipo para cambiarla por la actual | - La criatura elegida sale al combate intercambiandose por la que había y se avanza al menu de Mensajes de Batalla donde se describirá el curso del combate mediante texto |
+| - No estar en el menu de Mensajes de Batalla | **Ver Informacion de Criatura** | Mostrar la información de una criatura concreta del equipo | - Cambia a la pantalla de Información de la criatura |
+| - No estar en el menu de Mensajes de Batalla | **Volver** | Volver al menu general de Luchar o Cambiar | - Cambia al menu general de batalla con las opciones de Luchar y Cambiar |
+| - Estar en el menu de Mensajes de Batalla | **Siguiente Mensaje de Batalla** | Ver el siguiente mensaje que describe el avance del combate | - Se ejecuta la siguiente accion del combate y se muestra el texto que la describe |
+| - No estar en el menu de Mensajes de Batalla | **Rendirse** | Terminar el juego e ir al resumen final | - Se avanza a la pantalla de Perder |
+
+**Modo Ganar**
+
+| Limitaciones | Acciones | Descripción | Resultados |
+| :--- | :---: | :--- | :--- |
+| | **Ir a Eleccion de Criatura Enemiga** | Elegir Añadir una criatura enemiga al equipo | - Cambia a la pantalla de Eleccion de criatura |
+| | **Elegir Criatura Enemiga** | Añadir criatura seleccionada al equipo | - Añade la criatura al equipo y avanza a la siguiente Batalla o a la Tienda <br/> - Si no hay espacio la guarda como criatura a añadir y avanza a la pantalla de Nueva Criatura |
+| | **Ver Informacion de Criatura** | Mostrar la informacion de la criatura seleccionada | - Cambia a la pantalla de Información de la criatura |
+| | **Ir a Eleccion de Ataque Enemigo** | Elegir Añadir un ataque de una criatura enemiga a una criatura del equipo | - Cambia a la pantalla de Eleccion de Ataque |
+| | **Elegir Ataque Enemigo** | Añadir ataque seleccionado a una criatura del equipo | - Guarda el ataque como ataque a añadir y avanza a la pantalla de Nuevo Ataque |
+| | **Ver Descripcion de Ataque** | Mostrar la descripción del ataque seleccionado | - Hace visible la descripcion del Ataque |
+| | **Conseguir Monedas** | Elegir aumentar las monedas para la tienda | - Aumenta monedas y avanza a la siguiente Batalla o a la Tienda |
+
+**Modo Nuevo Objeto**
+
+| Limitaciones | Acciones | Descripción | Resultados |
+| :--- | :---: | :--- | :--- |
+| | **Eliminar Criatura** | | |
+| | **Ver Informacion de Criatura** | | |
+| | **Enseñar Ataque** | | |
+| | **Olvidar Ataque** | | |
+| | **Ver Descripcion de Ataque** | | |
+
+**Modo Perder**
+
+**Modo Comprar**
+
+**Modo Ayuda**
 
 ### Interacciones
 
@@ -141,13 +210,13 @@ Este es un recurso extra que sirve para obtener los dos anteriores en las Tienda
 
 ### Interfaz de Usuario (UI / HUD)
 
-### Criaturas
-
-### Fondos de Pantalla
+### Iconos
 
 ### Aspectos de Jugadores
 
-### Iconos
+### Criaturas
+
+### Fondos de Pantalla
 
 
 ## Detalles de Implementación
