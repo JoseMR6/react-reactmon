@@ -141,7 +141,7 @@ Este es un recurso extra que sirve para obtener los dos anteriores en las Tienda
 
 ### Acciones
 
-**Simpre Disponibles**
+**Siempre Disponibles**
 
 | Limitaciones | Acciones | Descripción | Resultados |
 | :--- | :---: | :--- | :--- |
@@ -258,12 +258,60 @@ Este es un recurso extra que sirve para obtener los dos anteriores en las Tienda
 | :--- | :---: | :--- | :--- |
 | | **Guardar Informacion del Jugador** | Almacenar informacion del jugador en el cliente | - Guardar nombre, Avatar y record en el cliente |
 
-### Reglas
-
 
 ## Elementos Gráficos
 
 ### Interfaz de Usuario (UI / HUD)
+
+**Elegir Avatar**
+
+![imagen de Elegir Avatar](./UI_design/SelectSkin.png)
+
+1. Icono del juego: Icono del juego y enlace al proyecto en GitHub.
+2. Boton de Ayuda: Al pulsar este botón se accede a la pantalla de Ayuda.
+3. Boton de Reinicio: Al pulsar este boton se empieza el juego desde el principio, la pantalla de Elegir Avatar.
+4. Boton de Idioma Inglés: Al pulsar este boton se cambia el idioma a Ingles y se sustituye el boton por Idioma Español.
+5. Avatar Seleccionado: Aspecto de personaje marcado por defecto, al pulsar en él se guarda como aspecto del jugador y avanza a la pantalla de Escribir nombre.
+6. Avatar no Seleccionado: Aspectos de personaje no seleccionados por defencto. Mismo efecto al pulsar que el Seleccionado.
+7. Record: Ronda máxima registrada a la que ha llegado el jugador en partidas anteriores.
+8. Ronda: Ronda actual en la que se encuentra el juego.
+9. Monedas: Cantidad de monedas disponibles para gastar en la Tienda.
+
+**Escribir Nombre**
+
+![imagen de Escribir Nombre](./UI_design/WriteName.png)
+
+10. Avatar del Jugador: Imagen que representa al jugador en el juego.
+11. Indroducir Nombre: Cuadro de texto preparado para introducir el nombre del jugador.
+12. Boton de Continuar: Al pulsar se guarda el nombre del jugador y avanza a la pantalla de Elegir primera Criatura.
+
+**Elegir Criatura**
+
+![imagen de Elegir Criatura](./UI_design/ChooseCreature.png)
+
+13. Contenedor de Criatura: Engloba todas las opciones e informacion de una criatura.
+14. Imagen de Criatura: Imagen que representa a la criatura.
+15. Tipo Elemental: Icono que indica el tipo Elemental de la criatura.
+16. Boton de Elegir: Al pulsar añade la criatura al equipo del jugador y avanza a la siguiente pantalla.
+17. Boton de Ver: Al pulsar muestra la pantalla de Informacion de la criatura.
+
+**Informacion de Criatura (Estadisticas)**
+
+![imagen de Informacion de Estadisticas de Criatura](./UI_design/InfoStats.png)
+
+18. Imagen de Criatura: Imagen que representa a la criatura.
+19. Tipo Elemental: Icono que indica el tipo Elemental de la criatura.
+20. Barra de Vida: Representacion visual de la vida restante.
+21. Valor de Vida: Representación numerica de la vida restante.
+22. Boton de Estadisticas: Al pulsar muestra la Informacion de las Estadisticas de la criatura.
+23. Boton de Volver: Al pulsar Vuelve a la pantalla anterior.
+24. Nombre de Estadistica: Nombre de estadistica de la criatura.
+25. Valor de Estadistica: Valor de la estadistica en esta criatura.
+26. Maximo Valor Posible: Valor maximo posible de estadistica para comparacion.
+27. Boton de Info de Ataque: Al pulsar Muestra la Información del Ataque seleccionado.
+28. Nombre de Ataque: Nombre del Ataque de la criatura..
+29. Categoria de Ataque: Icono que indica la Categoria del Ataque.
+30. Tipo Elemental de Ataque: Icono que indica el tipo Elemental del Ataque.
 
 ### Iconos
 
@@ -283,6 +331,128 @@ Este es un recurso extra que sirve para obtener los dos anteriores en las Tienda
 ### Entidades y Atributos
 
 ### Estados
+
+### Reglas
+
+**Relacionadas a Acciones**
+
+Siempre Disponibles:
+
+| Objetivo | Regla Operativa | Regla fundamental |
+| :--- | :--- | :--- |
+| Reiniciar Juego | | |
+| Ver Ayuda | | |
+| Cambiar Idioma | | |
+
+Modo Empezar:
+
+| Objetivo | Regla Operativa | Regla fundamental |
+| :--- | :--- | :--- |
+| Elegir Avatar | | |
+| Escribir Nombre | | |
+| Elegir Criatura | | |
+| Ver Informacion de Criatura | | |
+
+Modo Informacion:
+
+| Objetivo | Regla Operativa | Regla fundamental |
+| :--- | :--- | :--- |
+| Ver Estadisticas | | |
+| Ver Ataque | | |
+| Volver | | |
+
+Modo Batalla:
+
+| Objetivo | Regla Operativa | Regla fundamental |
+| :--- | :--- | :--- |
+| Elegir Primera Criatura | | |
+| Luchar | | |
+| Elegir Ataque | | |
+| Cambiar | | |
+| Elegir Criatura | | |
+| Ver Informacion de Criatura | | |
+| Volver | | |
+| Siguiente Mensaje de Batalla | | |
+| Rendirse | | |
+
+Modo Ganar:
+
+| Objetivo | Regla Operativa | Regla fundamental |
+| :--- | :--- | :--- |
+| Ir a Eleccion de Criatura Enemiga | | |
+| Elegir Criatura Enemiga | | |
+| Ver Informacion de Criatura | | |
+| Ir a Eleccion de Ataque Enemigo | | |
+| Elegir Ataque Enemigo | | |
+| Ver Descripcion de Ataque | | |
+| Conseguir Monedas | | |
+
+Modo Nuevo Objeto:
+
+| Objetivo | Regla Operativa | Regla fundamental |
+| :--- | :--- | :--- |
+| Eliminar Criatura | | |
+| Ver Informacion de Criatura | | |
+| Enseñar Ataque | | |
+| Olvidar Ataque | | |
+| Ver Descripcion de Ataque | | |
+
+Modo Perder:
+
+| Objetivo | Regla Operativa | Regla fundamental |
+| :--- | :--- | :--- |
+| Reiniciar Juego | | |
+
+Modo Comprar:
+
+| Objetivo | Regla Operativa | Regla fundamental |
+| :--- | :--- | :--- |
+| Comprar | | |
+| Añadir Criatura | | |
+| Extraer Ataque | | |
+| Ver Informacion de Criatura | | |
+| Actualizar Tienda | | |
+| Ver Criaturas para Vender | | |
+| Vender Criatura | | |
+| Salir | | |
+
+Modo Ayuda:
+
+| Objetivo | Regla Operativa | Regla fundamental |
+| :--- | :--- | :--- |
+| Volver | | |
+
+**Relacionadas a Interacciones**
+
+Interacciones del Inicio:
+
+| Objetivo | Regla Operativa | Regla fundamental |
+| :--- | :--- | :--- |
+| Cargar Informacion del Jugador | | |
+
+Interacciones de las Criaturas:
+
+| Objetivo | Regla Operativa | Regla fundamental |
+| :--- | :--- | :--- |
+| Generar Criatura | | |
+| Debilitarse | | |
+| Realizar Ataque | | |
+
+Interacciones de los Jugadores:
+
+| Objetivo | Regla Operativa | Regla fundamental |
+| :--- | :--- | :--- |
+| Generar Rival | | |
+| Generar accion de ataque aleatorio | | |
+| Cambio Forzado | | |
+| Ganar | | |
+| Perder | | |
+
+Interacciones del Fin:
+
+| Objetivo | Regla Operativa | Regla fundamental |
+| :--- | :--- | :--- |
+| Guardar Informacion del Jugador | | |
 
 ### Despliegue
 
