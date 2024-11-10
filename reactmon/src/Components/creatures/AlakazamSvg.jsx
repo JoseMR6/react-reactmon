@@ -42,7 +42,7 @@ export function AlakazamSvg({ type, dark = 0 }) {
 
     return (
         <>
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="398px" height="342px" viewBox="-1.8 -0.75 397.65 342.0">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="398px" height="342px" viewBox="-1.8 -0.75 397.65 342.0" preserveAspectRatio="xMidYMax meet">
                 <g>
                     <path fill={color[0]} d="M142.5 123.5 L157.05 132.6 Q151.75 135.7 141.3 147.0 L129.25 160.35 Q127.95 161.65 126.15 159.1 124.55 156.85 123.35 152.8 122.1 148.7 122.2 145.7 122.35 142.3 124.25 142.15 127.8 141.85 135.1 133.5 141.4 126.25 142.5 123.5" />
                     <path fill={color[1]} d="M157.05 132.6 Q152.1 135.45 142.15 146.05 144.4 140.05 144.35 135.65 144.35 130.1 140.95 126.0 L142.5 123.5 157.05 132.6" />

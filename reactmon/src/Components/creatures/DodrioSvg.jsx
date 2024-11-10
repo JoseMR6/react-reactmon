@@ -54,7 +54,7 @@ export function DodrioSvg({ type, dark = 0 }) {
 
     return (
         <>
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="353px" height="450px" viewBox="-5.45 0.0 353.25 449.75">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="353px" height="450px" viewBox="-5.45 0.0 353.25 449.75" preserveAspectRatio="xMidYMax meet">
                 <g>
                     <path fill={color[0]} d="M235.85 292.95 L275.85 337.7 Q246.5 353.35 228.3 300.6 L235.85 292.95" />
                     <path fill={color[1]} d="M237.4 321.7 Q234.0 315.85 231.15 308.6 L228.3 300.6 235.85 292.95 262.8 323.1 Q254.85 326.3 251.0 326.5 244.15 326.9 237.4 321.7" />

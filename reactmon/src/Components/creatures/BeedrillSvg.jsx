@@ -46,7 +46,7 @@ export function BeedrillSvg({ type, dark = 0 }) {
 
     return (
         <>
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="274px" height="313px" viewBox="-0.05 -1.0 274.35 312.75">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="274px" height="313px" viewBox="-0.05 -1.0 274.35 312.75" preserveAspectRatio="xMidYMin meet">
                 <g>
                     <path fill={color[0]} d="M126.95 129.25 L133.4 139.1 104.25 202.7 Q88.2 200.05 83.45 175.3 81.7 166.15 82.05 156.55 82.35 147.85 84.05 144.0 L126.95 129.25" />
                     <path fill={color[1]} d="M126.95 129.25 L133.4 139.1 114.0 181.35 Q113.6 174.75 112.35 170.45 110.8 165.15 107.55 161.9 104.85 158.3 97.25 156.15 92.15 154.75 82.2 153.5 82.75 146.95 84.05 144.0 L126.95 129.25" />

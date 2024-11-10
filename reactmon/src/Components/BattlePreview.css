@@ -70,6 +70,8 @@
     width: var(--creature-width);
     height: var(--creature-width);
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .creatureInfo.selected{
