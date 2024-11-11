@@ -292,7 +292,7 @@ Este es un recurso extra que sirve para obtener los dos anteriores en las Tienda
 13. Contenedor de Criatura: Engloba todas las opciones e informacion de una criatura.
 14. Imagen de Criatura: Imagen que representa a la criatura.
 15. Tipo Elemental: Icono que indica el tipo Elemental de la criatura.
-16. Boton de Elegir: Al pulsar añade la criatura al equipo del jugador y avanza a la siguiente pantalla.
+16. Boton de Elegir: Al pulsar añade la criatura al equipo del jugador y avanza a la siguiente pantalla, si el equipo esta completo avanza a la pantalla de Mochila con la criatura elegida como Nueva Criatura.
 17. Boton de Ver: Al pulsar muestra la pantalla de Informacion de la criatura.
 
 **Informacion de Criatura (Estadisticas)**
@@ -309,9 +309,115 @@ Este es un recurso extra que sirve para obtener los dos anteriores en las Tienda
 25. Valor de Estadistica: Valor de la estadistica en esta criatura.
 26. Maximo Valor Posible: Valor maximo posible de estadistica para comparacion.
 27. Boton de Info de Ataque: Al pulsar Muestra la Información del Ataque seleccionado.
-28. Nombre de Ataque: Nombre del Ataque de la criatura..
+28. Nombre de Ataque: Nombre del Ataque de la criatura.
 29. Categoria de Ataque: Icono que indica la Categoria del Ataque.
 30. Tipo Elemental de Ataque: Icono que indica el tipo Elemental del Ataque.
+
+**Informacion de Criatura (Ataque Seleccionado)**
+
+![imagen de Informacion de Ataque de Criatura](./UI_design/InfoAttack.png)
+
+31. Nombre de Ataque: Nombre del Ataque de la criatura.
+32. Tipo Elemental de Ataque: Icono que indica el tipo Elemental del Ataque.
+33. Categoría de Ataque: Icono que indica la Categoría del Ataque.
+34. Descripcion de Categoría: Explicacion de como funcionan los ataques que pertenecen a esta Categoría.
+35. Descripcion de Ataque: Breve descripcion de como funciona el Ataque seleccionado.
+
+
+**Informacion de Criatura (Tipos Elementales)**
+
+![imagen de Informacion de Tipos Elementales](./UI_design/InfoTypes.png)
+
+Pantalla descartada como parte de Informacion de Criatura, en su lugar se ha añadido esta informacion a la pantalla de Ayuda. La pantalla de Ayuda contaría solo con el contenedor de la información y el Boton de Volver.
+
+**Batalla (Vista Previa)**
+
+![imagen de la Vista Previa de la Batalla](./UI_design/BattlePreview.png)
+
+36. Información del Jugador: Contenedor con todos los datos del jugador principal y la lista de sus criaturas.
+37. Avatar del Jugador: Imagen que representa al jugador en el juego.
+38. Nombre del Jugador: Nombre guardado por el que se hace referencia al jugador dentro del juego.
+39. Record del Jugador: Máxima ronda a la que ha llegado el Jugador en partidas anteriores.
+40. Selecion de Criatura: Botones que muestran las criaturas del equipo del jugador, al pulsar se inicia la batalla con esa criatura como inicial.
+41. Imagen de Criatura: Imagen que representa a la criatura.
+42. Tipo Elemental: Icono que indica el tipo Elemental de la criatura.
+43. Información del Rival: Contenedor con todos los datos del Rival y la lista de sus criaturas.
+
+**Batalla (Menu General)**
+
+![imagen del Menu General de la Batalla](./UI_design/BattleGeneralMenu.png)
+
+44. Imagen de Criatura del Jugador: Imagen que representa a la criatura actual en Batalla del Jugador principal.
+45. Tipo Elemental: Icono que indica el tipo Elemental de la criatura actual del jugador principal.
+46. Barra de Vida: Representacion visual de la vida restante de la criatura del jugador principal.
+47. Valor de Vida: Valor numerico de la vida restante de la criatura del jugador principal.
+48. Terreno: Representacion básica del terreno de combate.
+49. Barra de Vida de Rival: Representacion visual de la vida restante de la criatura del Rival.
+50. Tipo Elemental del Rival:  Icono que indica el tipo Elemental de la criatura actual del Rival.
+51. Imagen de Criatura del Rival: Imagen que representa a la criatura actual en Batalla del Rival.
+52. Boton de Luchar: Al pulsar se cambia al menu de Seleccion de Ataques.
+53. Boton de Cambiar: Al pulsar se cambia a la pantalla de Mochila para seleccionar una criatura del equipo.
+54. Boton de Rendirse. Al pulsar se termina el juego y se avanza a la pantalla de Perder.
+
+**Batalla (Menu de Ataques)**
+
+![imagen del Menu de Seleccion de Ataques de la Batalla](./UI_design/BattleAttacksMenu.png)
+
+55. Boton de Ataque: Al pulsar se inicia el desarrollo del combate con ese ataque como accion del jugador.
+56. Nombre de Ataque: Nombre del Ataque de la criatura.
+57. Categoría de Ataque: Icono que indica la Categoría del Ataque.
+58. Tipo Elemental de Ataque: Icono que indica el tipo Elemental del Ataque.
+59. Boton de Volver: Al pulsar vuelve al Menu General de Batalla.
+
+**Batalla (Mensaje de Ataque)**
+
+![imagen del Mensaje de Ataque en la Batalla](./UI_design/BattleMessageAttack.png)
+
+60. Animacion de Ataque: Representacion gráfica de la ejecucion del ataque.
+61. Mensaje actual: Descripcion de la ultima accion que se ha ejecutado.
+62. Boton de Continuar: Ejecutar la siguiente accion de la Batalla.
+
+**Batalla (Mochila)**
+
+![imagen de Mochila durante la Batalla](./UI_design/BattleBackpack.png)
+
+63. Criatura del equipo: Contenedor con informacion básica y los botones correspondientes a una de las criaturas del equipo del jugador.
+64. Imagen de Criatura: Imagen que representa a la criatura.
+65. Tipo Elemental: Icono que indica el tipo Elemental de la criatura.
+66. Barra de Vida: Representacion visual de la vida restante.
+67. Boton de Elegir: Al pulsar se saca la criatura al combate intercambiandola por la que estaba.
+68. Boton de Ver: Al pulsar muestra la pantalla de Informacion de la criatura.
+69. Boton de Volver: Al pulsar vuelve al Menu General de Batalla.
+
+**Batalla (Mensaje de Cambio)**
+
+![imagen del Mensaje de Cambio en la Batalla](./UI_design/BattleMessageChange.png)
+
+**Ganar (Elegir Recompensa)**
+
+![imagen de Eleccion de Recompensas al Ganar](./UI_design/WinChooseReward.png)
+
+70. Boton de Elegir Criatura: Al pulsar avanza a la pantalla de Eleccion de Criaturas con criaturas del Rival derrotado.
+71. Boton de Elegir Ataque: Al pulsar avanza a la pantalla de Eleccion de Ataque con ataques de las criaturas del Rival derrotado.
+72. Boton de Elegir Monedas: Al pulsar aumentan las Monedas del jugador y avanza a la siguiente Batalla.
+
+**Ganar (Mochila Nueva Criatura)**
+
+![imagen de Mochila añadiendo Nueva Criatura al Ganar](./UI_design/WinBackpackCreature.png)
+
+73. Nueva Criatura: Criatura del oponente que el jugador quiere añadir al equipo.
+74. Boton de Descartar: Al pulsar se descarta la criatura nueva y se avanza a la siguiente Batalla.
+75. Boton de Eliminar: Al pulsar se elimina la criatura seleccionada del equipo para añadir la criatura nueva del Rival.
+
+**Ganar (Elegir Ataque)**
+
+![imagen de Eleccion de Ataques del Rival al Ganar](./UI_design/WinChooseAttack.png)
+
+76. Ataque del Rival: Contenedor con informacion básica y botones de uno de los ataques de las criaturas del Rival.
+77. Nombre de Ataque: Nombre del Ataque de la criatura del Rival.
+78. Tipo Elemental de Ataque: Icono que indica el tipo Elemental del Ataque del Rival.
+79. Boton de Elegir: Al pulsar se avanza a la Mochila con el ataque elegido como Nuevo Ataque.
+80. Boton de Ver: Al pulsar se muestra la descripcion del ataque en un cuadro de texto flotante que normalmente esta oculto.
 
 ### Iconos
 
