@@ -479,11 +479,67 @@ Pantalla descartada y sustituida por cuadro de texto flotante al lado del boton 
 
 ### Iconos
 
+**Opciones de Menus**
+
+![imagen de iconos de menus](./gdd_images/IconsMenus.png)
+
+Procedentes de [SVG-Repo](#referencias).
+
+**Categorías**
+
+![imagen de iconos de categorias](./reactmon/guide_images/categories.png)
+
+Procedentes de [SVG-Repo](#referencias).
+
+**Tipos Elementales**
+
+![imagen de iconos de Tipos Elementales](./reactmon/guide_images/typesImg.png)
+
+Procedentes de [duiker101](#referencias).
+
 ### Aspectos de Jugadores
+
+![imagen de Personaje de maniac](./reactmon/src/assets/player_skins/maniac.png) ![imagen de Personaje de acetrainer](./reactmon/src/assets/player_skins/acetrainer.png) ![imagen de Personaje de aquagrunt](./reactmon/src/assets/player_skins/aquagrunt.png) ![imagen de Personaje de biker](./reactmon/src/assets/player_skins/biker.png)
+
+![imagen de Personaje de picnicker](./reactmon/src/assets/player_skins/picnicker.png) ![imagen de Personaje de acetrainerf](./reactmon/src/assets/player_skins/acetrainerf.png) ![imagen de Personaje de magmagrunt](./reactmon/src/assets/player_skins/magmagrunt.png) ![imagen de Personaje de battlegirl](./reactmon/src/assets/player_skins/battlegirl.png)
+
+Procedentes de [Pokémon-Showdown](#referencias).
 
 ### Criaturas
 
+![imagenes de criaturas con color original](./gdd_images/OriginalCreatures.png)
+
+(Color Original de las criaturas)
+
+Procedentes de [jnovack](#referencias).
+
 ### Fondos de Pantalla
+
+**Ciudad**
+
+![fondo de pantalla de ciudad](./reactmon/src/assets/backgrounds/city.jpg)
+
+**Pradera**
+
+![fondo de pantalla de pradera](./reactmon/src/assets/backgrounds/grassland.jpg)
+
+**Bosque**
+
+![fondo de pantalla de bosque](./reactmon/src/assets/backgrounds/forest.jpg)
+
+**Mar**
+
+![fondo de pantalla de mar](./reactmon/src/assets/backgrounds/sea.jpg)
+
+**Desierto**
+
+![fondo de pantalla de desierto](./reactmon/src/assets/backgrounds/desert.jpg)
+
+**Volcan**
+
+![fondo de pantalla de volcan](./reactmon/src/assets/backgrounds/volcano.jpg)
+
+Procedentes de [FREEPIK](#referencias).
 
 
 ## Detalles de Implementación
