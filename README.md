@@ -419,6 +419,64 @@ Pantalla descartada como parte de Informacion de Criatura, en su lugar se ha añ
 79. Boton de Elegir: Al pulsar se avanza a la Mochila con el ataque elegido como Nuevo Ataque.
 80. Boton de Ver: Al pulsar se muestra la descripcion del ataque en un cuadro de texto flotante que normalmente esta oculto.
 
+**Ganar (Informacion de Ataque)**
+
+![imagen de Informacion de Ataques del Rival al Ganar](./UI_design/WinInfoAttack.png)
+
+Pantalla descartada y sustituida por cuadro de texto flotante al lado del boton correspondiente, normalmente invisible.
+
+**Ganar (Mochila Nuevo Ataque)**
+
+![imagen de Mochila añadiendo Nuevo Ataque al Ganar](./UI_design/WinBackpackAttack.png)
+
+81. Nuevo Ataque: Contenedor de info y botones del Nuevo Ataque que se quiere añadir.
+82. Nombre de Ataque: Nombre del Ataque que se quiere añadir a una criatura del equipo.
+83. Categoría de Ataque: Icono que indica la Categoría del Ataque.
+84. Tipo Elemental de Ataque: Icono que indica el tipo Elemental del Ataque.
+85. Boton de Descartar: Descartar el ataque nuevo y avanzar a la siguiente Batalla.
+86. Boton de Ver Ataque: Al pulsar se muestra la descripcion del ataque en un cuadro de texto flotante que normalmente esta oculto.
+87. Boton de Enseñar: Al pulsar se Muestra la pantalla de Informacion de la criatura con botones añadidos para enseñar el ataque.
+
+**Ganar (Enseñar Ataque)**
+
+![imagen de Enseñar Nuevo Ataque al Ganar](./UI_design/WinTeachAttack.png)
+
+88. Nuevo Ataque: Nuevo ataque que se quiere enseñar, al pulsar se selecciona y se muestra la Informacion del Ataque.
+89. Boton de Olvidar: Al pulsar la criatura actual olvida el ataque seleccionado y lo sustituye por el nuevo ataque, y avanza a la siguiente Batalla.
+
+**Tienda**
+
+![imagen de la Tienda](./UI_design/ShopHome.png)
+
+90. Criatura Disponible: Contenedor con informacion y botones de una de las criaturas disponibles en la tienda para comprar.
+91. Imagen de Criatura: Imagen que representa a la criatura.
+92. Tipo Elemental: Icono que indica el tipo Elemental de la criatura.
+93. Precio: Monedas necesarias para comprar la criatura.
+94. Boton de Comprar: Al pulsar se descuentan las monedas requeridas y se avanza a la pantalla de Criatura Comprada.
+95. Boton de Ver: Al pulsar muestra la pantalla de Informacion de la criatura.
+96. Boton de Actualizar Tienda: Al pulsar gasta monedas para cambiar las criaturas disponibles en la Tienda.
+97. Boton de Mochila: Al pulsar cambia a la pantalla de Mochila con la posibilidad de vender criaturas del equipo.
+98. Boton de Salir: Al pulsar avanza a la siguiente Batalla.
+
+**Tienda (Criatura Comprada)**
+
+![imagen de Criatura Comprada en la Tienda](./UI_design/ShopPurchased.png)
+
+99. Boton de Extraer Ataque: Al pulsar cambia a la pantalla de Mochila con el ataque de la criatura comprada seleccionado para añadirlo a una criatura del equipo.
+100. Boton de Añadir Criatura: Al pulsar añade la criatura al equipo, o si ya esta lleno se avanza a la Mochila para sustituir una criatura por la nueva.
+
+**Fin del Juego**
+
+![imagen del resumen al Final del Juego](./UI_design/GameOver.png)
+
+101. Avatar del Jugador: Imagen que representa al jugador en el juego.
+102. Nombre del Jugador: Nombre guardado por el que se hace referencia al jugador dentro del juego.
+103. Record del Jugador: Máxima ronda a la que ha llegado el Jugador en partidas anteriores, actualizado si en esta partida a llegado mas lejos.
+104. Ronda Máxima: Ronda mas alta a la que ha llegado el jugador en esta partida.
+105. Criatura del equipo: Contenedor con la informacion visual básica de cada criatura del equipo.
+106. Imagen de Criatura: Imagen que representa a la criatura.
+107. Tipo Elemental: Icono que indica el tipo Elemental de la criatura.
+
 ### Iconos
 
 ### Aspectos de Jugadores
