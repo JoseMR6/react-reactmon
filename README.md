@@ -247,6 +247,7 @@ Este es un recurso extra que sirve para obtener los dos anteriores en las Tienda
 | Limitaciones | Interacciones | Descripción | Resultados |
 | :--- | :---: | :--- | :--- |
 | - Estar en la Vista Previa de la Batalla <br/> - No es Batalla Multijugador | **Generar Rival** | Generar un Rival NPC para la Batalla de forma aleatoria | - Generar Nombre, Avatar, Record y Criaturas |
+| - Estar en la Vista Previa de la Batalla | **Curar Criaturas** | Regenerar la vida de todas las Criaturas antes de la Batalla | - La vida actual de las Criaturas es su Vida Máxima |
 | - Estar En Batalla <br/> - Rival NPC | **Generar accion de ataque aleatorio** | El Rival elige un ataque aleatorio | - Se genera un indice aleatorio de la lista de ataques de la criatura actual del Rival |
 | - Estar en Batalla <br/> - Criatura del Jugdor o Rival debilitada <br/> - Quedan ciraturas disponibles | **Cambio Forzado** | Cambiar la criatura por otra debido a debilitamiento | - Ir a la mochila para elegir nueva criatura <br/> Si NPC se elige automaticamente una criatura aleatorio de entre las disponibles |
 | - Estar en Batalla <br/> - No quedan criaturas al Rival | **Ganar** | Ir a la Seleccion de Recompensas | - Avanzar a la pantalla de Ganar |
@@ -258,9 +259,111 @@ Este es un recurso extra que sirve para obtener los dos anteriores en las Tienda
 | :--- | :---: | :--- | :--- |
 | | **Guardar Informacion del Jugador** | Almacenar informacion del jugador en el cliente | - Guardar nombre, Avatar y record en el cliente |
 
+### Reglas
+
+**Relacionadas a Acciones**
+
+Modo Ganar:
+
+| Objetivo | Regla |
+| :--- | :--- |
+| Ir a Eleccion de Criatura Enemiga | Si el Rival derrotado era un Jefe, entonces las Criaturas disponibles seran 3 criaturas aleatorias de las 6 que tenía |
+| Ir a Eleccion de Ataque Enemigo | Si el Rival derrotado era un Jefe, entonces los Ataques disponibles seran de 3 criaturas aleatorias de las 6 que tenía |
+| Conseguir Monedas | Si el Rival derrotado era un Jefe, entonces se recibirá una cantidad mayor de Monedas |
+
+Modo Nuevo Objeto:
+
+| Objetivo | Regla |
+| :--- | :--- |
+| Enseñar Ataque | Si el ataque es Neutro, del mismo Tipo Elemental que la Criatura o del Tipo Elemental contra el que la Criatura es debil, entonces puede ser aprendido por la Criatura |
+| Olvidar Ataque | Si al olvidar el ataque seleccionado y aprender el nuevo la Criatura no se queda sin ataques que Inflijan daño al enemigo, entonces puede Olvidar el Ataque seleccionado |
+| Avanzar Siguiente Batalla (accion secundaria de varios botones) | Si la ultima ronda terminada es multiplo de 10, entonces se avanza a la Tienda antes de la Siguiente Batalla |
+
+**Relacionadas a Interacciones**
+
+Interacciones de las Criaturas:
+
+| Objetivo | Regla |
+| :--- | :--- |
+| Generar Criatura | Se reparten 280 puntos totales entre las Estadisticas, siendo 100 el valor máximo de una sola estadistica y 30 el valor mínimo que puede tener la Vida Máxima |
+| Generar Criatura | Se escoge el Tipo Elemental de forma aleatoria entre los 3 principales, excluyendo al Neutro |
+| Generar Criatura | La Criatura tiene al menos un ataque que inflinja daño al enemigo |
+| Generar Criatura | Si la criatura destaca en alguna estadistica concreta, entonces las imagenes de criaturas posibles que se le pueden asignar son aquellas relacionadas con dicha estadistica |
+| Generar Criatura | Segun el Tipo Elemental de la criatura se establecerá su patron de colores principal |
+| Generar Criatura | Dependiendo los valores de las estadisticas relacionadas con el tipo de la criatura se establecera el tono (mas claro u oscuro) de los colores de la criatura, un tono mas oscuro indica que una de estas estadistica destaca por ser muy baja mientras que un tono mas claro indica que una de estas estadisticas destaca por ser mas alto |
+| Generar Criatura | Si la pantalla es la Eleccion de primera Criatura, entonces las criaturas generadas solo tienen un ataque, tienen una estadistica al máximo asegurada y se genera una de cada Tipo Elemental |
+| Generar Criatura | La criatura del primer rival es debil contra el Tipo Elemental de la primera Criatura del Jugador |
+| Realizar Ataque | Si el ataque es de Categoría Física, entonces la potencia aumenta en funcion del Ataque Físico de la Criatura que lo realiza y se reduce en funcion de la Defensa Física de la Criatura que lo recibe |
+| Realizar Ataque | Si el ataque es de Categoría Especial, entonces la potencia aumenta en funcion del Ataque Especial de la Criatura que lo realiza y se reduce en funcion de la Defensa especial de la Criatura que lo recibe |
+| Realizar Ataque | Si el ataque es de Categoría Apoyo y es de Mejora de Estadistica, entonces se aplica una mejora acumulable hasta 5 veces en la estadistica a la que se aplica el ataque de la Criatura que lo realiza |
+| Realizar Ataque | Si el ataque es de Categoría Apoyo y es de Curacion, entonces la Criatura que realiza el ataque regenera una cantidad fija de puntos de vida |
+| Realizar Ataque | Si el ataque realizado es del mismo Tipo Elemental que la criatura que lo realiza, entonces la potencia del ataque aumenta, tambien se aplica a ataques de apoyo |
+| Realizar Ataque | Si el ataque realizado es de un Tipo Elemental fuerte contra el Tipo Elemental de la Criatura que lo recibe, entonces la potencia aumenta |
+| Realizar Ataque | Si el ataque realizado es de un Tipo Elemental debil contra el Tipo Elemental de la Criatura que lo recibe, entonces la potencia se reduce |
+
+Interacciones de los Jugadores:
+
+| Objetivo | Regla Operativa |
+| :--- | :--- |
+| Generar Rival | El primer Rival tiene una sola Criatura |
+| Generar Rival | El numero de Criaturas del Rival aumenta con cada ronda hasta llegar al máximo, una vez alcanzado el maximo de criaturas se aumenta el numero de ataques totales conocidos por sus criaturas hasta llegar al maximo |
+| Generar Rival | Si la ronda no es multiplo de 10, entonces se genera un rival con 3 Criaturas máximo |
+| Generar Rival | Si la ronda es multiplo de 10 y mayor o igual que 20, entonces se genera un rival con 6 Criaturas máximo, esto se considera un Jefe |
+| Generar Rival | Los jefes tienen una criatura con una estadistica con valor máximo asegurada y otra Criatura con 2 estaditicas con valor máximo aseguradas |
+| Curar Criaturas | Si la ronda es mayor que 20, entonces las criaturas solo se curan antes y despues de un Jefe |
+
+### Relacion de Tipos Elementales
+
+Fuego > Planta > Agua > Fuego
+
+Neutro no es fuerte ni debil contra ningun otro Tipo Elemental.
+
+### Cálculo de daño de Ataques Físicos y Especiales
+
+`Damage = (A * T * E * P * Ax) / Dx`
+
+- Ajuste (A = 0.15): Ajuste de balanceo para equilibrar ataque y defensa.
+- Tipo (T = 1.5): Aumento por Ataque del mismo Tipo Elemental que la Criatura que lo realiza.
+- Efectividad (E):
+  - Alta (E = 2): Criatura debil contra Ataque recibido.
+  - Baja (E = 0.5): Criatura fuerte contra Ataque recibido.
+- Potencia Base (P = 100): Todos los atques que inflinjen daño tienen la misma potencia base.
+- Ataque (Ax): Ataque Especial o Ataque Físico de la Criatura, dependiendo de la Categoría del Ataque.
+- Defensa (Dx): Defensa Especial o Defensa Físico de la Criatura, dependiendo de la Categoría del Ataque.
+
 ### Estadisticas de las Criaturas (CreatureStats)
 
+- Vida Máxima: Cantidad máxima de puntos de vida que puede tener la criatura completamente curada.
+- Velocidad: Establece que criatura ataca primero durante el combate.
+- Ataque Físico: Determina la potencia de los ataques Físicos.
+- Ataque Especial: Determina la potencia de los ataques Especiales.
+- Defensa Física: Determina la reducción de daño de los ataques Físicos recibidos.
+- Defensa Especial: Determina la reducción de daño de los ataques Especiales recibidos.
+
+Cada tipo Elemental tiene dos estadísticas relacionadas:
+
+- Planta: Vida Máxima y Velocidad.
+- Fuego: Ataque Físico y Ataque Especial.
+- Agua: Defensa Física y Defensa Especial.
+
 ### Lista de Ataques (AttackList)
+
+| Identificador | Nombre | Categoría | Tipo | Descripcion |
+| :--- | :--- | :--- | :--- | :--- |
+| FireFist | Puño Fuego | Físico | Fuego | El enemigo recibe un puñetazo envuelto en llamas. |
+| Flamethrower | Lanzallamas | Especial | Fuego | El enemigo es abrasado por una intensa explosión de fuego. |
+| ThermalSharpening | Afilado Térmico | Apoyo | Fuego | Aumenta el daño físico puliendo sus garras con calor. |
+| Ignition | Ignición | Apoyo | Fuego | Aumenta el daño especial aumentando su energía elemental. |
+| FluidSlash | Cuchillada Fluida | Físico | Agua | El enemigo recibe una cuchillada lubricada con agua. |
+| WaterCanon | Hidrocañón | Especial | Agua | El enemigo recibe un potente chorro de agua a presión. |
+| FrozenShield | Blindaje Helado | Apoyo | Agua | Aumenta su defensa física rodeando su cuerpo con hielo. |
+| AquaticAura | Aura acuática | Apoyo | Agua | Aumenta su defensa especial manipulando el agua a su alrededor. |
+| ImpalingSpike | Espina Empaladora | Físico | Planta | El enemigo es impactado por una espina grande y afilada. |
+| AcidBomb | Bomba Ácida | Especial | Planta | El enemigo recibe una explosión química corrosiva. |
+| Doping | Autoestimulante | Apoyo | Planta | Aumenta su velocidad generando sustancias estimulantes dentro de su cuerpo. |
+| Absorption | Absorber Nutrientes | Apoyo | Planta | Regenera parte de su vida absorbiendo nutrientes del terreno. |
+| Headbutt | Cabezazo | Físico | Neutro | El enemigo recibe un cabezazo a gran velocidad. |
+| AuraRay | Rayo de Aura | Especial | Neutro | El enemigo recibe un rayo generado a partir de pura energía. |
 
 
 ## Elementos Gráficos
@@ -702,128 +805,6 @@ Para acceder al proyecto ejecutado en el servidor local desde el navegador usar 
 - Color añadido (color). `<HexColorTr>`
   - Descripcion: Color representativo superpuesto con la imagen de fondo.
   - `color = f(Background.image)`
-
-### Reglas
-
-**Relacionadas a Acciones**
-
-Siempre Disponibles:
-
-| Objetivo | Regla Operativa | Regla fundamental |
-| :--- | :--- | :--- |
-| Reiniciar Juego | | |
-| Ver Ayuda | | |
-| Cambiar Idioma | | |
-
-Modo Empezar:
-
-| Objetivo | Regla Operativa | Regla fundamental |
-| :--- | :--- | :--- |
-| Elegir Avatar | | |
-| Escribir Nombre | | |
-| Elegir Criatura | | |
-| Ver Informacion de Criatura | | |
-
-Modo Informacion:
-
-| Objetivo | Regla Operativa | Regla fundamental |
-| :--- | :--- | :--- |
-| Ver Estadisticas | | |
-| Ver Ataque | | |
-| Volver | | |
-
-Modo Batalla:
-
-| Objetivo | Regla Operativa | Regla fundamental |
-| :--- | :--- | :--- |
-| Elegir Primera Criatura | | |
-| Luchar | | |
-| Elegir Ataque | | |
-| Cambiar | | |
-| Elegir Criatura | | |
-| Ver Informacion de Criatura | | |
-| Volver | | |
-| Siguiente Mensaje de Batalla | | |
-| Rendirse | | |
-
-Modo Ganar:
-
-| Objetivo | Regla Operativa | Regla fundamental |
-| :--- | :--- | :--- |
-| Ir a Eleccion de Criatura Enemiga | | |
-| Elegir Criatura Enemiga | | |
-| Ver Informacion de Criatura | | |
-| Ir a Eleccion de Ataque Enemigo | | |
-| Elegir Ataque Enemigo | | |
-| Ver Descripcion de Ataque | | |
-| Conseguir Monedas | | |
-
-Modo Nuevo Objeto:
-
-| Objetivo | Regla Operativa | Regla fundamental |
-| :--- | :--- | :--- |
-| Eliminar Criatura | | |
-| Ver Informacion de Criatura | | |
-| Enseñar Ataque | | |
-| Olvidar Ataque | | |
-| Ver Descripcion de Ataque | | |
-
-Modo Perder:
-
-| Objetivo | Regla Operativa | Regla fundamental |
-| :--- | :--- | :--- |
-| Reiniciar Juego | | |
-
-Modo Comprar:
-
-| Objetivo | Regla Operativa | Regla fundamental |
-| :--- | :--- | :--- |
-| Comprar | | |
-| Añadir Criatura | | |
-| Extraer Ataque | | |
-| Ver Informacion de Criatura | | |
-| Actualizar Tienda | | |
-| Ver Criaturas para Vender | | |
-| Vender Criatura | | |
-| Salir | | |
-
-Modo Ayuda:
-
-| Objetivo | Regla Operativa | Regla fundamental |
-| :--- | :--- | :--- |
-| Volver | | |
-
-**Relacionadas a Interacciones**
-
-Interacciones del Inicio:
-
-| Objetivo | Regla Operativa | Regla fundamental |
-| :--- | :--- | :--- |
-| Cargar Informacion del Jugador | | |
-
-Interacciones de las Criaturas:
-
-| Objetivo | Regla Operativa | Regla fundamental |
-| :--- | :--- | :--- |
-| Generar Criatura | | |
-| Debilitarse | | |
-| Realizar Ataque | | |
-
-Interacciones de los Jugadores:
-
-| Objetivo | Regla Operativa | Regla fundamental |
-| :--- | :--- | :--- |
-| Generar Rival | | |
-| Generar accion de ataque aleatorio | | |
-| Cambio Forzado | | |
-| Ganar | | |
-| Perder | | |
-
-Interacciones del Fin:
-
-| Objetivo | Regla Operativa | Regla fundamental |
-| :--- | :--- | :--- |
-| Guardar Informacion del Jugador | | |
 
 ### Despliegue
 
