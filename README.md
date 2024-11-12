@@ -128,15 +128,15 @@ Ademas los ataques tambien son un recurso porque pueden obtenerse para cambiar l
 
 Este es un recurso extra que sirve para obtener los dos anteriores en las Tiendas. Se comienza el juego con suficientes para comprar una criatura.
 
-### Modos de Juego
+### Modos de Juego (GameStates)
 
-- Modo Empezar: Es la etapa inicial del juego donde el jugador determina los datos básicos del personaje y escoge la primera criatura para su equipo.
+- Modo Empezar (START): Es la etapa inicial del juego donde el jugador determina los datos básicos del personaje y escoge la primera criatura para su equipo.
 - Modo Informacion: Es la pantalla que muestra las estadisticas y ataques de la criatura.
-- Modo Batalla: Es el desarrollo del combate, en donde los jugadores atacaran e intercambiaran criaturas segun la situacion.
-- Modo Ganar: Se desencadena al derrotar a todas las criaturas del oponente, se elige entre varias recompensas para fortalecerse para la siguiente batalla.
-- Modo Nuevo Objeto: Pantalla en la que tras obtener un nuevo elemento para añadir al equipo (criatura o ataque) se decidira por que otros elementos sustituirlo.
-- Modo Perder: Tras perder a todas las criaturas en combate se muestra el resumen final del estado del jugador y suscriaturas, solo queda iniciar otra partida.
-- Modo Comprar: Pantalla extra que aparecera cada varias rondas donde se podrán obtener criaturas y ataques con mas informacion disponible a cambio de monedas.
+- Modo Batalla (BATTLE): Es el desarrollo del combate, en donde los jugadores atacaran e intercambiaran criaturas segun la situacion.
+- Modo Ganar (WIN): Se desencadena al derrotar a todas las criaturas del oponente, se elige entre varias recompensas para fortalecerse para la siguiente batalla.
+- Modo Nuevo Objeto (NEW_ITEM): Pantalla en la que tras obtener un nuevo elemento para añadir al equipo (criatura o ataque) se decidira por que otros elementos sustituirlo.
+- Modo Perder (LOSE): Tras perder a todas las criaturas en combate se muestra el resumen final del estado del jugador y suscriaturas, solo queda iniciar otra partida.
+- Modo Comprar (SHOPPING): Pantalla extra que aparecera cada varias rondas donde se podrán obtener criaturas y ataques con mas informacion disponible a cambio de monedas.
 - Modo Ayuda: Pantalla accesible en cualquier momento para consultar informacion relevante sobre el juego.
 
 ### Acciones
@@ -257,6 +257,10 @@ Este es un recurso extra que sirve para obtener los dos anteriores en las Tienda
 | Limitaciones | Interacciones | Descripción | Resultados |
 | :--- | :---: | :--- | :--- |
 | | **Guardar Informacion del Jugador** | Almacenar informacion del jugador en el cliente | - Guardar nombre, Avatar y record en el cliente |
+
+### Estadisticas de las Criaturas (CreatureStats)
+
+### Lista de Ataques (AttackList)
 
 
 ## Elementos Gráficos
@@ -497,7 +501,7 @@ Procedentes de [SVG-Repo](#referencias).
 
 Procedentes de [duiker101](#referencias).
 
-### Aspectos de Jugadores
+### Aspectos de Jugadores (PlayerSkins)
 
 ![imagen de Personaje de maniac](./reactmon/src/assets/player_skins/maniac.png) ![imagen de Personaje de acetrainer](./reactmon/src/assets/player_skins/acetrainer.png) ![imagen de Personaje de aquagrunt](./reactmon/src/assets/player_skins/aquagrunt.png) ![imagen de Personaje de biker](./reactmon/src/assets/player_skins/biker.png)
 
@@ -505,7 +509,7 @@ Procedentes de [duiker101](#referencias).
 
 Procedentes de [Pokémon-Showdown](#referencias).
 
-### Criaturas
+### Criaturas (CreatureList)
 
 ![imagenes de criaturas con color original](./gdd_images/OriginalCreatures.png)
 
@@ -513,7 +517,7 @@ Procedentes de [Pokémon-Showdown](#referencias).
 
 Procedentes de [jnovack](#referencias).
 
-### Fondos de Pantalla
+### Fondos de Pantalla (BackgroundList)
 
 **Ciudad**
 
@@ -546,11 +550,158 @@ Procedentes de [FREEPIK](#referencias).
 
 ### Tecnologías Utilizadas
 
+- Ubuntu 22.04.4 LTS, 64 bits, 16 GB RAM.
+- Visual Studio Code 1.89.1.
+- Firefox Browser 132.0.1 (64-bit).
+- npm 8.6.0.
+- Vite 5.4.8.
+- React 18.3.1.
+- Eslint 9.11.1.
+
 ### Preparación del Entorno de Desarroyo
+
+Los comandos utilizados en la Terminal de Ubuntu, comenzando en la carpeta raiz del proyecto, para iniciar el proyecto son los mostrados a continuacion.
+
+Inicializar NPM en la carpeta raiz del proyecto:
+
+```
+npm init -y
+```
+
+Crear la carpeta del codigo del proyecto con Vite preparada para usar React:
+
+```
+npm create vite@latest
+nombre-proyecto
+React
+JavaScript + SWC
+```
+
+Instalar las dependencias del proyecto:
+
+```
+cd ./nombre-proyecto/
+npm install
+npm install standard -D
+```
+
+Iniciar el servidor local, posicionado en la carpeta del codigo del proyecto, para poder acceder al proyecto en el navegador:
+
+```
+npm run dev
+```
+
+Para acceder al proyecto ejecutado en el servidor local desde el navegador usar la url `http://localhost:5173/`
 
 ### Entidades y Atributos
 
-### Estados
+(Expresion `f()` utilizado para indicar si un atributo depende de otros para su calculo)
+
+**Jugador (Player)**
+
+- Nombre (name). `<string>`
+  - Descripcion: Cadena de caracteres con el nombre del Jugador.
+- Imagen (image). `<Tag> in PlayerSkins`
+  - Descripcion: Nombre de la imagen utilizada como aspecto del Jugador.
+- Record (record). `<int>`
+  - Descripcion: Maxima ronda alcanzada en partidas anteriores por el jugador.
+  - `record = f(Game.round)`
+- Criaturas (creatures). `<List<Creature>>`
+  - Descripcion: Criaturas que forman el equipo actual del Jugador.
+- Criatura en Combate (indexActualCreature). `<int>`
+  - Descripcion: Indice de la criatura del jugador actualmente en el campo de Batalla.
+- Criaturas Vivas (liveCreatures). `<int>`
+  - Descripcion: Criaturas restantes disponibles para el combate.
+  - `liveCreatures = f(Player.creatures[].dead)`
+
+**Criatura (Creature)**
+
+- Identificador Interno (id). `<int>`
+  - Descripcion: Numero que identifica de forma unica a la criatura.
+  - `id = f(Game.contCreatureIds)`
+- Imagen (image). `<CreatureImage>`
+  - Descripcion: Datos sobre la imagen que representa a la criatura.
+  - `image = f(Creature.mainStats, Creature.typeRelatedStats)`
+- Tipo (type). `<Tag> in [FIRE, GRASS, WATER]`
+  - Descripcion: Tipo Elemental de la Criatura.
+- Ataques (attacks).  `<List<Attack>>`
+  - Descripcion: Ataques que conoce la criatura para utilizar en combate.
+  - `attacks = f(Creature.type)`
+- Estadisticas (stats). `<List<(Tag in CreatureStats, int)>>`
+  - Descripcion: Valores que describen las capacidades de la Criatura.
+- Vida Restante (recordedHealth). `<int>`
+  - Descripcion: Puntos de Vida actuales de la criatura para el combate, si llega a 0 se debilita.
+- Mejoras de Estadistica (recordedBuffs). `<Buff>`
+  - Descripcion: Mejoras de estadistica aplicadas en el combate actual.
+- Debilitado (dead). `<bool>`
+  - Descripcion: Indica si la Criatura sigue disponible para combatir o no.
+  - `dead = f(Creature.recordedHealth)`
+- Estadisticas Principales (mainStats). `<List<Tag in CreatureStats>>`
+  - Descripcion: Estadistica mas alta de la criatura, si hay varias estadisticas con valores cercanos se incluyen.
+  - `mainStats = f(Creature.stats)`
+- Estadisticas Relacionadas (typeRelatedStats) `<List<Tag in CreatureStats>>`
+  - Descripcion: Estadisticas relacionadas con el tipo de la Criatura.
+  - `typeRelatedStats = f(Creature.type)`
+
+**Ataque (Attack)**
+
+- Identificador (key). `<Tag> in AttackList`
+  - Descripcion: Etiqueta que identifica el Ataque de forma unica.
+- Nombre (name). `<string>`
+  - Descripcion: Nombre descriptivo para mostrar en la UI.
+- Categoría (category). `<Tag> in [PHYSICAL, SPECIAL, SUPPORT]`
+  - Descripcion: Indica el funcionamiento interno general del Ataque.
+- Tipo (type). `<Tag> in [FIRE, GRASS, WATER, NEUTRAL]`
+  - Descripcion: Tipo Elemental del Ataque.
+- Descripcion (description). `<string>`
+  - Descripcion: Explicacion de como funciona el Ataque.
+
+**Juego (Game)**
+
+- Idioma (languaje). `<Tag> in [spanish, english]`
+  - Descripcion: Indica el idioma actual de los textos de la UI.
+- Jugador Principal (player). `<Player>`
+  - Descripcion: Es el Jugador principal manejado por el usuario local.
+- Jugador Rival (rival). `<Player>`
+  - Descripcion: Es el openente generado como NPC o conectado a traves de internet.
+- Monedas (coins). `<int>`
+  - Descripcion: Monedas disponibles del Jugador Principal para gastar en la tienda.
+- Ronda (round). `<int>`
+  - Descripcion: Ronda actual en la que se encuentra el Jugador Principal.
+- Fondo del Escenario (background). `<Background>`
+  - Descripcion: Imagen de Fondo de la pantalla.
+  - `background = f(Game.round)`
+- Modo Actual (gameState). `<Tag> in GameStates`
+  - Descripcion: Estado Actual del Juego.
+- Pantalla Actual (actualWindow). `<string>`
+  - Descripcion: Pantalla actual del Juego.
+  - `actualWindow = f(Game.gameState)`
+- Criaturas Generadas (contCreatureIds). `<int>`
+  - Descripcion: Numero de criaturas generadas en el juego, utilizado para la generacion de ids de Criaturas. 
+
+**Datos de Imagen de Criatura (CreatureImage)**
+
+- Nombre (name). `<Tag> in CreatureList`
+  - Descripcion: Nombre de la imagen que representa a la criatura.
+  - `name = f(Creature.mainStats)`
+- Tono (dark). `<int> in {0..6}`
+  - Descripcion: Cuanto mayor sea mas oscuro sera el tono de los colores de la imagen.
+  - `dark = f(Creature.typeRelatedStats)`
+
+**Mejora de Estadistica (Buff)**
+
+- Estadistica Mejorada (stat). `<Tag> in CreatureStats`
+  - Descripcion: Estadistica sobre la que se aplica la mejora.
+- Capas de Mejora (cont). `<int> in {0..5}`
+  - Descripcion: Cantidad de veces que se aplica la mejora.
+
+**Fondo del Escenario (Background)**
+
+- Nombre de la Imagen (image). `<Tag> in BackgroundList`
+  - Descripcion: Nombre de la imagen de Fondo.
+- Color añadido (color). `<HexColorTr>`
+  - Descripcion: Color representativo superpuesto con la imagen de fondo.
+  - `color = f(Background.image)`
 
 ### Reglas
 
