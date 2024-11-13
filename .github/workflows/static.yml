@@ -31,18 +31,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-#      - name: Set up Node
-#        uses: actions/setup-node@v4
-#        with:
-#          cache-dependency-path: ./reactmon/package-lock.json
-#          node-version: 20
-#          cache: 'npm'
-#      - name: Install dependencies
-#        working-directory: ./reactmon
-#        run: npm ci
-#      - name: Build
-#        working-directory: ./reactmon
-#        run: npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
