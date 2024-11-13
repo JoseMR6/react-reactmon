@@ -36,11 +36,11 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
-      - name: Go to Code Directory
-        run: cd reactmon
       - name: Install dependencies
+        working-directory: ./reactmon
         run: npm ci
       - name: Build
+        working-directory: ./reactmon
         run: npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -48,7 +48,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
-          path: './dist'
+          path: './reactmon/dist'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
