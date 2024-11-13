@@ -694,7 +694,7 @@ Iniciar el servidor local, posicionado en la carpeta del codigo del proyecto, pa
 npm run dev
 ```
 
-Para acceder al proyecto ejecutado en el servidor local desde el navegador usar la url `http://localhost:5173/react-reactmon/`
+Para acceder al proyecto ejecutado en el servidor local desde el navegador usar la url `http://localhost:5173/` o `http://localhost:5173/react-reactmon/` despues de de hacer los cambios del Despliegue.
 
 ### Entidades y Atributos
 
@@ -888,6 +888,75 @@ Tras guardar este archivo en GitHub se construirá automaticamente el proyecto e
 La url de este proyecto es [https://josemr6.github.io/react-reactmon/](https://josemr6.github.io/react-reactmon/).
 
 ### Tests
+
+**Elegir Avatar**
+
+- Elegir cada Imagen de Personaje, al hacerlo deberá:
+  - Aparecer en el Panel Derecho.
+  - Aparecer en la pantalla de Escribir Nombre.
+  - Aparecer en la Vista Previa de la Batalla.
+  - Aparecer en la pantalla de Fin del Juego.
+
+**Escribir Nombre**
+
+- Escribir menos de 3 letras y pulsar el boton de Continuar no avanza a la siguiente pantalla.
+- Intentar escribir más de 13 letras no permite escribir mas caracteres.
+- Al escribir etiquetas html como parte del nombre, por ejemplo `ho<br>la`, se guarda como texto y no se inerpretan las etiquetas html.
+- Al intentar insertar código como parte del nombre, por ejemplo `";alert('');"`, se guarda como texto y no se ejecuta codigo indeseado.
+- Escribir nombre con espacios y pulsar el boton de Continuar permite guardar el nombre y avanzar con normalidad.
+- Escribir nombre sin espacios y pulsar el boton de Continuar permite guardar el nombre y avanzar con normalidad.
+- Nombre guardado deberá:
+  - Aparecer en el Panel Derecho.
+  - Aparecer en la Vista Previa de la Batalla.
+  - Aparecer en el Mensaje de usar Ataque durante la Batalla.
+  - Aparecer en el Mensaje de Criatura debilitada durante la Batalla.
+  - Aparecer en el Mensaje de Cambiar Criatura durante la Batalla.
+  - Aparecer en la pantalla de Fin del Juego.
+
+**Elegir Criatura (START)**
+
+- Muestra una Criatura de cada Tipo Elemental.
+- Al Ver cada Criatura deberá:
+  - Coincidir la imagen de la Criatura en la pantalla de Informacion con la de la criatura seleccionada.
+  - Mostrar valores de Estadisticas y vida que coincidan con lo establecido.
+  - Tener 1 Ataque de inflinja daño.
+  - Mostrar informacion del Ataque si se selecciona.
+  - Mostrar informacion de las Estadisticas si se seleccionan.
+  - Volver a la pantalla de Seleccion de Criaturas si se pulsa el boton Volver.
+- Al Elegir una Criatura se añade al equipo.
+- Las Criaturas del equipo deberan:
+  - Aparecer en Vista Previa de la Batalla.
+  - Aparecer en la pantalla de la Mochila.
+  - Aparecer en la pantalla de Fin del Juego.
+
+**Vista Previa de la Batalla**
+
+- Muestra datos del Jugador principal y del Rival, incluyendo las Criaturas de sus equipos.
+- Al pulsar sobre una de las Criaturas del equipo del Jugador princial se inicia la Batalla con esa Criatura.
+- Cada ronda el Rival tiene una Critura más.
+- Cuando llega a 3 Criaturas el Rival tiene una Criatura más con 2 Ataques por cada ronda en lugar de tener más Criaturas.
+- A partir de la ronda 20 aparece un Jefe de 6 criaturas con 2 criaturas con al menos una estadística maximizada cada 10 rondas.
+- A partir de la ronda 21 no se curan las criaturas entre rondas hasta las rondas de los Jefes y la siguiente.
+
+**Batalla**
+
+- Al pulsar el boton de Luchar cambia al Menu de Ataques donde:
+  - Al pulsar un Ataque se ejecuta el combate con el Ataque elegido como accion.
+  - Al pulsar el boton de Volver vuelve al Menu General.
+- Al pulsar el boton de Cambiar se accede a la pantalla de la Mochila donde:
+  - Al Ver Criatura se puede alternar informacion de Ataques y Estadisticas, Volver regresa a la Mochila.
+  - Al Elegir Criatura Cambia la Criatura actual en combate por la elegida, que no debe estar debilitada.
+  - Al pulsar el boton de Volver regresa al Mene General.
+- Al Cambiar de Criatura el Rival realizara un Ataque si fue una decision del Jugador, en caso de que fuera un cambio forzado por el debilitamiento de la criatura el Rival no puede Atacar.
+- Al pulsar el boton de Rendirse se avanza a la pantalla de Fin del Juego y se guarda el aspecto, el nombre y el record del Jugador para la siguiente partida.
+- Al seleccionar ataque o cambiar criatura se muestran los mensajes que describen la secuencia de acciones.
+- Al debilitar una Criatura del Rival la cambia por otra no debilitada de laas que le quedan.
+- Al pulsar el boton de Continuar de los Mensajes se muestra el siguiente mensaje.
+- Al perder a todas las Criaturas se avanza a la pantalla de Fin del Juego.
+- Al debilitar a todas las Criaturas del Rival se avanza a la pantalla de Elegir Recompensa por Ganar.
+- Si se usa un Ataque de Mejora de Estadistica aparece el icono correspondiente en la Criatura y se indica la cantidad de Mejoras utilizadas hasta 5.
+
+**Ganar (Elegir Recompensa)**
 
 
 ## Posibles Futuras Mejoras
