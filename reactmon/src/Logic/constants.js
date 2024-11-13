@@ -26,12 +26,19 @@ import categories from '../../guide_images/categories.png'
 import stats from '../../guide_images/stats.png'
 import creature from '../../guide_images/creature.png'
 import shop from '../../guide_images/shop.png'
+import SpanishImg from '/spain.svg'
+import EnglishImg from '/english.svg'
 
 export const TRANSLATIONS = translations
 
 export const TR_DOCUMENT = {
     spanish: spanish,
     english: english
+}
+
+export const TR_IMG = {
+    spanish: SpanishImg,
+    english: EnglishImg
 }
 
 export const INITIAL_COINS = gameBalance.initialCoins

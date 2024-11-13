@@ -1,12 +1,12 @@
 {
     "spanish":{
         "buttonText":"Español",
-        "srcIcon":"/spain.svg",
+        "srcIcon":"{spanish}",
         "srcIconAltPattern":"Icono de Idioma {name}"
     },
     "english":{
         "buttonText":"English",
-        "srcIcon":"/english.svg",
+        "srcIcon":"{english}",
         "srcIconAltPattern":"Icon of languaje {name}"
     }
 }

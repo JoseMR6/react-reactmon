@@ -4,8 +4,8 @@ import resetIcon from '/reset.svg'
 
 import './LeftMenu.css'
 import { useGame } from '../Logic/hooks/useGame'
-import { TRANSLATIONS, WINDOW_NAMES } from '../Logic/constants'
-import { getLanguajeDocument } from '../Logic/functions/parse'
+import { TRANSLATIONS, TR_IMG, WINDOW_NAMES } from '../Logic/constants'
+import { applyMessageVars, getLanguajeDocument } from '../Logic/functions/parse'
 
 export function LeftMenu() {
     const { languaje, setLanguaje,
@@ -59,7 +59,7 @@ export function LeftMenu() {
                             }}
                         >
                             <img
-                                src={TRANSLATIONS[translationName].srcIcon} className="imgOption"
+                                src={applyMessageVars(TRANSLATIONS[translationName].srcIcon, TR_IMG)} className="imgOption"
                                 alt={TRANSLATIONS[languaje].srcIconAltPattern.replace('{name}',translationName)}
                             />
                             <span><b>{TRANSLATIONS[translationName].buttonText}</b></span>
