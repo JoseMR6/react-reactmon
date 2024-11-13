@@ -833,7 +833,7 @@ npm run preview
 
 Para acceder al servidor local con el proyecto de Produccion usar `http://localhost:4173/react-reactmon/`
 
-Modificar .gitignore comentando la carpeta `dist` para guardar el proyecto construido en GitHub y hacer el `Commit` y `Push` correspondientes con todo.
+Modificar `.gitignore` comentando la carpeta `dist` para guardar el proyecto construido en GitHub y hacer el `Commit` y `Push` correspondientes con todo.
 
 Desde la página de GitHub en el repositorio del proyecto se accede al menu de `Settings`, a la opcion de `Pages`. En esta opcion, en la seccion `Build and deployment`, se elige como `Source` la opcion de `GitHub Actions`. De entre los tipos recomendados se ha seleccionado `Static HTML` pulsando en `Configure`. Esto genera un archivo de `workflows` por defecto llamado `static.yml` que es modificado de la siguiente forma:
 
