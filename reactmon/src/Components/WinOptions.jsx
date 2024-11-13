@@ -7,6 +7,7 @@ import { ElemntIcon } from './Types'
 import './WinOptions.css'
 import { CreatureImg } from './creatures/CreatureImg'
 import CoinIcon from '/coin.svg'
+import { getCategoryRoute } from '../Logic/functions/parse'
 
 export function WinOptions() {
     const { coins, setCoins, changeWindow, setChooseOptions, rivalCreatures,
@@ -76,7 +77,7 @@ export function WinOptions() {
                     >
                         <div className='imgOption'>
                             <img className={'category ' + creature.attacks[0].category}
-                                src={'./src/assets/categories/' + creature.attacks[0].category + '.svg'}
+                                src={getCategoryRoute(creature.attacks[0].category)}
                             />
                             <ElemntIcon type={creature.attacks[0].type} />
                         </div>

@@ -5,9 +5,12 @@ import './BattleOptions.css'
 import { ElemntIcon } from './Types'
 import { CreatureImg } from './creatures/CreatureImg'
 import { PropTypes } from 'prop-types'
-import { applyMessageVars, getAsset } from '../Logic/functions/parse'
+import { applyMessageVars, getCategoryRoute } from '../Logic/functions/parse'
 import { getRandomInt } from '../Logic/functions/calculations'
 import { deadFilterChoose, getFirst } from '../Logic/functions/creature'
+import battle from '../assets/options/battle.svg'
+import change from '../assets/options/change.svg'
+import surrender from '../assets/options/surrender.svg'
 
 export function BattleOptions() {
     const { playerCreatures, rivalCreatures, indexActualCreaturePlayer,
@@ -120,7 +123,7 @@ function PlayerCreatureContainer({ player, main = true }) {
                         {player.recordedBuffs.cont > 0 &&
                             <div className='buffContainer'>
                                 <img className={'category ' + ATTACK_CATEGORYS.SUPPORT}
-                                    src={getAsset(ATTACK_CATEGORYS.SUPPORT, 'categories', 'svg')}
+                                    src={getCategoryRoute(ATTACK_CATEGORYS.SUPPORT)}
                                 />
                                 <div className='buffCount'>
                                     {
@@ -163,7 +166,7 @@ function GeneralOptions({ setMenu }) {
             >
                 <span><b>{lang.attackButton}</b></span>
                 <img className='attack'
-                    src={'./src/assets/options/battle.svg'}
+                    src={battle}
                 />
             </div>
             <div className='option'
@@ -173,7 +176,7 @@ function GeneralOptions({ setMenu }) {
             >
                 <span><b>{lang.changeButton}</b></span>
                 <img className='change'
-                    src={'./src/assets/options/change.svg'}
+                    src={change}
                 />
             </div>
             <div className='option'
@@ -184,7 +187,7 @@ function GeneralOptions({ setMenu }) {
             >
                 <span><b>{lang.surrenderButton}</b></span>
                 <img className='surrender'
-                    src={'./src/assets/options/surrender.svg'}
+                    src={surrender}
                 />
             </div>
         </>
@@ -223,7 +226,7 @@ function AttackOptions({ setMenu, setPlayerAction }) {
                         </span>
                         <div className='icons'>
                             <img className={'category ' + attack.category}
-                                src={getAsset(attack.category, 'categories', 'svg')}
+                                src={getCategoryRoute(attack.category)}
                             />
                             <ElemntIcon type={attack.type} />
                         </div>

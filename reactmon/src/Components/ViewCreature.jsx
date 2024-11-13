@@ -8,6 +8,7 @@ import { CreatureImg } from './creatures/CreatureImg'
 import { useGame } from '../Logic/hooks/useGame'
 import { PropTypes } from 'prop-types'
 import { creatureCanForget } from '../Logic/functions/creature'
+import { getCategoryRoute } from '../Logic/functions/parse'
 
 export function ViewCreature() {
     const { languajeDocument, selectedItem, changeWindow, gameState,
@@ -248,7 +249,7 @@ export function AttackContainer({ index, attack, select, setSelect }) {
                 </span>
                 <div className='icons'>
                     <img className={'category ' + attack.category}
-                        src={'./src/assets/categories/' + attack.category + '.svg'}
+                        src={getCategoryRoute(attack.category)}
                     />
                     <ElemntIcon type={attack.type} />
                 </div>

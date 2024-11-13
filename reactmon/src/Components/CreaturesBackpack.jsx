@@ -1,5 +1,6 @@
 import { GAME_STATES, INIT_STATES, ITEM_TYPES, ROUNDS_PER_STAGE, WINDOW_NAMES } from '../Logic/constants'
 import { creatureCanLearnAttack, getCreaturePrice } from '../Logic/functions/creature'
+import { getCategoryRoute } from '../Logic/functions/parse'
 import { useGame } from '../Logic/hooks/useGame'
 import './CreaturesBackpack.css'
 import { ElemntIcon } from './Types'
@@ -231,7 +232,7 @@ function AttackBackpack({ attack }) {
                     </span>
                     <div className='icons'>
                         <img className={'category ' + attack.category}
-                            src={'./src/assets/categories/' + attack.category + '.svg'}
+                            src={getCategoryRoute(attack.category)}
                         />
                         <ElemntIcon type={attack.type} />
                     </div>

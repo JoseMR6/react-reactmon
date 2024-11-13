@@ -3,6 +3,7 @@ import './ChooseAttack.css'
 import { PropTypes } from 'prop-types'
 import { ElemntIcon } from './Types'
 import { GAME_STATES, ITEM_TYPES, WINDOW_NAMES } from '../Logic/constants'
+import { getCategoryRoute } from '../Logic/functions/parse'
 
 export function ChooseAttack() {
     const { chooseOptions, languajeDocument } = useGame()
@@ -65,7 +66,7 @@ function AttackSelect({ attack }) {
                     </span>
                     <div className='icons'>
                         <img className={'category ' + attack.category}
-                            src={'./src/assets/categories/' + attack.category + '.svg'}
+                            src={getCategoryRoute(attack.category)}
                         />
                         <ElemntIcon type={attack.type} />
                     </div>

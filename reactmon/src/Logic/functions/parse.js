@@ -1,16 +1,12 @@
-import { TEXT_VARIABLES, TRANSLATIONS } from "../constants"
+import { ATT_CAT_IMG, TEXT_VARIABLES, TRANSLATIONS, TR_DOCUMENT } from "../constants"
 import { checkLanguajeDocument } from "../errors"
 
 export async function getLanguajeDocument(lang) {
-    const translationsDirectory = "../../Config/translations"
     let document
 
     for (const TranslationName in TRANSLATIONS) {
         if (lang == TranslationName) {
-            document = await import(
-                /* @vite-ignore */
-                `${translationsDirectory}/${TranslationName}.json`
-            )
+            document = TR_DOCUMENT[TranslationName]
         }
     }
 
@@ -36,16 +32,15 @@ export function applyMessageVars(text, varObject) {
 }
 
 export function getSkinRoute(skin) {
-    return getAsset(skin, 'player_skins')
+    return skin
 }
 
-export function getAsset(name, type, ext = 'png') {
-    const assetDirectory = '/src/assets/' + type + '/'
-    return assetDirectory + name + '.' + ext
+export function getCategoryRoute(category) {
+    return ATT_CAT_IMG[category]
 }
 
 export function getBackgroundRoute(background) {
-    return getAsset(background, 'backgrounds', 'jpg')
+    return background
 }
 
 export function jsonArrayToString(array) {

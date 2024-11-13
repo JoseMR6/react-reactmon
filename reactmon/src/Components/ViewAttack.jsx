@@ -1,4 +1,4 @@
-import { applyTextVars } from '../Logic/functions/parse'
+import { applyTextVars, getCategoryRoute } from '../Logic/functions/parse'
 import { useGame } from '../Logic/hooks/useGame'
 import { ElemntIcon } from './Types'
 import './ViewAttack.css'
@@ -27,7 +27,7 @@ export function ViewAttack({ attack }) {
                         {applyTextVars(langC[attack.category])}
                     </div>
                     <img className={'category ' + attack.category}
-                        src={'./src/assets/categories/' + attack.category + '.svg'}
+                        src={getCategoryRoute(attack.category)}
                     />
                 </div>
                 <div className='attackDescriptionContainer'>

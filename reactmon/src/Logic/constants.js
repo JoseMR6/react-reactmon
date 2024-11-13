@@ -2,8 +2,37 @@ import gameBalance from '../Config/gameBalance.json'
 import translations from '../Config/translations.json'
 import { Creature, CreatureImage } from './classes/Creature'
 import { Player } from './classes/Player'
+import english from '../Config/translations/english.json'
+import spanish from '../Config/translations/spanish.json'
+import maniac from '../assets/player_skins/maniac.png'
+import acetrainer from '../assets/player_skins/acetrainer.png'
+import aquagrunt from '../assets/player_skins/aquagrunt.png'
+import biker from '../assets/player_skins/biker.png'
+import picnicker from '../assets/player_skins/picnicker.png'
+import acetrainerf from '../assets/player_skins/acetrainerf.png'
+import magmagrunt from '../assets/player_skins/magmagrunt.png'
+import battlegirl from '../assets/player_skins/battlegirl.png'
+import grassland from '../assets/backgrounds/grassland.jpg'
+import forest from '../assets/backgrounds/forest.jpg'
+import sea from '../assets/backgrounds/sea.jpg'
+import desert from '../assets/backgrounds/desert.jpg'
+import volcano from '../assets/backgrounds/volcano.jpg'
+import city from '../assets/backgrounds/city.jpg'
+import physical from '../assets/categories/physical.svg'
+import special from '../assets/categories/special.svg'
+import support from '../assets/categories/support.svg'
+import typesImgTr from '../../guide_images/typesImgTr.png'
+import categories from '../../guide_images/categories.png'
+import stats from '../../guide_images/stats.png'
+import creature from '../../guide_images/creature.png'
+import shop from '../../guide_images/shop.png'
 
 export const TRANSLATIONS = translations
+
+export const TR_DOCUMENT = {
+    spanish: spanish,
+    english: english
+}
 
 export const INITIAL_COINS = gameBalance.initialCoins
 
@@ -111,6 +140,20 @@ export const ATTACK_CATEGORYS = {
     PHYSICAL: "physical",
     SPECIAL: "special",
     SUPPORT: "support"
+}
+
+export const ATT_CAT_IMG = {
+    physical: physical,
+    special: special,
+    support: support
+}
+
+export const HELP_IMG = {
+    typesImgTr: typesImgTr,
+    categories: categories,
+    stats: stats,
+    creature: creature,
+    shop: shop
 }
 
 export const STAT_NAMES = {
@@ -277,39 +320,39 @@ export const CREATURES = [
 ]
 
 export const PLAYER_SKINS = [
-    'maniac',
-    'acetrainer',
-    'aquagrunt',
-    'biker',
-    'picnicker',
-    'acetrainerf',
-    'magmagrunt',
-    'battlegirl'
+    maniac,
+    acetrainer,
+    aquagrunt,
+    biker,
+    picnicker,
+    acetrainerf,
+    magmagrunt,
+    battlegirl
 ]
 
 export const BACKGROUNDS=[
     {
-        image:"grassland",
+        image:grassland,
         color:"#bbff9985"
     },
     {
-        image:"forest",
+        image:forest,
         color:"#32b62685"
     },
     {
-        image:"sea",
+        image:sea,
         color:"#5adcf385"
     },
     {
-        image:"desert",
+        image:desert,
         color:"#c8d64c85"
     },
     {
-        image:"volcano",
+        image:volcano,
         color:"#6e010185"
     },
     {
-        image:"city",
+        image:city,
         color:"#416f8a85"
     }
 ]
