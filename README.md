@@ -694,7 +694,7 @@ Iniciar el servidor local, posicionado en la carpeta del codigo del proyecto, pa
 npm run dev
 ```
 
-Para acceder al proyecto ejecutado en el servidor local desde el navegador usar la url `http://localhost:5173/`
+Para acceder al proyecto ejecutado en el servidor local desde el navegador usar la url `http://localhost:5173/react-reactmon/`
 
 ### Entidades y Atributos
 
@@ -807,6 +807,85 @@ Para acceder al proyecto ejecutado en el servidor local desde el navegador usar 
   - `color = f(Background.image)`
 
 ### Despliegue
+
+Preparacion para desplegar en GitHub Pages.
+
+Añadir al fichero `vite.config.js` en la carpeta de código la siguiente línea:
+
+```
+export default defineConfig({
+  // añadir siguiente línea a lo que ya haya en este objeto
+  base: '/react-reactmon/'
+})
+```
+
+Desde la Terminal de Ubuntu, estando situado en la carpeta del codigo del proyecto, construir el proyecto para Produccion:
+
+```
+npm run build
+```
+
+Iniciar proyecto de Produccion en servidor local para comprobar funcionamiento correcto:
+
+```
+npm run preview
+```
+
+Para acceder al servidor local con el proyecto de Produccion usar `http://localhost:4173/react-reactmon/`
+
+Modificar .gitignore comentando la carpeta `dist` para guardar el proyecto construido en GitHub y hacer el `Commit` y `Push` correspondientes con todo.
+
+Desde la página de GitHub en el repositorio del proyecto se accede al menu de `Settings`, a la opcion de `Pages`. En esta opcion, en la seccion `Build and deployment`, se elige como `Source` la opcion de `GitHub Actions`. De entre los tipos recomendados se ha seleccionado `Static HTML` pulsando en `Configure`. Esto genera un archivo de `workflows` por defecto llamado `static.yml` que es modificado de la siguiente forma:
+
+```
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload compiled directory
+          path: './reactmon/dist'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+```
+
+Tras guardar este archivo en GitHub se construirá automaticamente el proyecto en un servidor de GitHub Pages y se proporcionará la url a traves de la cual se puede acceder si el Despliegue ha sido correcto.
+
+La url de este proyecto es `https://josemr6.github.io/react-reactmon/`.
 
 ### Tests
 
