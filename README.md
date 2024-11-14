@@ -323,7 +323,7 @@ Neutro no es fuerte ni débil contra ningún otro Tipo Elemental.
   - Baja (E = 0.5): Criatura fuerte contra Ataque recibido.
 - Potencia Base (P = 100): Todos los ataques que inflijan daño tienen la misma potencia base.
 - Ataque (Ax): Ataque Especial o Ataque Físico de la Criatura, dependiendo de la Categoría del Ataque.
-- Defensa (Dx): Defensa Especial o Defensa Física de la Criatura, dependiendo de la Categoría del Ataque.
+- Defensa (Dx): Defensa Especial o Defensa Física de la Criatura que recibe el Ataque, dependiendo de la Categoría del Ataque.
 
 ### Estadísticas de las Criaturas (CreatureStats)
 
