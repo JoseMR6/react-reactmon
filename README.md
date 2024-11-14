@@ -940,7 +940,7 @@ La url de este proyecto es [https://josemr6.github.io/react-reactmon/](https://j
 - Al pulsar el botón de Cambiar se accede a la pantalla de la Mochila donde:
   - Al Ver Criatura se puede alternar información de Ataques y Estadísticas, Volver regresa a la Mochila.
   - Al Elegir Criatura Cambia la Criatura actual en combate por la elegida, que no debe estar debilitada.
-  - Al pulsar el botón de Volver regresa al Mene General.
+  - Al pulsar el botón de Volver regresa al Menú General.
 - Al Cambiar de Criatura el Rival realizara un Ataque si fue una decisión del Jugador, en caso de que fuera un cambio forzado por el debilitamiento de la criatura el Rival no puede Atacar.
 - Al pulsar el botón de Rendirse se avanza a la pantalla de Fin del Juego y se guarda el aspecto, el nombre y el record del Jugador para la siguiente partida.
 - Al seleccionar ataque o cambiar criatura se muestran los mensajes que describen la secuencia de acciones.
