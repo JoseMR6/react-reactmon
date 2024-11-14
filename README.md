@@ -958,6 +958,56 @@ La url de este proyecto es [https://josemr6.github.io/react-reactmon/](https://j
 
 **Ganar (Elegir Recompensa)**
 
+- Elegir Criatura enemiga muestra una Criatura del ultimo Rival derrotado.
+- Al pulsar en Elegir Criatura Enemiga se avanza a la pantalla de Elegir Criatura con 3 de las Criaturas del Rival.
+- Elegir Ataque de Criatura enemiga muestra iconos de Tipo Elemental y de Categoría de un Ataque del equipo del ultimo Rival derrotado.
+- Al pulsar en Elegir Ataque de Criatura enemiga avanza a la pantalla de Elegir Ataque con Ataques de 3 de las Criaturas del Rival.
+- Al pulsar en Elegir Monedas se aumentan 200 Monedas al Jugador.
+
+**Ganar (Elegir Criatura enemiga)**
+
+- Muestra 3 Criaturas del Rival o menos si no tiene suficientes.
+- Al pulsar en Ver se muestra la Informacion de la Criatura incluyendo Ataques y Estadisticas, al pulsar en el boton de Volver se regresa a la Eleccion de Criaturas.
+- Al pulsar el boton de Elegir se añade la Criatura al equipo del Jugador y avanza a la siguiente Batalla.
+- Si el equipor del Jugador ya tiene 6 Criaturas se cambia a la pantalla de Mochila para añadir la nueva Criatura.
+
+**Ganar (Mochila Nueva Criatura)**
+
+- Se muestran las 6 Criaturas del Jugador y la Nuva que se quiere añadir.
+- Al pulsar el boton Ver se muestra la Informacion de Ataques y Estadisticas de la Criatura, Volver regresa a la Mochila.
+- Al pulsar el boton Eliminar se descarta la Criatura Elegida y si es del equipo se añade la nueva Criatura en su lugar.
+
+**Ganar (Elegir Ataque enemigo)**
+
+- Se muestran los Ataques de 3 Criaturas del Rival como máximo.
+- Al pulsar en `?` muestra la descripcion del Ataque mientras se mantenga el raton encima.
+- Al pulsar el boton de Elegir Ataque se avanza a la Mochila para añadir el Nuevo Ataque.
+
+**Ganar (Mochila Nuevo Ataque)**
+
+- Se muestran las Criaturas del equipo del jugador y el Ataque Nuevo.
+- Al pulsar en `?` muestra la descripcion del Ataque.
+- Solo las Criaturas que pueden aprender el Ataque tienen el boton para ello.
+- Al pulsar en el boton enseñar se accede a la pantalla de Informacion de la Criatura con el boton añadido de Enseñar u Olvidar.
+
+**Ganar (Informacion + Enseñar)**
+
+- Se puede alternar entre la Informacion de lo Atques originales de la Criatura, el nuevo que se quiere Enseñar y las Estadisticas de la Criatura.
+- Al pulsar el boton de Volver regresa a la Mochila.
+- Si la Criatura tiene 1 Ataque aparece el boton Enseñar.
+- Si la Criatura tiene 2 Ataques aparece el boton Olvidar.
+- Si la Criatura ya conoce el Ataque no aparecen los botones de Enseñar.
+- Si se seleccionan las Estadisticas no aparecen los botones de Enseñar.
+- Si se selecciona el único Ataque que inflinje daño de la Criatura incluyendo el Nuevo Ataque, no aparece el boton de Olvidar.
+- Al pulsar el boton Enseñar la Criatura aprende el Ataque Nuevo y Avanza a la siguiente pantalla.
+- Al pulsar el boton Olvidar la Criatura pierde el Ataque seleccionado para aprender el Nuevo. 
+
+**Tienda**
+
+- Al pulsar el boton de Actualizar la Tienda se cambian las Criaturas disponibles y se reducen 100 Monedas.
+- Al pulsar el boton de Ver se muestra la Informacion de los Ataques y Estadisticas de la Criatura, Volver Regresa a la Tienda.
+- Al pulsar el boton Comprar se reducen las Monedas que cueste la Criatura y se cambia a la pantalla de Informacion de la Criatura con los botones añadidos de Añadir Criatura y Extraer Ataque donde:
+  - 
 
 ## Posibles Futuras Mejoras
 
