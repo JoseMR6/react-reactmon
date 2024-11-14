@@ -171,7 +171,7 @@ Este es un recurso extra que sirve para obtener los dos anteriores en las Tienda
 
 | Limitaciones | Acciones | Descripción | Resultados |
 | :--- | :---: | :--- | :--- |
-| - Estar en la Vista Previa de la Batalla <br/> - La criatura seleccionada no debe estar debilitada | **Elegir Primera Criatura** | Decidir cuál de las criaturas del equipo iniciará el combate | - Avanza a la pantalla de Batalla y la criatura que en combate es la elegida |
+| - Estar en la Vista Previa de la Batalla <br/> - La criatura seleccionada no debe estar debilitada | **Elegir Primera Criatura** | Decidir cuál de las criaturas del equipo iniciará el combate | - Avanza a la pantalla de Batalla y la criatura que está en combate es la elegida |
 | - No estar en el menú de Mensajes de Batalla | **Luchar** | Ver los ataques para elegir realizar uno | - Muestra los ataques de la criatura en combate |
 | - No estar en el menú de Mensajes de Batalla | **Elegir Ataque** | Seleccionar un ataque de la criatura para ejecutarlo en el combate | - El ataque seleccionado se guarda como la acción que se realizará en combate y se avanza al menú de Mensajes de Batalla donde se describirá el curso del combate mediante texto |
 | - No estar en el menú de Mensajes de Batalla | **Cambiar** | Ver las criaturas del equipo para poder cambiar la actual | - Cambia a la pantalla Mochila en la que se muestran todas las criaturas del equipo |
