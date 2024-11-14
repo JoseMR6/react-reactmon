@@ -243,7 +243,7 @@ Este es un recurso extra que sirve para obtener los dos anteriores en las Tienda
 | - Estar en la Vista Previa de la Batalla <br/> - No es Batalla Multijugador | **Generar Rival** | Generar un Rival NPC para la Batalla de forma aleatoria | - Generar Nombre, Avatar, Record y Criaturas |
 | - Estar en la Vista Previa de la Batalla | **Curar Criaturas** | Regenerar la vida de todas las Criaturas antes de la Batalla | - La vida actual de las Criaturas es su Vida Máxima |
 | - Estar En Batalla <br/> - Rival NPC | **Generar acción de ataque aleatorio** | El Rival elige un ataque aleatorio | - Se genera un índice aleatorio de la lista de ataques de la criatura actual del Rival |
-| - Estar en Batalla <br/> - Criatura del Jugador o Rival debilitada <br/> - Quedan criaturas disponibles | **Cambio Forzado** | Cambiar la criatura por otra debido a debilitamiento | - Ir a la mochila para elegir nueva criatura <br/> Si NPC se elige automáticamente una criatura aleatoria de entre las disponibles |
+| - Estar en Batalla <br/> - Criatura del Jugador o Rival debilitada <br/> - Quedan criaturas disponibles | **Cambio Forzado** | Cambiar la criatura por otra debido a debilitamiento | - Ir a la mochila para elegir nueva criatura <br/> - Si NPC se elige automáticamente una criatura aleatoria de entre las disponibles |
 | - Estar en Batalla <br/> - No quedan criaturas al Rival | **Ganar** | Ir a la Selección de Recompensas | - Avanzar a la pantalla de Ganar |
 | - Estar en Batalla <br/> - No quedan criaturas al Jugador | **Perder** | Terminar el juego e ir al resumen final | - Se avanza a la pantalla de Perder |
 
