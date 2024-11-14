@@ -1007,7 +1007,14 @@ La url de este proyecto es [https://josemr6.github.io/react-reactmon/](https://j
 - Al pulsar el boton de Actualizar la Tienda se cambian las Criaturas disponibles y se reducen 100 Monedas.
 - Al pulsar el boton de Ver se muestra la Informacion de los Ataques y Estadisticas de la Criatura, Volver Regresa a la Tienda.
 - Al pulsar el boton Comprar se reducen las Monedas que cueste la Criatura y se cambia a la pantalla de Informacion de la Criatura con los botones añadidos de Añadir Criatura y Extraer Ataque donde:
-  - 
+  - Al pulsar el boton de Añadir Criatura se incluye en el equipo del Jugador o se va a la Mochila para añadir la Nueva Criatura si no hay espacio.
+  - Al pulsar en Extraer Ataque se cambia a la pantalla de la Mochila para Añadir el Ataque seleccionado.
+
+**Fin del Juego**
+
+- Se muestran los datos del Jugador y sus Criaturas.
+- Se guarda el aspecto del Jugador, su nombre y su record para la siguiente partida.
+
 
 ## Posibles Futuras Mejoras
 
