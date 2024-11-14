@@ -288,7 +288,7 @@ Interacciones de las Criaturas:
 | Generar Criatura | Si la pantalla es la Elección de primera Criatura, entonces las criaturas generadas solo tienen un ataque, tienen una estadística al máximo asegurada y se genera una de cada Tipo Elemental |
 | Generar Criatura | La criatura del primer rival es débil contra el Tipo Elemental de la primera Criatura del Jugador |
 | Realizar Ataque | Si el ataque es de Categoría Física, entonces la potencia aumenta en función del Ataque Físico de la Criatura que lo realiza y se reduce en función de la Defensa Física de la Criatura que lo recibe |
-| Realizar Ataque | Si el ataque es de Categoría Especial, entonces la potencia aumenta en función del Ataque Especial de la Criatura que lo realiza y se reduce en función de la Defensa especial de la Criatura que lo recibe |
+| Realizar Ataque | Si el ataque es de Categoría Especial, entonces la potencia aumenta en función del Ataque Especial de la Criatura que lo realiza y se reduce en función de la Defensa Especial de la Criatura que lo recibe |
 | Realizar Ataque | Si el ataque es de Categoría Apoyo y es de Mejora de Estadística, entonces se aplica una mejora acumulable hasta 5 veces en la estadística a la que se aplica el ataque de la Criatura que lo realiza |
 | Realizar Ataque | Si el ataque es de Categoría Apoyo y es de Curación, entonces la Criatura que realiza el ataque regenera una cantidad fija de puntos de vida |
 | Realizar Ataque | Si el ataque realizado es del mismo Tipo Elemental que la criatura que lo realiza, entonces la potencia del ataque aumenta, también se aplica a ataques de apoyo |
@@ -323,7 +323,7 @@ Neutro no es fuerte ni débil contra ningún otro Tipo Elemental.
   - Baja (E = 0.5): Criatura fuerte contra Ataque recibido.
 - Potencia Base (P = 100): Todos los ataques que inflijan daño tienen la misma potencia base.
 - Ataque (Ax): Ataque Especial o Ataque Físico de la Criatura, dependiendo de la Categoría del Ataque.
-- Defensa (Dx): Defensa Especial o Defensa Físico de la Criatura, dependiendo de la Categoría del Ataque.
+- Defensa (Dx): Defensa Especial o Defensa Física de la Criatura, dependiendo de la Categoría del Ataque.
 
 ### Estadísticas de las Criaturas (CreatureStats)
 
