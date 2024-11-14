@@ -2,22 +2,22 @@
 
 ## Motivación
 
-Este proyecto empezó como una forma de practicar mis habilidades de programacion y aprender/asentar conocimientos de React.
+Este proyecto empezó como una forma de practicar mis habilidades de programación y aprender/asentar conocimientos de React.
 
-No hay entenciones de comercializar este proyecto y no me importa que otras personas lo utilicen o mejoren.
+No hay intenciones de comercializar este proyecto y no me importa que otras personas lo utilicen o mejoren.
 
 
 ## Temática
 
 ### Concepto
 
-La idea inicial es un juego de combates por turnos entre oponentes que cuentan con equipos de criaturas variadas en el que el gandor puede quedarse con parte del equipo del perdedor para hacerse mas fuerte.
+La idea inicial consiste en un juego de combates por turnos entre oponentes que cuentan con equipos de criaturas variadas en el que el ganador puede quedarse con parte del equipo del perdedor para hacerse más fuerte.
 
-El perdedor pierde el avance y debe empezar desde el principio, conservando solo el record de la ronda mas avanzada a la que ha llegado.
+El perdedor pierde el avance y debe empezar desde el principio, conservando solo el record de la ronda más avanzada a la que ha llegado.
 
-El objetivo principal es ganar todos los combates posibles para ver cuantas rondas puede aguantar e intentar establecer records cada vez mas altos.
+El objetivo principal es ganar todos los combates posibles para ver cuantas rondas puede aguantar e intentar establecer records cada vez más altos.
 
-### Generos
+### Géneros
 
 - Combate por turnos.
 - Estrategia.
@@ -26,46 +26,46 @@ El objetivo principal es ganar todos los combates posibles para ver cuantas rond
 
 ### Mundo
 
-El juego no cuenta con un mapa sobre el que desplazarse mas allá de los menus que se presentan al usuario para hacer elecciones. Lo mas parecido es la pantalla del Campo de Batalla en el que combaten las criaturas donde todos los elementos son estaticos en 2D tratando de simular una perspectiva 3D.
+El juego no cuenta con un mapa sobre el que desplazarse más allá de los menús que se presentan al usuario para hacer elecciones. Lo más parecido es la pantalla del Campo de Batalla en el que combaten las criaturas donde todos los elementos son estáticos en 2D tratando de simular una perspectiva 3D.
 
-El Campo de Batalla es solo una representacion visual de las acciones tomadas por los usuarios durante la batalla a traves del Menu de Batalla.
+El Campo de Batalla es solo una representación visual de las acciones tomadas por los usuarios durante la batalla a través del Menú de Batalla.
 
-Los elementos principales de este Campo de Batalla son el fondo de pantalla que ayuda a ambientar el escenario, las criaturas que combaten y una pequeña representacion del suelo cuyo color depende del fondo.
+Los elementos principales de este Campo de Batalla son el fondo de pantalla que ayuda a ambientar el escenario, las criaturas que combaten y una pequeña representación del suelo cuyo color depende del fondo.
 
 ### Perspectiva del Jugador
 
-La vista del jugador durante el combate es en tercera persona viendo con una ligera perspectiva tanto a la criatura que maneja como a la criatura del enemigo. Se podría considerar primera persona si se considera que el jugador ve la accion a traves de los ojos del personaje elegido en lugar de espectar a su criatura en combate.
+La vista del jugador durante el combate es en tercera persona viendo con una ligera perspectiva tanto a la criatura que maneja como a la criatura del enemigo. Se podría considerar primera persona si se considera que el jugador ve la acción a través de los ojos del personaje elegido en lugar de espectar a su criatura en combate.
 
 ### Aspecto general
 
 ![imagen de batalla](./gdd_images/battle.png)
 
-El estilo general que se ha buscado en los elementos gráficos consiste en dibujos de estilo cartoon para crear una ambientacion amigable.
+El estilo general que se ha buscado en los elementos gráficos consiste en dibujos de estilo cartoon para crear una ambientación amigable.
 
-La ambientación de los fondos es principalmente de ambientes naturales para dar sensacion de aventura, aunque tambien hay un fondo principal de ciudad actual. Los dibujos de los personajes que puedes elegir como avatar tambien tienen vestimentas actuales lo que refuerza la sensacion de estar en una epoca similar a la actual.
+La ambientación de los fondos es principalmente de ambientes naturales para dar sensación de aventura, aunque también hay un fondo principal de ciudad actual. Los dibujos de los personajes que se pueden elegir como avatar también tienen vestimentas actuales lo que refuerza la sensación de estar en una época similar a la actual.
 
-Todo esto en conjunto trata de generar un ambiente de aventura tranquila situada en el presente pero desarrollada en la naturaleza.
+Todo esto en conjunto trata de generar un ambiente de aventura tranquila situada en el presente, pero desarrollada en la naturaleza.
 
 
 ## Jugabilidad
 
 ### Resumen de Mecánicas
 
-- El jugador es un actor externo al juego que toma decisiones sobre las acciones y organizacion de las criaturas de su equipo.
+- El jugador es un actor externo al juego que toma decisiones sobre las acciones y organización de las criaturas de su equipo.
 - En la pantalla de Elegir Avatar (la primera), el jugador elige un personaje que lo represente durante la partida, tras esto se cambia a la pantalla de Escribir Nombre.
 - En la pantalla de Escribir Nombre se decide el nombre del jugador y se pulsa continuar para avanzar a la pantalla de Elegir primera criatura.
 - En la pantalla de Elegir Criatura se dan tres criaturas entre las que elegir una para que el jugador la añada a su equipo, tras lo cual se avanza a la pantalla de Vista Previa de la Batalla.
-- En la pantalla de Elegir Criatura el jugador puede pulsar el boton de ver para consultar las estadisticas y ataques de cada criatura.
-- En la Vista Previa de la Batalla se muestra la informacion básica de los dos jugadores y sus criaturas, cada uno debe elegir una criatura con la que iniciará el combate y avanzaran a la pantalla de Campo de Batalla.
-- El jugador elige la accion que realizará su criatura en cada turno de combate, tras lo cual el combate avanzará teniendo en cuenta el ataque decidido por el enemigo y las caracteristics de las criaturas y los ataques reduciendo la vida de las criaturas en consecuencia.
+- En la pantalla de Elegir Criatura el jugador puede pulsar el botón de ver para consultar las estadísticas y ataques de cada criatura.
+- En la Vista Previa de la Batalla se muestra la información básica de los dos jugadores y sus criaturas, cada uno debe elegir una criatura con la que iniciará el combate y avanzaran a la pantalla de Campo de Batalla.
+- El jugador elige la acción que realizará su criatura en cada turno de combate, tras lo cual el combate avanzará teniendo en cuenta el ataque decidido por el enemigo y las características de las criaturas y los ataques reduciendo la vida de las criaturas en consecuencia.
 - El jugador puede utilizar su turno para cambiar su criatura por otra de su equipo, pero esto gastará el turno por lo que el enemigo puede realizar un ataque a la criatura nueva.
 - El jugador puede decidir rendirse para terminar la partida y guardar su record actual.
-- Si el jugador vence a todas las criaturas enemigas avanzará a la pantalla de Elección de Recompensas donde puede elegir entre quedarse con una criatura enemiga, quedarse con un ataque de una criatura enemiga para enseñarselo a una de sus criaturas o recibir monedas, tras lo cual se avanza a la Vista Previa de la siguiente Batalla o a la Tienda.
-- Cada cierto numero de rondas aparecerá una Tienda en la que el jugador puede comprar una criatura, pagar por cambiar las criaturas disponibles y ver la información de las criaturas que puede comprar, al terminar puede pulsar el boton salir para avanzar a la Vista Previa de la siguiente Batalla.
+- Si el jugador vence a todas las criaturas enemigas avanzará a la pantalla de Elección de Recompensas donde puede elegir entre quedarse con una criatura enemiga, quedarse con un ataque de una criatura enemiga para enseñárselo a una de sus criaturas o recibir monedas, tras lo cual se avanza a la Vista Previa de la siguiente Batalla o a la Tienda.
+- Cada cierto número de rondas aparecerá una Tienda en la que el jugador puede comprar una criatura, pagar por cambiar las criaturas disponibles y ver la información de las criaturas que puede comprar, al terminar puede pulsar el botón salir para avanzar a la Vista Previa de la siguiente Batalla.
 
 ### Habilidades Requeridas
 
-Las habilidades mínimas que se requieren por parte del jugador, que se utilizaran o que se pondran a prueba son las siguientes.
+Las habilidades mínimas que se requieren por parte del jugador, que se utilizaran o que se pondrán a prueba son las siguientes.
 
 **Habilidades Físicas:**
 
@@ -75,17 +75,17 @@ Las habilidades mínimas que se requieren por parte del jugador, que se utilizar
 
 **Habilidades Mentales:**
 
-- Saber analizar la información de las criaturas elegibles para obtener la mas útil segun la situación.
-- Planificar como componer el equipo a futuro para obtener combos de estadisticas y ataques efectivos.
+- Saber analizar la información de las criaturas elegibles para obtener la más útil según la situación.
+- Planificar como componer el equipo a futuro para obtener combos de estadísticas y ataques efectivos.
 - Saber que ataques buscar para enseñar a tus criaturas y cuando buscarlos.
-- Saber cuando eliminar criaturas del equipo para reemplazarlas por otras.
-- Saber decidir cuando elegir monedas como recompensa.
-- Saber cuando comprar criaturas en la tienda.
+- Saber cuándo eliminar criaturas del equipo para reemplazarlas por otras.
+- Saber decidir cuándo elegir monedas como recompensa.
+- Saber cuándo comprar criaturas en la tienda.
 - Saber realizar cambios de criaturas en combate efectivos para minimizar perdidas.
-- Observar la representación de las criaturas enemigas para adivinar sus capacidades y contrarestarlas.
+- Observar la representación de las criaturas enemigas para adivinar sus capacidades y contrarrestarlas.
 - Predecir las acciones del enemigo en combate.
-- Saber elegir los ataques mas efectivos segun la situación del combate.
-- Saber elegir la mejor criatura para iniciar un combate segun el equipo enemigo.
+- Saber elegir los ataques más efectivos según la situación del combate.
+- Saber elegir la mejor criatura para iniciar un combate según el equipo enemigo.
 
 **Habilidades Sociales (Si se implementa el Multijugador):**
 
@@ -94,35 +94,35 @@ Las habilidades mínimas que se requieren por parte del jugador, que se utilizar
 
 ### Objetivos
 
-El objetivo principal del jugador en una ronda es derrotar a todas las criaturas del oponente, y el objetivo principal general es derrotar a todos los openentes posibles en una partida para aumentar el record de rondas alcanzadas.
+El objetivo principal del jugador en una ronda es derrotar a todas las criaturas del oponente, y el objetivo principal general es derrotar a todos los oponentes posibles en una partida para aumentar el record de rondas alcanzadas.
 
-Los objetivos secundarios son los que se plantee el jugador, desde conseguir un equipo ideal hasta cumplir con algun reto impuesto por si mismo.
+Los objetivos secundarios son los que se plantee el jugador, desde conseguir un equipo ideal hasta cumplir con algún reto impuesto por sí mismo.
 
 ### Retos
 
 - Evitar que la criatura actual pierda toda su vida en combate.
 - Evitar perder a todas las criaturas en combate.
-- Planificar la incorporacion de criaturas.
-- Planificar la incorporacion de ataques.
-- Planificar la gestion de las monedas.
-- Planificar con criatura iniciar el combate.
+- Planificar la incorporación de criaturas.
+- Planificar la incorporación de ataques.
+- Planificar la gestión de las monedas.
+- Planificar con qué criatura iniciar el combate.
 - Planificar cambios de criatura en combate.
 
 ### Recursos
 
 **Criaturas:**
 
-Las criaturas ademas de ser el medio por el que el jugador interactua con el oponente en combate tambien son un recurso que podemos obtener al derrotar al openente.
+Las criaturas además de ser el medio por el que el jugador interactúa con el oponente en combate también son un recurso que podemos obtener al derrotar al oponente.
 
-El valor de este recurso esta dividido entre las estadisticas de la criatura y sus ataques.
+El valor de este recurso está dividido entre las estadísticas de la criatura y sus ataques.
 
-Las estadisticas determinan la mayor parte del valor de una criatura o por lo menos el valor a largo plazo. Esto se debe a que las estadisticas no pueden cambiarse por lo que si una criatura no tiene las estadisticas adecuadas para la estrategia del jugador o se quieren conseguir mejores la única solucion es reemplazar la criatura por otra con las estadisticas deseadas.
+Las estadísticas determinan la mayor parte del valor de una criatura o por lo menos el valor a largo plazo. Esto se debe a que las estadísticas no pueden cambiarse por lo que si una criatura no tiene las estadísticas adecuadas para la estrategia del jugador o se quieren conseguir mejores la única solución es reemplazar la criatura por otra con las estadísticas deseadas.
 
 **Ataques:**
 
-Forman parte de las criaturas y determinan parte de su valor. Esto se debe a que tener una criatura con buenas estadisticas pero sin ataques utilizables puede considerarse una inversion de futuro, pero si no se cuentan con otras criaturas que puedan mantener el combate el jugador esta condenado a perder la ronda.
+Forman parte de las criaturas y determinan parte de su valor. Esto se debe a que tener una criatura con buenas estadísticas, pero sin ataques utilizables, puede considerarse una inversión de futuro, pero si no se cuentan con otras criaturas que puedan mantener el combate el jugador está condenado a perder la ronda.
 
-Ademas los ataques tambien son un recurso porque pueden obtenerse para cambiar la configuracion de ataques de las criaturas del jugador. Esto permite configurar estrategias con libertad.
+Además, los ataques también son un recurso porque pueden obtenerse para cambiar la configuración de ataques de las criaturas del jugador. Esto permite configurar estrategias con libertad.
 
 **Monedas:**
 
@@ -131,13 +131,13 @@ Este es un recurso extra que sirve para obtener los dos anteriores en las Tienda
 ### Modos de Juego (GameStates)
 
 - Modo Empezar (START): Es la etapa inicial del juego donde el jugador determina los datos básicos del personaje y escoge la primera criatura para su equipo.
-- Modo Informacion: Es la pantalla que muestra las estadisticas y ataques de la criatura.
-- Modo Batalla (BATTLE): Es el desarrollo del combate, en donde los jugadores atacaran e intercambiaran criaturas segun la situacion.
+- Modo Información: Es la pantalla que muestra las estadísticas y ataques de la criatura.
+- Modo Batalla (BATTLE): Es el desarrollo del combate, en donde los jugadores atacaran e intercambiaran criaturas según la situación.
 - Modo Ganar (WIN): Se desencadena al derrotar a todas las criaturas del oponente, se elige entre varias recompensas para fortalecerse para la siguiente batalla.
-- Modo Nuevo Objeto (NEW_ITEM): Pantalla en la que tras obtener un nuevo elemento para añadir al equipo (criatura o ataque) se decidira por que otros elementos sustituirlo.
-- Modo Perder (LOSE): Tras perder a todas las criaturas en combate se muestra el resumen final del estado del jugador y suscriaturas, solo queda iniciar otra partida.
-- Modo Comprar (SHOPPING): Pantalla extra que aparecera cada varias rondas donde se podrán obtener criaturas y ataques con mas informacion disponible a cambio de monedas.
-- Modo Ayuda: Pantalla accesible en cualquier momento para consultar informacion relevante sobre el juego.
+- Modo Nuevo Objeto (NEW_ITEM): Pantalla en la que tras obtener un nuevo elemento para añadir al equipo (criatura o ataque) se decidirá por que otros elementos sustituirlo.
+- Modo Perder (LOSE): Tras perder a todas las criaturas en combate se muestra el resumen final del estado del jugador y sus criaturas, solo queda iniciar otra partida.
+- Modo Comprar (SHOPPING): Pantalla extra que aparecerá cada varias rondas donde se podrán obtener criaturas y ataques con más información disponible a cambio de monedas.
+- Modo Ayuda: Pantalla accesible en cualquier momento para consultar información relevante sobre el juego.
 
 ### Acciones
 
@@ -145,8 +145,8 @@ Este es un recurso extra que sirve para obtener los dos anteriores en las Tienda
 
 | Limitaciones | Acciones | Descripción | Resultados |
 | :--- | :---: | :--- | :--- |
-| | **Reiniciar Juego** | Volver al inicio del juego | - Se vuelven a inicializar las variables internas y se cambia a la pantalla de Seleccion de Avatar |
-| | **Ver Ayuda** | Mostrar informacion relevante del juego a modo de guía | - Cambia a la pantalla de Ayuda |
+| | **Reiniciar Juego** | Volver al inicio del juego | - Se vuelven a inicializar las variables internas y se cambia a la pantalla de Selección de Avatar |
+| | **Ver Ayuda** | Mostrar información relevante del juego a modo de guía | - Cambia a la pantalla de Ayuda |
 | - El nuevo Idioma no es el actual | **Cambiar Idioma** | Cambiar el idioma de los textos del juego | - Establece el idioma elegido como el actual |
 
 **Modo Empezar**
@@ -154,43 +154,43 @@ Este es un recurso extra que sirve para obtener los dos anteriores en las Tienda
 | Limitaciones | Acciones | Descripción | Resultados |
 | :--- | :---: | :--- | :--- |
 | | **Elegir Avatar** | Seleccionar uno de los aspectos de personaje disponibles para el jugador mostrados en pantalla | - Se guarda el personaje como avatar del jugador |
-| - Tiene al menos 3 letras <br/> - Tiene 13 letras maximo <br/> - No tiene solo espacios en blanco | **Escribir Nombre** | Escribir el nombre que utiliza el juego para referirse al jugador en la entra de texto disponible | - Se muestra el nombre escrito por el jugador |
-| - Hay un nombre válido | **Confirmar Nombre** | Al hacer click en continuar se guarda el nombre | - Guardar nombre y avanzar a la Eleccion de Criatura si es válido <br/> - Seguir en la pantalla actual si no es válido |
+| - Tiene al menos 3 letras <br/> - Tiene 13 letras máximo <br/> - No tiene solo espacios en blanco | **Escribir Nombre** | Escribir el nombre que utiliza el juego para referirse al jugador en la entra de texto disponible | - Se muestra el nombre escrito por el jugador |
+| - Hay un nombre válido | **Confirmar Nombre** | Al hacer click en continuar se guarda el nombre | - Guardar nombre y avanzar a la Elección de Criatura si es válido <br/> - Seguir en la pantalla actual si no es válido |
 | | **Elegir Criatura** | Seleccionar una criatura y empezar el combate | - Añadir la criatura indicada al equipo del jugador y Avanzar al modo de Batalla |
-| | **Ver Informacion de Criatura** | Abre la pantalla de Informacion de la criatura | - Cambia a la pantalla de Información de la criatura |
+| | **Ver Información de Criatura** | Abre la pantalla de Información de la criatura | - Cambia a la pantalla de Información de la criatura |
 
-**Modo Informacion**
+**Modo Información**
 
 | Limitaciones | Acciones | Descripción | Resultados |
 | :--- | :---: | :--- | :--- |
-| | **Ver Estadisticas** | Mostrar la informacion de las estadisticas de la criatura seleccionada | - Mostrar los valores numericos de las estadisticas de la criatura |
-| | **Ver Ataque** | Mostrar la informacion del ataque seleccionado de la criatura | - Mostrar todos los datos relacionados con el ataque seleccionado |
+| | **Ver Estadísticas** | Mostrar la información de las estadísticas de la criatura seleccionada | - Mostrar los valores numéricos de las estadísticas de la criatura |
+| | **Ver Ataque** | Mostrar la información del ataque seleccionado de la criatura | - Mostrar todos los datos relacionados con el ataque seleccionado |
 | | **Volver** | Regresar a la pantalla anterior | - Regresar a la pantalla donde se muestra la criatura que se seleccionó |
 
 **Modo Batalla**
 
 | Limitaciones | Acciones | Descripción | Resultados |
 | :--- | :---: | :--- | :--- |
-| - Estar en la Vista Previa de la Batalla <br/> - La criatura seleccionada no debe estar debilitada | **Elegir Primera Criatura** | Decidir cual de las criaturas del equipo iniciará el combate | - Avanza a la pantalla de Batalla y la criatura que en combate es la elegida |
-| - No estar en el menu de Mensajes de Batalla | **Luchar** | Ver los ataques para elegir realizar uno | - Muestra los ataques de la criatura en combate |
-| - No estar en el menu de Mensajes de Batalla | **Elegir Ataque** | Seleccionar un ataque de la criatura para ejecutarlo en el combate | - El ataque seleccionado se guarda como la accion que se realizará en combate y se avanza al menu de Mensajes de Batalla donde se describirá el curso del combate mediante texto |
-| - No estar en el menu de Mensajes de Batalla | **Cambiar** | Ver las criaturas del equipo para poder cambiar la actual | - Cambia a la pantalla Mochila en la que se muestran todas las criaturas del equipo |
-| - No estar en el menu de Mensajes de Batalla <br/> - La criatura seleccionada no debe estar debilitada | **Elegir Criatura** | Seleccionar una criatura del equipo para cambiarla por la actual | - La criatura elegida sale al combate intercambiandose por la que había y se avanza al menu de Mensajes de Batalla donde se describirá el curso del combate mediante texto |
-| - No estar en el menu de Mensajes de Batalla | **Ver Informacion de Criatura** | Mostrar la información de una criatura concreta del equipo | - Cambia a la pantalla de Información de la criatura |
-| - No estar en el menu de Mensajes de Batalla | **Volver** | Volver al menu general de Luchar o Cambiar | - Cambia al menu general de batalla con las opciones de Luchar y Cambiar |
-| - Estar en el menu de Mensajes de Batalla | **Siguiente Mensaje de Batalla** | Ver el siguiente mensaje que describe el avance del combate | - Se ejecuta la siguiente accion del combate y se muestra el texto que la describe |
-| - No estar en el menu de Mensajes de Batalla | **Rendirse** | Terminar el juego e ir al resumen final | - Se avanza a la pantalla de Perder |
+| - Estar en la Vista Previa de la Batalla <br/> - La criatura seleccionada no debe estar debilitada | **Elegir Primera Criatura** | Decidir cuál de las criaturas del equipo iniciará el combate | - Avanza a la pantalla de Batalla y la criatura que en combate es la elegida |
+| - No estar en el menú de Mensajes de Batalla | **Luchar** | Ver los ataques para elegir realizar uno | - Muestra los ataques de la criatura en combate |
+| - No estar en el menú de Mensajes de Batalla | **Elegir Ataque** | Seleccionar un ataque de la criatura para ejecutarlo en el combate | - El ataque seleccionado se guarda como la acción que se realizará en combate y se avanza al menú de Mensajes de Batalla donde se describirá el curso del combate mediante texto |
+| - No estar en el menú de Mensajes de Batalla | **Cambiar** | Ver las criaturas del equipo para poder cambiar la actual | - Cambia a la pantalla Mochila en la que se muestran todas las criaturas del equipo |
+| - No estar en el menú de Mensajes de Batalla <br/> - La criatura seleccionada no debe estar debilitada | **Elegir Criatura** | Seleccionar una criatura del equipo para cambiarla por la actual | - La criatura elegida sale al combate intercambiándose por la que había y se avanza a la pantalla de Mensajes de Batalla donde se describirá el curso del combate mediante texto |
+| - No estar en el menú de Mensajes de Batalla | **Ver Información de Criatura** | Mostrar la información de una criatura concreta del equipo | - Cambia a la pantalla de Información de la criatura |
+| - No estar en el menú de Mensajes de Batalla | **Volver** | Volver al menú general de Luchar o Cambiar | - Cambia al menú general de batalla con las opciones de Luchar y Cambiar |
+| - Estar en el menú de Mensajes de Batalla | **Siguiente Mensaje de Batalla** | Ver el siguiente mensaje que describe el avance del combate | - Se ejecuta la siguiente acción del combate y se muestra el texto que la describe |
+| - No estar en el menú de Mensajes de Batalla | **Rendirse** | Terminar el juego e ir al resumen final | - Se avanza a la pantalla de Perder |
 
 **Modo Ganar**
 
 | Limitaciones | Acciones | Descripción | Resultados |
 | :--- | :---: | :--- | :--- |
-| | **Ir a Eleccion de Criatura Enemiga** | Elegir Añadir una criatura enemiga al equipo | - Cambia a la pantalla de Eleccion de criatura |
+| | **Ir a Elección de Criatura Enemiga** | Elegir Añadir una criatura enemiga al equipo | - Cambia a la pantalla de Elección de criatura |
 | | **Elegir Criatura Enemiga** | Añadir criatura seleccionada al equipo | - Añade la criatura al equipo y avanza a la siguiente Batalla o a la Tienda <br/> - Si no hay espacio la guarda como criatura a añadir y avanza a la pantalla de Nueva Criatura |
-| | **Ver Informacion de Criatura** | Mostrar la informacion de la criatura seleccionada | - Cambia a la pantalla de Información de la criatura |
-| | **Ir a Eleccion de Ataque Enemigo** | Elegir Añadir un ataque de una criatura enemiga a una criatura del equipo | - Cambia a la pantalla de Eleccion de Ataque |
+| | **Ver Información de Criatura** | Mostrar la información de la criatura seleccionada | - Cambia a la pantalla de Información de la criatura |
+| | **Ir a Elección de Ataque Enemigo** | Elegir Añadir un ataque de una criatura enemiga a una criatura del equipo | - Cambia a la pantalla de Elección de Ataque |
 | | **Elegir Ataque Enemigo** | Añadir ataque seleccionado a una criatura del equipo | - Guarda el ataque como ataque a añadir y avanza a la pantalla de Nuevo Ataque |
-| | **Ver Descripcion de Ataque** | Mostrar la descripción del ataque seleccionado | - Hace visible la descripcion del Ataque |
+| | **Ver Descripción de Ataque** | Mostrar la descripción del ataque seleccionado | - Hace visible la descripción del Ataque |
 | | **Conseguir Monedas** | Elegir aumentar las monedas para la tienda | - Aumenta monedas y avanza a la siguiente Batalla o a la Tienda |
 
 **Modo Nuevo Objeto**
@@ -198,16 +198,10 @@ Este es un recurso extra que sirve para obtener los dos anteriores en las Tienda
 | Limitaciones | Acciones | Descripción | Resultados |
 | :--- | :---: | :--- | :--- |
 | - Nueva criatura | **Eliminar Criatura** | Descarta la criatura elegida para añadir la nueva | - Elimina la criatura del equipo y añade la nueva si no era la seleccionada, avanza a la siguiente Batalla o a la Tienda |
-| | **Ver Informacion de Criatura** | Mostrar la informacion de la criatura seleccionada | - Cambia a la pantalla de Información de la criatura, si el nuevo objeto es un Ataque Muestra la opcion Enseñar u Olvidar |
+| | **Ver Información de Criatura** | Mostrar la información de la criatura seleccionada | - Cambia a la pantalla de Información de la criatura, si el nuevo objeto es un Ataque Muestra la opción Enseñar u Olvidar |
 | - Nuevo Ataque | **Enseñar Ataque** | Añadir ataque a la criatura seleccionada | - Añade el ataque nuevo a la criatura seleccionada y avanza a la siguiente Batalla o a la Tienda |
 | - Nuevo Ataque | **Olvidar Ataque** | Eliminar ataque seleccionado para añadir el nuevo | - Elimina el ataque seleccionado para cambiarlo por el ataque nuevo y avanza a la siguiente Batalla o a la Tienda |
-| - Nuevo Ataque | **Ver Descripcion de Ataque** | Mostrar la descripción del ataque que se quiere añadir | - Hace visible la descripcion del Ataque que se quiere añadir |
-
-**Modo Perder**
-
-| Limitaciones | Acciones | Descripción | Resultados |
-| :--- | :---: | :--- | :--- |
-| | **Reiniciar Juego** | Volver al inicio del juego | - Se vuelven a inicializar las variables internas y se cambia a la pantalla de Seleccion de Avatar |
+| - Nuevo Ataque | **Ver Descripción de Ataque** | Mostrar la descripción del ataque que se quiere añadir | - Hace visible la descripción del Ataque que se quiere añadir |
 
 **Modo Comprar**
 
@@ -216,10 +210,10 @@ Este es un recurso extra que sirve para obtener los dos anteriores en las Tienda
 | - Tener Suficientes Monedas | **Comprar** | Gastar Monedas para obtener una criatura | - Cambia a la pantalla de Información de la criatura con las opciones de Añadir Criatura y Extraer Ataque |
 | - Haber Comprado una Criatura | **Añadir Criatura** | Añadir la criatura comprada al equipo | - Cambia a la pantalla de Nueva Criatura con la criatura seleccionada |
 | - Haber Comprado una Criatura | **Extraer Ataque** | Añadir el ataque seleccionado de la criatura comprada a una criatura del equipo | - Cambia a la pantalla de Nuevo Ataque con el ataque seleccionado |
-| | **Ver Informacion de Criatura** |  Mostrar la informacion de la criatura seleccionada | - Cambia a la pantalla de Información de la criatura |
+| | **Ver Información de Criatura** | Mostrar la información de la criatura seleccionada | - Cambia a la pantalla de Información de la criatura |
 | - Tener Suficientes Monedas | **Actualizar Tienda** | Gastar monedas para cambiar las criaturas disponibles | - Genera nuevas criaturas disponibles en la Tienda |
-| | **Ver Criaturas para Vender** | Ver el equipo del Jugador | - Cambiar a la pantalla de la Mochila con la opcion de Vender Criatura incluida |
-| - No haber vendido ninguna criatura en esta tienda todavia | **Vender Criatura** | Eliminar una criatura del equipo para obtener Monedas | - Elimina una criatura del equipo y aumenta las monedas |
+| | **Ver Criaturas para Vender** | Ver el equipo del Jugador | - Cambiar a la pantalla de la Mochila con la opción de Vender Criatura incluida |
+| - No haber vendido ninguna criatura en esta tienda todavía | **Vender Criatura** | Eliminar una criatura del equipo para obtener Monedas | - Elimina una criatura del equipo y aumenta las monedas |
 | | **Salir** | Avanzar a la siguiente Batalla | - Avanzar a la siguiente Batalla |
 
 **Modo Ayuda**
@@ -234,30 +228,30 @@ Este es un recurso extra que sirve para obtener los dos anteriores en las Tienda
 
 | Limitaciones | Interacciones | Descripción | Resultados |
 | :--- | :---: | :--- | :--- |
-| - Hay Informacion local guardada | **Cargar Informacion del Jugador** | Iniciar los datos del jugador con informacion guardada de anteriores partidas | - Se inicializa el nombre, el Avatar y el record del jugador con la informacion almacenada en el cliente |
+| - Hay Información local guardada | **Cargar Información del Jugador** | Iniciar los datos del jugador con información guardada de anteriores partidas | - Se inicializa el nombre, el Avatar y el record del jugador con la información almacenada en el cliente |
 
 **Interacciones de las Criaturas**
 | Limitaciones | Interacciones | Descripción | Resultados |
 | :--- | :---: | :--- | :--- |
-| - Estar en la Eleccion de Primera Criatura <br> - Estar en la Vista Previa de La Batalla <br> - Estar en la Tienda | **Generar Criatura** | Crear una nueva criatura de forma aleatoria | - Se genera una nueva criatura para ser utilizada en la pantalla correspondiente  |
+| - Estar en la Elección de Primera Criatura <br> - Estar en la Vista Previa de La Batalla <br> - Estar en la Tienda | **Generar Criatura** | Crear una nueva criatura de forma aleatoria | - Se genera una nueva criatura para ser utilizada en la pantalla correspondiente |
 | - Estar en Batalla <br/> - Perder todos los puntos de vida | **Debilitarse** | La criatura queda fuera de combate | - Disminuyen las criaturas disponibles del jugador |
-| - Estar en Batalla <br/> - Jugador a seleccionado un ataque | **Realizar Ataque** | La criatura ejecuta un ataque indicado por el jugador | - Reduccion de vida de la criatura enemiga si es ataque Físico o Especial <br/> - Mejora de Estadisticas si es Ataque de Apoyo de Mejora <br/> - Regeneracion de vida si es Ataque de Apoyo de Curación |
+| - Estar en Batalla <br/> - Jugador a seleccionado un ataque | **Realizar Ataque** | La criatura ejecuta un ataque indicado por el jugador | - Reducción de vida de la criatura enemiga si es ataque Físico o Especial <br/> - Mejora de Estadísticas si es Ataque de Apoyo de Mejora <br/> - Regeneración de vida si es Ataque de Apoyo de Curación |
 
 **Interacciones de los Jugadores**
 | Limitaciones | Interacciones | Descripción | Resultados |
 | :--- | :---: | :--- | :--- |
 | - Estar en la Vista Previa de la Batalla <br/> - No es Batalla Multijugador | **Generar Rival** | Generar un Rival NPC para la Batalla de forma aleatoria | - Generar Nombre, Avatar, Record y Criaturas |
 | - Estar en la Vista Previa de la Batalla | **Curar Criaturas** | Regenerar la vida de todas las Criaturas antes de la Batalla | - La vida actual de las Criaturas es su Vida Máxima |
-| - Estar En Batalla <br/> - Rival NPC | **Generar accion de ataque aleatorio** | El Rival elige un ataque aleatorio | - Se genera un indice aleatorio de la lista de ataques de la criatura actual del Rival |
-| - Estar en Batalla <br/> - Criatura del Jugdor o Rival debilitada <br/> - Quedan ciraturas disponibles | **Cambio Forzado** | Cambiar la criatura por otra debido a debilitamiento | - Ir a la mochila para elegir nueva criatura <br/> Si NPC se elige automaticamente una criatura aleatorio de entre las disponibles |
-| - Estar en Batalla <br/> - No quedan criaturas al Rival | **Ganar** | Ir a la Seleccion de Recompensas | - Avanzar a la pantalla de Ganar |
+| - Estar En Batalla <br/> - Rival NPC | **Generar acción de ataque aleatorio** | El Rival elige un ataque aleatorio | - Se genera un índice aleatorio de la lista de ataques de la criatura actual del Rival |
+| - Estar en Batalla <br/> - Criatura del Jugador o Rival debilitada <br/> - Quedan criaturas disponibles | **Cambio Forzado** | Cambiar la criatura por otra debido a debilitamiento | - Ir a la mochila para elegir nueva criatura <br/> Si NPC se elige automáticamente una criatura aleatoria de entre las disponibles |
+| - Estar en Batalla <br/> - No quedan criaturas al Rival | **Ganar** | Ir a la Selección de Recompensas | - Avanzar a la pantalla de Ganar |
 | - Estar en Batalla <br/> - No quedan criaturas al Jugador | **Perder** | Terminar el juego e ir al resumen final | - Se avanza a la pantalla de Perder |
 
 **Interacciones del Fin**
 
 | Limitaciones | Interacciones | Descripción | Resultados |
 | :--- | :---: | :--- | :--- |
-| | **Guardar Informacion del Jugador** | Almacenar informacion del jugador en el cliente | - Guardar nombre, Avatar y record en el cliente |
+| | **Guardar Información del Jugador** | Almacenar información del jugador en el cliente | - Guardar nombre, Avatar y record en el cliente |
 
 ### Reglas
 
@@ -267,17 +261,17 @@ Modo Ganar:
 
 | Objetivo | Regla |
 | :--- | :--- |
-| Ir a Eleccion de Criatura Enemiga | Si el Rival derrotado era un Jefe, entonces las Criaturas disponibles seran 3 criaturas aleatorias de las 6 que tenía |
-| Ir a Eleccion de Ataque Enemigo | Si el Rival derrotado era un Jefe, entonces los Ataques disponibles seran de 3 criaturas aleatorias de las 6 que tenía |
+| Ir a Elección de Criatura Enemiga | Si el Rival derrotado era un Jefe, entonces las Criaturas disponibles serán 3 criaturas aleatorias de las 6 que tenía |
+| Ir a Elección de Ataque Enemigo | Si el Rival derrotado era un Jefe, entonces los Ataques disponibles serán de 3 criaturas aleatorias de las 6 que tenía |
 | Conseguir Monedas | Si el Rival derrotado era un Jefe, entonces se recibirá una cantidad mayor de Monedas |
 
 Modo Nuevo Objeto:
 
 | Objetivo | Regla |
 | :--- | :--- |
-| Enseñar Ataque | Si el ataque es Neutro, del mismo Tipo Elemental que la Criatura o del Tipo Elemental contra el que la Criatura es debil, entonces puede ser aprendido por la Criatura |
+| Enseñar Ataque | Si el ataque es Neutro, del mismo Tipo Elemental que la Criatura o del Tipo Elemental contra el que la Criatura es débil, entonces puede ser aprendido por la Criatura |
 | Olvidar Ataque | Si al olvidar el ataque seleccionado y aprender el nuevo la Criatura no se queda sin ataques que Inflijan daño al enemigo, entonces puede Olvidar el Ataque seleccionado |
-| Avanzar Siguiente Batalla (accion secundaria de varios botones) | Si la ultima ronda terminada es multiplo de 10, entonces se avanza a la Tienda antes de la Siguiente Batalla |
+| Avanzar Siguiente Batalla (acción secundaria de varios botones) | Si la última ronda terminada es múltiplo de 10, entonces se avanza a la Tienda antes de la Siguiente Batalla |
 
 **Relacionadas a Interacciones**
 
@@ -285,38 +279,38 @@ Interacciones de las Criaturas:
 
 | Objetivo | Regla |
 | :--- | :--- |
-| Generar Criatura | Se reparten 280 puntos totales entre las Estadisticas, siendo 100 el valor máximo de una sola estadistica y 30 el valor mínimo que puede tener la Vida Máxima |
+| Generar Criatura | Se reparten 280 puntos totales entre las Estadísticas, siendo 100 el valor máximo de una sola estadística y 30 el valor mínimo que puede tener la Vida Máxima |
 | Generar Criatura | Se escoge el Tipo Elemental de forma aleatoria entre los 3 principales, excluyendo al Neutro |
-| Generar Criatura | La Criatura tiene al menos un ataque que inflinja daño al enemigo |
-| Generar Criatura | Si la criatura destaca en alguna estadistica concreta, entonces las imagenes de criaturas posibles que se le pueden asignar son aquellas relacionadas con dicha estadistica |
-| Generar Criatura | Segun el Tipo Elemental de la criatura se establecerá su patron de colores principal |
-| Generar Criatura | Dependiendo los valores de las estadisticas relacionadas con el tipo de la criatura se establecera el tono (mas claro u oscuro) de los colores de la criatura, un tono mas oscuro indica que una de estas estadistica destaca por ser muy baja mientras que un tono mas claro indica que una de estas estadisticas destaca por ser mas alto |
-| Generar Criatura | Si la pantalla es la Eleccion de primera Criatura, entonces las criaturas generadas solo tienen un ataque, tienen una estadistica al máximo asegurada y se genera una de cada Tipo Elemental |
-| Generar Criatura | La criatura del primer rival es debil contra el Tipo Elemental de la primera Criatura del Jugador |
-| Realizar Ataque | Si el ataque es de Categoría Física, entonces la potencia aumenta en funcion del Ataque Físico de la Criatura que lo realiza y se reduce en funcion de la Defensa Física de la Criatura que lo recibe |
-| Realizar Ataque | Si el ataque es de Categoría Especial, entonces la potencia aumenta en funcion del Ataque Especial de la Criatura que lo realiza y se reduce en funcion de la Defensa especial de la Criatura que lo recibe |
-| Realizar Ataque | Si el ataque es de Categoría Apoyo y es de Mejora de Estadistica, entonces se aplica una mejora acumulable hasta 5 veces en la estadistica a la que se aplica el ataque de la Criatura que lo realiza |
-| Realizar Ataque | Si el ataque es de Categoría Apoyo y es de Curacion, entonces la Criatura que realiza el ataque regenera una cantidad fija de puntos de vida |
-| Realizar Ataque | Si el ataque realizado es del mismo Tipo Elemental que la criatura que lo realiza, entonces la potencia del ataque aumenta, tambien se aplica a ataques de apoyo |
+| Generar Criatura | La Criatura tiene al menos un ataque que inflija daño al enemigo |
+| Generar Criatura | Si la criatura destaca en alguna estadística concreta, entonces las imágenes de criaturas posibles que se le pueden asignar son aquellas relacionadas con dicha estadística |
+| Generar Criatura | Según el Tipo Elemental de la criatura se establecerá su patrón de colores principal |
+| Generar Criatura | Dependiendo los valores de las estadísticas relacionadas con el tipo de la criatura se establecerá el tono (más claro u oscuro) de los colores de la criatura, un tono más oscuro indica que una de estas estadísticas destaca por ser muy baja mientras que un tono más claro indica que una de estas estadísticas destaca por ser más alto |
+| Generar Criatura | Si la pantalla es la Elección de primera Criatura, entonces las criaturas generadas solo tienen un ataque, tienen una estadística al máximo asegurada y se genera una de cada Tipo Elemental |
+| Generar Criatura | La criatura del primer rival es débil contra el Tipo Elemental de la primera Criatura del Jugador |
+| Realizar Ataque | Si el ataque es de Categoría Física, entonces la potencia aumenta en función del Ataque Físico de la Criatura que lo realiza y se reduce en función de la Defensa Física de la Criatura que lo recibe |
+| Realizar Ataque | Si el ataque es de Categoría Especial, entonces la potencia aumenta en función del Ataque Especial de la Criatura que lo realiza y se reduce en función de la Defensa especial de la Criatura que lo recibe |
+| Realizar Ataque | Si el ataque es de Categoría Apoyo y es de Mejora de Estadística, entonces se aplica una mejora acumulable hasta 5 veces en la estadística a la que se aplica el ataque de la Criatura que lo realiza |
+| Realizar Ataque | Si el ataque es de Categoría Apoyo y es de Curación, entonces la Criatura que realiza el ataque regenera una cantidad fija de puntos de vida |
+| Realizar Ataque | Si el ataque realizado es del mismo Tipo Elemental que la criatura que lo realiza, entonces la potencia del ataque aumenta, también se aplica a ataques de apoyo |
 | Realizar Ataque | Si el ataque realizado es de un Tipo Elemental fuerte contra el Tipo Elemental de la Criatura que lo recibe, entonces la potencia aumenta |
-| Realizar Ataque | Si el ataque realizado es de un Tipo Elemental debil contra el Tipo Elemental de la Criatura que lo recibe, entonces la potencia se reduce |
+| Realizar Ataque | Si el ataque realizado es de un Tipo Elemental débil contra el Tipo Elemental de la Criatura que lo recibe, entonces la potencia se reduce |
 
 Interacciones de los Jugadores:
 
 | Objetivo | Regla Operativa |
 | :--- | :--- |
 | Generar Rival | El primer Rival tiene una sola Criatura |
-| Generar Rival | El numero de Criaturas del Rival aumenta con cada ronda hasta llegar al máximo, una vez alcanzado el maximo de criaturas se aumenta el numero de ataques totales conocidos por sus criaturas hasta llegar al maximo |
-| Generar Rival | Si la ronda no es multiplo de 10, entonces se genera un rival con 3 Criaturas máximo |
-| Generar Rival | Si la ronda es multiplo de 10 y mayor o igual que 20, entonces se genera un rival con 6 Criaturas máximo, esto se considera un Jefe |
-| Generar Rival | Los jefes tienen una criatura con una estadistica con valor máximo asegurada y otra Criatura con 2 estaditicas con valor máximo aseguradas |
-| Curar Criaturas | Si la ronda es mayor que 20, entonces las criaturas solo se curan antes y despues de un Jefe |
+| Generar Rival | El número de Criaturas del Rival aumenta con cada ronda hasta llegar al máximo, una vez alcanzado el máximo de criaturas se aumenta el número de ataques totales conocidos por sus criaturas hasta llegar al máximo |
+| Generar Rival | Si la ronda no es múltiplo de 10, entonces se genera un rival con 3 Criaturas máximo |
+| Generar Rival | Si la ronda es múltiplo de 10 y mayor o igual que 20, entonces se genera un rival con 6 Criaturas máximo, esto se considera un Jefe |
+| Generar Rival | Los jefes tienen una criatura con una estadística con valor máximo asegurada y otra Criatura con 2 estadísticas con valor máximo aseguradas |
+| Curar Criaturas | Si la ronda es mayor que 20, entonces las criaturas solo se curan antes y después de un Jefe |
 
-### Relacion de Tipos Elementales
+### Relación de Tipos Elementales
 
 Fuego > Planta > Agua > Fuego
 
-Neutro no es fuerte ni debil contra ningun otro Tipo Elemental.
+Neutro no es fuerte ni débil contra ningún otro Tipo Elemental.
 
 ### Cálculo de daño de Ataques Físicos y Especiales
 
@@ -325,13 +319,13 @@ Neutro no es fuerte ni debil contra ningun otro Tipo Elemental.
 - Ajuste (A = 0.15): Ajuste de balanceo para equilibrar ataque y defensa.
 - Tipo (T = 1.5): Aumento por Ataque del mismo Tipo Elemental que la Criatura que lo realiza.
 - Efectividad (E):
-  - Alta (E = 2): Criatura debil contra Ataque recibido.
+  - Alta (E = 2): Criatura débil contra Ataque recibido.
   - Baja (E = 0.5): Criatura fuerte contra Ataque recibido.
-- Potencia Base (P = 100): Todos los atques que inflinjen daño tienen la misma potencia base.
+- Potencia Base (P = 100): Todos los ataques que inflijan daño tienen la misma potencia base.
 - Ataque (Ax): Ataque Especial o Ataque Físico de la Criatura, dependiendo de la Categoría del Ataque.
 - Defensa (Dx): Defensa Especial o Defensa Físico de la Criatura, dependiendo de la Categoría del Ataque.
 
-### Estadisticas de las Criaturas (CreatureStats)
+### Estadísticas de las Criaturas (CreatureStats)
 
 - Vida Máxima: Cantidad máxima de puntos de vida que puede tener la criatura completamente curada.
 - Velocidad: Establece que criatura ataca primero durante el combate.
@@ -348,7 +342,7 @@ Cada tipo Elemental tiene dos estadísticas relacionadas:
 
 ### Lista de Ataques (AttackList)
 
-| Identificador | Nombre | Categoría | Tipo | Descripcion |
+| Identificador | Nombre | Categoría | Tipo | Descripción |
 | :--- | :--- | :--- | :--- | :--- |
 | FireFist | Puño Fuego | Físico | Fuego | El enemigo recibe un puñetazo envuelto en llamas. |
 | Flamethrower | Lanzallamas | Especial | Fuego | El enemigo es abrasado por una intensa explosión de fuego. |
@@ -375,11 +369,11 @@ Cada tipo Elemental tiene dos estadísticas relacionadas:
 ![imagen de Elegir Avatar](./UI_design/SelectSkin.png)
 
 1. Icono del juego: Icono del juego y enlace al proyecto en GitHub.
-2. Boton de Ayuda: Al pulsar este botón se accede a la pantalla de Ayuda.
-3. Boton de Reinicio: Al pulsar este boton se empieza el juego desde el principio, la pantalla de Elegir Avatar.
-4. Boton de Idioma Inglés: Al pulsar este boton se cambia el idioma a Ingles y se sustituye el boton por Idioma Español.
+2. Botón de Ayuda: Al pulsar este botón se accede a la pantalla de Ayuda.
+3. Botón de Reinicio: Al pulsar este botón se empieza el juego desde el principio, la pantalla de Elegir Avatar.
+4. Botón de Idioma Inglés: Al pulsar este botón se cambia el idioma a Ingles y se sustituye el botón por Idioma Español.
 5. Avatar Seleccionado: Aspecto de personaje marcado por defecto, al pulsar en él se guarda como aspecto del jugador y avanza a la pantalla de Escribir nombre.
-6. Avatar no Seleccionado: Aspectos de personaje no seleccionados por defencto. Mismo efecto al pulsar que el Seleccionado.
+6. Avatar no Seleccionado: Aspectos de personaje no seleccionados por defecto. Mismo efecto al pulsar que el Seleccionado.
 7. Record: Ronda máxima registrada a la que ha llegado el jugador en partidas anteriores.
 8. Ronda: Ronda actual en la que se encuentra el juego.
 9. Monedas: Cantidad de monedas disponibles para gastar en la Tienda.
@@ -389,53 +383,53 @@ Cada tipo Elemental tiene dos estadísticas relacionadas:
 ![imagen de Escribir Nombre](./UI_design/WriteName.png)
 
 10. Avatar del Jugador: Imagen que representa al jugador en el juego.
-11. Indroducir Nombre: Cuadro de texto preparado para introducir el nombre del jugador.
-12. Boton de Continuar: Al pulsar se guarda el nombre del jugador y avanza a la pantalla de Elegir primera Criatura.
+11. Introducir Nombre: Cuadro de texto preparado para introducir el nombre del jugador.
+12. Botón de Continuar: Al pulsar se guarda el nombre del jugador y avanza a la pantalla de Elegir primera Criatura.
 
 **Elegir Criatura**
 
 ![imagen de Elegir Criatura](./UI_design/ChooseCreature.png)
 
-13. Contenedor de Criatura: Engloba todas las opciones e informacion de una criatura.
+13. Contenedor de Criatura: Engloba todas las opciones e información de una criatura.
 14. Imagen de Criatura: Imagen que representa a la criatura.
 15. Tipo Elemental: Icono que indica el tipo Elemental de la criatura.
-16. Boton de Elegir: Al pulsar añade la criatura al equipo del jugador y avanza a la siguiente pantalla, si el equipo esta completo avanza a la pantalla de Mochila con la criatura elegida como Nueva Criatura.
-17. Boton de Ver: Al pulsar muestra la pantalla de Informacion de la criatura.
+16. Botón de Elegir: Al pulsar añade la criatura al equipo del jugador y avanza a la siguiente pantalla, si el equipo está completo avanza a la pantalla de Mochila con la criatura elegida como Nueva Criatura.
+17. Botón de Ver: Al pulsar muestra la pantalla de Información de la criatura.
 
-**Informacion de Criatura (Estadisticas)**
+**Información de Criatura (Estadísticas)**
 
-![imagen de Informacion de Estadisticas de Criatura](./UI_design/InfoStats.png)
+![imagen de Información de Estadísticas de Criatura](./UI_design/InfoStats.png)
 
 18. Imagen de Criatura: Imagen que representa a la criatura.
 19. Tipo Elemental: Icono que indica el tipo Elemental de la criatura.
-20. Barra de Vida: Representacion visual de la vida restante.
-21. Valor de Vida: Representación numerica de la vida restante.
-22. Boton de Estadisticas: Al pulsar muestra la Informacion de las Estadisticas de la criatura.
-23. Boton de Volver: Al pulsar Vuelve a la pantalla anterior.
-24. Nombre de Estadistica: Nombre de estadistica de la criatura.
-25. Valor de Estadistica: Valor de la estadistica en esta criatura.
-26. Maximo Valor Posible: Valor maximo posible de estadistica para comparacion.
-27. Boton de Info de Ataque: Al pulsar Muestra la Información del Ataque seleccionado.
+20. Barra de Vida: Representación visual de la vida restante.
+21. Valor de Vida: Representación numérica de la vida restante.
+22. Botón de Estadísticas: Al pulsar muestra la Información de las Estadísticas de la criatura.
+23. Botón de Volver: Al pulsar Vuelve a la pantalla anterior.
+24. Nombre de Estadística: Nombre de estadística de la criatura.
+25. Valor de Estadística: Valor de la estadística en esta criatura.
+26. Máximo Valor Posible: Valor máximo posible de estadística para comparación.
+27. Botón de Info de Ataque: Al pulsar Muestra la Información del Ataque seleccionado.
 28. Nombre de Ataque: Nombre del Ataque de la criatura.
-29. Categoria de Ataque: Icono que indica la Categoria del Ataque.
+29. Categoría de Ataque: Icono que indica la Categoría del Ataque.
 30. Tipo Elemental de Ataque: Icono que indica el tipo Elemental del Ataque.
 
-**Informacion de Criatura (Ataque Seleccionado)**
+**Información de Criatura (Ataque Seleccionado)**
 
-![imagen de Informacion de Ataque de Criatura](./UI_design/InfoAttack.png)
+![imagen de Información de Ataque de Criatura](./UI_design/InfoAttack.png)
 
 31. Nombre de Ataque: Nombre del Ataque de la criatura.
 32. Tipo Elemental de Ataque: Icono que indica el tipo Elemental del Ataque.
 33. Categoría de Ataque: Icono que indica la Categoría del Ataque.
-34. Descripcion de Categoría: Explicacion de como funcionan los ataques que pertenecen a esta Categoría.
-35. Descripcion de Ataque: Breve descripcion de como funciona el Ataque seleccionado.
+34. Descripción de Categoría: Explicación de cómo funcionan los ataques que pertenecen a esta Categoría.
+35. Descripción de Ataque: Breve descripción de cómo funciona el Ataque seleccionado.
 
 
-**Informacion de Criatura (Tipos Elementales)**
+**Información de Criatura (Tipos Elementales)**
 
-![imagen de Informacion de Tipos Elementales](./UI_design/InfoTypes.png)
+![imagen de Información de Tipos Elementales](./UI_design/InfoTypes.png)
 
-Pantalla descartada como parte de Informacion de Criatura, en su lugar se ha añadido esta informacion a la pantalla de Ayuda. La pantalla de Ayuda contaría solo con el contenedor de la información y el Boton de Volver.
+Pantalla descartada como parte de Información de Criatura, en su lugar se ha añadido esta información a la pantalla de Ayuda. La pantalla de Ayuda contaría solo con el contenedor de la información y el Botón de Volver.
 
 **Batalla (Vista Previa)**
 
@@ -445,56 +439,56 @@ Pantalla descartada como parte de Informacion de Criatura, en su lugar se ha añ
 37. Avatar del Jugador: Imagen que representa al jugador en el juego.
 38. Nombre del Jugador: Nombre guardado por el que se hace referencia al jugador dentro del juego.
 39. Record del Jugador: Máxima ronda a la que ha llegado el Jugador en partidas anteriores.
-40. Selecion de Criatura: Botones que muestran las criaturas del equipo del jugador, al pulsar se inicia la batalla con esa criatura como inicial.
+40. Selección de Criatura: Botones que muestran las criaturas del equipo del jugador, al pulsar se inicia la batalla con esa criatura como inicial.
 41. Imagen de Criatura: Imagen que representa a la criatura.
 42. Tipo Elemental: Icono que indica el tipo Elemental de la criatura.
 43. Información del Rival: Contenedor con todos los datos del Rival y la lista de sus criaturas.
 
-**Batalla (Menu General)**
+**Batalla (Menú General)**
 
-![imagen del Menu General de la Batalla](./UI_design/BattleGeneralMenu.png)
+![imagen del Menú General de la Batalla](./UI_design/BattleGeneralMenu.png)
 
 44. Imagen de Criatura del Jugador: Imagen que representa a la criatura actual en Batalla del Jugador principal.
 45. Tipo Elemental: Icono que indica el tipo Elemental de la criatura actual del jugador principal.
-46. Barra de Vida: Representacion visual de la vida restante de la criatura del jugador principal.
-47. Valor de Vida: Valor numerico de la vida restante de la criatura del jugador principal.
-48. Terreno: Representacion básica del terreno de combate.
-49. Barra de Vida de Rival: Representacion visual de la vida restante de la criatura del Rival.
+46. Barra de Vida: Representación visual de la vida restante de la criatura del jugador principal.
+47. Valor de Vida: Valor numérico de la vida restante de la criatura del jugador principal.
+48. Terreno: Representación básica del terreno de combate.
+49. Barra de Vida de Rival: Representación visual de la vida restante de la criatura del Rival.
 50. Tipo Elemental del Rival:  Icono que indica el tipo Elemental de la criatura actual del Rival.
 51. Imagen de Criatura del Rival: Imagen que representa a la criatura actual en Batalla del Rival.
-52. Boton de Luchar: Al pulsar se cambia al menu de Seleccion de Ataques.
-53. Boton de Cambiar: Al pulsar se cambia a la pantalla de Mochila para seleccionar una criatura del equipo.
-54. Boton de Rendirse. Al pulsar se termina el juego y se avanza a la pantalla de Perder.
+52. Botón de Luchar: Al pulsar se cambia al menú de Selección de Ataques.
+53. Botón de Cambiar: Al pulsar se cambia a la pantalla de Mochila para seleccionar una criatura del equipo.
+54. Botón de Rendirse. Al pulsar se termina el juego y se avanza a la pantalla de Perder.
 
-**Batalla (Menu de Ataques)**
+**Batalla (Menú de Ataques)**
 
-![imagen del Menu de Seleccion de Ataques de la Batalla](./UI_design/BattleAttacksMenu.png)
+![imagen del Menú de Selección de Ataques de la Batalla](./UI_design/BattleAttacksMenu.png)
 
-55. Boton de Ataque: Al pulsar se inicia el desarrollo del combate con ese ataque como accion del jugador.
+55. Botón de Ataque: Al pulsar se inicia el desarrollo del combate con ese ataque como acción del jugador.
 56. Nombre de Ataque: Nombre del Ataque de la criatura.
 57. Categoría de Ataque: Icono que indica la Categoría del Ataque.
 58. Tipo Elemental de Ataque: Icono que indica el tipo Elemental del Ataque.
-59. Boton de Volver: Al pulsar vuelve al Menu General de Batalla.
+59. Botón de Volver: Al pulsar vuelve al Menú General de Batalla.
 
 **Batalla (Mensaje de Ataque)**
 
 ![imagen del Mensaje de Ataque en la Batalla](./UI_design/BattleMessageAttack.png)
 
-60. Animacion de Ataque: Representacion gráfica de la ejecucion del ataque.
-61. Mensaje actual: Descripcion de la ultima accion que se ha ejecutado.
-62. Boton de Continuar: Ejecutar la siguiente accion de la Batalla.
+60. Animación de Ataque: Representación gráfica de la ejecución del ataque.
+61. Mensaje actual: Descripción de la última acción que se ha ejecutado.
+62. Botón de Continuar: Ejecutar la siguiente acción de la Batalla.
 
 **Batalla (Mochila)**
 
 ![imagen de Mochila durante la Batalla](./UI_design/BattleBackpack.png)
 
-63. Criatura del equipo: Contenedor con informacion básica y los botones correspondientes a una de las criaturas del equipo del jugador.
+63. Criatura del equipo: Contenedor con información básica y los botones correspondientes a una de las criaturas del equipo del jugador.
 64. Imagen de Criatura: Imagen que representa a la criatura.
 65. Tipo Elemental: Icono que indica el tipo Elemental de la criatura.
-66. Barra de Vida: Representacion visual de la vida restante.
-67. Boton de Elegir: Al pulsar se saca la criatura al combate intercambiandola por la que estaba.
-68. Boton de Ver: Al pulsar muestra la pantalla de Informacion de la criatura.
-69. Boton de Volver: Al pulsar vuelve al Menu General de Batalla.
+66. Barra de Vida: Representación visual de la vida restante.
+67. Botón de Elegir: Al pulsar se saca la criatura al combate intercambiándola por la que estaba.
+68. Botón de Ver: Al pulsar muestra la pantalla de Información de la criatura.
+69. Botón de Volver: Al pulsar vuelve al Menú General de Batalla.
 
 **Batalla (Mensaje de Cambio)**
 
@@ -502,35 +496,35 @@ Pantalla descartada como parte de Informacion de Criatura, en su lugar se ha añ
 
 **Ganar (Elegir Recompensa)**
 
-![imagen de Eleccion de Recompensas al Ganar](./UI_design/WinChooseReward.png)
+![imagen de Elección de Recompensas al Ganar](./UI_design/WinChooseReward.png)
 
-70. Boton de Elegir Criatura: Al pulsar avanza a la pantalla de Eleccion de Criaturas con criaturas del Rival derrotado.
-71. Boton de Elegir Ataque: Al pulsar avanza a la pantalla de Eleccion de Ataque con ataques de las criaturas del Rival derrotado.
-72. Boton de Elegir Monedas: Al pulsar aumentan las Monedas del jugador y avanza a la siguiente Batalla.
+70. Botón de Elegir Criatura: Al pulsar avanza a la pantalla de Elección de Criaturas con criaturas del Rival derrotado.
+71. Botón de Elegir Ataque: Al pulsar avanza a la pantalla de Elección de Ataque con ataques de las criaturas del Rival derrotado.
+72. Botón de Elegir Monedas: Al pulsar aumentan las Monedas del jugador y avanza a la siguiente Batalla.
 
 **Ganar (Mochila Nueva Criatura)**
 
 ![imagen de Mochila añadiendo Nueva Criatura al Ganar](./UI_design/WinBackpackCreature.png)
 
 73. Nueva Criatura: Criatura del oponente que el jugador quiere añadir al equipo.
-74. Boton de Descartar: Al pulsar se descarta la criatura nueva y se avanza a la siguiente Batalla.
-75. Boton de Eliminar: Al pulsar se elimina la criatura seleccionada del equipo para añadir la criatura nueva del Rival.
+74. Botón de Descartar: Al pulsar se descarta la criatura nueva y se avanza a la siguiente Batalla.
+75. Botón de Eliminar: Al pulsar se elimina la criatura seleccionada del equipo para añadir la criatura nueva del Rival.
 
 **Ganar (Elegir Ataque)**
 
-![imagen de Eleccion de Ataques del Rival al Ganar](./UI_design/WinChooseAttack.png)
+![imagen de Elección de Ataques del Rival al Ganar](./UI_design/WinChooseAttack.png)
 
-76. Ataque del Rival: Contenedor con informacion básica y botones de uno de los ataques de las criaturas del Rival.
+76. Ataque del Rival: Contenedor con información básica y botones de uno de los ataques de las criaturas del Rival.
 77. Nombre de Ataque: Nombre del Ataque de la criatura del Rival.
 78. Tipo Elemental de Ataque: Icono que indica el tipo Elemental del Ataque del Rival.
-79. Boton de Elegir: Al pulsar se avanza a la Mochila con el ataque elegido como Nuevo Ataque.
-80. Boton de Ver: Al pulsar se muestra la descripcion del ataque en un cuadro de texto flotante que normalmente esta oculto.
+79. Botón de Elegir: Al pulsar se avanza a la Mochila con el ataque elegido como Nuevo Ataque.
+80. Botón de Ver: Al pulsar se muestra la descripción del ataque en un cuadro de texto flotante que normalmente está oculto.
 
-**Ganar (Informacion de Ataque)**
+**Ganar (Información de Ataque)**
 
-![imagen de Informacion de Ataques del Rival al Ganar](./UI_design/WinInfoAttack.png)
+![imagen de Información de Ataques del Rival al Ganar](./UI_design/WinInfoAttack.png)
 
-Pantalla descartada y sustituida por cuadro de texto flotante al lado del boton correspondiente, normalmente invisible.
+Pantalla descartada y sustituida por cuadro de texto flotante al lado del botón correspondiente, normalmente invisible.
 
 **Ganar (Mochila Nuevo Ataque)**
 
@@ -540,37 +534,37 @@ Pantalla descartada y sustituida por cuadro de texto flotante al lado del boton 
 82. Nombre de Ataque: Nombre del Ataque que se quiere añadir a una criatura del equipo.
 83. Categoría de Ataque: Icono que indica la Categoría del Ataque.
 84. Tipo Elemental de Ataque: Icono que indica el tipo Elemental del Ataque.
-85. Boton de Descartar: Descartar el ataque nuevo y avanzar a la siguiente Batalla.
-86. Boton de Ver Ataque: Al pulsar se muestra la descripcion del ataque en un cuadro de texto flotante que normalmente esta oculto.
-87. Boton de Enseñar: Al pulsar se Muestra la pantalla de Informacion de la criatura con botones añadidos para enseñar el ataque.
+85. Botón de Descartar: Descartar el ataque nuevo y avanzar a la siguiente Batalla.
+86. Botón de Ver Ataque: Al pulsar se muestra la descripción del ataque en un cuadro de texto flotante que normalmente está oculto.
+87. Botón de Enseñar: Al pulsar se Muestra la pantalla de Información de la criatura con botones añadidos para enseñar el ataque.
 
 **Ganar (Enseñar Ataque)**
 
 ![imagen de Enseñar Nuevo Ataque al Ganar](./UI_design/WinTeachAttack.png)
 
-88. Nuevo Ataque: Nuevo ataque que se quiere enseñar, al pulsar se selecciona y se muestra la Informacion del Ataque.
-89. Boton de Olvidar: Al pulsar la criatura actual olvida el ataque seleccionado y lo sustituye por el nuevo ataque, y avanza a la siguiente Batalla.
+88. Nuevo Ataque: Nuevo ataque que se quiere enseñar, al pulsar se selecciona y se muestra la Información del Ataque.
+89. Botón de Olvidar: Al pulsar la criatura actual olvida el ataque seleccionado y lo sustituye por el nuevo ataque, y avanza a la siguiente Batalla.
 
 **Tienda**
 
 ![imagen de la Tienda](./UI_design/ShopHome.png)
 
-90. Criatura Disponible: Contenedor con informacion y botones de una de las criaturas disponibles en la tienda para comprar.
+90. Criatura Disponible: Contenedor con información y botones de una de las criaturas disponibles en la tienda para comprar.
 91. Imagen de Criatura: Imagen que representa a la criatura.
 92. Tipo Elemental: Icono que indica el tipo Elemental de la criatura.
 93. Precio: Monedas necesarias para comprar la criatura.
-94. Boton de Comprar: Al pulsar se descuentan las monedas requeridas y se avanza a la pantalla de Criatura Comprada.
-95. Boton de Ver: Al pulsar muestra la pantalla de Informacion de la criatura.
-96. Boton de Actualizar Tienda: Al pulsar gasta monedas para cambiar las criaturas disponibles en la Tienda.
-97. Boton de Mochila: Al pulsar cambia a la pantalla de Mochila con la posibilidad de vender criaturas del equipo.
-98. Boton de Salir: Al pulsar avanza a la siguiente Batalla.
+94. Botón de Comprar: Al pulsar se descuentan las monedas requeridas y se avanza a la pantalla de Criatura Comprada.
+95. Botón de Ver: Al pulsar muestra la pantalla de Información de la criatura.
+96. Botón de Actualizar Tienda: Al pulsar gasta monedas para cambiar las criaturas disponibles en la Tienda.
+97. Botón de Mochila: Al pulsar cambia a la pantalla de Mochila con la posibilidad de vender criaturas del equipo.
+98. Botón de Salir: Al pulsar avanza a la siguiente Batalla.
 
 **Tienda (Criatura Comprada)**
 
 ![imagen de Criatura Comprada en la Tienda](./UI_design/ShopPurchased.png)
 
-99. Boton de Extraer Ataque: Al pulsar cambia a la pantalla de Mochila con el ataque de la criatura comprada seleccionado para añadirlo a una criatura del equipo.
-100. Boton de Añadir Criatura: Al pulsar añade la criatura al equipo, o si ya esta lleno se avanza a la Mochila para sustituir una criatura por la nueva.
+99. Botón de Extraer Ataque: Al pulsar cambia a la pantalla de Mochila con el ataque de la criatura comprada seleccionado para añadirlo a una criatura del equipo.
+100. Botón de Añadir Criatura: Al pulsar añade la criatura al equipo, o si ya está lleno se avanza a la Mochila para sustituir una criatura por la nueva.
 
 **Fin del Juego**
 
@@ -578,23 +572,23 @@ Pantalla descartada y sustituida por cuadro de texto flotante al lado del boton 
 
 101. Avatar del Jugador: Imagen que representa al jugador en el juego.
 102. Nombre del Jugador: Nombre guardado por el que se hace referencia al jugador dentro del juego.
-103. Record del Jugador: Máxima ronda a la que ha llegado el Jugador en partidas anteriores, actualizado si en esta partida a llegado mas lejos.
-104. Ronda Máxima: Ronda mas alta a la que ha llegado el jugador en esta partida.
-105. Criatura del equipo: Contenedor con la informacion visual básica de cada criatura del equipo.
+103. Record del Jugador: Máxima ronda a la que ha llegado el Jugador en partidas anteriores, actualizado si en esta partida a llegado más lejos.
+104. Ronda Máxima: Ronda más alta a la que ha llegado el jugador en esta partida.
+105. Criatura del equipo: Contenedor con la información visual básica de cada criatura del equipo.
 106. Imagen de Criatura: Imagen que representa a la criatura.
 107. Tipo Elemental: Icono que indica el tipo Elemental de la criatura.
 
 ### Iconos
 
-**Opciones de Menus**
+**Opciones de Menús**
 
-![imagen de iconos de menus](./gdd_images/IconsMenus.png)
+![imagen de iconos de menús](./gdd_images/IconsMenus.png)
 
 Procedentes de [SVG-Repo](#referencias).
 
 **Categorías**
 
-![imagen de iconos de categorias](./reactmon/guide_images/categories.png)
+![imagen de iconos de categorías](./reactmon/guide_images/categories.png)
 
 Procedentes de [SVG-Repo](#referencias).
 
@@ -614,7 +608,7 @@ Procedentes de [Pokémon-Showdown](#referencias).
 
 ### Criaturas (CreatureList)
 
-![imagenes de criaturas con color original](./gdd_images/OriginalCreatures.png)
+![imágenes de criaturas con color original](./gdd_images/OriginalCreatures.png)
 
 (Color Original de las criaturas)
 
@@ -642,9 +636,9 @@ Procedentes de [jnovack](#referencias).
 
 ![fondo de pantalla de desierto](./reactmon/src/assets/backgrounds/desert.jpg)
 
-**Volcan**
+**Volcán**
 
-![fondo de pantalla de volcan](./reactmon/src/assets/backgrounds/volcano.jpg)
+![fondo de pantalla de volcán](./reactmon/src/assets/backgrounds/volcano.jpg)
 
 Procedentes de [FREEPIK](#referencias).
 
@@ -661,17 +655,17 @@ Procedentes de [FREEPIK](#referencias).
 - React 18.3.1.
 - Eslint 9.11.1.
 
-### Preparación del Entorno de Desarroyo
+### Preparación del Entorno de Desarrollo
 
-Los comandos utilizados en la Terminal de Ubuntu, comenzando en la carpeta raiz del proyecto, para iniciar el proyecto son los mostrados a continuacion.
+Los comandos utilizados en la Terminal de Ubuntu, comenzando en la carpeta raíz del proyecto, para iniciar el proyecto son los mostrados a continuación.
 
-Inicializar NPM en la carpeta raiz del proyecto:
+Inicializar NPM en la carpeta raíz del proyecto:
 
 ```
 npm init -y
 ```
 
-Crear la carpeta del codigo del proyecto con Vite preparada para usar React:
+Crear la carpeta del código del proyecto con Vite preparada para usar React:
 
 ```
 npm create vite@latest
@@ -688,127 +682,127 @@ npm install
 npm install standard -D
 ```
 
-Iniciar el servidor local, posicionado en la carpeta del codigo del proyecto, para poder acceder al proyecto en el navegador:
+Iniciar el servidor local, posicionado en la carpeta del código del proyecto, para poder acceder al proyecto en el navegador:
 
 ```
 npm run dev
 ```
 
-Para acceder al proyecto ejecutado en el servidor local desde el navegador usar la url `http://localhost:5173/` o `http://localhost:5173/react-reactmon/` despues de de hacer los cambios del Despliegue.
+Para acceder al proyecto ejecutado en el servidor local desde el navegador usar la url `http://localhost:5173/` o `http://localhost:5173/react-reactmon/` después de hacer los cambios del Despliegue.
 
 ### Entidades y Atributos
 
-(Expresion `f()` utilizado para indicar si un atributo depende de otros para su calculo)
+(Expresión `f()` utilizada para indicar si un atributo depende de otros para su cálculo)
 
 **Jugador (Player)**
 
 - Nombre (name). `<string>`
-  - Descripcion: Cadena de caracteres con el nombre del Jugador.
+  - Descripción: Cadena de caracteres con el nombre del Jugador.
 - Imagen (image). `<Tag> in PlayerSkins`
-  - Descripcion: Nombre de la imagen utilizada como aspecto del Jugador.
+  - Descripción: Nombre de la imagen utilizada como aspecto del Jugador.
 - Record (record). `<int>`
-  - Descripcion: Maxima ronda alcanzada en partidas anteriores por el jugador.
+  - Descripción: Máxima ronda alcanzada en partidas anteriores por el jugador.
   - `record = f(Game.round)`
 - Criaturas (creatures). `<List<Creature>>`
-  - Descripcion: Criaturas que forman el equipo actual del Jugador.
+  - Descripción: Criaturas que forman el equipo actual del Jugador.
 - Criatura en Combate (indexActualCreature). `<int>`
-  - Descripcion: Indice de la criatura del jugador actualmente en el campo de Batalla.
+  - Descripción: Índice de la criatura del jugador actualmente en el campo de Batalla.
 - Criaturas Vivas (liveCreatures). `<int>`
-  - Descripcion: Criaturas restantes disponibles para el combate.
+  - Descripción: Criaturas restantes disponibles para el combate.
   - `liveCreatures = f(Player.creatures[].dead)`
 
 **Criatura (Creature)**
 
 - Identificador Interno (id). `<int>`
-  - Descripcion: Numero que identifica de forma unica a la criatura.
+  - Descripción: Numero que identifica de forma única a la criatura.
   - `id = f(Game.contCreatureIds)`
 - Imagen (image). `<CreatureImage>`
-  - Descripcion: Datos sobre la imagen que representa a la criatura.
+  - Descripción: Datos sobre la imagen que representa a la criatura.
   - `image = f(Creature.mainStats, Creature.typeRelatedStats)`
 - Tipo (type). `<Tag> in [FIRE, GRASS, WATER]`
-  - Descripcion: Tipo Elemental de la Criatura.
+  - Descripción: Tipo Elemental de la Criatura.
 - Ataques (attacks).  `<List<Attack>>`
-  - Descripcion: Ataques que conoce la criatura para utilizar en combate.
+  - Descripción: Ataques que conoce la criatura para utilizar en combate.
   - `attacks = f(Creature.type)`
-- Estadisticas (stats). `<List<(Tag in CreatureStats, int)>>`
-  - Descripcion: Valores que describen las capacidades de la Criatura.
+- Estadísticas (stats). `<List<(Tag in CreatureStats, int)>>`
+  - Descripción: Valores que describen las capacidades de la Criatura.
 - Vida Restante (recordedHealth). `<int>`
-  - Descripcion: Puntos de Vida actuales de la criatura para el combate, si llega a 0 se debilita.
-- Mejoras de Estadistica (recordedBuffs). `<Buff>`
-  - Descripcion: Mejoras de estadistica aplicadas en el combate actual.
+  - Descripción: Puntos de Vida actuales de la criatura para el combate, si llega a 0 se debilita.
+- Mejoras de Estadística (recordedBuffs). `<Buff>`
+  - Descripción: Mejoras de estadística aplicadas en el combate actual.
 - Debilitado (dead). `<bool>`
-  - Descripcion: Indica si la Criatura sigue disponible para combatir o no.
+  - Descripción: Indica si la Criatura sigue disponible para combatir o no.
   - `dead = f(Creature.recordedHealth)`
-- Estadisticas Principales (mainStats). `<List<Tag in CreatureStats>>`
-  - Descripcion: Estadistica mas alta de la criatura, si hay varias estadisticas con valores cercanos se incluyen.
+- Estadísticas Principales (mainStats). `<List<Tag in CreatureStats>>`
+  - Descripción: Estadística más alta de la criatura, si hay varias estadísticas con valores cercanos se incluyen.
   - `mainStats = f(Creature.stats)`
-- Estadisticas Relacionadas (typeRelatedStats) `<List<Tag in CreatureStats>>`
-  - Descripcion: Estadisticas relacionadas con el tipo de la Criatura.
+- Estadísticas Relacionadas (typeRelatedStats) `<List<Tag in CreatureStats>>`
+  - Descripción: Estadísticas relacionadas con el tipo de la Criatura.
   - `typeRelatedStats = f(Creature.type)`
 
 **Ataque (Attack)**
 
 - Identificador (key). `<Tag> in AttackList`
-  - Descripcion: Etiqueta que identifica el Ataque de forma unica.
+  - Descripción: Etiqueta que identifica el Ataque de forma única.
 - Nombre (name). `<string>`
-  - Descripcion: Nombre descriptivo para mostrar en la UI.
+  - Descripción: Nombre descriptivo para mostrar en la UI.
 - Categoría (category). `<Tag> in [PHYSICAL, SPECIAL, SUPPORT]`
-  - Descripcion: Indica el funcionamiento interno general del Ataque.
+  - Descripción: Indica el funcionamiento interno general del Ataque.
 - Tipo (type). `<Tag> in [FIRE, GRASS, WATER, NEUTRAL]`
-  - Descripcion: Tipo Elemental del Ataque.
-- Descripcion (description). `<string>`
-  - Descripcion: Explicacion de como funciona el Ataque.
+  - Descripción: Tipo Elemental del Ataque.
+- Descripción (description). `<string>`
+  - Descripción: Explicación de cómo funciona el Ataque.
 
 **Juego (Game)**
 
 - Idioma (languaje). `<Tag> in [spanish, english]`
-  - Descripcion: Indica el idioma actual de los textos de la UI.
+  - Descripción: Indica el idioma actual de los textos de la UI.
 - Jugador Principal (player). `<Player>`
-  - Descripcion: Es el Jugador principal manejado por el usuario local.
+  - Descripción: Es el Jugador principal manejado por el usuario local.
 - Jugador Rival (rival). `<Player>`
-  - Descripcion: Es el openente generado como NPC o conectado a traves de internet.
+  - Descripción: Es el oponente generado como NPC o conectado a través de internet.
 - Monedas (coins). `<int>`
-  - Descripcion: Monedas disponibles del Jugador Principal para gastar en la tienda.
+  - Descripción: Monedas disponibles del Jugador Principal para gastar en la tienda.
 - Ronda (round). `<int>`
-  - Descripcion: Ronda actual en la que se encuentra el Jugador Principal.
+  - Descripción: Ronda actual en la que se encuentra el Jugador Principal.
 - Fondo del Escenario (background). `<Background>`
-  - Descripcion: Imagen de Fondo de la pantalla.
+  - Descripción: Imagen de Fondo de la pantalla.
   - `background = f(Game.round)`
 - Modo Actual (gameState). `<Tag> in GameStates`
-  - Descripcion: Estado Actual del Juego.
+  - Descripción: Estado Actual del Juego.
 - Pantalla Actual (actualWindow). `<string>`
-  - Descripcion: Pantalla actual del Juego.
+  - Descripción: Pantalla actual del Juego.
   - `actualWindow = f(Game.gameState)`
 - Criaturas Generadas (contCreatureIds). `<int>`
-  - Descripcion: Numero de criaturas generadas en el juego, utilizado para la generacion de ids de Criaturas. 
+  - Descripción: Numero de criaturas generadas en el juego, utilizado para la generación de ids de Criaturas. 
 
 **Datos de Imagen de Criatura (CreatureImage)**
 
 - Nombre (name). `<Tag> in CreatureList`
-  - Descripcion: Nombre de la imagen que representa a la criatura.
+  - Descripción: Nombre de la imagen que representa a la criatura.
   - `name = f(Creature.mainStats)`
 - Tono (dark). `<int> in {0..6}`
-  - Descripcion: Cuanto mayor sea mas oscuro sera el tono de los colores de la imagen.
+  - Descripción: Cuanto mayor sea más oscuro será el tono de los colores de la imagen.
   - `dark = f(Creature.typeRelatedStats)`
 
-**Mejora de Estadistica (Buff)**
+**Mejora de Estadística (Buff)**
 
-- Estadistica Mejorada (stat). `<Tag> in CreatureStats`
-  - Descripcion: Estadistica sobre la que se aplica la mejora.
+- Estadística Mejorada (stat). `<Tag> in CreatureStats`
+  - Descripción: Estadística sobre la que se aplica la mejora.
 - Capas de Mejora (cont). `<int> in {0..5}`
-  - Descripcion: Cantidad de veces que se aplica la mejora.
+  - Descripción: Cantidad de veces que se aplica la mejora.
 
 **Fondo del Escenario (Background)**
 
 - Nombre de la Imagen (image). `<Tag> in BackgroundList`
-  - Descripcion: Nombre de la imagen de Fondo.
+  - Descripción: Nombre de la imagen de Fondo.
 - Color añadido (color). `<HexColorTr>`
-  - Descripcion: Color representativo superpuesto con la imagen de fondo.
+  - Descripción: Color representativo superpuesto con la imagen de fondo.
   - `color = f(Background.image)`
 
 ### Despliegue
 
-Preparacion para desplegar en GitHub Pages.
+Preparación para desplegar en GitHub Pages.
 
 Añadir al fichero `vite.config.js` en la carpeta de código la siguiente línea:
 
@@ -819,23 +813,23 @@ export default defineConfig({
 })
 ```
 
-Desde la Terminal de Ubuntu, estando situado en la carpeta del codigo del proyecto, construir el proyecto para Produccion:
+Desde la Terminal de Ubuntu, estando situado en la carpeta del código del proyecto, construir el proyecto para Producción:
 
 ```
 npm run build
 ```
 
-Iniciar proyecto de Produccion en servidor local para comprobar funcionamiento correcto:
+Iniciar proyecto de Producción en servidor local para comprobar funcionamiento correcto:
 
 ```
 npm run preview
 ```
 
-Para acceder al servidor local con el proyecto de Produccion usar `http://localhost:4173/react-reactmon/`
+Para acceder al servidor local con el proyecto de Producción usar `http://localhost:4173/react-reactmon/`
 
 Modificar `.gitignore` comentando la carpeta `dist` para guardar el proyecto construido en GitHub y hacer el `Commit` y `Push` correspondientes con todo.
 
-Desde la página de GitHub en el repositorio del proyecto se accede al menu de `Settings`, a la opcion de `Pages`. En esta opcion, en la seccion `Build and deployment`, se elige como `Source` la opcion de `GitHub Actions`. De entre los tipos recomendados se ha seleccionado `Static HTML` pulsando en `Configure`. Esto genera un archivo de `workflows` por defecto llamado `static.yml` que es modificado de la siguiente forma:
+Desde la página de GitHub en el repositorio del proyecto se accede al menú de `Settings`, a la opción de `Pages`. En esta opción, en la sección `Build and deployment`, se elige como `Source` la opción de `GitHub Actions`. De entre los tipos recomendados se ha seleccionado `Static HTML` pulsando en `Configure`. Esto genera un archivo de `workflows` por defecto llamado `static.yml` que es modificado de la siguiente forma:
 
 ```
 # Simple workflow for deploying static content to GitHub Pages
@@ -883,7 +877,7 @@ jobs:
         uses: actions/deploy-pages@v4
 ```
 
-Tras guardar este archivo en GitHub se construirá automaticamente el proyecto en un servidor de GitHub Pages y se proporcionará la url a traves de la cual se puede acceder si el Despliegue ha sido correcto.
+Tras guardar este archivo en GitHub se construirá automáticamente el proyecto en un servidor de GitHub Pages y se proporcionará la url a través de la cual se puede acceder si el Despliegue ha sido correcto.
 
 La url de este proyecto es [https://josemr6.github.io/react-reactmon/](https://josemr6.github.io/react-reactmon/).
 
@@ -899,12 +893,12 @@ La url de este proyecto es [https://josemr6.github.io/react-reactmon/](https://j
 
 **Escribir Nombre**
 
-- Escribir menos de 3 letras y pulsar el boton de Continuar no avanza a la siguiente pantalla.
-- Intentar escribir más de 13 letras no permite escribir mas caracteres.
-- Al escribir etiquetas html como parte del nombre, por ejemplo `ho<br>la`, se guarda como texto y no se inerpretan las etiquetas html.
-- Al intentar insertar código como parte del nombre, por ejemplo `";alert('');"`, se guarda como texto y no se ejecuta codigo indeseado.
-- Escribir nombre con espacios y pulsar el boton de Continuar permite guardar el nombre y avanzar con normalidad.
-- Escribir nombre sin espacios y pulsar el boton de Continuar permite guardar el nombre y avanzar con normalidad.
+- Escribir menos de 3 letras y pulsar el botón de Continuar no avanza a la siguiente pantalla.
+- Intentar escribir más de 13 letras no permite escribir más caracteres.
+- Al escribir etiquetas html como parte del nombre, por ejemplo `ho<br>la`, se guarda como texto y no se interpretan las etiquetas html.
+- Al intentar insertar código como parte del nombre, por ejemplo `";alert('');"`, se guarda como texto y no se ejecuta código indeseado.
+- Escribir nombre con espacios y pulsar el botón de Continuar permite guardar el nombre y avanzar con normalidad.
+- Escribir nombre sin espacios y pulsar el botón de Continuar permite guardar el nombre y avanzar con normalidad.
 - Nombre guardado deberá:
   - Aparecer en el Panel Derecho.
   - Aparecer en la Vista Previa de la Batalla.
@@ -917,14 +911,14 @@ La url de este proyecto es [https://josemr6.github.io/react-reactmon/](https://j
 
 - Muestra una Criatura de cada Tipo Elemental.
 - Al Ver cada Criatura deberá:
-  - Coincidir la imagen de la Criatura en la pantalla de Informacion con la de la criatura seleccionada.
-  - Mostrar valores de Estadisticas y vida que coincidan con lo establecido.
-  - Tener 1 Ataque de inflinja daño.
-  - Mostrar informacion del Ataque si se selecciona.
-  - Mostrar informacion de las Estadisticas si se seleccionan.
-  - Volver a la pantalla de Seleccion de Criaturas si se pulsa el boton Volver.
+  - Coincidir la imagen de la Criatura en la pantalla de Información con la de la criatura seleccionada.
+  - Mostrar valores de Estadísticas y vida que coincidan con lo establecido.
+  - Tener 1 Ataque de inflija daño.
+  - Mostrar información del Ataque si se selecciona.
+  - Mostrar información de las Estadísticas si se seleccionan.
+  - Volver a la pantalla de Selección de Criaturas si se pulsa el botón Volver.
 - Al Elegir una Criatura se añade al equipo.
-- Las Criaturas del equipo deberan:
+- Las Criaturas del equipo deberán:
   - Aparecer en Vista Previa de la Batalla.
   - Aparecer en la pantalla de la Mochila.
   - Aparecer en la pantalla de Fin del Juego.
@@ -932,29 +926,29 @@ La url de este proyecto es [https://josemr6.github.io/react-reactmon/](https://j
 **Vista Previa de la Batalla**
 
 - Muestra datos del Jugador principal y del Rival, incluyendo las Criaturas de sus equipos.
-- Al pulsar sobre una de las Criaturas del equipo del Jugador princial se inicia la Batalla con esa Criatura.
-- Cada ronda el Rival tiene una Critura más.
+- Al pulsar sobre una de las Criaturas del equipo del Jugador principal se inicia la Batalla con esa Criatura.
+- Cada ronda el Rival tiene una Criatura más.
 - Cuando llega a 3 Criaturas el Rival tiene una Criatura más con 2 Ataques por cada ronda en lugar de tener más Criaturas.
 - A partir de la ronda 20 aparece un Jefe de 6 criaturas con 2 criaturas con al menos una estadística maximizada cada 10 rondas.
 - A partir de la ronda 21 no se curan las criaturas entre rondas hasta las rondas de los Jefes y la siguiente.
 
 **Batalla**
 
-- Al pulsar el boton de Luchar cambia al Menu de Ataques donde:
-  - Al pulsar un Ataque se ejecuta el combate con el Ataque elegido como accion.
-  - Al pulsar el boton de Volver vuelve al Menu General.
-- Al pulsar el boton de Cambiar se accede a la pantalla de la Mochila donde:
-  - Al Ver Criatura se puede alternar informacion de Ataques y Estadisticas, Volver regresa a la Mochila.
+- Al pulsar el botón de Luchar cambia al Menú de Ataques donde:
+  - Al pulsar un Ataque se ejecuta el combate con el Ataque elegido como acción.
+  - Al pulsar el botón de Volver vuelve al Menú General.
+- Al pulsar el botón de Cambiar se accede a la pantalla de la Mochila donde:
+  - Al Ver Criatura se puede alternar información de Ataques y Estadísticas, Volver regresa a la Mochila.
   - Al Elegir Criatura Cambia la Criatura actual en combate por la elegida, que no debe estar debilitada.
-  - Al pulsar el boton de Volver regresa al Mene General.
-- Al Cambiar de Criatura el Rival realizara un Ataque si fue una decision del Jugador, en caso de que fuera un cambio forzado por el debilitamiento de la criatura el Rival no puede Atacar.
-- Al pulsar el boton de Rendirse se avanza a la pantalla de Fin del Juego y se guarda el aspecto, el nombre y el record del Jugador para la siguiente partida.
+  - Al pulsar el botón de Volver regresa al Mene General.
+- Al Cambiar de Criatura el Rival realizara un Ataque si fue una decisión del Jugador, en caso de que fuera un cambio forzado por el debilitamiento de la criatura el Rival no puede Atacar.
+- Al pulsar el botón de Rendirse se avanza a la pantalla de Fin del Juego y se guarda el aspecto, el nombre y el record del Jugador para la siguiente partida.
 - Al seleccionar ataque o cambiar criatura se muestran los mensajes que describen la secuencia de acciones.
-- Al debilitar una Criatura del Rival la cambia por otra no debilitada de laas que le quedan.
-- Al pulsar el boton de Continuar de los Mensajes se muestra el siguiente mensaje.
+- Al debilitar una Criatura del Rival la cambia por otra no debilitada de las que le quedan.
+- Al pulsar el botón de Continuar de los Mensajes se muestra el siguiente mensaje.
 - Al perder a todas las Criaturas se avanza a la pantalla de Fin del Juego.
 - Al debilitar a todas las Criaturas del Rival se avanza a la pantalla de Elegir Recompensa por Ganar.
-- Si se usa un Ataque de Mejora de Estadistica aparece el icono correspondiente en la Criatura y se indica la cantidad de Mejoras utilizadas hasta 5.
+- Si se usa un Ataque de Mejora de Estadística aparece el icono correspondiente en la Criatura y se indica la cantidad de Mejoras utilizadas hasta 5.
 
 **Ganar (Elegir Recompensa)**
 
@@ -967,47 +961,47 @@ La url de este proyecto es [https://josemr6.github.io/react-reactmon/](https://j
 **Ganar (Elegir Criatura enemiga)**
 
 - Muestra 3 Criaturas del Rival o menos si no tiene suficientes.
-- Al pulsar en Ver se muestra la Informacion de la Criatura incluyendo Ataques y Estadisticas, al pulsar en el boton de Volver se regresa a la Eleccion de Criaturas.
-- Al pulsar el boton de Elegir se añade la Criatura al equipo del Jugador y avanza a la siguiente Batalla.
-- Si el equipor del Jugador ya tiene 6 Criaturas se cambia a la pantalla de Mochila para añadir la nueva Criatura.
+- Al pulsar en Ver se muestra la Información de la Criatura incluyendo Ataques y Estadísticas, al pulsar en el botón de Volver se regresa a la Elección de Criaturas.
+- Al pulsar el botón de Elegir se añade la Criatura al equipo del Jugador y avanza a la siguiente Batalla.
+- Si el equipo del Jugador ya tiene 6 Criaturas se cambia a la pantalla de Mochila para añadir la nueva Criatura.
 
 **Ganar (Mochila Nueva Criatura)**
 
-- Se muestran las 6 Criaturas del Jugador y la Nuva que se quiere añadir.
-- Al pulsar el boton Ver se muestra la Informacion de Ataques y Estadisticas de la Criatura, Volver regresa a la Mochila.
-- Al pulsar el boton Eliminar se descarta la Criatura Elegida y si es del equipo se añade la nueva Criatura en su lugar.
+- Se muestran las 6 Criaturas del Jugador y la Nueva que se quiere añadir.
+- Al pulsar el botón Ver se muestra la Información de Ataques y Estadísticas de la Criatura, Volver regresa a la Mochila.
+- Al pulsar el botón Eliminar se descarta la Criatura Elegida y si es del equipo se añade la nueva Criatura en su lugar.
 
 **Ganar (Elegir Ataque enemigo)**
 
 - Se muestran los Ataques de 3 Criaturas del Rival como máximo.
-- Al pulsar en `?` muestra la descripcion del Ataque mientras se mantenga el raton encima.
-- Al pulsar el boton de Elegir Ataque se avanza a la Mochila para añadir el Nuevo Ataque.
+- Al pulsar en `?` muestra la descripción del Ataque mientras se mantenga el ratón encima.
+- Al pulsar el botón de Elegir Ataque se avanza a la Mochila para añadir el Nuevo Ataque.
 
 **Ganar (Mochila Nuevo Ataque)**
 
 - Se muestran las Criaturas del equipo del jugador y el Ataque Nuevo.
-- Al pulsar en `?` muestra la descripcion del Ataque.
-- Solo las Criaturas que pueden aprender el Ataque tienen el boton para ello.
-- Al pulsar en el boton enseñar se accede a la pantalla de Informacion de la Criatura con el boton añadido de Enseñar u Olvidar.
+- Al pulsar en `?` muestra la descripción del Ataque.
+- Solo las Criaturas que pueden aprender el Ataque tienen el botón para ello.
+- Al pulsar en el botón enseñar se accede a la pantalla de Información de la Criatura con el botón añadido de Enseñar u Olvidar.
 
-**Ganar (Informacion + Enseñar)**
+**Ganar (Información + Enseñar)**
 
-- Se puede alternar entre la Informacion de lo Atques originales de la Criatura, el nuevo que se quiere Enseñar y las Estadisticas de la Criatura.
-- Al pulsar el boton de Volver regresa a la Mochila.
-- Si la Criatura tiene 1 Ataque aparece el boton Enseñar.
-- Si la Criatura tiene 2 Ataques aparece el boton Olvidar.
+- Se puede alternar entre la Información de lo Ataques originales de la Criatura, el nuevo que se quiere Enseñar y las Estadísticas de la Criatura.
+- Al pulsar el botón de Volver regresa a la Mochila.
+- Si la Criatura tiene 1 Ataque aparece el botón Enseñar.
+- Si la Criatura tiene 2 Ataques aparece el botón Olvidar.
 - Si la Criatura ya conoce el Ataque no aparecen los botones de Enseñar.
-- Si se seleccionan las Estadisticas no aparecen los botones de Enseñar.
-- Si se selecciona el único Ataque que inflinje daño de la Criatura incluyendo el Nuevo Ataque, no aparece el boton de Olvidar.
-- Al pulsar el boton Enseñar la Criatura aprende el Ataque Nuevo y Avanza a la siguiente pantalla.
-- Al pulsar el boton Olvidar la Criatura pierde el Ataque seleccionado para aprender el Nuevo. 
+- Si se seleccionan las Estadísticas no aparecen los botones de Enseñar.
+- Si se selecciona el único Ataque que inflija daño de la Criatura incluyendo el Nuevo Ataque, no aparece el botón de Olvidar.
+- Al pulsar el botón Enseñar la Criatura aprende el Ataque Nuevo y Avanza a la siguiente pantalla.
+- Al pulsar el botón Olvidar la Criatura pierde el Ataque seleccionado para aprender el Nuevo. 
 
 **Tienda**
 
-- Al pulsar el boton de Actualizar la Tienda se cambian las Criaturas disponibles y se reducen 100 Monedas.
-- Al pulsar el boton de Ver se muestra la Informacion de los Ataques y Estadisticas de la Criatura, Volver Regresa a la Tienda.
-- Al pulsar el boton Comprar se reducen las Monedas que cueste la Criatura y se cambia a la pantalla de Informacion de la Criatura con los botones añadidos de Añadir Criatura y Extraer Ataque donde:
-  - Al pulsar el boton de Añadir Criatura se incluye en el equipo del Jugador o se va a la Mochila para añadir la Nueva Criatura si no hay espacio.
+- Al pulsar el botón de Actualizar la Tienda se cambian las Criaturas disponibles y se reducen 100 Monedas.
+- Al pulsar el botón de Ver se muestra la Información de los Ataques y Estadísticas de la Criatura, Volver Regresa a la Tienda.
+- Al pulsar el botón Comprar se reducen las Monedas que cueste la Criatura y se cambia a la pantalla de Información de la Criatura con los botones añadidos de Añadir Criatura y Extraer Ataque donde:
+  - Al pulsar el botón de Añadir Criatura se incluye en el equipo del Jugador o se va a la Mochila para añadir la Nueva Criatura si no hay espacio.
   - Al pulsar en Extraer Ataque se cambia a la pantalla de la Mochila para Añadir el Ataque seleccionado.
 
 **Fin del Juego**
@@ -1028,5 +1022,5 @@ La url de este proyecto es [https://josemr6.github.io/react-reactmon/](https://j
 - Iconos de Menús y Categorías de [SVG-Repo](https://www.svgrepo.com/).
 - Iconos de Tipos Elementales de [duiker101](https://github.com/duiker101/pokemon-type-svg-icons).
 - Aspectos de Personaje de [Pokémon-Showdown](https://play.pokemonshowdown.com/sprites/trainers/).
-- Imagenes de Criaturas de [jnovack](https://github.com/jnovack/pokemon-svg/tree/master).
+- Imágenes de Criaturas de [jnovack](https://github.com/jnovack/pokemon-svg/tree/master).
 - Fondos de Pantalla de [FREEPIK](https://www.freepik.es/).
