@@ -326,16 +326,16 @@ export const CREATURES = [
     }
 ]
 
-export const PLAYER_SKINS = [
-    maniac,
-    acetrainer,
-    aquagrunt,
-    biker,
-    picnicker,
-    acetrainerf,
-    magmagrunt,
-    battlegirl
-]
+export const PLAYER_SKINS = {
+    maniac: maniac,
+    acetrainer: acetrainer,
+    aquagrunt: aquagrunt,
+    biker: biker,
+    picnicker: picnicker,
+    acetrainerf: acetrainerf,
+    magmagrunt: magmagrunt,
+    battlegirl: battlegirl
+}
 
 export const BACKGROUNDS=[
     {

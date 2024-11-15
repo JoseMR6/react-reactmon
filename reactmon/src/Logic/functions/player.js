@@ -25,9 +25,11 @@ export function generateName() {
 }
 
 export function generateRival(round, getNewId, firstType = null) {
+    const skinNames = Object.keys(PLAYER_SKINS)
+    
     let newRival = new Player(
         'Kenny',
-        PLAYER_SKINS[0],
+        skinNames[0],
         round
     )
 
@@ -44,11 +46,11 @@ export function generateRival(round, getNewId, firstType = null) {
     ]
 
     if (round > 1) {
-        let randomNumber = getRandomInt(PLAYER_SKINS.length)
+        let randomNumber = getRandomInt(skinNames.length)
 
         newRival = new Player(
             generateName(),
-            PLAYER_SKINS[randomNumber],
+            skinNames[randomNumber],
             round
         )
 

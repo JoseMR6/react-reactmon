@@ -1,4 +1,4 @@
-import { ATT_CAT_IMG, TEXT_VARIABLES, TRANSLATIONS, TR_DOCUMENT } from "../constants"
+import { ATT_CAT_IMG, PLAYER_SKINS, TEXT_VARIABLES, TRANSLATIONS, TR_DOCUMENT } from "../constants"
 import { checkLanguajeDocument } from "../errors"
 
 export async function getLanguajeDocument(lang) {
@@ -32,7 +32,7 @@ export function applyMessageVars(text, varObject) {
 }
 
 export function getSkinRoute(skin) {
-    return skin
+    return PLAYER_SKINS[skin]
 }
 
 export function getCategoryRoute(category) {

@@ -37,7 +37,7 @@ export function RightPanel() {
                 <div className="option">
                     {player.image != '' &&
                         <img src={getSkinRoute(player.image)}
-                            alt={player.image}
+                            alt={'player Skin'}
                         />
                     }
                     {player.name != '' &&

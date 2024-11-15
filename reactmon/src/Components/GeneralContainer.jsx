@@ -1,23 +1,26 @@
 import { useGame } from "../Logic/hooks/useGame"
 import { WINDOW_NAMES } from "../Logic/constants"
-import { ChooseCreature } from "./ChooseCreature"
 import { Footer } from "./Footer"
 import "./GeneralContainer.css"
 import { LeftMenu } from "./LeftMenu"
 import { RightPanel } from "./RightPanel"
+import { Suspense, createElement, lazy } from "react"
+import { DevPanel } from "./DevPanel"
+import { LoadingWindow } from "./LoadingWindow"
+
 import { SelectSkin } from "./SelectSkin"
 import { WriteName } from "./WriteName"
+import { ChooseCreature } from "./ChooseCreature"
 import { ViewCreature } from "./ViewCreature"
-import { createElement } from "react"
 import { BattlePreview } from "./BattlePreview"
 import { BattleOptions } from "./BattleOptions"
-import { WinOptions } from "./WinOptions"
-import { LoseGame } from "./LoseGame"
 import { CreaturesBackpack } from "./CreaturesBackpack"
+import { WinOptions } from "./WinOptions"
 import { ChooseAttack } from "./ChooseAttack"
 import { Shop } from "./Shop"
-import { DevPanel } from "./DevPanel"
 import { Help } from "./Help"
+
+
 
 export function GeneralContainer() {
     const { actualWindow } = useGame()
@@ -57,7 +60,9 @@ export function GeneralContainer() {
         },
         {
             name: WINDOW_NAMES.LOSE_GAME,
-            component: LoseGame
+            component: lazy(() =>
+                import("./LoseGame").then((module) => ({ default: module.LoseGame }))
+            )
         },
         {
             name: WINDOW_NAMES.CHOOSE_ATTACK,
@@ -87,7 +92,11 @@ export function GeneralContainer() {
                     <div className="centralContainer">
                         {windowComponents.map((windowComponent, index) => {
                             if (actualWindow == windowComponent.name) {
-                                return createElement(windowComponent.component, { key: index })
+                                return (
+                                    <Suspense key={index} fallback={<LoadingWindow/>}>
+                                        {createElement(windowComponent.component)}
+                                    </Suspense>
+                                )
                             }
                         })}
                     </div>

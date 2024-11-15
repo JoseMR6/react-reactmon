@@ -1,0 +1,13 @@
+.loadingContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    height: 100%;
+}
+
+.imgLoading{
+    width: 40px;
+    height: 40px;
+}

@@ -26,12 +26,14 @@ export function SelectSkin() {
         changeWindow(WINDOW_NAMES.WRITE_NAME)
     }
 
+    const skinsKeys = Object.keys(PLAYER_SKINS)
+
     return (
         <>
             <div className="skinContainer">
                 <h1>{lang.title}</h1>
                 <div>
-                    {PLAYER_SKINS.map((skin, index) => {
+                    {skinsKeys.map((skin, index) => {
                         return (
                             <img key={index}
                                 src={getSkinRoute(skin)}
