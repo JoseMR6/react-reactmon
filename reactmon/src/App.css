@@ -16,6 +16,6 @@ meter{
   block-size: 100%;
 }
 
-meter::-webkit-meter-inner-element{
-  block-size: 100%;
+meter::-webkit-meter-bar{
+  background: rgba(228, 228, 228, 0.911);
 }
