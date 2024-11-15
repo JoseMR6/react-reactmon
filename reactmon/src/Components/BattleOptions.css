@@ -39,7 +39,7 @@
 }
 
 .generalBattleContainer .playerCreatureContainer.rival .healthBar{
-    block-size: auto;
+    block-size: 1em;
 }
 
 .generalBattleContainer .rival .icon{
