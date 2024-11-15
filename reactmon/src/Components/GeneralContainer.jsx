@@ -20,8 +20,6 @@ import { ChooseAttack } from "./ChooseAttack"
 import { Shop } from "./Shop"
 import { Help } from "./Help"
 
-
-
 export function GeneralContainer() {
     const { actualWindow } = useGame()
 

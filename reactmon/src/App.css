@@ -11,3 +11,11 @@
   display: flex;
   flex-direction: column;
 }
+
+meter{
+  block-size: 100%;
+}
+
+meter::-webkit-meter-inner-element{
+  block-size: 100%;
+}
