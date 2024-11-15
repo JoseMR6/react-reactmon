@@ -51,6 +51,11 @@
 
 .creaturesBackpackContainer .basicInfoContainer .healthBar{
     width: 100%;
+    block-size: 10px;
+}
+
+.creaturesBackpackContainer .basicInfoContainer .healthBar::-webkit-meter-bar{
+    block-size: 10px;
 }
 
 .creaturesBackpackContainer .iconContainer{

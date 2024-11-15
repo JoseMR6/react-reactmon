@@ -27,6 +27,10 @@
     height: 10px;
 }
 
+.statBar::-webkit-meter-bar {
+    block-size: 10px;
+}
+
 /*Color valor optimo firefox*/
 .statBar:-moz-meter-optimum::-moz-meter-bar {
     background: var(--optimun-color-stat);

@@ -39,7 +39,11 @@
 }
 
 .generalBattleContainer .playerCreatureContainer.rival .healthBar{
-    block-size: 1em;
+    block-size: 10px;
+}
+
+.generalBattleContainer .playerCreatureContainer.rival .healthBar::-webkit-meter-bar {
+    block-size: 10px;
 }
 
 .generalBattleContainer .rival .icon{
