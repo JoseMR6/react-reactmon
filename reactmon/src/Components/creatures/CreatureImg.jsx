@@ -1,7 +1,6 @@
 import { PropTypes } from 'prop-types'
 import { Suspense, createElement, lazy } from 'react'
 import { CREATURES } from '../../Logic/constants'
-import loadingIcon from '/loading.svg'
 
 export function CreatureImg({ name, type, dark = 0 }) {
 
@@ -121,11 +120,7 @@ export function CreatureImg({ name, type, dark = 0 }) {
             {creatureComponents.map((creatureComponent, index) => {
                 if (name == creatureComponent.name) {
                     return (
-                        <Suspense key={index} fallback={
-                            <img
-                                src={loadingIcon} className="imgOption"
-                            />
-                        }>
+                        <Suspense key={index}>
                             {createElement(creatureComponent.component,
                                 { key: index, type: type, dark: dark }
                             )}

@@ -4,7 +4,7 @@ import { Footer } from "./Footer"
 import "./GeneralContainer.css"
 import { LeftMenu } from "./LeftMenu"
 import { RightPanel } from "./RightPanel"
-import { Suspense, createElement, lazy } from "react"
+import { Suspense, createElement } from "react"
 import { DevPanel } from "./DevPanel"
 import { LoadingWindow } from "./LoadingWindow"
 
@@ -16,6 +16,7 @@ import { BattlePreview } from "./BattlePreview"
 import { BattleOptions } from "./BattleOptions"
 import { CreaturesBackpack } from "./CreaturesBackpack"
 import { WinOptions } from "./WinOptions"
+import { LoseGame } from "./LoseGame"
 import { ChooseAttack } from "./ChooseAttack"
 import { Shop } from "./Shop"
 import { Help } from "./Help"
@@ -58,9 +59,7 @@ export function GeneralContainer() {
         },
         {
             name: WINDOW_NAMES.LOSE_GAME,
-            component: lazy(() =>
-                import("./LoseGame").then((module) => ({ default: module.LoseGame }))
-            )
+            component: LoseGame
         },
         {
             name: WINDOW_NAMES.CHOOSE_ATTACK,
