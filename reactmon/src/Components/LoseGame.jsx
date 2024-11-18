@@ -6,7 +6,9 @@ import { ElemntIcon } from './Types'
 import { CreatureImg } from './creatures/CreatureImg'
 
 export function LoseGame() {
-    const { player, round, setPlayer, playerCreatures, languajeDocument } = useGame()
+    const { player, round, setPlayer, playerCreatures, languajeDocument,
+        mute, volume
+     } = useGame()
 
     const lang=languajeDocument.LoseGame
 
@@ -16,6 +18,9 @@ export function LoseGame() {
         setPlayer(clonePlayer)
 
         localStorage.setItem("reactmonPayer",JSON.stringify(clonePlayer))
+        localStorage.setItem("reactmonSoundOptions",JSON.stringify({
+            mute:mute, volume:volume
+        }))
     }, [])
 
     return (

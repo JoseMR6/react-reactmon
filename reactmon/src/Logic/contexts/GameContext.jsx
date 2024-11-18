@@ -12,9 +12,13 @@ export function GameProvider({ children }) {
         gameState, setGameState,
         actualWindow, setActualWindow,
         formerWindow,
-        initWindow,setInitWindow,
+        initWindow, setInitWindow,
         background, setBackground,
-        battleOptions
+        battleOptions,
+        volume, setVolume,
+        mute, setMute,
+        playMusic, setPlayMusic,
+        musicVolume, setMusicVolume
     } = useConfig()
 
     const {
@@ -40,9 +44,13 @@ export function GameProvider({ children }) {
             gameState, setGameState,
             actualWindow, setActualWindow,
             formerWindow,
-            initWindow,setInitWindow,
+            initWindow, setInitWindow,
             background, setBackground,
             battleOptions,
+            volume, setVolume,
+            mute, setMute,
+            playMusic, setPlayMusic,
+            musicVolume, setMusicVolume,
             round, setRound,
             coins, setCoins,
             contCreatureIds,

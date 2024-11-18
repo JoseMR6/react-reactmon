@@ -1,55 +1,65 @@
 import { useGame } from '../Logic/hooks/useGame'
 import './Footer.css'
 
-export function Footer(){
-    const {languajeDocument} = useGame()
+export function Footer() {
+    const { languajeDocument } = useGame()
     const lang = languajeDocument.Footer
-    
-    return(
+
+    return (
         <>
             <footer>
                 <div className="footerPositioner">
                     <div className='option'>
                         <b>{lang.author}:</b>
-                        <a 
+                        <a
                             href='https://github.com/JoseMR6?tab=repositories'
                             target='_blank'
                         >
                             JoseMR6
                         </a>
                     </div>
-                    <div className='separator'/>
+                    <div className='separator' />
                     <div className='option'>
                         <b>{lang.images}:</b>
-                        <a 
+                        <a
                             href='https://www.svgrepo.com/'
                             target='_blank'
                         >
                             SVG-Repo.
                         </a>
-                        <a 
+                        <a
                             href='https://www.freepik.es/'
                             target='_blank'
                         >
                             FREEPIK.
                         </a>
-                        <a 
+                        <a
                             href='https://play.pokemonshowdown.com/sprites/trainers/'
                             target='_blank'
                         >
                             Pokémon-Showdown sprites-trainers.
                         </a>
-                        <a 
+                        <a
                             href='https://github.com/duiker101/pokemon-type-svg-icons'
                             target='_blank'
                         >
                             duiker101 pokemon-type-svg-icons.
                         </a>
-                        <a 
+                        <a
                             href='https://github.com/jnovack/pokemon-svg/tree/master'
                             target='_blank'
                         >
                             jnovack pokemon-svg.
+                        </a>
+                    </div>
+                    <div className='separator' />
+                    <div className='option'>
+                        <b>{lang.sounds}:</b>
+                        <a
+                            href='https://freesound.org/'
+                            target='_blank'
+                        >
+                            freesound.
                         </a>
                     </div>
                 </div>

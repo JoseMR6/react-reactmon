@@ -168,7 +168,8 @@
     },
     "Footer": {
         "author": "Author",
-        "images": "Images from"
+        "images": "Images from",
+        "sounds": "Sounds from"
     },
     "Help": {
         "text": [

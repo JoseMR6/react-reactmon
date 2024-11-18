@@ -14,11 +14,14 @@ import surrender from '../assets/options/surrender.svg'
 import { Buff } from './animations_img/Buff'
 import { PhAttack } from './animations_img/PhAttack'
 import { SpAttack } from './animations_img/SpAttack'
+import buffSound from '../assets/sounds/buff.wav'
+import phAttackSound from '../assets/sounds/phAttack.wav'
+import spAttackSound from '../assets/sounds/spAttack.wav'
 
 export function BattleOptions() {
     const { playerCreatures, rivalCreatures, indexActualCreaturePlayer,
         indexActualCreatureRival, initWindow, player, setPlayer, rival, setRival,
-        setInitWindow, battleOptions
+        setInitWindow, battleOptions, mute, volume
     } = useGame()
 
     const initialAnimation = { name: null, elemType: null, rival: null }
@@ -98,11 +101,29 @@ export function BattleOptions() {
 
     }
 
+    const doSound = (name)=>{
+        let sound = null
+
+        if (name == ATTACK_CATEGORYS.SUPPORT) {
+            sound = new Audio(buffSound)
+        } else if (name == ATTACK_CATEGORYS.PHYSICAL) {
+            sound = new Audio(phAttackSound)
+        } else if (name == ATTACK_CATEGORYS.SPECIAL) {
+            sound = new Audio(spAttackSound)
+        }
+
+        sound.volume=volume
+        sound.muted=mute
+        sound.play()
+    }
+
     const startAnimation = async (animation) => {
         setAnimation(animation)
         setTimeout(() => {
             setAnimation(initialAnimation)
         }, (duration * 1100))
+        
+        doSound(animation.name)
     }
 
     return (

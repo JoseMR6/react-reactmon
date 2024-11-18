@@ -7,7 +7,7 @@ import { useEffect } from 'react'
 
 export function SelectSkin() {
     const { player, setPlayer,
-        languajeDocument, changeWindow, setBackground
+        languajeDocument, changeWindow, setBackground, setMute, setVolume
     } = useGame()
 
     const lang = languajeDocument.SelectSkin
@@ -15,6 +15,13 @@ export function SelectSkin() {
     useEffect(() => {
         const playerStored = localStorage.getItem("reactmonPayer")
         if (playerStored) setPlayer(JSON.parse(playerStored))
+
+        let soundOptions = localStorage.getItem("reactmonSoundOptions")
+        if (soundOptions){
+            soundOptions=JSON.parse(soundOptions)
+            if(soundOptions.mute!==null) setMute(soundOptions.mute)
+            if(soundOptions.volume!==null) setVolume(soundOptions.volume)
+        }
         
         setBackground(BACKGROUNDS[BACKGROUNDS.length-1])
     }, [])
