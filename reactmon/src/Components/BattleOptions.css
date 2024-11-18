@@ -226,3 +226,60 @@
     background-color: var(--select-bg-color);
     color: var(--select-color);
 }
+
+/*Animations*/
+@keyframes buffAnimationRival{
+    from {
+        top: 80px;
+        visibility: hidden;
+    }
+    to {
+        top: 60px;
+        visibility: visible;
+    }
+}
+
+@keyframes buffAnimationPlayer{
+    from {
+        bottom: 80px;
+        visibility: hidden;
+    }
+    to {
+        bottom: 100px;
+        visibility: visible;
+    }
+}
+
+@keyframes attackAnimationRival{
+    from {
+        width: 60px;
+        height: 60px;
+        left: 600px;
+        bottom: 200px;
+        visibility: hidden;
+    }
+    to {
+        width: 90px;
+        height: 90px;
+        left: 300px;
+        bottom: 120px;
+        visibility: visible;
+    }
+}
+
+@keyframes attackAnimationPlayer{
+    from {
+        width: 90px;
+        height: 90px;
+        left: 300px;
+        bottom: 120px;
+        visibility: hidden;
+    }
+    to {
+        width: 60px;
+        height: 60px;
+        left: 600px;
+        bottom: 200px;
+        visibility: visible;
+    }
+}

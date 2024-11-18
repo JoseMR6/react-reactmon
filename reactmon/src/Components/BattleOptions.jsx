@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { createElement, useEffect, useState } from 'react'
 import { useGame } from '../Logic/hooks/useGame'
 import { ATTACK_CATEGORYS, GAME_STATES, INIT_STATES, PLAYER_ACTIONS, PLAYER_CREATURE_EXAMPLE, RIVAL_CREATURE_EXAMPLE, WINDOW_NAMES } from '../Logic/constants'
 import './BattleOptions.css'
@@ -11,6 +11,9 @@ import { deadFilterChoose, getFirst } from '../Logic/functions/creature'
 import battle from '../assets/options/battle.svg'
 import change from '../assets/options/change.svg'
 import surrender from '../assets/options/surrender.svg'
+import { Buff } from './animations_img/Buff'
+import { PhAttack } from './animations_img/PhAttack'
+import { SpAttack } from './animations_img/SpAttack'
 
 export function BattleOptions() {
     const { playerCreatures, rivalCreatures, indexActualCreaturePlayer,
@@ -18,8 +21,11 @@ export function BattleOptions() {
         setInitWindow, battleOptions
     } = useGame()
 
+    const initialAnimation = { name: null, elemType: null, rival: null }
+
     const [menu, setMenu] = useState(0)
     const [playerAction, setPlayerAction] = useState({ action: null, param: null })
+    const [animation, setAnimation] = useState(initialAnimation)
 
     const localPlayerCreature = playerCreatures
         ? playerCreatures[indexActualCreaturePlayer]
@@ -58,10 +64,55 @@ export function BattleOptions() {
         }
     }, []);
 
+    const duration = 0.5  //seconds
+
+    const doAnimation = (name, elemType, rival) => {
+        const colorFilter = {
+            fire: "invert(82%) sepia(12%) saturate(5929%) hue-rotate(325deg) brightness(105%) contrast(97%)",
+            grass: "invert(63%) sepia(39%) saturate(602%) hue-rotate(68deg) brightness(96%) contrast(90%)",
+            water: "invert(54%) sepia(88%) saturate(329%) hue-rotate(168deg) brightness(90%) contrast(93%)",
+            neutral: "invert(67%) sepia(7%) saturate(83%) hue-rotate(56deg) brightness(95%) contrast(90%)"
+        }
+
+        let component = 'div'
+
+        if (name == ATTACK_CATEGORYS.SUPPORT) {
+            component = Buff
+        } else if (name == ATTACK_CATEGORYS.PHYSICAL) {
+            component = PhAttack
+        } else if (name == ATTACK_CATEGORYS.SPECIAL) {
+            component = SpAttack
+        }
+
+        if (component == 'div') {
+            const style = {
+                visibility: "hidden",
+                animation: "none"
+            }
+            return createElement(component, { style: style })
+        } else {
+            return createElement(component, {
+                duration: duration, colorFilter: colorFilter[elemType], rival: rival
+            })
+        }
+
+    }
+
+    const startAnimation = async (animation) => {
+        setAnimation(animation)
+        setTimeout(() => {
+            setAnimation(initialAnimation)
+        }, (duration * 1100))
+    }
+
     return (
         <>
             <div className='generalBattleContainer'>
                 <div className='battleContainer'>
+                    {
+                        doAnimation(animation.name, animation.elemType, animation.rival)
+                        //doAnimation(ANIMATIONS.SP_ATTACK,ELEMENTAL_TYPES.FIRE,true)
+                    }
                     {(localPlayerCreature && localRivalCreature)
                         &&
                         <>
@@ -89,6 +140,7 @@ export function BattleOptions() {
                         <BattleMessage
                             setMenu={setMenu}
                             playerAction={playerAction}
+                            startAnimation={startAnimation}
                         />
                     }
                 </div>
@@ -252,7 +304,7 @@ AttackOptions.propTypes = {
     setPlayerAction: PropTypes.func.isRequired
 }
 
-function BattleMessage({ setMenu, playerAction }) {
+function BattleMessage({ setMenu, playerAction, startAnimation }) {
     const { gameState, changeWindow, languajeDocument, setInitWindow,
         playerCreatures, rivalCreatures, indexActualCreaturePlayer, indexActualCreatureRival,
         processAttack, player, rival, setIndexActualCreatureRival, battleOptions
@@ -280,11 +332,19 @@ function BattleMessage({ setMenu, playerAction }) {
                 let processedCreaturesRival
 
                 if (playerFirst) {
+                    const isRivalAction = false
+
                     const [outputCreatures, outputCreaturesrival,
                         newMessage
-                    ] = processAttack(index, playerCreatures, rivalCreatures, true)
+                    ] = processAttack(index, playerCreatures, rivalCreatures, !isRivalAction)
                     battleOptions.current.message = newMessage
                     setMessage(battleOptions.current.message)
+
+                    startAnimation({
+                        name: creature.attacks[index].category,
+                        elemType: creature.attacks[index].type,
+                        rival: isRivalAction
+                    })
 
                     processedCreatures = outputCreatures
                     processedCreaturesRival = outputCreaturesrival
@@ -293,22 +353,30 @@ function BattleMessage({ setMenu, playerAction }) {
                         newAction = {
                             action: PLAYER_ACTIONS.ATTACK,
                             param: randomAttackIndex,
-                            rival: true
+                            rival: !isRivalAction
                         }
                     } else {
                         newAction = {
                             action: PLAYER_ACTIONS.DEAD,
                             param: null,
-                            rival: true
+                            rival: !isRivalAction
                         }
                     }
 
                 } else {
+                    const isRivalAction = true
+
                     const [outputCreatures2, outputCreaturesrival2,
                         newMessage2
-                    ] = processAttack(randomAttackIndex, playerCreatures, rivalCreatures, false)
+                    ] = processAttack(randomAttackIndex, playerCreatures, rivalCreatures, !isRivalAction)
                     battleOptions.current.message = newMessage2
                     setMessage(battleOptions.current.message)
+
+                    startAnimation({
+                        name: rivalCreature.attacks[randomAttackIndex].category,
+                        elemType: rivalCreature.attacks[randomAttackIndex].type,
+                        rival: isRivalAction
+                    })
 
                     processedCreatures = outputCreatures2
                     processedCreaturesRival = outputCreaturesrival2
@@ -317,13 +385,13 @@ function BattleMessage({ setMenu, playerAction }) {
                         newAction = {
                             action: PLAYER_ACTIONS.ATTACK,
                             param: index,
-                            rival: false
+                            rival: !isRivalAction
                         }
                     } else {
                         newAction = {
                             action: PLAYER_ACTIONS.DEAD,
                             param: null,
-                            rival: false
+                            rival: !isRivalAction
                         }
                     }
                 }
@@ -364,33 +432,48 @@ function BattleMessage({ setMenu, playerAction }) {
         if (action != null) {
             let newAction = null
 
+            const creature = structuredClone(playerCreatures[indexActualCreaturePlayer])
+            const rivalCreature = structuredClone(rivalCreatures[indexActualCreatureRival])
+
             if (action.action == PLAYER_ACTIONS.ATTACK) {
                 if (action.rival) {
                     const [outputCreatures2, ,
                         newMessage2
-                    ] = processAttack(action.param, playerCreatures, rivalCreatures, false)
+                    ] = processAttack(action.param, playerCreatures, rivalCreatures, !action.rival)
                     battleOptions.current.message = newMessage2
                     setMessage(battleOptions.current.message)
+
+                    startAnimation({
+                        name: rivalCreature.attacks[action.param].category,
+                        elemType: rivalCreature.attacks[action.param].type,
+                        rival: action.rival
+                    })
 
                     if (outputCreatures2[indexActualCreaturePlayer].dead) {
                         newAction = {
                             action: PLAYER_ACTIONS.DEAD,
                             param: null,
-                            rival: false
+                            rival: !action.rival
                         }
                     }
                 } else {
                     const [, outputCreaturesrival,
                         newMessage
-                    ] = processAttack(action.param, playerCreatures, rivalCreatures, true)
+                    ] = processAttack(action.param, playerCreatures, rivalCreatures, !action.rival)
                     battleOptions.current.message = newMessage
                     setMessage(battleOptions.current.message)
+
+                    startAnimation({
+                        name: creature.attacks[action.param].category,
+                        elemType: creature.attacks[action.param].type,
+                        rival: action.rival
+                    })
 
                     if (outputCreaturesrival[indexActualCreatureRival].dead) {
                         newAction = {
                             action: PLAYER_ACTIONS.DEAD,
                             param: null,
-                            rival: true
+                            rival: !action.rival
                         }
                     }
                 }
@@ -437,13 +520,13 @@ function BattleMessage({ setMenu, playerAction }) {
         }
         else if (gameState == GAME_STATES.LOSE)
             changeWindow(WINDOW_NAMES.LOSE_GAME)
-        else if (gameState == GAME_STATES.WIN){
+        else if (gameState == GAME_STATES.WIN) {
             setInitWindow(WINDOW_NAMES.WIN_OPTIONS)
             changeWindow(WINDOW_NAMES.WIN_OPTIONS)
-        }else if (message.name == 'isDead' && message.vars.isplayer1) {
+        } else if (message.name == 'isDead' && message.vars.isplayer1) {
             setInitWindow(INIT_STATES.DEAD)
             changeWindow(WINDOW_NAMES.CREATURES_BACKPACK)
-        }else {
+        } else {
             battleOptions.current.menu = 0
             setMenu(battleOptions.current.menu)
         }
@@ -475,5 +558,6 @@ function BattleMessage({ setMenu, playerAction }) {
 
 BattleMessage.propTypes = {
     setMenu: PropTypes.func.isRequired,
-    playerAction: PropTypes.object.isRequired
+    playerAction: PropTypes.object.isRequired,
+    startAnimation: PropTypes.func.isRequired
 }
