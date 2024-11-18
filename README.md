@@ -1024,8 +1024,8 @@ La url de este proyecto es [https://josemr6.github.io/react-reactmon/](https://j
 
 ## Posibles Futuras Mejoras
 
-- Añadir Animaciones.
-- Añadir Sonidos.
+- Añadir Animaciones. (Listo)
+- Añadir Sonidos. (Listo)
 - Añadir Multijugador.
 
 
@@ -1036,3 +1036,4 @@ La url de este proyecto es [https://josemr6.github.io/react-reactmon/](https://j
 - Aspectos de Personaje de [Pokémon-Showdown](https://play.pokemonshowdown.com/sprites/trainers/).
 - Imágenes de Criaturas de [jnovack](https://github.com/jnovack/pokemon-svg/tree/master).
 - Fondos de Pantalla de [FREEPIK](https://www.freepik.es/).
+- Música y Efectos de Sonido de [freesound](https://freesound.org/).
